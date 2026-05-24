@@ -2330,9 +2330,8 @@ main{padding-top:0!important}
   .footer-links{flex-direction:column!important;align-items:flex-start!important;gap:10px!important}
 }
 .ar.profile-ar .hero{
-background-image:
+background:
 linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-url('/assets/img/hero-night-paving.webp');
-background-size:cover;
-background-position:center;
+url('/assets/img/hero-night-paving.webp') center center / cover no-repeat !important;
+min-height:100vh;
 }
