@@ -1,1 +1,0 @@
-Added homepage Contact Us / تواصل معنا CTA in nav and hero only. Scoped CSS only; no theme, image, typography, profile, or layout overwrite.
