@@ -1,8 +1,0 @@
-name = "hic-live-cms"
-compatibility_date = "2024-11-01"
-
-# Cloudflare Pages Functions binding:
-# Create a KV namespace named HIC_CONTENT, then bind it to this project.
-# Variable name must be: HIC_CONTENT
-# Add environment variable:
-# HIC_ADMIN_PASSWORD = "Aa@6821111"
