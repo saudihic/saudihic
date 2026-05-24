@@ -101,8 +101,8 @@ async function saveLive(){
   try{
     const r = await fetch('/api/content', {
       method:'POST',
-      headers:{'content-type':'application/json','x-admin-password':adminPassword},
-      body: JSON.stringify(data)
+      headers:{'content-type':'application/json'},
+      body: JSON.stringify({ password: adminPassword, content: data })
     });
     const result = await r.json();
     if(!r.ok || !result.ok) throw new Error(result.error || 'Save failed');
