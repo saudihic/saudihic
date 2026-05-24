@@ -1,5 +1,4 @@
 /*
-  X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
 
 /admin.html
@@ -8,5 +7,5 @@
 /api/content
   Cache-Control: no-store, no-cache, must-revalidate
 
-/content/site-content.json
+/*.html
   Cache-Control: no-store, no-cache, must-revalidate

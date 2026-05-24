@@ -316,103 +316,45 @@ footer img[src*="logo" i],
   }).catch(()=>{});
 })();
 </script>
-<script id="hic-content-runtime">
-(function(){
-  const mapHome = {
-    "كيان تنفيذي للبنية التحتية": "hero_badge",
-    "تنفيذ متخصص لمشاريع الطرق والأسفلت والبنية التحتية": "hero_title",
-    "تنفيذ ميداني متكامل لمشاريع البنية التحتية": "hero_title",
-    "شركة سعودية تقدم حلول تنفيذ ميدانية متكاملة تشمل أعمال الطرق، الأسفلت، شبكات التصريف، والأعمال المدنية ضمن مشاريع التطوير الحضري والبنية التحتية.": "hero_description",
-    "الحضور أولًا، ثم التفاصيل.": "hero_card_title",
-    "الحضور أولاً، ثم التفاصيل.": "hero_card_title",
-    "صُممت الصفحة الرئيسية كمدخل مؤسسي بصري يمنح الزائر إحساس الحجم والجاهزية قبل الدخول في تفاصيل البروفايل.": "hero_card_description",
-    "قدرات تنفيذية مصممة لمشاريع الطرق والبنية التحتية واسعة النطاق": "hero_card_title",
-    "منظومة تشغيل ميدانية تدعم تنفيذ مشاريع الطرق والأسفلت والبنية التحتية بكفاءة تشغيل عالية.": "hero_card_description",
-    "استعراض البروفايل المؤسسي": "primary_cta",
-    "مناقشة نطاق المشروع": "secondary_cta"
-  };
-  const mapProfile = {
-    "البروفايل المؤسسي": "hero_title",
-    "منظومة تنفيذ ميدانية متخصصة في الطرق والأسفلت والبنية التحتية والتطوير الحضري.": "hero_description",
-    "قدرات تنفيذ متكاملة": "section_1_title",
-    "نقدم أعمال الطرق والأسفلت وشبكات التصريف والأعمال المدنية ضمن منظومة تشغيل ميدانية موحدة تدعم المشاريع واسعة النطاق.": "section_1_text",
-    "مؤشرات تشغيل تعكس الجاهزية التنفيذية": "section_2_title",
-    "تعكس قدراتنا التشغيلية خبرة ميدانية وتنفيذ فعلي في مشاريع البنية التحتية والتطوير الحضري.": "section_2_text",
-    "منظومة تشغيل ميدانية متكاملة": "section_3_title"
-  };
-  function normalize(s){return (s||"").replace(/\s+/g," ").trim();}
-  function replaceText(scope, map, values){
-    const walker=document.createTreeWalker(scope, NodeFilter.SHOW_TEXT);
-    const nodes=[];
-    while(walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach(n=>{
-      let raw=n.nodeValue || "";
-      let clean=normalize(raw);
-      Object.keys(map).forEach(old=>{
-        if(clean === normalize(old) && values[map[old]]){
-          n.nodeValue = raw.replace(raw.trim(), values[map[old]]);
-        }
-      });
-    });
-  }
-  function updateImages(images){
-    if(!images) return;
-    if(images.logo_header){
-      document.querySelectorAll('header img, nav img').forEach(img=>{ if(/logo|hic|brand/i.test(img.src + " " + img.alt)) img.src=images.logo_header; });
-    }
-    if(images.logo_footer){
-      document.querySelectorAll('footer img').forEach(img=>{ if(/logo|hic|brand/i.test(img.src + " " + img.alt)) img.src=images.logo_footer; });
-    }
-    if(images.home_hero_image && location.pathname.includes('/ar') && !location.pathname.includes('/profile')){
-      const imgs=[...document.images].filter(img=>!/logo|brand/i.test(img.src + " " + img.alt));
-      if(imgs[0]) imgs[0].src=images.home_hero_image;
-    }
-    if(images.profile_hero_image && location.pathname.includes('/profile')){
-      const imgs=[...document.images].filter(img=>!/logo|brand/i.test(img.src + " " + img.alt));
-      if(imgs[0]) imgs[0].src=images.profile_hero_image;
-    }
-  }
-  fetch('/api/content', {cache:'no-store'})
-    .catch(()=>fetch('/api/content', {cache:'no-store'}))
-    .then(r=>r.json())
-    .then(data=>{
-      const home=data?.ar?.home||{};
-      const profile=data?.ar?.profile||{};
-      replaceText(document.body, mapHome, home);
-      replaceText(document.body, mapProfile, profile);
-      updateImages(data?.images||{});
-    })
-    .catch(()=>{});
-})();
-</script>
+
 <script id="hic-cms-runtime">
 (function(){
-  function getPath(){
+  function getPageKey(){
     var p = location.pathname;
     if(p.includes('/ar/profile')) return 'profile_ar';
     if(p.includes('/ar')) return 'home_ar';
     if(p.includes('/profile')) return 'profile_en';
     return 'home_en';
   }
-  function loadContent(){ return fetch('/api/content', {cache:'no-store'}).then(function(r){ return r.json(); }); }
-  loadContent().then(function(data){
-    var pageKey = getPath();
-    var page = data.pages && data.pages[pageKey] ? data.pages[pageKey] : null;
+
+  function applyContent(data){
+    var pageKey = getPageKey();
+    var page = data && data.pages ? data.pages[pageKey] : null;
     if(!page) return;
+
     var texts = page.texts || {};
     Object.keys(texts).forEach(function(id){
       document.querySelectorAll('[data-hic-edit="'+id+'"]').forEach(function(el){
         el.textContent = texts[id];
       });
     });
+
     var images = page.images || {};
     Object.keys(images).forEach(function(id){
       document.querySelectorAll('[data-hic-img="'+id+'"]').forEach(function(img){
-        if(images[id].src) img.setAttribute('src', images[id].src);
-        if(typeof images[id].alt === 'string') img.setAttribute('alt', images[id].alt);
+        if(images[id] && images[id].src) img.setAttribute('src', images[id].src);
+        if(images[id] && typeof images[id].alt === 'string') img.setAttribute('alt', images[id].alt);
       });
     });
-  }).catch(function(){});
+  }
+
+  fetch('/api/content', { cache: 'no-store' })
+    .then(function(r){ return r.json(); })
+    .then(applyContent)
+    .catch(function(err){
+      console.warn('HIC CMS content load failed', err);
+    });
 })();
 </script>
+
 </body></html>

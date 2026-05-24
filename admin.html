@@ -104,11 +104,7 @@ async function loadLive(){
 
 async function saveLive(){
   try{
-    const r = await fetch('/api/content', {
-      method:'POST',
-      headers:{'content-type':'application/json'},
-      body: JSON.stringify({ password: adminPassword, content: data })
-    });
+    const r = await fetch('/api/content', {cache:'no-store'});
     const result = await r.json();
     if(!r.ok || !result.ok) throw new Error(result.error || 'Save failed');
     showStatus('تم الحفظ بنجاح — حدث صفحة الموقع لرؤية التغيير');
