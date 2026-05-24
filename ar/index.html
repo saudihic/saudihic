@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>هورايزن إنتيغريشن | تنفيذ ميداني للبنية التحتية</title><meta content="تنفيذ ميداني متكامل لمشاريع البنية التحتية مدعوم بالجاهزية التشغيلية والقدرات التنفيذية." name="description"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600&amp;family=Inter:wght@400;500;600;700&amp;family=Raleway:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="../assets/css/site.css" rel="stylesheet"/><link href="../assets/css/type-scale-calibration.css" rel="stylesheet"/><link href="../assets/css/makeup-calibration.css" rel="stylesheet"/><link href="../assets/css/charcoal-depth-calibration.css" rel="stylesheet"/>
+<style id="hic-visual-adjustments">
+/* HIC Arabic visual harmonization */
+html[dir="rtl"] body,
+body[dir="rtl"],
+.ar-page {
+  text-rendering: optimizeLegibility;
+}
+
+/* 1) Match Arabic profile typography feel with Arabic homepage */
+html[lang="ar"] .profile,
+html[lang="ar"] .profile-page,
+html[lang="ar"] [class*="profile"],
+html[dir="rtl"] .profile,
+html[dir="rtl"] .profile-page,
+html[dir="rtl"] [class*="profile"] {
+  --hic-profile-title-size: clamp(2.4rem, 5vw, 5.4rem);
+  --hic-profile-heading-size: clamp(1.85rem, 3.2vw, 3.4rem);
+  --hic-profile-body-size: clamp(1.05rem, 1.35vw, 1.35rem);
+}
+
+html[lang="ar"] [class*="profile"] h1,
+html[dir="rtl"] [class*="profile"] h1,
+html[lang="ar"] main h1,
+html[dir="rtl"] main h1 {
+  font-size: var(--hic-profile-title-size, clamp(2.4rem, 5vw, 5.4rem));
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+html[lang="ar"] [class*="profile"] h2,
+html[dir="rtl"] [class*="profile"] h2 {
+  font-size: var(--hic-profile-heading-size, clamp(1.85rem, 3.2vw, 3.4rem));
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+html[lang="ar"] [class*="profile"] p,
+html[dir="rtl"] [class*="profile"] p,
+html[lang="ar"] [class*="profile"] li,
+html[dir="rtl"] [class*="profile"] li {
+  font-size: var(--hic-profile-body-size, clamp(1.05rem, 1.35vw, 1.35rem));
+  line-height: 1.95;
+}
+
+/* Keep long Arabic paragraphs premium and readable */
+html[lang="ar"] [class*="profile"] p,
+html[dir="rtl"] [class*="profile"] p {
+  max-width: 860px;
+}
+
+/* 2) Slightly larger header/banner logo across all pages */
+header img[alt*="logo" i],
+header img[src*="logo" i],
+nav img[alt*="logo" i],
+nav img[src*="logo" i],
+.site-header img,
+.header img,
+.navbar img {
+  width: auto !important;
+  max-height: 78px !important;
+  transform: scale(1.12);
+  transform-origin: center;
+}
+
+/* If logo is text/SVG block */
+header svg,
+nav svg {
+  max-height: 78px;
+}
+
+/* 3) Larger footer logo / brand mark */
+footer img[alt*="logo" i],
+footer img[src*="logo" i],
+.site-footer img,
+.footer img {
+  width: auto !important;
+  max-height: 92px !important;
+  transform: scale(1.14);
+  transform-origin: center;
+}
+
+footer svg {
+  max-height: 92px;
+}
+
+@media (max-width: 768px) {
+  html[lang="ar"] [class*="profile"] h1,
+  html[dir="rtl"] [class*="profile"] h1,
+  html[lang="ar"] main h1,
+  html[dir="rtl"] main h1 {
+    font-size: clamp(2.05rem, 9vw, 3.4rem);
+  }
+
+  html[lang="ar"] [class*="profile"] h2,
+  html[dir="rtl"] [class*="profile"] h2 {
+    font-size: clamp(1.55rem, 6vw, 2.35rem);
+  }
+
+  html[lang="ar"] [class*="profile"] p,
+  html[dir="rtl"] [class*="profile"] p,
+  html[lang="ar"] [class*="profile"] li,
+  html[dir="rtl"] [class*="profile"] li {
+    font-size: 1.05rem;
+    line-height: 1.9;
+  }
+
+  header img[alt*="logo" i],
+  header img[src*="logo" i],
+  nav img[alt*="logo" i],
+  nav img[src*="logo" i] {
+    max-height: 62px !important;
+    transform: scale(1.08);
+  }
+
+  footer img[alt*="logo" i],
+  footer img[src*="logo" i] {
+    max-height: 76px !important;
+    transform: scale(1.1);
+  }
+}
+</style>
+<style id="hic-final-qa-polish">
+/* Final QA polish — text scale, card readability, Arabic rhythm. No layout restructuring. */
+
+/* Arabic text rendering */
+html[lang="ar"], html[dir="rtl"], [dir="rtl"] {
+  text-rendering: optimizeLegibility;
+}
+
+/* General Arabic body rhythm */
+html[lang="ar"] body,
+html[dir="rtl"] body {
+  line-height: 1.75;
+}
+
+/* Premium, controlled cards: avoids tiny text and avoids oversized paragraphs */
+html[lang="ar"] [class*="card"],
+html[dir="rtl"] [class*="card"],
+html[lang="ar"] aside,
+html[dir="rtl"] aside {
+  overflow-wrap: anywhere;
+}
+
+html[lang="ar"] [class*="card"] h2,
+html[lang="ar"] [class*="card"] h3,
+html[lang="ar"] [class*="card"] h4,
+html[dir="rtl"] [class*="card"] h2,
+html[dir="rtl"] [class*="card"] h3,
+html[dir="rtl"] [class*="card"] h4,
+html[lang="ar"] aside h2,
+html[lang="ar"] aside h3,
+html[dir="rtl"] aside h2,
+html[dir="rtl"] aside h3 {
+  font-size: clamp(1.35rem, 2.1vw, 2rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+html[lang="ar"] [class*="card"] p,
+html[lang="ar"] [class*="card"] li,
+html[dir="rtl"] [class*="card"] p,
+html[dir="rtl"] [class*="card"] li,
+html[lang="ar"] aside p,
+html[dir="rtl"] aside p {
+  font-size: clamp(0.98rem, 1.05vw, 1.15rem);
+  line-height: 1.85;
+}
+
+/* Hero card specifically: keeps it premium and readable */
+html[lang="ar"] .hero [class*="card"] h2,
+html[lang="ar"] .hero [class*="card"] h3,
+html[dir="rtl"] .hero [class*="card"] h2,
+html[dir="rtl"] .hero [class*="card"] h3,
+html[lang="ar"] section:first-of-type aside h2,
+html[lang="ar"] section:first-of-type aside h3,
+html[dir="rtl"] section:first-of-type aside h2,
+html[dir="rtl"] section:first-of-type aside h3 {
+  font-size: clamp(1.55rem, 2.4vw, 2.35rem);
+  line-height: 1.2;
+}
+
+html[lang="ar"] .hero [class*="card"] p,
+html[dir="rtl"] .hero [class*="card"] p,
+html[lang="ar"] section:first-of-type aside p,
+html[dir="rtl"] section:first-of-type aside p {
+  font-size: clamp(1rem, 1.15vw, 1.22rem);
+  line-height: 1.85;
+}
+
+/* Profile Arabic typography aligned with homepage feel, but still readable for long content */
+html[lang="ar"] [class*="profile"] h1,
+html[dir="rtl"] [class*="profile"] h1,
+html[lang="ar"] main h1,
+html[dir="rtl"] main h1 {
+  font-size: clamp(2.35rem, 5vw, 5rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+html[lang="ar"] [class*="profile"] h2,
+html[dir="rtl"] [class*="profile"] h2 {
+  font-size: clamp(1.75rem, 3vw, 3.15rem);
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+}
+
+html[lang="ar"] [class*="profile"] p,
+html[lang="ar"] [class*="profile"] li,
+html[dir="rtl"] [class*="profile"] p,
+html[dir="rtl"] [class*="profile"] li {
+  font-size: clamp(1.03rem, 1.25vw, 1.28rem);
+  line-height: 1.9;
+}
+
+/* Header logo: larger but controlled */
+header img[alt*="logo" i],
+header img[src*="logo" i],
+nav img[alt*="logo" i],
+nav img[src*="logo" i],
+.site-header img,
+.header img,
+.navbar img {
+  width: auto !important;
+  max-height: 76px !important;
+  transform: scale(1.1);
+  transform-origin: center;
+}
+
+/* Footer logo: stronger brand presence */
+footer img[alt*="logo" i],
+footer img[src*="logo" i],
+.site-footer img,
+.footer img {
+  width: auto !important;
+  max-height: 92px !important;
+  transform: scale(1.12);
+  transform-origin: center;
+}
+
+/* Mobile control: prevent card text from feeling huge on phones */
+@media (max-width: 768px) {
+  html[lang="ar"] [class*="card"] h2,
+  html[lang="ar"] [class*="card"] h3,
+  html[dir="rtl"] [class*="card"] h2,
+  html[dir="rtl"] [class*="card"] h3,
+  html[lang="ar"] aside h2,
+  html[dir="rtl"] aside h2 {
+    font-size: clamp(1.25rem, 5.2vw, 1.8rem);
+    line-height: 1.25;
+  }
+
+  html[lang="ar"] [class*="card"] p,
+  html[dir="rtl"] [class*="card"] p,
+  html[lang="ar"] aside p,
+  html[dir="rtl"] aside p {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  html[lang="ar"] [class*="profile"] h1,
+  html[dir="rtl"] [class*="profile"] h1,
+  html[lang="ar"] main h1,
+  html[dir="rtl"] main h1 {
+    font-size: clamp(2rem, 8.5vw, 3.25rem);
+  }
+
+  html[lang="ar"] [class*="profile"] h2,
+  html[dir="rtl"] [class*="profile"] h2 {
+    font-size: clamp(1.45rem, 6vw, 2.2rem);
+  }
+
+  header img[alt*="logo" i],
+  header img[src*="logo" i],
+  nav img[alt*="logo" i],
+  nav img[src*="logo" i] {
+    max-height: 62px !important;
+    transform: scale(1.06);
+  }
+
+  footer img[alt*="logo" i],
+  footer img[src*="logo" i] {
+    max-height: 76px !important;
+    transform: scale(1.08);
+  }
+}
+</style>
+</head><body class="ar"><div class="noise"></div><header class="site-header"><a class="brand" href="#"><img alt="هورايزن إنتيغريشن" data-hic-img="home_ar_image_001" src="../assets/img/hic-logo.png"/><span><span data-hic-edit="home_ar_text_002">هورايزن إنتيغريشن</span></span></a><nav class="nav"><a href="#capabilities"><span data-hic-edit="home_ar_text_003">القدرات</span></a><a href="#engagements"><span data-hic-edit="home_ar_text_004">الأعمال</span></a><a href="profile/"><span data-hic-edit="home_ar_text_005">البروفايل</span></a><a class="nav-contact" href="#contact"><span data-hic-edit="home_ar_text_006">تواصل معنا</span></a><a class="lang" href="../">EN</a></nav></header><main><section class="hero"><div class="hero-grid"><div><div class="eyebrow reveal"><span data-hic-edit="home_ar_text_007">كيان تنفيذي للبنية التحتية</span></div><h1 class="reveal"><span data-hic-edit="home_ar_text_008">تنفيذ ميداني متكامل لمشاريع البنية التحتية</span></h1><p class="lead reveal"><span data-hic-edit="home_ar_text_009">قدرات تشغيلية منسقة لتنفيذ أعمال الأسفلت والبنية التحتية والتجهيزات الميدانية ضمن بيئات تنفيذ واسعة النطاق.</span></p><div class="cta-row reveal"><a class="btn" href="../profile/"><span data-hic-edit="home_ar_text_010">استعراض البروفايل المؤسسي</span></a></div></div><aside class="hero-card reveal"><strong><span data-hic-edit="home_ar_text_011">الحضور أولًا، ثم التفاصيل.</span></strong> <span data-hic-edit="home_ar_text_012">صُممت الصفحة الرئيسية كمدخل مؤسسي بصري يمنح الزائر إحساس الحجم والجاهزية قبل الدخول في تفاصيل البروفايل.</span></aside></div></section><section class="section"><div class="wrap split"><div class="reveal"><div class="kicker"><span data-hic-edit="home_ar_text_013">التموضع المؤسسي</span></div><h2 class="display"><span data-hic-edit="home_ar_text_014">منظومة تنفيذ ميدانية لبيئات بنية تحتية واسعة النطاق.</span></h2><p class="copy"><span data-hic-edit="home_ar_text_015">تعمل هورايزن إنتيغريشن من خلال منظومة تنفيذ ميدانية متكاملة تدعم مشاريع البنية التحتية وأعمال الأسفلت والتجهيزات التشغيلية ضمن بيئات تطوير حضري واسعة النطاق.</span></p></div><figure class="image-frame reveal"><img alt="طريق حضري منجز" data-hic-img="home_ar_image_002" src="../assets/img/positioning-road.webp"/></figure></div></section><section class="section capabilities" id="capabilities"><div class="wrap"><div class="cap-head reveal"><div><div class="kicker"><span data-hic-edit="home_ar_text_016">القدرات التشغيلية</span></div><h2 class="display"><span data-hic-edit="home_ar_text_017">قدرات مترابطة، وليست قائمة خدمات.</span></h2></div><p><span data-hic-edit="home_ar_text_018">تُعرض كل قدرة كجزء من منظومة تنفيذية واحدة تجمع المعدات والجاهزية والمواد والتنسيق الميداني ضمن طبقة تشغيلية متكاملة.</span></p></div><div class="cap-grid"><article class="cap reveal"><div class="cap-img"><img alt="تنفيذ أعمال الأسفلت" data-hic-img="home_ar_image_003" src="../assets/img/asphalt-operation.webp"/></div><div class="cap-body"><div class="cap-num">01</div><h3><span data-hic-edit="home_ar_text_019">عمليات الأسفلت</span></h3><p><span data-hic-edit="home_ar_text_020">تنفيذ ميداني منظم لأعمال الأسفلت مدعوم بالتجهيزات التشغيلية وتنسيق الموارد والقدرات التنفيذية واسعة النطاق.</span></p></div></article><article class="cap reveal"><div class="cap-img"><img alt="أسطول معدات ثقيلة" data-hic-img="home_ar_image_004" src="../assets/img/fleet-readiness.webp"/></div><div class="cap-body"><div class="cap-num">02</div><h3><span data-hic-edit="home_ar_text_021">الجاهزية التشغيلية للمعدات</span></h3><p><span data-hic-edit="home_ar_text_022">منظومة تشغيلية متكاملة لإدارة المعدات والتجهيزات الميدانية بما يدعم استمرارية التنفيذ وكفاءة الانتشار التشغيلي.</span></p></div></article><article class="cap reveal"><div class="cap-img"><img alt="بنية تحتية حضرية" data-hic-img="home_ar_image_005" src="../assets/img/urban-road.webp"/></div><div class="cap-body"><div class="cap-num">03</div><h3><span data-hic-edit="home_ar_text_023">تنفيذ البنية التحتية الحضرية</span></h3><p><span data-hic-edit="home_ar_text_024">تنفيذ ميداني لأعمال البنية التحتية ضمن بيئات حضرية تعتمد على التنسيق التشغيلي والقدرات التنفيذية المتكاملة.</span></p></div></article><article class="cap reveal"><div class="cap-img"><img alt="مواد ومجاميع إنشائية" data-hic-img="home_ar_image_006" src="../assets/img/materials.webp"/></div><div class="cap-body"><div class="cap-num">04</div><h3><span data-hic-edit="home_ar_text_025">تنسيق المواد وتجهيزات المواقع</span></h3><p><span data-hic-edit="home_ar_text_026">تنسيق تشغيلي للمواد وتجهيزات المواقع بما يدعم جاهزية التنفيذ واستمرارية الأعمال الميدانية.</span></p></div></article></div></div></section><section class="visual-break"><h2 class="reveal"><span data-hic-edit="home_ar_text_027">بيئات تنفيذ ميدانية مهيأة لأعمال البنية التحتية واسعة النطاق.</span></h2></section><section class="section metrics"><div class="wrap metric-grid"><div class="metric-intro reveal"><div class="kicker"><span data-hic-edit="home_ar_text_028">إشارات مؤسسية</span></div><h2><span data-hic-edit="home_ar_text_029">إثبات بلا ضجيج.</span></h2></div><div class="metric reveal"><span>01</span><p><span data-hic-edit="home_ar_text_030">انتشار تشغيلي متعدد المواقع</span></p></div><div class="metric reveal"><span>02</span><p><span data-hic-edit="home_ar_text_031">تنفيذ ميداني مدعوم بالأسطول التشغيلي</span></p></div><div class="metric reveal"><span>03</span><p><span data-hic-edit="home_ar_text_032">جاهزية متكاملة لأعمال البنية التحتية</span></p></div><div class="metric reveal"><span>04</span><p><span data-hic-edit="home_ar_text_033">قدرات تنفيذية واسعة النطاق</span></p></div></div></section><section class="section engagement" id="engagements"><div class="wrap wide-card reveal"><figure class="image-frame"><img alt="تنفيذ أسفلت ليلي" data-hic-img="home_ar_image_007" src="../assets/img/engagement.webp"/></figure><div class="wide-copy"><div class="kicker"><span data-hic-edit="home_ar_text_034">أعمال تشغيلية مختارة</span></div><h2><span data-hic-edit="home_ar_text_035">تنفيذ طرق حضرية</span></h2><p><span data-hic-edit="home_ar_text_036">تنفيذ ميداني لأعمال الأسفلت ضمن بيئات بنية تحتية حضرية عالية الكثافة، مدعوم بفرق ميدانية وحركة معدات وتسلسل تشغيلي منضبط.</span></p></div></div></section><section class="closing section"><h2 class="reveal"><span data-hic-edit="home_ar_text_037">قدرات تنفيذية مهيأة لبيئات البنية التحتية واسعة النطاق.</span></h2></section></main><section class="contact-final" id="contact"><div class="contact-grid"><div><img alt="هورايزن إنتيغريشن" class="footer-logo" data-hic-img="home_ar_image_008" src="../assets/img/hic-logo.png"/><div class="kicker"><span data-hic-edit="home_ar_text_038">التواصل</span></div><h2><span data-hic-edit="home_ar_text_039">جاهزية تنفيذية مهيأة لبيئات البنية التحتية في المملكة.</span></h2><p><span data-hic-edit="home_ar_text_040">لاستفسارات الجهات المؤسسية وطلبات البروفايل وتنسيق القدرات التشغيلية.</span></p></div><div class="contact-links"><a href="https://saudihic.com">www.saudihic.com</a><a href="mailto:sales@saudihic.com">sales@saudihic.com</a><span><span data-hic-edit="home_ar_text_041">المملكة العربية السعودية</span></span><a href="profile/"><span data-hic-edit="home_ar_text_042">البروفايل المؤسسي</span></a></div></div><div class="contact-bottom"><span><span data-hic-edit="home_ar_text_043">© هورايزن إنتيغريشن</span></span><span><span data-hic-edit="home_ar_text_044">البنية التحتية • الأعمال المدنية • الطرق • الأسفلت • التصريف • دهانات الطرق • الأعمال الخارجية</span></span></div></section><script src="../assets/js/site.js"></script>
+<script>
+(function(){
+  fetch('/api/content', {cache:'no-store'}).then(r=>r.json()).then(data=>{
+    const h = data?.ar?.home || {};
+    const p = data?.ar?.profile || {};
+    const im = data?.images || {};
+    function replaceExact(oldText, newText){
+      if(!newText) return;
+      const walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const nodes=[];
+      while(walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(n=>{
+        if((n.nodeValue||'').trim() === oldText) n.nodeValue = n.nodeValue.replace(oldText, newText);
+      });
+    }
+    replaceExact('كيان تنفيذي للبنية التحتية', h.hero_badge);
+    replaceExact('تنفيذ متخصص لمشاريع الطرق والأسفلت والبنية التحتية', h.hero_title);
+    replaceExact('تنفيذ ميداني متكامل لمشاريع البنية التحتية', h.hero_title);
+    replaceExact('شركة سعودية تقدم حلول تنفيذ ميدانية متكاملة تشمل أعمال الطرق، الأسفلت، شبكات التصريف، والأعمال المدنية ضمن مشاريع التطوير الحضري والبنية التحتية.', h.hero_description);
+    replaceExact('قدرات تنفيذية مصممة لمشاريع الطرق والبنية التحتية واسعة النطاق', h.hero_side_title);
+    replaceExact('استعراض البروفايل المؤسسي', h.primary_cta);
+    if(im.hero_image){
+      const heroImgs=[...document.images].filter(img => /hero|cover|banner|home/i.test(img.src));
+      if(heroImgs[0]) heroImgs[0].src = im.hero_image;
+    }
+  }).catch(()=>{});
+})();
+</script>
+<script id="hic-content-runtime">
+(function(){
+  const mapHome = {
+    "كيان تنفيذي للبنية التحتية": "hero_badge",
+    "تنفيذ متخصص لمشاريع الطرق والأسفلت والبنية التحتية": "hero_title",
+    "تنفيذ ميداني متكامل لمشاريع البنية التحتية": "hero_title",
+    "شركة سعودية تقدم حلول تنفيذ ميدانية متكاملة تشمل أعمال الطرق، الأسفلت، شبكات التصريف، والأعمال المدنية ضمن مشاريع التطوير الحضري والبنية التحتية.": "hero_description",
+    "الحضور أولًا، ثم التفاصيل.": "hero_card_title",
+    "الحضور أولاً، ثم التفاصيل.": "hero_card_title",
+    "صُممت الصفحة الرئيسية كمدخل مؤسسي بصري يمنح الزائر إحساس الحجم والجاهزية قبل الدخول في تفاصيل البروفايل.": "hero_card_description",
+    "قدرات تنفيذية مصممة لمشاريع الطرق والبنية التحتية واسعة النطاق": "hero_card_title",
+    "منظومة تشغيل ميدانية تدعم تنفيذ مشاريع الطرق والأسفلت والبنية التحتية بكفاءة تشغيل عالية.": "hero_card_description",
+    "استعراض البروفايل المؤسسي": "primary_cta",
+    "مناقشة نطاق المشروع": "secondary_cta"
+  };
+  const mapProfile = {
+    "البروفايل المؤسسي": "hero_title",
+    "منظومة تنفيذ ميدانية متخصصة في الطرق والأسفلت والبنية التحتية والتطوير الحضري.": "hero_description",
+    "قدرات تنفيذ متكاملة": "section_1_title",
+    "نقدم أعمال الطرق والأسفلت وشبكات التصريف والأعمال المدنية ضمن منظومة تشغيل ميدانية موحدة تدعم المشاريع واسعة النطاق.": "section_1_text",
+    "مؤشرات تشغيل تعكس الجاهزية التنفيذية": "section_2_title",
+    "تعكس قدراتنا التشغيلية خبرة ميدانية وتنفيذ فعلي في مشاريع البنية التحتية والتطوير الحضري.": "section_2_text",
+    "منظومة تشغيل ميدانية متكاملة": "section_3_title"
+  };
+  function normalize(s){return (s||"").replace(/\s+/g," ").trim();}
+  function replaceText(scope, map, values){
+    const walker=document.createTreeWalker(scope, NodeFilter.SHOW_TEXT);
+    const nodes=[];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n=>{
+      let raw=n.nodeValue || "";
+      let clean=normalize(raw);
+      Object.keys(map).forEach(old=>{
+        if(clean === normalize(old) && values[map[old]]){
+          n.nodeValue = raw.replace(raw.trim(), values[map[old]]);
+        }
+      });
+    });
+  }
+  function updateImages(images){
+    if(!images) return;
+    if(images.logo_header){
+      document.querySelectorAll('header img, nav img').forEach(img=>{ if(/logo|hic|brand/i.test(img.src + " " + img.alt)) img.src=images.logo_header; });
+    }
+    if(images.logo_footer){
+      document.querySelectorAll('footer img').forEach(img=>{ if(/logo|hic|brand/i.test(img.src + " " + img.alt)) img.src=images.logo_footer; });
+    }
+    if(images.home_hero_image && location.pathname.includes('/ar') && !location.pathname.includes('/profile')){
+      const imgs=[...document.images].filter(img=>!/logo|brand/i.test(img.src + " " + img.alt));
+      if(imgs[0]) imgs[0].src=images.home_hero_image;
+    }
+    if(images.profile_hero_image && location.pathname.includes('/profile')){
+      const imgs=[...document.images].filter(img=>!/logo|brand/i.test(img.src + " " + img.alt));
+      if(imgs[0]) imgs[0].src=images.profile_hero_image;
+    }
+  }
+  fetch('/api/content', {cache:'no-store'})
+    .catch(()=>fetch('/api/content', {cache:'no-store'}))
+    .then(r=>r.json())
+    .then(data=>{
+      const home=data?.ar?.home||{};
+      const profile=data?.ar?.profile||{};
+      replaceText(document.body, mapHome, home);
+      replaceText(document.body, mapProfile, profile);
+      updateImages(data?.images||{});
+    })
+    .catch(()=>{});
+})();
+</script>
+<script id="hic-cms-runtime">
+(function(){
+  function getPath(){
+    var p = location.pathname;
+    if(p.includes('/ar/profile')) return 'profile_ar';
+    if(p.includes('/ar')) return 'home_ar';
+    if(p.includes('/profile')) return 'profile_en';
+    return 'home_en';
+  }
+  function loadContent(){ return fetch('/api/content', {cache:'no-store'}).then(function(r){ return r.json(); }); }
+  loadContent().then(function(data){
+    var pageKey = getPath();
+    var page = data.pages && data.pages[pageKey] ? data.pages[pageKey] : null;
+    if(!page) return;
+    var texts = page.texts || {};
+    Object.keys(texts).forEach(function(id){
+      document.querySelectorAll('[data-hic-edit="'+id+'"]').forEach(function(el){
+        el.textContent = texts[id];
+      });
+    });
+    var images = page.images || {};
+    Object.keys(images).forEach(function(id){
+      document.querySelectorAll('[data-hic-img="'+id+'"]').forEach(function(img){
+        if(images[id].src) img.setAttribute('src', images[id].src);
+        if(typeof images[id].alt === 'string') img.setAttribute('alt', images[id].alt);
+      });
+    });
+  }).catch(function(){});
+})();
+</script>
+</body></html>
