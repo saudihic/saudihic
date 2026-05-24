@@ -2332,7 +2332,7 @@ main{padding-top:0!important}
 .ar.profile-ar .hero{
 background-image:
 linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-url('../../assets/img/hero-night-paving.webp');
+url('/assets/img/hero-night-paving.webp');
 background-size:cover;
 background-position:center;
 }
