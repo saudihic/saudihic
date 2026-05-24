@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600&family=Inter:wght@400;500;600;700&family=Raleway:wght@400;500;600&display=swap');
+:root{--green:#005340!important;--mint:#8fcfbb!important;--black:#050605!important;--bg:#0d1412!important;--card:#121f1b!important;--white:#f3f7f4!important;--muted:#c3d2cc!important;--line:rgba(255,255,255,.14)!important;}
+body{background:linear-gradient(180deg,#050605,#0d1412 45%,#050605)!important;color:var(--white)!important;font-family:Raleway,Inter,Arial,sans-serif!important;}
+body[dir=rtl],html[lang=ar] body,body[lang=ar],:lang(ar){font-family:Alexandria,Tahoma,Arial,sans-serif!important;}
+h1,h2,h3,.hero h1,.section-head h2,.cta h2{font-family:Inter,Raleway,Arial,sans-serif!important;font-weight:500!important;letter-spacing:-.035em!important;}
+html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3,body[dir=rtl] h1,body[dir=rtl] h2,body[dir=rtl] h3{font-family:Alexandria,Tahoma,Arial,sans-serif!important;font-weight:500!important;letter-spacing:-.012em!important;line-height:1.18!important;}
+body[dir=rtl] p,body[dir=rtl] .lead,body[dir=rtl] .card p{line-height:1.9!important;letter-spacing:0!important;}
+.kicker,.eyebrow,.nav-links a:hover,.check:before{color:#8fcfbb!important}.btn.primary{background:linear-gradient(135deg,#005340,#005852)!important}.topbar{background:rgba(0,83,64,.82)!important}.hero{background-color:#0d1412!important}.cta{background:linear-gradient(135deg,#005340,#10211c)!important}.brand img,.panel-logo,.footer img{filter:none!important}.card,.hero-panel{border-color:rgba(143,207,187,.18)!important}.footer{background:#050605!important}.client-logo img{filter:grayscale(1);opacity:.82}.client-logo:hover img{filter:none;opacity:1}
+/* === REAL LIGHT POLISH PASS FOR PROFILE PAGES === */
+:root{--hic-green:#005340;--hic-green-2:#005852;--hic-charcoal:#302E2E;--hic-mint:#9ed0c2;--green:#005340!important;--green2:#005852!important;--mint:#9ed0c2!important;}
+body{background:#0b1411!important;color:#f4f8f5!important;}
+.nav{background:linear-gradient(180deg,rgba(0,83,64,.82),rgba(10,20,17,.16))!important;border-bottom:1px solid rgba(255,255,255,.08)!important;-webkit-backdrop-filter:blur(10px)!important;backdrop-filter:blur(10px)!important;}
+.nav-links a:hover,.icon-btn:hover,.lang:hover{color:var(--hic-mint)!important}.icon-btn{background:rgba(255,255,255,.035)!important;border-color:rgba(158,208,194,.22)!important}.icon-btn.primary{background:rgba(0,83,64,.82)!important;border-color:rgba(158,208,194,.38)!important}.lang{color:#eef8f4!important}.hero{min-height:92svh!important;display:grid!important;align-items:end!important;padding:148px 7vw 76px!important;position:relative!important;isolation:isolate!important;background:none!important;overflow:hidden!important}.hero:before{content:"";position:absolute;inset:0;background:url('assets/images/asset_002.webp') center/cover no-repeat;z-index:-3;filter:saturate(.9) contrast(1.03) brightness(.82);transform:scale(1.015)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,83,64,.78),rgba(11,20,17,.58) 46%,rgba(0,83,64,.12)),linear-gradient(0deg,#0b1411 0%,rgba(11,20,17,.08) 42%,rgba(0,83,64,.22) 100%);z-index:-2}.hero-inner{max-width:1180px!important;width:100%!important;margin:0 auto!important}.hero-logo{width:clamp(132px,15vw,210px)!important;margin-bottom:28px!important}.kicker,.eyebrow{color:var(--hic-mint)!important}.hero h1{font-family:Inter,Raleway,Arial,sans-serif!important;font-weight:500!important;font-size:clamp(48px,7vw,104px)!important;line-height:.96!important;letter-spacing:-.055em!important;max-width:980px!important;text-transform:none!important}.hero .lead,.lead{color:#d6e1dc!important}.hero-tags span,.tags span{border-color:rgba(158,208,194,.2)!important;background:rgba(0,83,64,.18)!important}.light,.positioning,.asphalt,.asphalt-workflow,.materials-clean-section,.urban-finishing,.fleet-section,.trust,section{background:#0b1411!important;color:#f4f8f5!important}.card,.panel,.materials-clean-card,.fleet-final-card,.urban-service-card,.step,.check{background:linear-gradient(180deg,rgba(16,33,28,.95),rgba(9,19,16,.98))!important;border-color:rgba(158,208,194,.12)!important;color:#f4f8f5!important}.card p,.materials-clean-desc,.fleet-final-body p,p{color:#c8d8d1!important}.materials-clean-note,.fleet-final-note{background:#10211c!important;border-color:rgba(158,208,194,.12)!important}.client-logo-grid{background:rgba(158,208,194,.13)!important}.client-logo{background:#eef4ef!important}.closing{background:linear-gradient(180deg,#0b1411,#10211c)!important}.site-footer{background:linear-gradient(135deg,var(--hic-green),#10211c 60%,var(--hic-charcoal))!important;border-top:1px solid rgba(255,255,255,.1)!important;padding:64px 7vw 34px!important}.footer-main{align-items:flex-start!important}.footer-logo{height:58px!important}.footer-links a,.footer-links span{color:#f3f8f5!important}.footer-bottom{color:#c8d8d1!important}.brand-mark-floating{display:none!important}.ar,body[dir="rtl"],.ar *{font-family:Alexandria,Tahoma,Arial,sans-serif!important}.ar .hero h1,body[dir="rtl"] .hero h1,.ar h2,body[dir="rtl"] h2,.ar h3,body[dir="rtl"] h3{font-family:Alexandria,Tahoma,Arial,sans-serif!important;font-weight:500!important;letter-spacing:-.012em!important;line-height:1.14!important;text-transform:none!important}.ar p,body[dir="rtl"] p,.ar .lead,body[dir="rtl"] .lead{line-height:1.9!important;letter-spacing:0!important}.ar .kicker,.ar .eyebrow,body[dir="rtl"] .kicker,body[dir="rtl"] .eyebrow{letter-spacing:0!important}
+@media(max-width:900px){.hero{padding:126px 6vw 58px!important}.hero h1{font-size:clamp(42px,13vw,76px)!important}.nav-actions .icon-btn:not(.primary){display:none!important}.footer-main,.footer-links{align-items:flex-start!important}.hero-tags{gap:8px!important}}
+
+
+/* === ENGLISH PROFILE DIRECTION FIX ===
+   Prevent Arabic/RTL profile rules from leaking into the English profile.
+   Scope is intentionally narrow: English document + profile page only. */
+html[lang="en"],
+html[lang="en"] body,
+html[lang="en"] body.profile-en{
+  direction:ltr!important;
+  text-align:left!important;
+  unicode-bidi:isolate!important;
+}
+html[lang="en"] body.profile-en *{
+  direction:ltr!important;
+  unicode-bidi:isolate!important;
+}
+html[lang="en"] body.profile-en .nav,
+html[lang="en"] body.profile-en .nav-links,
+html[lang="en"] body.profile-en .nav-actions,
+html[lang="en"] body.profile-en .hero-tags,
+html[lang="en"] body.profile-en .contact-row,
+html[lang="en"] body.profile-en .footer-main,
+html[lang="en"] body.profile-en .footer-links{
+  direction:ltr!important;
+  text-align:left!important;
+}
+html[lang="en"] body.profile-en .hero-inner,
+html[lang="en"] body.profile-en .section-head,
+html[lang="en"] body.profile-en .panel,
+html[lang="en"] body.profile-en .card,
+html[lang="en"] body.profile-en .materials-clean-card,
+html[lang="en"] body.profile-en .fleet-final-card,
+html[lang="en"] body.profile-en .urban-service-card,
+html[lang="en"] body.profile-en .step,
+html[lang="en"] body.profile-en .closing-box,
+html[lang="en"] body.profile-en .site-footer,
+html[lang="en"] body.profile-en p,
+html[lang="en"] body.profile-en h1,
+html[lang="en"] body.profile-en h2,
+html[lang="en"] body.profile-en h3,
+html[lang="en"] body.profile-en h4,
+html[lang="en"] body.profile-en .lead,
+html[lang="en"] body.profile-en .eyebrow,
+html[lang="en"] body.profile-en .kicker{
+  text-align:left!important;
+}
+html[lang="en"] body.profile-en .hero:after{
+  background:linear-gradient(90deg,rgba(0,83,64,.78),rgba(11,20,17,.58) 46%,rgba(0,83,64,.12)),linear-gradient(0deg,#0b1411 0%,rgba(11,20,17,.08) 42%,rgba(0,83,64,.22) 100%)!important;
+}
+
+
+/* === PROFILE DESIGN PARITY FIX ===
+   Keeps Arabic and English profiles on the same visual system.
+   EN remains LTR; AR remains RTL. Structure/content are untouched. */
+body.profile-en,
+body.profile-ar{
+  --profile-surface:#0b1411;
+  --profile-surface-2:#10211c;
+  --profile-line:rgba(158,208,194,.12);
+  --profile-muted:#c8d8d1;
+  --profile-bright:#f4f8f5;
+  background:var(--profile-surface)!important;
+}
+body.profile-en{direction:ltr!important;text-align:left!important;font-family:Raleway,Inter,Arial,sans-serif!important;}
+body.profile-ar{direction:rtl!important;text-align:right!important;font-family:Alexandria,Tahoma,Arial,sans-serif!important;}
+
+body.profile-en .hero,
+body.profile-ar .hero{
+  min-height:92svh!important;
+  display:grid!important;
+  align-items:end!important;
+  padding:148px 7vw 76px!important;
+  position:relative!important;
+  isolation:isolate!important;
+  background:none!important;
+  overflow:hidden!important;
+}
+body.profile-en .hero:before,
+body.profile-ar .hero:before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:-3!important;
+  filter:saturate(.88) contrast(1.03) brightness(.82)!important;
+  transform:scale(1.015)!important;
+  background-position:center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
+body.profile-en .hero:before{background-image:url('../../profile/assets/images/asset_002.webp')!important;}
+body.profile-ar .hero:before{background-image:url('../../ar/profile/assets/images/asset_002.webp')!important;}
+body.profile-en .hero:after,
+body.profile-ar .hero:after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:-2!important;
+}
+body.profile-en .hero:after{
+  background:linear-gradient(90deg,rgba(0,83,64,.78),rgba(11,20,17,.58) 46%,rgba(0,83,64,.12)),linear-gradient(0deg,#0b1411 0%,rgba(11,20,17,.08) 42%,rgba(0,83,64,.22) 100%)!important;
+}
+body.profile-ar .hero:after{
+  background:linear-gradient(270deg,rgba(0,83,64,.78),rgba(11,20,17,.58) 46%,rgba(0,83,64,.12)),linear-gradient(0deg,#0b1411 0%,rgba(11,20,17,.08) 42%,rgba(0,83,64,.22) 100%)!important;
+}
+body.profile-en .hero-inner,
+body.profile-ar .hero-inner{
+  max-width:1180px!important;
+  width:100%!important;
+  margin:0 auto!important;
+}
+body.profile-en .hero-logo,
+body.profile-ar .hero-logo{
+  width:clamp(132px,15vw,210px)!important;
+  margin-bottom:28px!important;
+}
+body.profile-en .hero h1,
+body.profile-ar .hero h1{
+  font-size:clamp(48px,7vw,104px)!important;
+  max-width:980px!important;
+  text-transform:none!important;
+  margin:0!important;
+}
+body.profile-en .hero h1{font-family:Inter,Raleway,Arial,sans-serif!important;font-weight:500!important;line-height:.96!important;letter-spacing:-.055em!important;}
+body.profile-ar .hero h1{font-family:Alexandria,Tahoma,Arial,sans-serif!important;font-weight:500!important;line-height:1.14!important;letter-spacing:-.012em!important;}
+body.profile-en .hero .lead,
+body.profile-ar .hero .lead{
+  max-width:720px!important;
+  color:#d6e1dc!important;
+  margin:28px 0 0!important;
+}
+body.profile-ar .hero .lead{line-height:1.9!important;}
+body.profile-en .hero-tags,
+body.profile-ar .hero-tags{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:10px!important;
+  max-width:920px!important;
+  margin-top:30px!important;
+}
+body.profile-en .hero-tags span,
+body.profile-ar .hero-tags span{
+  border:1px solid rgba(158,208,194,.2)!important;
+  background:rgba(0,83,64,.18)!important;
+  color:#e8f4ef!important;
+  border-radius:999px!important;
+  padding:9px 13px!important;
+}
+body.profile-en section,
+body.profile-ar section,
+body.profile-en .light,
+body.profile-ar .light,
+body.profile-en .positioning,
+body.profile-ar .positioning,
+body.profile-en .asphalt,
+body.profile-ar .asphalt,
+body.profile-en .asphalt-workflow,
+body.profile-ar .asphalt-workflow,
+body.profile-en .materials-clean-section,
+body.profile-ar .materials-clean-section,
+body.profile-en .urban-finishing,
+body.profile-ar .urban-finishing,
+body.profile-en .fleet-section,
+body.profile-ar .fleet-section,
+body.profile-en .trust,
+body.profile-ar .trust{
+  background:var(--profile-surface)!important;
+  color:var(--profile-bright)!important;
+}
+body.profile-en .section-head,
+body.profile-ar .section-head{max-width:850px!important;margin-bottom:48px!important;}
+body.profile-en .kicker,
+body.profile-en .eyebrow,
+body.profile-ar .kicker,
+body.profile-ar .eyebrow{color:var(--hic-mint)!important;}
+body.profile-ar .kicker,
+body.profile-ar .eyebrow{letter-spacing:0!important;}
+body.profile-en .card,
+body.profile-ar .card,
+body.profile-en .panel,
+body.profile-ar .panel,
+body.profile-en .materials-clean-card,
+body.profile-ar .materials-clean-card,
+body.profile-en .fleet-final-card,
+body.profile-ar .fleet-final-card,
+body.profile-en .urban-service-card,
+body.profile-ar .urban-service-card,
+body.profile-en .step,
+body.profile-ar .step,
+body.profile-en .check,
+body.profile-ar .check{
+  background:linear-gradient(180deg,rgba(16,33,28,.95),rgba(9,19,16,.98))!important;
+  border-color:var(--profile-line)!important;
+  color:var(--profile-bright)!important;
+}
+body.profile-en p,
+body.profile-ar p,
+body.profile-en .card p,
+body.profile-ar .card p,
+body.profile-en .lead,
+body.profile-ar .lead,
+body.profile-en .materials-clean-desc,
+body.profile-ar .materials-clean-desc,
+body.profile-en .fleet-final-body p,
+body.profile-ar .fleet-final-body p{color:var(--profile-muted)!important;}
+body.profile-ar p,
+body.profile-ar .lead{line-height:1.9!important;letter-spacing:0!important;}
+body.profile-ar h2,
+body.profile-ar h3{font-family:Alexandria,Tahoma,Arial,sans-serif!important;font-weight:500!important;line-height:1.25!important;letter-spacing:-.01em!important;}
+body.profile-en h2,
+body.profile-en h3{font-family:Inter,Raleway,Arial,sans-serif!important;font-weight:500!important;}
+
+body.profile-en .site-footer,
+body.profile-ar .site-footer{
+  background:linear-gradient(135deg,var(--hic-green),#10211c 60%,var(--hic-charcoal))!important;
+  border-top:1px solid rgba(255,255,255,.1)!important;
+  padding:64px 7vw 34px!important;
+}
+body.profile-en .footer-logo,
+body.profile-ar .footer-logo{height:58px!important;}
+body.profile-en .footer-links a,
+body.profile-en .footer-links span,
+body.profile-ar .footer-links a,
+body.profile-ar .footer-links span{color:#f3f8f5!important;}
+body.profile-en .footer-bottom,
+body.profile-ar .footer-bottom{color:#c8d8d1!important;}
+
+/* directional alignment: mirrored, not redesigned */
+body.profile-en .hero-inner,
+body.profile-en .section-head,
+body.profile-en .panel,
+body.profile-en .card,
+body.profile-en .materials-clean-card,
+body.profile-en .fleet-final-card,
+body.profile-en .urban-service-card,
+body.profile-en .step,
+body.profile-en .closing-box,
+body.profile-en .site-footer,
+body.profile-en p,
+body.profile-en h1,
+body.profile-en h2,
+body.profile-en h3,
+body.profile-en h4,
+body.profile-en .lead,
+body.profile-en .eyebrow,
+body.profile-en .kicker{text-align:left!important;direction:ltr!important;}
+body.profile-ar .hero-inner,
+body.profile-ar .section-head,
+body.profile-ar .panel,
+body.profile-ar .card,
+body.profile-ar .materials-clean-card,
+body.profile-ar .fleet-final-card,
+body.profile-ar .urban-service-card,
+body.profile-ar .step,
+body.profile-ar .closing-box,
+body.profile-ar .site-footer,
+body.profile-ar p,
+body.profile-ar h1,
+body.profile-ar h2,
+body.profile-ar h3,
+body.profile-ar h4,
+body.profile-ar .lead,
+body.profile-ar .eyebrow,
+body.profile-ar .kicker{text-align:right!important;direction:rtl!important;}
+
+@media(max-width:900px){
+  body.profile-en .hero,
+  body.profile-ar .hero{padding:126px 6vw 58px!important;}
+  body.profile-en .hero h1,
+  body.profile-ar .hero h1{font-size:clamp(42px,13vw,76px)!important;}
+  body.profile-en .footer-main,
+  body.profile-ar .footer-main,
+  body.profile-en .footer-links,
+  body.profile-ar .footer-links{align-items:flex-start!important;}
+  body.profile-en .hero-tags,
+  body.profile-ar .hero-tags{gap:8px!important;}
+}
+
+/* === TYPOGRAPHY GOVERNANCE PATCH — AR/EN ===
+   Scoped typography only: no colors, overlays, imagery, or layout structure changed. */
+html[lang="en"] body,
+html[lang="en"] body.profile-en{
+  font-family:Raleway,Inter,Arial,sans-serif!important;
+  font-weight:400!important;
+}
+html[lang="en"] h1,
+html[lang="en"] h2,
+html[lang="en"] h3,
+html[lang="en"] h4,
+html[lang="en"] .hero h1,
+html[lang="en"] .section-head h2,
+html[lang="en"] .panel h2,
+html[lang="en"] .card h3,
+html[lang="en"] .urban-service-card h4,
+html[lang="en"] .materials-clean-title,
+html[lang="en"] .fleet-final-body h3,
+html[lang="en"] .closing h2{
+  font-family:Inter,Raleway,Arial,sans-serif!important;
+  font-weight:500!important;
+}
+html[lang="en"] p,
+html[lang="en"] .lead,
+html[lang="en"] .card p,
+html[lang="en"] .materials-clean-desc,
+html[lang="en"] .fleet-final-body p,
+html[lang="en"] .urban-service-card p{
+  font-family:Raleway,Inter,Arial,sans-serif!important;
+  font-weight:400!important;
+}
+
+html[lang="ar"] body,
+html[lang="ar"] body.profile-ar,
+html[lang="ar"] body.profile-ar *{
+  font-family:Alexandria,Tahoma,Arial,sans-serif!important;
+}
+html[lang="ar"] body.profile-ar{
+  font-weight:400!important;
+  text-rendering:optimizeLegibility;
+}
+html[lang="ar"] body.profile-ar h1,
+html[lang="ar"] body.profile-ar h2,
+html[lang="ar"] body.profile-ar h3,
+html[lang="ar"] body.profile-ar h4,
+html[lang="ar"] body.profile-ar .hero h1,
+html[lang="ar"] body.profile-ar .section-head h2,
+html[lang="ar"] body.profile-ar .panel h2,
+html[lang="ar"] body.profile-ar .card h3,
+html[lang="ar"] body.profile-ar .urban-service-card h4,
+html[lang="ar"] body.profile-ar .materials-clean-title,
+html[lang="ar"] body.profile-ar .fleet-final-body h3,
+html[lang="ar"] body.profile-ar .closing h2{
+  font-weight:500!important;
+  letter-spacing:-.008em!important;
+  line-height:1.26!important;
+}
+html[lang="ar"] body.profile-ar .hero h1{
+  font-size:clamp(38px,5.2vw,66px)!important;
+  line-height:1.18!important;
+  max-width:920px!important;
+}
+html[lang="ar"] body.profile-ar .section-head h2,
+html[lang="ar"] body.profile-ar .panel h2{
+  font-size:clamp(30px,4.1vw,52px)!important;
+  line-height:1.25!important;
+  max-width:900px!important;
+}
+html[lang="ar"] body.profile-ar .card h3,
+html[lang="ar"] body.profile-ar .fleet-final-body h3{
+  font-size:clamp(21px,2.2vw,27px)!important;
+  line-height:1.36!important;
+}
+html[lang="ar"] body.profile-ar .urban-service-card h4,
+html[lang="ar"] body.profile-ar .materials-clean-title{
+  font-size:clamp(19px,2vw,24px)!important;
+  line-height:1.38!important;
+}
+html[lang="ar"] body.profile-ar .closing h2{
+  font-size:clamp(34px,5vw,64px)!important;
+  line-height:1.24!important;
+}
+html[lang="ar"] body.profile-ar p,
+html[lang="ar"] body.profile-ar .lead,
+html[lang="ar"] body.profile-ar .card p,
+html[lang="ar"] body.profile-ar .materials-clean-desc,
+html[lang="ar"] body.profile-ar .fleet-final-body p,
+html[lang="ar"] body.profile-ar .urban-service-card p,
+html[lang="ar"] body.profile-ar .materials-clean-note,
+html[lang="ar"] body.profile-ar .fleet-final-note{
+  font-weight:400!important;
+  line-height:1.9!important;
+  letter-spacing:0!important;
+}
+html[lang="ar"] body.profile-ar .lead{font-size:clamp(16px,1.55vw,20px)!important;max-width:860px!important;}
+html[lang="ar"] body.profile-ar p{font-size:clamp(15.5px,1.25vw,18px)!important;}
+html[lang="ar"] body.profile-ar .kicker,
+html[lang="ar"] body.profile-ar .eyebrow,
+html[lang="ar"] body.profile-ar .nav-links,
+html[lang="ar"] body.profile-ar .nav-actions,
+html[lang="ar"] body.profile-ar .hero-tags,
+html[lang="ar"] body.profile-ar .num,
+html[lang="ar"] body.profile-ar .materials-clean-index,
+html[lang="ar"] body.profile-ar .fleet-final-index{
+  font-weight:400!important;
+  letter-spacing:0!important;
+}
+@media(max-width:1050px){
+  html[lang="ar"] body.profile-ar .hero h1{font-size:clamp(34px,8vw,48px)!important;line-height:1.2!important;}
+  html[lang="ar"] body.profile-ar .section-head h2,
+  html[lang="ar"] body.profile-ar .panel h2{font-size:clamp(28px,6.2vw,40px)!important;}
+}
+@media(max-width:620px){
+  html[lang="ar"] body.profile-ar .hero h1{font-size:clamp(30px,9.5vw,38px)!important;line-height:1.22!important;}
+  html[lang="ar"] body.profile-ar .lead{font-size:16px!important;line-height:1.85!important;}
+  html[lang="ar"] body.profile-ar p{font-size:15.5px!important;}
+  html[lang="ar"] body.profile-ar .card h3,
+  html[lang="ar"] body.profile-ar .fleet-final-body h3{font-size:22px!important;}
+}

@@ -1,0 +1,119 @@
+/* HIC Arabic visual harmonization */
+html[dir="rtl"] body,
+body[dir="rtl"],
+.ar-page {
+  text-rendering: optimizeLegibility;
+}
+
+/* 1) Match Arabic profile typography feel with Arabic homepage */
+html[lang="ar"] .profile,
+html[lang="ar"] .profile-page,
+html[lang="ar"] [class*="profile"],
+html[dir="rtl"] .profile,
+html[dir="rtl"] .profile-page,
+html[dir="rtl"] [class*="profile"] {
+  --hic-profile-title-size: clamp(2.4rem, 5vw, 5.4rem);
+  --hic-profile-heading-size: clamp(1.85rem, 3.2vw, 3.4rem);
+  --hic-profile-body-size: clamp(1.05rem, 1.35vw, 1.35rem);
+}
+
+html[lang="ar"] [class*="profile"] h1,
+html[dir="rtl"] [class*="profile"] h1,
+html[lang="ar"] main h1,
+html[dir="rtl"] main h1 {
+  font-size: var(--hic-profile-title-size, clamp(2.4rem, 5vw, 5.4rem));
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+html[lang="ar"] [class*="profile"] h2,
+html[dir="rtl"] [class*="profile"] h2 {
+  font-size: var(--hic-profile-heading-size, clamp(1.85rem, 3.2vw, 3.4rem));
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+html[lang="ar"] [class*="profile"] p,
+html[dir="rtl"] [class*="profile"] p,
+html[lang="ar"] [class*="profile"] li,
+html[dir="rtl"] [class*="profile"] li {
+  font-size: var(--hic-profile-body-size, clamp(1.05rem, 1.35vw, 1.35rem));
+  line-height: 1.95;
+}
+
+/* Keep long Arabic paragraphs premium and readable */
+html[lang="ar"] [class*="profile"] p,
+html[dir="rtl"] [class*="profile"] p {
+  max-width: 860px;
+}
+
+/* 2) Slightly larger header/banner logo across all pages */
+header img[alt*="logo" i],
+header img[src*="logo" i],
+nav img[alt*="logo" i],
+nav img[src*="logo" i],
+.site-header img,
+.header img,
+.navbar img {
+  width: auto !important;
+  max-height: 78px !important;
+  transform: scale(1.12);
+  transform-origin: center;
+}
+
+/* If logo is text/SVG block */
+header svg,
+nav svg {
+  max-height: 78px;
+}
+
+/* 3) Larger footer logo / brand mark */
+footer img[alt*="logo" i],
+footer img[src*="logo" i],
+.site-footer img,
+.footer img {
+  width: auto !important;
+  max-height: 92px !important;
+  transform: scale(1.14);
+  transform-origin: center;
+}
+
+footer svg {
+  max-height: 92px;
+}
+
+@media (max-width: 768px) {
+  html[lang="ar"] [class*="profile"] h1,
+  html[dir="rtl"] [class*="profile"] h1,
+  html[lang="ar"] main h1,
+  html[dir="rtl"] main h1 {
+    font-size: clamp(2.05rem, 9vw, 3.4rem);
+  }
+
+  html[lang="ar"] [class*="profile"] h2,
+  html[dir="rtl"] [class*="profile"] h2 {
+    font-size: clamp(1.55rem, 6vw, 2.35rem);
+  }
+
+  html[lang="ar"] [class*="profile"] p,
+  html[dir="rtl"] [class*="profile"] p,
+  html[lang="ar"] [class*="profile"] li,
+  html[dir="rtl"] [class*="profile"] li {
+    font-size: 1.05rem;
+    line-height: 1.9;
+  }
+
+  header img[alt*="logo" i],
+  header img[src*="logo" i],
+  nav img[alt*="logo" i],
+  nav img[src*="logo" i] {
+    max-height: 62px !important;
+    transform: scale(1.08);
+  }
+
+  footer img[alt*="logo" i],
+  footer img[src*="logo" i] {
+    max-height: 76px !important;
+    transform: scale(1.1);
+  }
+}
