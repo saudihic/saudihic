@@ -2,9 +2,15 @@
 (function(){
   function normalizeSrc(src){
     src = String(src || '').trim();
+
     if(src && !src.startsWith('/') && !src.startsWith('http') && src.startsWith('api/')){
       src = '/' + src;
     }
+
+    if(src.startsWith('/api/media?key=')){
+      src = src.replace(/\/+$/g, '');
+    }
+
     return src;
   }
 
@@ -21,27 +27,11 @@
 
     var style = document.createElement('style');
     style.id = 'hic-hero-dynamic-global-style';
-    style.textContent = `
-      .hero,
-      .hero::before,
-      .hero:before,
-      .hero::after,
-      .hero:after,
-      .hero-inner,
-      .home-hero,
-      .home-hero::before,
-      .home-hero:before,
-      .profile-hero,
-      .profile-hero::before,
-      .profile-hero:before{
-        background-image:
-          linear-gradient(var(--hic-hero-gradient-direction,270deg),rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)),
-          var(--hic-hero-bg) !important;
-        background-position:center center !important;
-        background-size:cover !important;
-        background-repeat:no-repeat !important;
-      }
-    `;
+    style.textContent =
+      '.hero,.hero::before,.hero:before,.hero::after,.hero:after,.hero-inner,.home-hero,.home-hero::before,.home-hero:before,.profile-hero,.profile-hero::before,.profile-hero:before{' +
+      'background-image:linear-gradient(var(--hic-hero-gradient-direction,270deg),rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)),var(--hic-hero-bg)!important;' +
+      'background-position:center center!important;background-size:cover!important;background-repeat:no-repeat!important;}';
+
     document.head.appendChild(style);
   }
 
@@ -62,7 +52,6 @@
 
     var heroKey = heroMap[pageKey];
     var fallbackKey = fallbackMap[pageKey];
-
     var heroImg = heroKey ? images[heroKey] : null;
 
     if((!heroImg || !heroImg.src) && fallbackKey){
@@ -81,9 +70,7 @@
     document.body.style.setProperty('--hic-hero-bg', "url('" + src + "')");
     document.body.style.setProperty('--hic-hero-gradient-direction', direction);
 
-    var heroTargets = document.querySelectorAll('.hero, .home-hero, .profile-hero, .hero-inner');
-
-    heroTargets.forEach(function(hero){
+    document.querySelectorAll('.hero, .home-hero, .profile-hero, .hero-inner').forEach(function(hero){
       hero.style.setProperty('--hic-hero-bg', "url('" + src + "')");
       hero.style.setProperty('--hic-hero-gradient-direction', direction);
       hero.style.setProperty(
@@ -134,5 +121,4 @@ const observer = new IntersectionObserver((entries)=>{
     if(entry.isIntersecting) entry.target.classList.add('is-visible')
   })
 },{threshold:.14});
-
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
