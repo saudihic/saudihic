@@ -2336,3 +2336,7 @@ body.ar.profile-ar .hero,
     linear-gradient(270deg,rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)),
     url('/profile/assets/images/asset_002.webp') center center / cover no-repeat !important;
 }
+.hero-inner{
+  background:none !important;
+  background-image:none !important;
+}
