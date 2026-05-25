@@ -233,6 +233,31 @@ function ensureHeroImages(){
 }
 
 
+
+function normalizeImageSrc(src){
+  src = String(src || '').trim();
+
+  if(src && !src.startsWith('/') && !src.startsWith('http') && src.startsWith('api/')){
+    src = '/' + src;
+  }
+
+  return src;
+}
+
+function normalizeAllImageSrcs(){
+  Object.keys(data.pages || {}).forEach(function(pageKey){
+    const page = data.pages[pageKey];
+    if(!page || !page.images) return;
+
+    Object.keys(page.images).forEach(function(imgKey){
+      if(page.images[imgKey] && page.images[imgKey].src){
+        page.images[imgKey].src = normalizeImageSrc(page.images[imgKey].src);
+      }
+    });
+  });
+}
+
+
 function showStatus(msg, ok=true){
   const el=document.getElementById('status');
   el.className='status '+(ok?'ok':'err');
@@ -273,6 +298,7 @@ async function loadLive(){
 
 async function saveLive(){
   try{
+    normalizeAllImageSrcs();
     const r = await fetch('/api/content', {
       method:'POST',
       headers:{'content-type':'application/json'},
@@ -316,7 +342,7 @@ function renderCurrent(){
   const normalImgKeys = imgKeys.filter(k=>!heroKeys.includes(k));
 
   function imageFieldHtml(k,i,isHero){
-    return `<div class="field ${isHero?'hero-field':''}"><label>${i+1} — ${imageLabel(k)}<br><span style="font-size:11px;color:#9ca3af">${k}</span></label><input data-kind="img-src" data-key="${k}" value="${esc(images[k]?.src)}" placeholder="/images/example.jpg"><div class="small">مسار الصورة</div><div class="upload-box"><input type="file" accept="image/*" data-upload-key="${k}"><button type="button" onclick="uploadImageForField('${k}', this.previousElementSibling)">رفع صورة لهذه الخانة</button><div class="small">بعد الرفع سيكتب المسار تلقائياً. بعدها اضغط حفظ مباشر.</div></div>${images[k]?.src ? `<img class="preview-img" src="${esc(images[k].src)}" onerror="this.style.display='none'">` : ''}<input data-kind="img-alt" data-key="${k}" value="${esc(images[k]?.alt)}" placeholder="وصف الصورة"><div class="small">Alt text</div></div>`;
+    return `<div class="field ${isHero?'hero-field':''}"><label>${i+1} — ${imageLabel(k)}<br><span style="font-size:11px;color:#9ca3af">${k}</span></label><input data-kind="img-src" data-key="${k}" value="${esc(normalizeImageSrc(images[k]?.src))}" placeholder="/images/example.jpg"><div class="small">مسار الصورة</div><div class="upload-box"><input type="file" accept="image/*" data-upload-key="${k}"><button type="button" onclick="uploadImageForField('${k}', this.previousElementSibling)">رفع صورة لهذه الخانة</button><div class="small">بعد الرفع سيكتب المسار تلقائياً. بعدها اضغط حفظ مباشر.</div></div>${images[k]?.src ? `<img class="preview-img" src="${esc(normalizeImageSrc(images[k].src))}" onerror="this.style.display='none'">` : ''}<input data-kind="img-alt" data-key="${k}" value="${esc(images[k]?.alt)}" placeholder="وصف الصورة"><div class="small">Alt text</div></div>`;
   }
 
   html += `<section class="hero-admin-box"><div class="hero-admin-title">صور الهيرو / الخلفيات الرئيسية</div><div class="hero-admin-note">هذه الصور تتحكم بخلفيات الهيرو للصفحات. ارفع الصورة ثم اضغط حفظ مباشر.</div><div class="grid">`;
@@ -328,7 +354,7 @@ function renderCurrent(){
   html += `</div></section>`;
   editor.innerHTML=html;
   editor.querySelectorAll('textarea[data-kind="text"]').forEach(el=>el.addEventListener('input',()=>{data.pages[currentPage].texts[el.dataset.key]=el.value;}));
-  editor.querySelectorAll('input[data-kind="img-src"]').forEach(el=>el.addEventListener('input',()=>{data.pages[currentPage].images[el.dataset.key].src=el.value;}));
+  editor.querySelectorAll('input[data-kind="img-src"]').forEach(el=>el.addEventListener('input',()=>{data.pages[currentPage].images[el.dataset.key].src=normalizeImageSrc(el.value);}));
   editor.querySelectorAll('input[data-kind="img-alt"]').forEach(el=>el.addEventListener('input',()=>{data.pages[currentPage].images[el.dataset.key].alt=el.value;}));
 }
 
@@ -367,7 +393,7 @@ async function uploadImageForField(key, fileInput){
       data.pages[currentPage].images[key] = {};
     }
 
-    data.pages[currentPage].images[key].src = imagePath;
+    data.pages[currentPage].images[key].src = normalizeImageSrc(imagePath);
 
     renderCurrent();
 
