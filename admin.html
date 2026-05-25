@@ -32,7 +32,6 @@ code{background:#020617;color:#fde68a;padding:2px 6px;border-radius:6px}.search{
 .upload-box input{margin-bottom:8px}
 .upload-box button{padding:9px 12px;font-size:13px}
 .preview-img{margin-top:8px;max-height:120px;border-radius:10px;border:1px solid #334155;background:#020617}
-
 </style>
 </head>
 <body>
@@ -73,6 +72,12 @@ let adminPassword = '';
 const pageNames = {home_ar:'الهوم العربي', profile_ar:'البروفايل العربي', home_en:'Home EN', profile_en:'Profile EN'};
 
 const imageLabels = {
+
+  home_ar_hero_bg: 'خلفية هيرو الهوم العربي',
+  profile_ar_hero_bg: 'خلفية هيرو البروفايل العربي',
+  home_en_hero_bg: 'English Home Hero Background',
+  profile_en_hero_bg: 'English Profile Hero Background',
+
   home_ar_image_001: 'شعار الهيدر العربي',
   home_ar_image_002: 'صورة التموضع / الطريق',
   home_ar_image_003: 'صورة عمليات الأسفلت',
@@ -147,6 +152,50 @@ function imageLabel(key){
 }
 
 
+
+function ensureHeroImages(){
+  if(!data.pages) data.pages = {};
+
+  const defaults = {
+    home_ar: {
+      home_ar_hero_bg: {
+        src: "../assets/img/engagement.webp",
+        alt: "خلفية هيرو الهوم العربي"
+      }
+    },
+    profile_ar: {
+      profile_ar_hero_bg: {
+        src: "/profile/assets/images/asset_002.webp",
+        alt: "خلفية هيرو البروفايل العربي"
+      }
+    },
+    home_en: {
+      home_en_hero_bg: {
+        src: "assets/img/engagement.webp",
+        alt: "English Home Hero Background"
+      }
+    },
+    profile_en: {
+      profile_en_hero_bg: {
+        src: "/profile/assets/images/asset_002.webp",
+        alt: "English Profile Hero Background"
+      }
+    }
+  };
+
+  Object.keys(defaults).forEach(function(pageKey){
+    if(!data.pages[pageKey]) data.pages[pageKey] = {texts:{},images:{}};
+    if(!data.pages[pageKey].images) data.pages[pageKey].images = {};
+
+    Object.keys(defaults[pageKey]).forEach(function(imgKey){
+      if(!data.pages[pageKey].images[imgKey]){
+        data.pages[pageKey].images[imgKey] = defaults[pageKey][imgKey];
+      }
+    });
+  });
+}
+
+
 function showStatus(msg, ok=true){
   const el=document.getElementById('status');
   el.className='status '+(ok?'ok':'err');
@@ -174,10 +223,12 @@ async function loadLive(){
     data = await r.json();
     const keys = Object.keys(data.pages || {});
     if(keys.length && !data.pages[currentPage]) currentPage = keys[0];
+    ensureHeroImages();
     renderTabs(); renderCurrent();
     showStatus('تم تحميل المحتوى من السيرفر');
   }catch(e){
     data = JSON.parse(JSON.stringify(fallbackContent));
+    ensureHeroImages();
     renderTabs(); renderCurrent();
     showStatus('تعذر تحميل المحتوى من السيرفر، تم استخدام النسخة الداخلية', false);
   }
