@@ -27,6 +27,12 @@ textarea{min-height:78px;resize:vertical}input:focus,textarea:focus{outline:none
 .status.ok{display:block;background:#052e16;color:#dcfce7;border:1px solid #166534}.status.err{display:block;background:#450a0a;color:#fee2e2;border:1px solid #991b1b}
 code{background:#020617;color:#fde68a;padding:2px 6px;border-radius:6px}.search{margin-bottom:14px}.count{color:#9ca3af;font-size:13px;margin-bottom:8px}
 #app{display:none}
+
+.upload-box{margin-top:10px;padding:10px;border:1px dashed #475569;border-radius:12px;background:#020617}
+.upload-box input{margin-bottom:8px}
+.upload-box button{padding:9px 12px;font-size:13px}
+.preview-img{margin-top:8px;max-height:120px;border-radius:10px;border:1px solid #334155;background:#020617}
+
 </style>
 </head>
 <body>
@@ -219,13 +225,60 @@ function renderCurrent(){
   html += `</section>`;
   const imgKeys=Object.keys(images);
   html += `<section><h2>الصور</h2><div class="count">${imgKeys.length} صورة قابلة للتعديل</div><div class="grid">`;
-  imgKeys.forEach((k,i)=>{html += `<div class="field"><label>${i+1} — ${imageLabel(k)}<br><span style="font-size:11px;color:#9ca3af">${k}</span></label><input data-kind="img-src" data-key="${k}" value="${esc(images[k]?.src)}" placeholder="/images/example.jpg"><div class="small">مسار الصورة</div><input data-kind="img-alt" data-key="${k}" value="${esc(images[k]?.alt)}" placeholder="وصف الصورة"><div class="small">Alt text</div></div>`;});
+  imgKeys.forEach((k,i)=>{html += `<div class="field"><label>${i+1} — ${imageLabel(k)}<br><span style="font-size:11px;color:#9ca3af">${k}</span></label><input data-kind="img-src" data-key="${k}" value="${esc(images[k]?.src)}" placeholder="/images/example.jpg"><div class="small">مسار الصورة</div><div class="upload-box"><input type="file" accept="image/*" data-upload-key="${k}"><button type="button" onclick="uploadImageForField('${k}', this.previousElementSibling)">رفع صورة لهذه الخانة</button><div class="small">بعد الرفع سيكتب المسار تلقائياً. بعدها اضغط حفظ مباشر.</div></div>${images[k]?.src ? `<img class="preview-img" src="${esc(images[k].src)}" onerror="this.style.display='none'">` : ''}<input data-kind="img-alt" data-key="${k}" value="${esc(images[k]?.alt)}" placeholder="وصف الصورة"><div class="small">Alt text</div></div>`;});
   html += `</div></section>`;
   editor.innerHTML=html;
   editor.querySelectorAll('textarea[data-kind="text"]').forEach(el=>el.addEventListener('input',()=>{data.pages[currentPage].texts[el.dataset.key]=el.value;}));
   editor.querySelectorAll('input[data-kind="img-src"]').forEach(el=>el.addEventListener('input',()=>{data.pages[currentPage].images[el.dataset.key].src=el.value;}));
   editor.querySelectorAll('input[data-kind="img-alt"]').forEach(el=>el.addEventListener('input',()=>{data.pages[currentPage].images[el.dataset.key].alt=el.value;}));
 }
+
+
+async function uploadImageForField(key, fileInput){
+  const file = fileInput.files && fileInput.files[0];
+
+  if(!file){
+    alert('اختر صورة أولاً');
+    return;
+  }
+
+  const form = new FormData();
+  form.append('password', adminPassword);
+  form.append('file', file);
+
+  try{
+    showStatus('جاري رفع الصورة...');
+
+    const r = await fetch('/api/media', {
+      method: 'POST',
+      body: form
+    });
+
+    const result = await r.json();
+
+    if(!r.ok || !(result.ok || result.success)){
+      throw new Error(result.error || 'Image upload failed');
+    }
+
+    let imagePath = '/' + String(result.url || result.path || '')
+      .replace(/^\/+/, '')
+      .replace(/\/+$/, '');
+
+    if (!data.pages[currentPage].images[key]) {
+      data.pages[currentPage].images[key] = {};
+    }
+
+    data.pages[currentPage].images[key].src = imagePath;
+
+    renderCurrent();
+
+    showStatus('تم رفع الصورة وتحديث المسار — اضغط حفظ مباشر لاعتماد التغيير');
+
+  }catch(e){
+    showStatus('فشل رفع الصورة: ' + e.message, false);
+  }
+}
+
 
 function downloadBackup(){
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'});

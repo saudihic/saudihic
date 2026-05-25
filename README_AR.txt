@@ -1,17 +1,14 @@
-ارفع هذه الملفات إلى GitHub بنفس المسارات:
+ارفع محتويات هذه الحزمة إلى GitHub فوق الملفات الحالية:
 
-admin.html
-functions/api/content.js
-index.html
-ar/index.html
-profile/index.html
-ar/profile/index.html
-_headers
+- admin.html
+- functions/api/media.js
 
 بعد الرفع:
-1) Commit changes
-2) انتظر Cloudflare يعيد النشر
-3) افتح: https://saudihic.pages.dev/api/content
-   لازم يظهر JSON
-4) افتح الأدمن واحفظ
-5) حدث الصفحة الرئيسية وشوف التغيير
+1. Commit changes
+2. انتظر Cloudflare deploy
+3. افتح /admin.html
+4. اختر صورة من قسم الصور
+5. اضغط رفع صورة لهذه الخانة
+6. بعد نجاح الرفع اضغط حفظ مباشر
+
+مهم: تأكد أن Cloudflare Pages عنده binding باسم HIC_CONTENT.
