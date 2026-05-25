@@ -338,18 +338,41 @@ document.addEventListener('DOMContentLoaded', function () {
       profile_en: 'profile_en_hero_bg'
     };
 
+    var fallbackMap = {
+      profile_ar: 'profile_ar_image_003',
+      profile_en: 'profile_en_image_003'
+    };
+
     var heroKey = heroMap[pageKey];
+    var fallbackKey = fallbackMap[pageKey];
+
     var heroImg = heroKey ? images[heroKey] : null;
+
+    if((!heroImg || !heroImg.src) && fallbackKey){
+      heroImg = images[fallbackKey];
+    }
+
     var hero = document.querySelector('.hero');
 
     if(!hero || !heroImg || !heroImg.src) return;
 
+    var src = String(heroImg.src || '').trim();
+
+    if(src && !src.startsWith('/') && !src.startsWith('http') && src.startsWith('api/')){
+      src = '/' + src;
+    }
+
     var direction = pageKey.indexOf('_ar') > -1 ? '270deg' : '90deg';
 
-    hero.style.background =
+    var bgImage =
       "linear-gradient(" + direction + ",rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)), url('" +
-      heroImg.src +
-      "') center center / cover no-repeat";
+      src +
+      "')";
+
+    hero.style.setProperty('background-image', bgImage, 'important');
+    hero.style.setProperty('background-position', 'center center', 'important');
+    hero.style.setProperty('background-size', 'cover', 'important');
+    hero.style.setProperty('background-repeat', 'no-repeat', 'important');
   }
 
   function applyContent(data){
