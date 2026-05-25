@@ -1,0 +1,12 @@
+HIC V2 Actual Polish Pass
+- Base: HIC_RESCUE_BUILD_V2.zip / HIC_RESCUE_BUILD_V1 folder structure.
+- No rebuild / no redesign flow change.
+- Applied approved identity color #005340 and secondary #005852.
+- Removed gold/yellow accent behavior by remapping accent variables to brand green.
+- Added Google Fonts: Alexandria, Inter, Raleway.
+- Arabic pages use Alexandria with calmer line-height and reduced letter-spacing.
+- Added institutional contact/footer layer to home, Arabic home, English profile, Arabic profile.
+- Added Arabic profile page: ar/profile/index.html.
+- Clients are integrated inside profile pages only, not as standalone page.
+- Added basic robots.txt and sitemap.xml.
+- Verified local image/script/css paths: 0 missing assets.

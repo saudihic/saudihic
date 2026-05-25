@@ -1,0 +1,9 @@
+HIC final polish build
+- Built on V2 home DNA, not a redesign.
+- Applied brand green #005340 and secondary #005852.
+- Arabic font set to Alexandria.
+- Homepage remains concise.
+- English and Arabic profiles restored from the full original profile package.
+- Clients are inside the profiles only; no standalone clients page.
+- Footer/contact retained and brand colors applied.
+- Added polish override CSS for full profile pages.
