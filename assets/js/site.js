@@ -34,34 +34,37 @@ async function loadCMS() {
     document.querySelectorAll('[data-hic-img]').forEach(el => {
       const key = el.getAttribute('data-hic-img');
       const img = images[key];
-
       if (!img) return;
 
       if (img.src) el.setAttribute('src', img.src);
       if (img.alt) el.setAttribute('alt', img.alt);
     });
 
-    const heroMap = {
-      home_ar: 'home_ar_hero_bg',
-      profile_ar: 'profile_ar_hero_bg',
-      home_en: 'home_en_hero_bg',
-      profile_en: 'profile_en_hero_bg'
-    };
-
-    const heroKey = heroMap[pageKey];
-    const heroImg = heroKey ? images[heroKey] : null;
-    const hero = document.querySelector('.hero');
-
-    if (hero && heroImg && heroImg.src) {
-      const direction = pageKey.includes('_ar') ? '270deg' : '90deg';
-
-      hero.style.background =
-        `linear-gradient(${direction},rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)), url('${heroImg.src}') center center / cover no-repeat`;
-    }
+    applyHeroBackground(pageKey, images);
 
   } catch (e) {
     console.error('CMS load failed', e);
   }
+}
+
+function applyHeroBackground(pageKey, images) {
+  const heroMap = {
+    home_ar: 'home_ar_hero_bg',
+    profile_ar: 'profile_ar_hero_bg',
+    home_en: 'home_en_hero_bg',
+    profile_en: 'profile_en_hero_bg'
+  };
+
+  const heroKey = heroMap[pageKey];
+  const heroImg = heroKey ? images[heroKey] : null;
+  const hero = document.querySelector('.hero');
+
+  if (!hero || !heroImg || !heroImg.src) return;
+
+  const direction = pageKey.includes('_ar') ? '270deg' : '90deg';
+
+  hero.style.background =
+    `linear-gradient(${direction},rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)), url('${heroImg.src}') center center / cover no-repeat`;
 }
 
 loadCMS();
