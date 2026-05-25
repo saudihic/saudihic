@@ -2329,3 +2329,7 @@ main{padding-top:0!important}
   .footer-main{align-items:flex-start!important;flex-direction:column!important}
   .footer-links{flex-direction:column!important;align-items:flex-start!important;gap:10px!important}
 }
+.hero-inner{
+  background:none !important;
+  background-image:none !important;
+}
