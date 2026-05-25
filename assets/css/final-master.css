@@ -2329,3 +2329,10 @@ main{padding-top:0!important}
   .footer-main{align-items:flex-start!important;flex-direction:column!important}
   .footer-links{flex-direction:column!important;align-items:flex-start!important;gap:10px!important}
 }
+/* FIX ARABIC PROFILE HERO IMAGE */
+body.ar.profile-ar .hero,
+.profile-ar .hero{
+  background:
+    linear-gradient(270deg,rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)),
+    url('/profile/assets/images/asset_002.webp') center center / cover no-repeat !important;
+}
