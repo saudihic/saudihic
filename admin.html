@@ -28,10 +28,47 @@ textarea{min-height:78px;resize:vertical}input:focus,textarea:focus{outline:none
 code{background:#020617;color:#fde68a;padding:2px 6px;border-radius:6px}.search{margin-bottom:14px}.count{color:#9ca3af;font-size:13px;margin-bottom:8px}
 #app{display:none}
 
-.upload-box{margin-top:10px;padding:10px;border:1px dashed #475569;border-radius:12px;background:#020617}
+.hero-admin-box{
+  border:1px solid rgba(215,181,109,.45);
+  background:linear-gradient(180deg,rgba(215,181,109,.10),rgba(15,23,42,.72));
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:18px;
+}
+.hero-admin-title{
+  color:#fcd34d;
+  font-size:20px;
+  font-weight:900;
+  margin:0 0 6px;
+}
+.hero-admin-note{
+  color:#cbd5e1;
+  font-size:13px;
+  margin-bottom:14px;
+}
+.upload-box{
+  margin-top:10px;
+  padding:10px;
+  border:1px dashed #475569;
+  border-radius:12px;
+  background:#020617;
+}
 .upload-box input{margin-bottom:8px}
-.upload-box button{padding:9px 12px;font-size:13px}
-.preview-img{margin-top:8px;max-height:120px;border-radius:10px;border:1px solid #334155;background:#020617}
+.upload-box button{padding:9px 12px;font-size:13px;background:#fbbf24;color:#111}
+.preview-img{
+  margin-top:8px;
+  max-height:120px;
+  border-radius:10px;
+  border:1px solid #334155;
+  background:#020617;
+}
+.field.hero-field{
+  border:1px solid rgba(215,181,109,.30);
+  border-radius:14px;
+  padding:13px;
+  background:rgba(2,6,23,.58);
+}
+
 </style>
 </head>
 <body>
@@ -72,7 +109,6 @@ let adminPassword = '';
 const pageNames = {home_ar:'الهوم العربي', profile_ar:'البروفايل العربي', home_en:'Home EN', profile_en:'Profile EN'};
 
 const imageLabels = {
-
   home_ar_hero_bg: 'خلفية هيرو الهوم العربي',
   profile_ar_hero_bg: 'خلفية هيرو البروفايل العربي',
   home_en_hero_bg: 'English Home Hero Background',
@@ -185,6 +221,7 @@ function ensureHeroImages(){
 
   Object.keys(defaults).forEach(function(pageKey){
     if(!data.pages[pageKey]) data.pages[pageKey] = {texts:{},images:{}};
+    if(!data.pages[pageKey].texts) data.pages[pageKey].texts = {};
     if(!data.pages[pageKey].images) data.pages[pageKey].images = {};
 
     Object.keys(defaults[pageKey]).forEach(function(imgKey){
@@ -275,8 +312,19 @@ function renderCurrent(){
   textKeys.forEach((k,i)=>{html += `<div class="field"><label>${i+1} — ${k}</label><textarea data-kind="text" data-key="${k}">${esc(texts[k])}</textarea></div>`;});
   html += `</section>`;
   const imgKeys=Object.keys(images);
-  html += `<section><h2>الصور</h2><div class="count">${imgKeys.length} صورة قابلة للتعديل</div><div class="grid">`;
-  imgKeys.forEach((k,i)=>{html += `<div class="field"><label>${i+1} — ${imageLabel(k)}<br><span style="font-size:11px;color:#9ca3af">${k}</span></label><input data-kind="img-src" data-key="${k}" value="${esc(images[k]?.src)}" placeholder="/images/example.jpg"><div class="small">مسار الصورة</div><div class="upload-box"><input type="file" accept="image/*" data-upload-key="${k}"><button type="button" onclick="uploadImageForField('${k}', this.previousElementSibling)">رفع صورة لهذه الخانة</button><div class="small">بعد الرفع سيكتب المسار تلقائياً. بعدها اضغط حفظ مباشر.</div></div>${images[k]?.src ? `<img class="preview-img" src="${esc(images[k].src)}" onerror="this.style.display='none'">` : ''}<input data-kind="img-alt" data-key="${k}" value="${esc(images[k]?.alt)}" placeholder="وصف الصورة"><div class="small">Alt text</div></div>`;});
+  const heroKeys = ['home_ar_hero_bg','profile_ar_hero_bg','home_en_hero_bg','profile_en_hero_bg'].filter(k=>images[k]);
+  const normalImgKeys = imgKeys.filter(k=>!heroKeys.includes(k));
+
+  function imageFieldHtml(k,i,isHero){
+    return `<div class="field ${isHero?'hero-field':''}"><label>${i+1} — ${imageLabel(k)}<br><span style="font-size:11px;color:#9ca3af">${k}</span></label><input data-kind="img-src" data-key="${k}" value="${esc(images[k]?.src)}" placeholder="/images/example.jpg"><div class="small">مسار الصورة</div><div class="upload-box"><input type="file" accept="image/*" data-upload-key="${k}"><button type="button" onclick="uploadImageForField('${k}', this.previousElementSibling)">رفع صورة لهذه الخانة</button><div class="small">بعد الرفع سيكتب المسار تلقائياً. بعدها اضغط حفظ مباشر.</div></div>${images[k]?.src ? `<img class="preview-img" src="${esc(images[k].src)}" onerror="this.style.display='none'">` : ''}<input data-kind="img-alt" data-key="${k}" value="${esc(images[k]?.alt)}" placeholder="وصف الصورة"><div class="small">Alt text</div></div>`;
+  }
+
+  html += `<section class="hero-admin-box"><div class="hero-admin-title">صور الهيرو / الخلفيات الرئيسية</div><div class="hero-admin-note">هذه الصور تتحكم بخلفيات الهيرو للصفحات. ارفع الصورة ثم اضغط حفظ مباشر.</div><div class="grid">`;
+  heroKeys.forEach((k,i)=>{html += imageFieldHtml(k,i,true);});
+  html += `</div></section>`;
+
+  html += `<section><h2>الصور العادية</h2><div class="count">${normalImgKeys.length} صورة قابلة للتعديل</div><div class="grid">`;
+  normalImgKeys.forEach((k,i)=>{html += imageFieldHtml(k,i,false);});
   html += `</div></section>`;
   editor.innerHTML=html;
   editor.querySelectorAll('textarea[data-kind="text"]').forEach(el=>el.addEventListener('input',()=>{data.pages[currentPage].texts[el.dataset.key]=el.value;}));
@@ -340,7 +388,7 @@ function downloadBackup(){
 file.addEventListener('change',e=>{
   const f=e.target.files[0]; if(!f)return;
   const r=new FileReader();
-  r.onload=()=>{try{data=JSON.parse(r.result);renderTabs();renderCurrent();showStatus('تم استيراد الملف — اضغط حفظ مباشر لاعتماده')}catch(err){alert('ملف JSON غير صحيح')}};
+  r.onload=()=>{try{data=JSON.parse(r.result);ensureHeroImages();renderTabs();renderCurrent();showStatus('تم استيراد الملف — اضغط حفظ مباشر لاعتماده')}catch(err){alert('ملف JSON غير صحيح')}};
   r.readAsText(f);
 });
 </script>
