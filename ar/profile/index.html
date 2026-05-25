@@ -330,6 +330,28 @@ document.addEventListener('DOMContentLoaded', function () {
     return 'home_en';
   }
 
+  function applyHeroBackground(pageKey, images){
+    var heroMap = {
+      home_ar: 'home_ar_hero_bg',
+      profile_ar: 'profile_ar_hero_bg',
+      home_en: 'home_en_hero_bg',
+      profile_en: 'profile_en_hero_bg'
+    };
+
+    var heroKey = heroMap[pageKey];
+    var heroImg = heroKey ? images[heroKey] : null;
+    var hero = document.querySelector('.hero');
+
+    if(!hero || !heroImg || !heroImg.src) return;
+
+    var direction = pageKey.indexOf('_ar') > -1 ? '270deg' : '90deg';
+
+    hero.style.background =
+      "linear-gradient(" + direction + ",rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)), url('" +
+      heroImg.src +
+      "') center center / cover no-repeat";
+  }
+
   function applyContent(data){
     var pageKey = getPageKey();
     var page = data && data.pages ? data.pages[pageKey] : null;
@@ -349,6 +371,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if(images[id] && typeof images[id].alt === 'string') img.setAttribute('alt', images[id].alt);
       });
     });
+
+    applyHeroBackground(pageKey, images);
   }
 
   fetch('/api/content', { cache: 'no-store' })
