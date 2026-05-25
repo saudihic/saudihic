@@ -47,15 +47,11 @@ export async function onRequest(context) {
     const url = new URL(request.url);
     const key = url.searchParams.get("key");
 
-    if (!key) {
-      return new Response("Missing key", { status: 400 });
-    }
+    if (!key) return new Response("Missing key", { status: 400 });
 
     const item = await env.HIC_CONTENT.getWithMetadata("media:" + key, { type: "arrayBuffer" });
 
-    if (!item || !item.value) {
-      return new Response("Not found", { status: 404 });
-    }
+    if (!item || !item.value) return new Response("Not found", { status: 404 });
 
     return new Response(item.value, {
       headers: {
