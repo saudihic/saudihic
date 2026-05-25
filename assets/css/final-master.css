@@ -2339,8 +2339,8 @@ body.ar.profile-ar .hero,
 
 
 /* =========================================================
-   HIC FINAL HERO CMS OVERRIDE
-   Fixes fixed CSS hero backgrounds and lets admin/CMS control hero images.
+   HIC SAFE PROFILE HERO CMS OVERRIDE
+   Target only the top profile hero section. Do not affect cards/inner boxes.
    ========================================================= */
 
 html,
@@ -2349,59 +2349,49 @@ body{
   --hic-hero-gradient-direction: 270deg;
 }
 
-/* All common hero layers */
-.hero,
-.hero::before,
-.hero:before,
-.hero::after,
-.hero:after,
-.hero-inner,
-.home-hero,
-.home-hero::before,
-.home-hero:before,
-.profile-hero,
-.profile-hero::before,
-.profile-hero:before{
-  background-image:
-    linear-gradient(var(--hic-hero-gradient-direction,270deg),rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)),
-    var(--hic-hero-bg) !important;
-  background-position:center center !important;
-  background-size:cover !important;
-  background-repeat:no-repeat !important;
-}
-
-/* Arabic pages */
-body.ar,
-body[dir="rtl"],
-html[dir="rtl"] body{
-  --hic-hero-gradient-direction:270deg;
-}
-
-/* English pages */
-html[lang="en"] body,
-body:not(.ar):not([dir="rtl"]){
-  --hic-hero-gradient-direction:90deg;
-}
-
-/* Force Arabic profile hero specifically */
-body.profile-ar .hero,
-body.profile-ar .hero::before,
-body.profile-ar .hero:before,
-body.profile-ar .hero::after,
-body.profile-ar .hero:after,
-body.profile-ar .hero-inner{
-  background-image:
-    linear-gradient(270deg,rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)),
-    var(--hic-hero-bg) !important;
-  background-position:center center !important;
-  background-size:cover !important;
-  background-repeat:no-repeat !important;
-}
-
-/* Safety: remove fixed image dominance from old background shorthand */
-body.profile-ar .hero{
+/* Arabic profile: only the first real hero section */
+body.profile-ar main > section.hero{
   background:
     linear-gradient(270deg,rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)),
     var(--hic-hero-bg) center center / cover no-repeat !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+}
+
+/* Keep the inner content box clean */
+body.profile-ar main > section.hero .hero-inner{
+  background:none !important;
+  background-image:none !important;
+}
+
+/* Keep pseudo layers as overlays only, not image holders */
+body.profile-ar main > section.hero::before,
+body.profile-ar main > section.hero:before,
+body.profile-ar main > section.hero::after,
+body.profile-ar main > section.hero:after{
+  background-image:none !important;
+}
+
+/* English profile: only the first real hero section */
+body:not(.ar) main > section.hero{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,.58),rgba(0,0,0,.96)),
+    var(--hic-hero-bg) center center / cover no-repeat !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+}
+
+body:not(.ar) main > section.hero .hero-inner{
+  background:none !important;
+  background-image:none !important;
+}
+
+body:not(.ar) main > section.hero::before,
+body:not(.ar) main > section.hero:before,
+body:not(.ar) main > section.hero::after,
+body:not(.ar) main > section.hero:after{
+  background-image:none !important;
 }
 
