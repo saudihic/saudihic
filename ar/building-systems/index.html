@@ -503,16 +503,19 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       });
     });
   }
-  // localStorage FIRST (works when opened locally), then API (works on server)
-  var applied=false;
-  try{
-    var local=localStorage.getItem('hic_content');
-    if(local){apply(JSON.parse(local));applied=true;}
-  }catch(e){}
+  // API (KV) is the source of truth on the live site.
+  // localStorage is used only as a fallback when the API is unreachable (e.g. opened locally as a file).
   fetch('/api/content',{cache:'no-store'})
     .then(function(r){return r.json();})
-    .then(function(d){if(d&&d.pages&&Object.keys(d.pages).length)apply(d);})
-    .catch(function(){});
+    .then(function(d){
+      if(d&&d.pages&&Object.keys(d.pages).length){
+        apply(d);
+        try{localStorage.setItem('hic_content',JSON.stringify(d));}catch(e){}
+      }
+    })
+    .catch(function(){
+      try{var local=localStorage.getItem('hic_content');if(local)apply(JSON.parse(local));}catch(e){}
+    });
 })();
 </script>
 </body>

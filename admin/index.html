@@ -429,7 +429,7 @@ async function init(){
   } catch(e){ setStatus(false, loaded?'محفوظ محلياً':'وضع محلي'); }
 
   buildImgTabs();
-  renderImgPage(currentImgPage);
+  loadImagePage(currentImgPage);
   buildTxtTabs();
   loadTextPage(currentTxtPage);
   updateStats();
@@ -442,7 +442,7 @@ function setStatus(ok, txt){
 
 function updateStats(){
   let imgTotal = 0;
-  Object.values(IMAGE_MAP).forEach(p => imgTotal += Object.keys(p.images).length);
+  Object.values(imageCache).forEach(arr => imgTotal += arr.length);
   document.getElementById('stat-imgs').textContent = imgTotal;
   let txtTotal = 0;
   Object.values(textCache).forEach(arr => txtTotal += arr.length);
@@ -453,28 +453,76 @@ function updateStats(){
 }
 
 /* ── IMAGE TABS & RENDER (preserved) ── */
+var imageCache={}; // auto-read image ids per page
+
 function buildImgTabs(){
   const c = document.getElementById('img-ptabs'); c.innerHTML='';
-  Object.entries(IMAGE_MAP).forEach(([key,pg])=>{
+  Object.entries(PAGE_FILES).forEach(([key,pg])=>{
     const b=document.createElement('button');
     b.className='ptab'+(key===currentImgPage?' active':'');
-    b.textContent=pg.label;
-    b.onclick=()=>{currentImgPage=key;c.querySelectorAll('.ptab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderImgPage(key);};
+    b.textContent=pg.label; b.dataset.key=key;
+    b.onclick=()=>{currentImgPage=key;c.querySelectorAll('.ptab').forEach(x=>x.classList.remove('active'));b.classList.add('active');loadImagePage(key);};
     c.appendChild(b);
   });
 }
-function renderImgPage(pageKey){
-  const pg=IMAGE_MAP[pageKey];
+
+function imgLabel(id){
+  var map={
+    img_hero:'صورة الهيرو',img_about:'صورة من نحن',img_ops_main:'العمليات — رئيسية',
+    img_ops_mini1:'العمليات — صغيرة 1',img_ops_mini2:'العمليات — صغيرة 2',
+    img_gal_01:'المعرض 1',img_gal_02:'المعرض 2',img_gal_03:'المعرض 3',img_gal_04:'المعرض 4',img_gal_05:'المعرض 5',
+    img_pship_01:'الشراكة 1',img_pship_02:'الشراكة 2',
+    img_ops_pave:'الرصف',img_ops_comp:'الدمك',img_ops_mark:'الدهان',
+    img_mat_sand:'مواد — رمل',img_mat_agg:'مواد — ركام',img_mat_earth:'مواد — حفر',img_mat_filt:'مواد — فلتر',
+    img_urban:'المشهد الحضري',img_fleet_exc:'الأسطول — حفارات',img_fleet_ldr:'الأسطول — لودرات',
+    img_fleet_trk:'الأسطول — شاحنات',img_fleet_rol:'الأسطول — رولات',
+    img_mos_01:'موزاييك 1',img_mos_02:'موزاييك 2',img_mos_03:'موزاييك 3',
+    img_tech_01:'تقنية 1',img_tech_02:'تقنية 2',img_tech_03:'تقنية 3',img_tech_04:'تقنية 4',
+    img_partner:'صورة الشريك',img_hero_bg:'خلفية الهيرو'
+  };
+  for(var i=1;i<=8;i++)map['img_client_0'+i]='شعار عميل '+i;
+  var short=id.replace(/^(home_en_|home_ar_|profile_en_|profile_ar_|bs_)/,'');
+  return map[short]||short;
+}
+
+async function loadImagePage(pageKey){
+  const pg=PAGE_FILES[pageKey];
   document.getElementById('imgs-title').textContent='الصور — '+pg.label;
+  const grid=document.getElementById('img-grid');
+  grid.innerHTML='<div class="loading"><div class="spinner"></div>جاري قراءة صور الصفحة...</div>';
+  try{
+    const r=await fetch(pg.file,{cache:'no-store'});
+    const html=await r.text();
+    const doc=new DOMParser().parseFromString(html,'text/html');
+    const found=[];
+    doc.querySelectorAll('[data-hic-img],[data-hic-bg]').forEach(function(el){
+      const id=el.getAttribute('data-hic-img')||el.getAttribute('data-hic-bg');
+      if(id&&id.indexOf("'+id+'")===-1&&!found.find(f=>f.id===id)){
+        var src=el.getAttribute('src')||'';
+        if(!src){var bg=el.style.backgroundImage||'';var m=bg.match(/url\(['"]?([^'")]+)/);if(m)src=m[1];}
+        found.push({id:id,src:src});
+      }
+    });
+    imageCache[pageKey]=found;
+    renderImgPage(pageKey);
+  }catch(e){
+    grid.innerHTML='<div class="txt-empty">⚠️ تعذّر قراءة صور الصفحة</div>';
+  }
+}
+
+function renderImgPage(pageKey){
+  const found=imageCache[pageKey]||[];
   const grid=document.getElementById('img-grid'); grid.innerHTML='';
-  Object.entries(pg.images).forEach(([id,img])=>{
+  if(!found.length){grid.innerHTML='<div class="txt-empty">لا توجد صور في هذه الصفحة</div>';return;}
+  found.forEach(function(img){
+    const id=img.id;
     const src=getImgSrc(pageKey,id,img.src);
     const card=document.createElement('div'); card.className='img-card';
     card.innerHTML=`
       <img class="img-preview" id="prev-${id}" src="${src}" onerror="this.style.opacity=.3"/>
       <div class="img-info">
         <div class="img-label">${id}</div>
-        <div class="img-name">${img.label}</div>
+        <div class="img-name">${imgLabel(id)}</div>
         <div class="img-actions">
           <label class="btn-upload">⬆ رفع<input type="file" accept="image/*" class="file-inp" onchange="handleUpload(this,'${pageKey}','${id}')"/></label>
           <button class="btn-url" onclick="openModal('${pageKey}','${id}')">🔗 رابط</button>
@@ -501,7 +549,7 @@ function handleUpload(input,pageKey,id){
 }
 function openModal(pageKey,id){
   activeModalId={pageKey,id};
-  const cur=getImgSrc(pageKey,id,IMAGE_MAP[pageKey].images[id].src);
+  const found=(imageCache[pageKey]||[]).find(f=>f.id===id);const cur=getImgSrc(pageKey,id,found?found.src:'');
   document.getElementById('url-inp').value=cur.startsWith('data:')?'':cur;
   document.getElementById('url-modal').classList.add('open');
 }
@@ -628,7 +676,11 @@ async function saveAll(){
   pendingChanges={};
   document.getElementById('save-bar').classList.remove('show');
   updateStats();
-  toast(apiOk?'✅ تم الحفظ على السيرفر':'💾 تم الحفظ محلياً','ok');
+  if(apiOk){
+    toast('✅ تم الحفظ ونشره للموقع — حدّث الصفحة لرؤية التغيير','ok');
+  } else {
+    toast('⚠️ حُفظ محلياً فقط — لم يصل للسيرفر (تحقق من الاتصال)','err');
+  }
 }
 
 function showPage(name){
