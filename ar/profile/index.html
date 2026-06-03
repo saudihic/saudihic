@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>الملف التعريفي | هورايزن إنتيغريشن</title>
+<meta name="description" content="الملف التعريفي الكامل لهورايزن إنتيغريشن — تنفيذ البنية التحتية وأعمال الأسفلت والمعدات الثقيلة وتوريد المواد والأعمال الحضرية في المملكة العربية السعودية."/>
+<link rel="icon" href="../../favicon.ico"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --dark:#302e2e;--carbon:#1e1c1c;--slate:#252322;
+  --green:#005340;--teal:#005852;--gl:#006b52;
+  --bg:#f0f0f0;--white:#fff;--mid:#3d3b38;--light:#d8d7d3;
+  --font:'Alexandria',sans-serif;--ease:cubic-bezier(.25,.46,.45,.94);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--white);color:var(--dark);overflow-x:hidden;line-height:1.8}
+
+/* HEADER */
+.hdr{
+  position:fixed;top:0;left:0;right:0;z-index:990;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;background:rgba(48,46,46,.97);
+  backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06);
+}
+.hdr-brand{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+.hdr-brand img{height:34px;width:auto}
+nav{display:flex;align-items:center;gap:1.75rem}
+nav a{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s}
+nav a:hover{color:#fff}
+.nav-cta{background:var(--green);color:#fff!important;padding:.42rem 1.1rem;border-radius:2px}
+.nav-cta:hover{background:var(--gl)!important}
+.nav-lang{border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.5)!important;padding:.38rem .8rem;border-radius:2px}
+
+/* HERO */
+.hero{
+  height:100vh;min-height:640px;position:relative;
+  display:flex;align-items:flex-end;overflow:hidden;background:var(--dark);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('../../assets/img/projects/proj_027.jpg') center/cover no-repeat;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(48,46,46,1) 0%,rgba(48,46,46,.8) 30%,rgba(48,46,46,.35) 70%,rgba(48,46,46,.1) 100%),
+             linear-gradient(to left,rgba(48,46,46,.7) 0%,transparent 60%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:1200px;margin:0 auto;width:100%;
+  padding:0 3rem 5rem;
+}
+.hero-eyebrow{
+  font-size:.75rem;font-weight:600;color:rgba(255,255,255,.65);
+  margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem;
+}
+.hero-eyebrow::after{content:'';width:22px;height:1px;background:var(--gl)}
+.hero h1{
+  font-size:clamp(2.5rem,5.5vw,5rem);font-weight:800;
+  line-height:1.1;color:#fff;margin-bottom:1.5rem;max-width:680px;
+}
+.hero h1 strong{color:var(--gl)}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.82);line-height:1.9;max-width:560px;margin-bottom:2.5rem}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+.hero-tag{
+  font-size:.72rem;font-weight:600;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.75);padding:.35rem .85rem;border-radius:2px;
+}
+.hero-btns{display:flex;gap:.85rem;flex-wrap:wrap}
+.btn-primary{
+  font-size:.85rem;font-weight:700;
+  background:var(--green);color:#fff;padding:.8rem 1.75rem;border-radius:2px;
+  text-decoration:none;transition:background .25s,transform .2s;
+}
+.btn-primary:hover{background:var(--gl);transform:translateY(-2px)}
+.btn-ghost{
+  font-size:.85rem;font-weight:700;
+  border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.85);
+  padding:.8rem 1.75rem;border-radius:2px;text-decoration:none;transition:border-color .2s;
+}
+.btn-ghost:hover{border-color:#fff;color:#fff}
+
+/* LAYOUT */
+main{padding-top:68px}
+.section{padding:6rem 0}
+.section-bg{background:var(--bg)}
+.section-dark{background:var(--dark)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 3rem}
+
+.tag{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--green);display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem}
+.tag::after{content:'';width:18px;height:1px;background:var(--green)}
+.tag-light{color:rgba(255,255,255,.65)}
+.tag-light::after{background:rgba(255,255,255,.4)}
+
+h2.title{font-size:clamp(1.7rem,3vw,2.6rem);font-weight:800;line-height:1.2;margin-bottom:1.1rem}
+.title-w{color:#fff}
+.body{font-size:.95rem;line-height:1.9;color:var(--mid);max-width:580px}
+.body-light{color:rgba(255,255,255,.82)}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.img-frame{overflow:hidden;border-radius:2px;aspect-ratio:4/3;position:relative}
+.img-frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease)}
+.img-frame:hover img{transform:scale(1.04)}
+.img-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(225deg,rgba(0,83,64,.15),transparent 60%)}
+
+/* ABOUT */
+.about-points{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--light);border:1px solid var(--light);border-radius:2px;overflow:hidden;margin-top:2rem}
+.about-pt{background:var(--bg);padding:1.5rem}
+.about-pt h4{font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:.4rem}
+.about-pt p{font-size:.84rem;color:var(--mid);line-height:1.8}
+
+/* SERVICES */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--light);border:1px solid var(--light);border-radius:2px;overflow:hidden;margin-top:3rem}
+.svc{background:#fff;padding:2rem 1.75rem;position:relative;overflow:hidden;transition:background .3s}
+.svc::after{content:'';position:absolute;bottom:0;right:0;left:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.svc:hover{background:var(--bg)}
+.svc:hover::after{transform:scaleX(1)}
+.svc-n{font-size:.68rem;font-weight:700;letter-spacing:.06em;color:var(--green);margin-bottom:.85rem}
+.svc h3{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:.6rem;line-height:1.3}
+.svc p{font-size:.855rem;color:var(--mid);line-height:1.82}
+
+/* OPERATIONS */
+.ops-hero{position:relative;overflow:hidden;border-radius:2px;height:360px;margin-bottom:1px}
+.ops-hero img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.8)}
+.ops-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(48,46,46,.9) 0%,rgba(48,46,46,.3) 60%,transparent 100%);display:flex;align-items:flex-end;padding:2rem}
+.ops-hero-label{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.75);background:rgba(0,83,64,.6);padding:.4rem .85rem;border-radius:2px}
+.ops-sub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--slate)}
+.ops-sub-item{overflow:hidden;position:relative;aspect-ratio:4/3}
+.ops-sub-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease);filter:brightness(.75)}
+.ops-sub-item:hover img{transform:scale(1.06);filter:brightness(.9)}
+.ops-sub-label{position:absolute;bottom:.75rem;right:.75rem;font-size:.65rem;font-weight:700;color:rgba(255,255,255,.75);background:rgba(48,46,46,.7);padding:.3rem .65rem;border-radius:2px}
+
+/* WORKFLOW */
+.workflow{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--green);border-radius:2px;overflow:hidden;margin-top:2rem}
+.wf-step{background:var(--green);padding:1.25rem 1rem;text-align:center;transition:background .25s}
+.wf-step:hover{background:var(--teal)}
+.wf-n{font-size:.65rem;font-weight:700;color:rgba(255,255,255,.55);margin-bottom:.4rem}
+.wf-step span{font-size:.82rem;font-weight:600;color:#fff}
+
+/* MATERIALS */
+.mat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--light);border:1px solid var(--light);border-radius:2px;overflow:hidden;margin-top:3rem}
+.mat-card{background:#fff;overflow:hidden;transition:background .3s}
+.mat-card:hover{background:var(--bg)}
+.mat-img{overflow:hidden;aspect-ratio:4/3}
+.mat-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.mat-card:hover .mat-img img{transform:scale(1.06)}
+.mat-body{padding:1.25rem 1.5rem}
+.mat-n{font-size:.68rem;font-weight:700;color:var(--green);margin-bottom:.35rem}
+.mat-body h4{font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:.4rem}
+.mat-body p{font-size:.82rem;color:var(--mid);line-height:1.78}
+
+/* FLEET */
+.fleet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden;margin-top:3rem}
+.fleet-card{background:var(--slate)}
+.fleet-img{overflow:hidden;aspect-ratio:4/3}
+.fleet-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease);filter:brightness(.8)}
+.fleet-card:hover .fleet-img img{transform:scale(1.06);filter:brightness(.95)}
+.fleet-body{padding:1.5rem}
+.fleet-n{font-size:.68rem;font-weight:700;color:var(--gl);margin-bottom:.35rem}
+.fleet-body h3{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.4rem}
+.fleet-body p{font-size:.82rem;color:rgba(255,255,255,.72);line-height:1.78}
+
+/* CLIENTS */
+.clients-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--light);border:1px solid var(--light);border-radius:2px;overflow:hidden;margin-top:3rem}
+.client{background:#fff;padding:2rem 1.5rem;display:flex;align-items:center;justify-content:center;transition:background .25s}
+.client:hover{background:var(--bg)}
+.client img{max-height:56px;max-width:160px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.6;transition:filter .3s,opacity .3s}
+.client:hover img{filter:grayscale(0);opacity:1}
+
+/* CLOSING */
+.closing{background:var(--dark);padding:6rem 0;text-align:center}
+.closing img{height:56px;width:auto;margin:0 auto 2rem;display:block;opacity:.85}
+.closing h2{color:#fff;max-width:600px;margin:0 auto 1rem}
+.closing p{color:rgba(255,255,255,.72);font-size:.95rem;line-height:1.9;max-width:560px;margin:0 auto 2rem}
+.closing-btns{display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding:2rem 3rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{height:30px;width:auto;opacity:.55}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap}
+.footer-links a,.footer-links span{font-size:.8rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
+.footer-copy{font-size:.74rem;color:rgba(255,255,255,.2)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+@media(max-width:1024px){
+  .split{grid-template-columns:1fr;gap:2.5rem}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .mat-grid{grid-template-columns:1fr 1fr}
+  .fleet-grid{grid-template-columns:1fr 1fr}
+  .clients-grid{grid-template-columns:repeat(4,1fr)}
+  .workflow{grid-template-columns:1fr 1fr 1fr}
+  .ops-sub-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .hdr{padding:0 1.5rem}
+  nav a:not(.nav-cta):not(.nav-lang){display:none}
+  .wrap{padding:0 1.5rem}
+  .hero-content{padding:0 1.5rem 4rem}
+  .svc-grid{grid-template-columns:1fr}
+  .mat-grid{grid-template-columns:1fr 1fr}
+  .fleet-grid{grid-template-columns:1fr 1fr}
+  .clients-grid{grid-template-columns:1fr 1fr}
+  .about-points{grid-template-columns:1fr}
+  .workflow{grid-template-columns:1fr 1fr}
+  .ops-sub-grid{grid-template-columns:1fr}
+  .section{padding:4.5rem 0}
+  footer{padding:1.75rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a class="hdr-brand" href="../../ar/">
+    <img src="../../assets/img/hic-logo-white.png" alt="هورايزن إنتيغريشن"/>
+  </a>
+  <nav>
+    <a href="#about">نبذة</a>
+    <a href="#values">قيمنا</a>
+    <a href="#services">الخدمات</a>
+    <a href="#operations">العمليات</a>
+    <a href="#fleet">الأسطول</a>
+    <a href="#clients">العملاء</a>
+    <a href="#contact" class="nav-cta">تواصل معنا</a>
+    <a href="../../profile/" class="nav-lang">EN</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">الملف التعريفي المؤسسي</div>
+    <h1>البنية التحتية<br/><strong>وتنفيذ المشاريع</strong></h1>
+    <p class="hero-sub">تنفيذ الطرق والأسفلت والتصريف ودهان الطرق والأعمال الخارجية والتنفيذ المدني من خلال قدرة تشغيلية مثبتة ميدانياً في جميع أنحاء المملكة العربية السعودية.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">البنية التحتية</span>
+      <span class="hero-tag">الأعمال المدنية</span>
+      <span class="hero-tag">الطرق والأسفلت</span>
+      <span class="hero-tag">أنظمة التصريف</span>
+      <span class="hero-tag">دهان الطرق</span>
+      <span class="hero-tag">الأعمال الحضرية</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">استعرض قدراتنا ←</a>
+      <a href="#contact" class="btn-ghost">تواصل معنا</a>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <div class="tag">نبذة</div>
+        <h2 class="title" data-hic-edit="profile_ar_about_title">نبذة عن الشركة</h2>
+        <p class="body">هورايزن إنتيغريشن شركة سعودية متخصصة في تنفيذ مشاريع البنية التحتية والأعمال المدنية، تشمل خدماتها الطرق والأسفلت وأنظمة التصريف والأعمال الخارجية ودهان الطرق وأعمال التطوير الحضري.</p>
+        <p class="body" style="margin-top:1rem">نعتمد منهجية عمل قائمة على جاهزية المعدات، وانضباط التنفيذ، والتنسيق الهندسي، وأداء ميداني موثوق في كل مرحلة من مراحل المشروع.</p>
+        <div class="about-points">
+          <div class="about-pt">
+            <h4>مثبت ميدانياً</h4>
+            <p>قدرة تنفيذية عملية متوافقة مع متطلبات العمليات الميدانية الفعلية.</p>
+          </div>
+          <div class="about-pt">
+            <h4>جاهز تشغيلياً</h4>
+            <p>تنسيق المعدات والمواد والقوى العاملة وأداء الموقع المنضبط.</p>
+          </div>
+        </div>
+      </div>
+      <div class="img-frame reveal d1">
+        <img data-hic-img="profile_ar_img_about" src="../../assets/img/projects/proj_about.jpg" alt="العمليات الميدانية"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION / MISSION -->
+<section class="section section-bg" id="vision">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <div class="tag">رؤيتنا</div>
+        <h2 class="title" data-hic-edit="profile_ar_vision_title">رؤيتنا</h2>
+        <p class="body" data-hic-edit="profile_ar_vision_body">أن نكون شريكاً موثوقاً في تنفيذ مشاريع البنية التحتية والأعمال المدنية في المملكة، عبر الالتزام بمعايير الجودة والسلامة والإنجاز في الوقت المحدد.</p>
+      </div>
+      <div class="reveal d1">
+        <div class="tag">رسالتنا</div>
+        <h2 class="title" data-hic-edit="profile_ar_mission_title">رسالتنا</h2>
+        <p class="body" data-hic-edit="profile_ar_mission_body">تقديم حلول تنفيذية متكاملة لأعمال الطرق والإسفلت والتصريف والمشهد الحضري، مدعومة بأسطول معدات جاهز وكوادر ميدانية مؤهلة وتنسيق هندسي دقيق.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section" id="values">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:2.5rem">
+      <div class="tag">قيمنا</div>
+      <h2 class="title" data-hic-edit="profile_ar_values_title">قيمنا</h2>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc">
+        <div class="svc-n">٠١</div>
+        <h3 data-hic-edit="profile_ar_val1_title">السلامة أولاً</h3>
+        <p data-hic-edit="profile_ar_val1_body">تطبيق معايير السلامة المهنية في كل موقع، وحماية الكوادر والممتلكات في جميع مراحل التنفيذ.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-n">٠٢</div>
+        <h3 data-hic-edit="profile_ar_val2_title">جودة التنفيذ</h3>
+        <p data-hic-edit="profile_ar_val2_body">الالتزام بالمواصفات الفنية ومعايير الجودة في الطبقات والمواد والأعمال النهائية.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-n">٠٣</div>
+        <h3 data-hic-edit="profile_ar_val3_title">الالتزام بالمواعيد</h3>
+        <p data-hic-edit="profile_ar_val3_body">جدولة دقيقة وتنفيذ منضبط يضمن تسليم المشاريع ضمن الإطار الزمني المتفق عليه.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-n">٠٤</div>
+        <h3 data-hic-edit="profile_ar_val4_title">الاحترافية الميدانية</h3>
+        <p data-hic-edit="profile_ar_val4_body">كوادر مؤهلة وإشراف هندسي وتنسيق تشغيلي يرفع كفاءة الأداء في الموقع.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section section-bg" id="services">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="tag">نطاق الأعمال</div>
+      <h2 class="title" data-hic-edit="profile_ar_svc_title">قدرة تنفيذية متكاملة</h2>
+      <p class="body">نقدّم حلولاً متكاملة تغطّي الطرق والأسفلت وأنظمة التصريف والأعمال الخارجية وأنظمة السلامة المرورية، لدعم مشاريع البنية التحتية والتطوير الحضري.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="svc-n">01 / خدمة</div>
+        <h3 data-hic-edit="profile_ar_svc1_title">الطرق والأسفلت</h3>
+        <p>رصف الأسفلت الفعلي وتحضير السطح والدمك وعمليات دهان الطرق المكتملة.</p>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-n">02 / خدمة</div>
+        <h3 data-hic-edit="profile_ar_svc2_title">أنظمة التصريف</h3>
+        <p>البنية التحتية لمياه الأمطار وقنوات التصريف والأنظمة تحت الأرضية وأعمال إدارة المياه.</p>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-n">03 / خدمة</div>
+        <h3 data-hic-edit="profile_ar_svc3_title">الأعمال الخارجية</h3>
+        <p>الإنترلوك والأرصفة والتشطيبات الحضرية وأعمال الفضاء العام وتنفيذ الأسطح الصلبة.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">04 / خدمة</div>
+        <h3 data-hic-edit="profile_ar_svc4_title">دهان الطرق</h3>
+        <p>أنظمة توجيه حركة المرور والدهان الثرموبلاستيكي ومخططات مواقف السيارات وحلول سلامة السطح.</p>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-n">05 / خدمة</div>
+        <h3 data-hic-edit="profile_ar_svc5_title">المعدات الثقيلة</h3>
+        <p>أسطول تشغيلي يدعم أعمال الحفر وعمليات الأسفلت والحفر والتنفيذ في الموقع.</p>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-n">06 / خدمة</div>
+        <h3 data-hic-edit="profile_ar_svc6_title">التنفيذ الحضري</h3>
+        <p>أعمال الدعم المدني والبنية التحتية المتكاملة للبيئات الحضرية وبيئات التطوير.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="operations">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:3rem">
+      <div class="tag tag-light">عمليات الأسفلت</div>
+      <h2 class="title title-w" data-hic-edit="profile_ar_ops_title">عمليات الأسفلت</h2>
+      <p class="body body-light">ننفّذ أعمال الرصف والدمك وتزويد البيتومين ودهان الطرق بتنسيق ميداني دقيق وفرق متخصصة.</p>
+    </div>
+    <div class="ops-hero reveal">
+      <img data-hic-img="profile_ar_img_hero" data-hic-img="profile_ar_img_ops_main" src="../../assets/img/projects/proj_154.jpeg" alt="عمليات الأسفلت الليلية"/>
+      <div class="ops-hero-overlay">
+        <span class="ops-hero-label">التنفيذ الأساسي · عمليات رصف الأسفلت</span>
+      </div>
+    </div>
+    <div class="ops-sub-grid reveal">
+      <div class="ops-sub-item">
+        <img data-hic-img="profile_ar_img_ops_pave" src="../../assets/img/projects/proj_021.jpg" alt="آلة الرصف"/>
+        <div class="ops-sub-label">الرصف</div>
+      </div>
+      <div class="ops-sub-item">
+        <img data-hic-img="profile_ar_img_ops_comp" src="../../assets/img/projects/proj_003.jpg" alt="الدمك"/>
+        <div class="ops-sub-label">الدمك</div>
+      </div>
+      <div class="ops-sub-item">
+        <img data-hic-img="profile_ar_img_ops_mark" src="../../assets/img/projects/proj_070.jpg" alt="دهان الطرق"/>
+        <div class="ops-sub-label">دهان الطرق</div>
+      </div>
+    </div>
+    <div class="workflow reveal" style="margin-top:1px">
+      <div class="wf-step"><div class="wf-n">01</div><span>تحضير السطح</span></div>
+      <div class="wf-step"><div class="wf-n">02</div><span>طبقة الربط</span></div>
+      <div class="wf-step"><div class="wf-n">03</div><span>رصف الأسفلت</span></div>
+      <div class="wf-step"><div class="wf-n">04</div><span>أعمال الدمك</span></div>
+      <div class="wf-step"><div class="wf-n">05</div><span>التشطيب النهائي</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="materials">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="tag">توريد المواد</div>
+      <h2 class="title" data-hic-edit="profile_ar_mat_title">دعم مواد البنية التحتية</h2>
+      <p class="body">نوفّر مواد المشاريع من الردم وطبقات الأساس والأساس المساعد ومواد الحفر المختارة وحجر الفلتر، حسب مواصفات كل مشروع.</p>
+    </div>
+    <div class="mat-grid">
+      <div class="mat-card reveal">
+        <div class="mat-img"><img src="../../assets/img/projects/proj_041.jpg" alt="الرمل والردم"/></div>
+        <div class="mat-body"><div class="mat-n">01 / الرمل والردم</div><h4>الردم وملء الموقع</h4><p>مواد ردم هندسية للتسوية والردم وأعمال تحضير الموقع.</p></div>
+      </div>
+      <div class="mat-card reveal d1">
+        <div class="mat-img"><img data-hic-img="profile_ar_img_mat_agg" src="../../assets/img/projects/proj_033.jpg" alt="مواد القاعدة"/></div>
+        <div class="mat-body"><div class="mat-n">02 / القاعدة والقاعدة الفرعية</div><h4>مواد القاعدة الركامية</h4><p>مواد القاعدة الركامية التي تدعم طبقات الرصف والتدريج وتكوين البنية التحتية.</p></div>
+      </div>
+      <div class="mat-card reveal d2">
+        <div class="mat-img"><img data-hic-img="profile_ar_img_mat_earth" src="../../assets/img/projects/proj_035.jpg" alt="مواد الحفر"/></div>
+        <div class="mat-body"><div class="mat-n">03 / أعمال الحفر</div><h4>مواد أعمال الحفر بالجملة</h4><p>مواد الحفر المختارة لدعم الملء بالجملة والتدريج ومتطلبات تطوير الموقع.</p></div>
+      </div>
+      <div class="mat-card reveal d3">
+        <div class="mat-img"><img data-hic-img="profile_ar_img_mat_filt" src="../../assets/img/projects/proj_077.jpg" alt="حجر الفلتر"/></div>
+        <div class="mat-body"><div class="mat-n">04 / حجر الفلتر</div><h4>حجر الفلتر والتصريف</h4><p>حجر فلتر يدعم طبقات التصريف والتحكم في تدفق المياه واستقرار طبقة البنية التحتية.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-bg">
+  <div class="wrap">
+    <div class="split">
+      <div class="img-frame reveal">
+        <img data-hic-img="profile_ar_img_urban" src="../../assets/img/projects/proj_043.jpg" alt="أعمال اللاند سكيب الحضري"/>
+      </div>
+      <div class="reveal d1">
+        <div class="tag">البيئة الحضرية</div>
+        <h2 class="title" data-hic-edit="profile_ar_urban_title">الأعمال الحضرية</h2>
+        <p class="body">ننفّذ أعمال التنسيق الحضري من تشجير ومسارات مشاة وتشطيبات خارجية، لتكامل المشهد العام حول مشاريع البنية التحتية.</p>
+        <div class="about-points" style="margin-top:2rem">
+          <div class="about-pt">
+            <h4>تركيب الإنترلوك</h4>
+            <p>تنفيذ أعمال تبليط الإنترلوك للمناطق الراجلة وطرق الوصول والواجهات الحضرية.</p>
+          </div>
+          <div class="about-pt">
+            <h4>أعمال الرصيف الحجري</h4>
+            <p>تنظيم حركة المرور والتحكم في التصريف وتحديد حواف السطح في المناطق الخارجية.</p>
+          </div>
+          <div class="about-pt">
+            <h4>تكامل اللاند سكيب</h4>
+            <p>تعزيز البيئات الحضرية من خلال أعمال اللاند سكيب والتشطيبات الخارجية المنسقة.</p>
+          </div>
+          <div class="about-pt">
+            <h4>دعم الفضاء العام</h4>
+            <p>تحسين تجربة المشاة والاستمرارية البصرية عبر البيئات الخارجية العامة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="fleet">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="tag tag-light">الأسطول والخدمات اللوجستية</div>
+      <h2 class="title title-w" data-hic-edit="profile_ar_fleet_title">الأسطول التشغيلي والمعدات</h2>
+      <p class="body body-light">موارد أسطول جاهزة ميدانياً تدعم نشر المعدات والنقل بالجملة وأعمال الحفر وعمليات التحميل ودعم الدمك والمتطلبات اللوجستية للمشروع.</p>
+    </div>
+    <div class="fleet-grid">
+      <div class="fleet-card reveal">
+        <div class="fleet-img"><img data-hic-img="profile_ar_img_fleet_exc" src="../../assets/img/projects/proj_125.jpg" alt="الحفارات"/></div>
+        <div class="fleet-body"><div class="fleet-n">01 / أسطول</div><h3 data-hic-edit="profile_ar_fleet1_title">الحفارات</h3><p>موارد الحفر الثقيل لدعم أعمال الحفر وتحضير الموقع والخندق وعمليات البنية التحتية.</p></div>
+      </div>
+      <div class="fleet-card reveal d1">
+        <div class="fleet-img"><img data-hic-img="profile_ar_img_fleet_ldr" src="../../assets/img/projects/proj_118.jpg" alt="اللودرات"/></div>
+        <div class="fleet-body"><div class="fleet-n">02 / أسطول</div><h3 data-hic-edit="profile_ar_fleet2_title">اللودرات</h3><p>معدات التحميل ومناولة المواد لدعم حركة الموقع وتداول المخزون والعمليات الميدانية.</p></div>
+      </div>
+      <div class="fleet-card reveal d2">
+        <div class="fleet-img"><img data-hic-img="profile_ar_img_fleet_trk" src="../../assets/img/projects/proj_164.jpeg" alt="شاحنات القلابة"/></div>
+        <div class="fleet-body"><div class="fleet-n">03 / أسطول</div><h3 data-hic-edit="profile_ar_fleet3_title">شاحنات القلابة</h3><p>أسطول نقل بالجملة يدعم نقل المواد ولوجستيات أعمال الحفر وحركة الركام وتسليم الموقع.</p></div>
+      </div>
+      <div class="fleet-card reveal d3">
+        <div class="fleet-img"><img data-hic-img="profile_ar_img_fleet_rol" src="../../assets/img/projects/proj_006.jpg" alt="رولات الدمك"/></div>
+        <div class="fleet-body"><div class="fleet-n">04 / أسطول</div><h3 data-hic-edit="profile_ar_fleet4_title">رولات الدمك</h3><p>معدات الدمك لدعم طبقات الطرق وأعمال الردم وتحضير السطح وأنشطة تشطيب الموقع.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="clients">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem">
+      <div class="tag" style="justify-content:center">تعاونات موثوقة</div>
+      <h2 class="title">العملاء المختارون وشركاء التنفيذ</h2>
+      <p class="body" style="margin:0 auto">نفخر بعلاقات عمل موثوقة مع شركاء في قطاعات المقاولات والبنية التحتية والمشاريع الصناعية والمتخصصة.</p>
+    </div>
+    <div class="clients-grid reveal">
+      <div class="client"><img data-hic-img="profile_ar_img_client_01" src="../../assets/img/clients/client_01.jpg" alt="عميل"/></div>
+      <div class="client"><img data-hic-img="profile_ar_img_client_02" src="../../assets/img/clients/client_02.jpg" alt="عميل"/></div>
+      <div class="client"><img data-hic-img="profile_ar_img_client_03" src="../../assets/img/clients/client_03.jpg" alt="عميل"/></div>
+      <div class="client"><img data-hic-img="profile_ar_img_client_04" src="../../assets/img/clients/client_04.jpg" alt="عميل"/></div>
+      <div class="client"><img data-hic-img="profile_ar_img_client_05" src="../../assets/img/clients/client_05.jpg" alt="عميل"/></div>
+      <div class="client"><img data-hic-img="profile_ar_img_client_06" src="../../assets/img/clients/client_06.jpg" alt="عميل"/></div>
+      <div class="client"><img data-hic-img="profile_ar_img_client_07" src="../../assets/img/clients/client_07.webp" alt="عميل"/></div>
+      <div class="client"><img data-hic-img="profile_ar_img_client_08" src="../../assets/img/clients/client_08.jpg" alt="عميل"/></div>
+    </div>
+  </div>
+</section>
+
+<section class="closing" id="contact">
+  <div class="wrap">
+    <img src="../../assets/img/hic-logo-white.png" alt="هورايزن إنتيغريشن"/>
+    <div class="tag tag-light" style="justify-content:center;margin-bottom:1rem">هورايزن إنتيغريشن</div>
+    <h2 class="title title-w" data-hic-edit="profile_ar_close_title">شريكك في التنفيذ</h2>
+    <p>دعم تسليم البنية التحتية من خلال الانضباط التشغيلي وجاهزية التنفيذ والنشر الميداني المنسق وقدرات دعم المشروع الموثوقة في جميع أنحاء المملكة العربية السعودية.</p>
+    <div class="closing-btns">
+      <a href="mailto:sales@saudihic.com" class="btn-primary">تواصل معنا</a>
+      <a href="../../ar/" class="btn-ghost">العودة للرئيسية</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="../../assets/img/hic-logo-white.png" alt="HIC"/>
+    <div class="footer-links">
+      <a href="https://www.saudihic.com">www.saudihic.com</a>
+      <a href="mailto:sales@saudihic.com">sales@saudihic.com</a>
+      <span>المملكة العربية السعودية</span>
+    </div>
+    <span class="footer-copy">البنية التحتية · الأعمال المدنية · الطرق · الأسفلت · التصريف · الأعمال الحضرية</span>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(!t)return;e.preventDefault();
+    window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-68,behavior:'smooth'});
+  });
+});
+</script>
+
+
+<script id="hic-cms">
+(function(){
+  function apply(data){
+    if(!data||!data.pages)return;
+    Object.values(data.pages).forEach(function(pg){
+      var imgs=pg.images||{};
+      Object.keys(imgs).forEach(function(id){
+        if(imgs[id]&&imgs[id].src){
+          document.querySelectorAll('[data-hic-img="'+id+'"]').forEach(function(el){
+            el.src=imgs[id].src;
+            var bg=el.id||'';
+            if(el.classList&&el.classList.contains('hero-img-target')){el.style.backgroundImage="url('"+imgs[id].src+"')";}
+          });
+          // hero background elements
+          document.querySelectorAll('[data-hic-bg="'+id+'"]').forEach(function(el){
+            el.style.backgroundImage="url('"+imgs[id].src+"')";
+          });
+        }
+      });
+      var texts=pg.texts||{};
+      Object.keys(texts).forEach(function(id){
+        if(texts[id]!==undefined&&texts[id]!==null){
+          document.querySelectorAll('[data-hic-edit="'+id+'"]').forEach(function(el){
+            el.textContent=texts[id];
+          });
+        }
+      });
+    });
+  }
+  // localStorage FIRST (works when opened locally), then API (works on server)
+  var applied=false;
+  try{
+    var local=localStorage.getItem('hic_content');
+    if(local){apply(JSON.parse(local));applied=true;}
+  }catch(e){}
+  fetch('/api/content',{cache:'no-store'})
+    .then(function(r){return r.json();})
+    .then(function(d){if(d&&d.pages&&Object.keys(d.pages).length)apply(d);})
+    .catch(function(){});
+})();
+</script>
+</body>
+</html>
