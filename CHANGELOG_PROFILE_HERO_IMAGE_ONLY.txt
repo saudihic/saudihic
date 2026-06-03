@@ -1,0 +1,1 @@
+Profile hero image-only fix: replaced corrupted/over-tall hero image crop with a clean cinematic 16:9 operational frame. No layout, typography, or global CSS changes.
