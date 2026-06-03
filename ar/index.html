@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>هورايزن إنتيغريشن | البنية التحتية والإنشاء — المملكة العربية السعودية</title>
+<meta name="description" content="هورايزن إنتيغريشن — تنفيذ شامل لمشاريع البنية التحتية في المملكة العربية السعودية."/>
+<link rel="icon" href="../favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --dark:#302e2e;--carbon:#1e1c1c;--green:#005340;--teal:#005852;--gl:#006b52;
+  --bg:#f0f0f0;--white:#fff;--mid:#3d3b38;--light:#d8d7d3;
+  --font:'Alexandria',sans-serif;--ease:cubic-bezier(.25,.46,.45,.94);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--white);color:var(--dark);overflow-x:hidden;line-height:1.75}
+
+/* HEADER */
+.hdr{
+  position:fixed;top:0;left:0;right:0;z-index:900;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;background:rgba(48,46,46,0);
+  transition:background .4s,border-color .4s;
+  border-bottom:1px solid rgba(255,255,255,0);
+}
+.hdr.scrolled{background:rgba(48,46,46,.97);border-bottom-color:rgba(255,255,255,.06);backdrop-filter:blur(16px)}
+.brand{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+.brand img{height:36px;width:auto}
+.brand-name{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.75)}
+nav{display:flex;align-items:center;gap:1.75rem}
+nav a{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s}
+nav a:hover{color:#fff}
+.nav-cta{background:var(--green);color:#fff!important;padding:.42rem 1.2rem;border-radius:2px;transition:background .2s!important}
+.nav-cta:hover{background:var(--gl)!important}
+.nav-new{border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.75)!important;padding:.4rem 1rem;border-radius:2px}
+.nav-new:hover{border-color:#fff;color:#fff!important}
+.nav-lang{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.5)!important;padding:.38rem .8rem;border-radius:2px}
+
+/* HERO */
+.hero{
+  height:100vh;min-height:700px;position:relative;
+  overflow:hidden;display:flex;align-items:flex-end;
+}
+.hero-img{
+  position:absolute;inset:0;
+  background:url('../assets/img/projects/proj_158.jpeg') center/cover no-repeat;
+  transform:scale(1.05);animation:heroZoom 8s var(--ease) forwards;
+}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to top,rgba(30,28,28,1) 0%,rgba(30,28,28,.75) 25%,rgba(30,28,28,.3) 55%,rgba(30,28,28,.15) 100%),
+    linear-gradient(to left,rgba(30,28,28,.6) 0%,transparent 65%);
+}
+.hero-content{
+  position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;
+  padding:0 3rem 5rem;
+  display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:flex-end;
+}
+.hero-left{max-width:680px}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:.75rem;flex-direction:row-reverse;
+  font-size:.75rem;font-weight:600;letter-spacing:.06em;
+  color:rgba(255,255,255,.6);margin-bottom:1.5rem;
+  animation:fadeUp .8s var(--ease) .2s both;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gl)}
+.hero h1{
+  font-size:clamp(2.8rem,6.5vw,6rem);font-weight:800;
+  line-height:1.05;color:#fff;margin-bottom:1.75rem;
+  animation:fadeUp .8s var(--ease) .3s both;
+}
+.hero h1 em{display:block;color:var(--gl);font-style:normal}
+.hero-sub{
+  font-size:.975rem;color:rgba(255,255,255,.78);line-height:1.9;
+  margin-bottom:2.5rem;max-width:520px;font-weight:400;
+  animation:fadeUp .8s var(--ease) .4s both;
+}
+.hero-btns{display:flex;gap:.85rem;flex-wrap:wrap;animation:fadeUp .8s var(--ease) .5s both}
+.btn-primary{
+  font-size:.85rem;font-weight:700;background:var(--green);color:#fff;
+  padding:.88rem 1.85rem;border-radius:2px;text-decoration:none;
+  transition:background .25s,transform .2s;display:inline-flex;align-items:center;gap:.5rem;
+}
+.btn-primary:hover{background:var(--gl);transform:translateY(-2px)}
+.btn-outline{
+  font-size:.85rem;font-weight:700;border:1px solid rgba(255,255,255,.3);
+  color:rgba(255,255,255,.85);padding:.88rem 1.85rem;border-radius:2px;
+  text-decoration:none;transition:border-color .2s,color .2s;
+}
+.btn-outline:hover{border-color:#fff;color:#fff}
+.btn-accent{
+  font-size:.8rem;font-weight:700;border:1px solid rgba(0,107,82,.5);
+  color:rgba(255,255,255,.7);padding:.88rem 1.5rem;border-radius:2px;
+  text-decoration:none;transition:background .25s,color .2s;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.btn-accent:hover{background:rgba(0,107,82,.2);color:#fff}
+.hero-stats{
+  display:flex;flex-direction:column;gap:1px;
+  background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;
+  animation:fadeUp .8s var(--ease) .6s both;min-width:160px;
+}
+.hstat{background:rgba(255,255,255,.04);padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.hstat:last-child{border-bottom:none}
+.hstat-n{font-size:2rem;font-weight:800;color:var(--gl);line-height:1;letter-spacing:-.02em}
+.hstat-l{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:.2rem}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* LAYOUT */
+.section{padding:6rem 0}
+.section-bg{background:var(--bg)}
+.section-dark{background:var(--dark)}
+.section-carbon{background:var(--carbon)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 3rem}
+
+.tag{
+  font-size:.72rem;font-weight:700;letter-spacing:.06em;
+  color:var(--green);display:flex;align-items:center;gap:.6rem;
+  margin-bottom:.85rem;flex-direction:row-reverse;justify-content:flex-end;
+}
+.tag::before{content:'';width:18px;height:1px;background:var(--green)}
+.tag-light{color:rgba(255,255,255,.55)}
+.tag-light::before{background:rgba(255,255,255,.35)}
+
+h2.title{
+  font-size:clamp(1.7rem,3vw,2.6rem);font-weight:800;
+  line-height:1.15;margin-bottom:1rem;
+}
+.title-w{color:#fff}
+.body{font-size:.95rem;line-height:1.9;color:var(--mid);max-width:560px}
+.body-light{color:rgba(255,255,255,.78)}
+
+/* INTRO STRIP */
+.intro-strip{background:var(--dark);padding:2.5rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.intro-inner{display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap}
+.intro-text{font-size:.9rem;color:rgba(255,255,255,.65);max-width:560px;line-height:1.85}
+.intro-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.itag{
+  font-size:.75rem;font-weight:500;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.6);padding:.32rem .8rem;border-radius:2px;
+}
+
+/* SERVICES */
+.svc-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--light);border:1px solid var(--light);
+  border-radius:2px;overflow:hidden;
+}
+.svc{
+  background:#fff;padding:2.25rem 1.75rem;
+  position:relative;overflow:hidden;transition:background .3s;
+}
+.svc::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--green);transform:scaleX(0);transform-origin:right;
+  transition:transform .4s var(--ease);
+}
+.svc:hover{background:var(--bg)}
+.svc:hover::before{transform:scaleX(1)}
+.svc-num{font-size:2.5rem;font-weight:800;color:rgba(0,83,64,.07);line-height:1;margin-bottom:1.25rem}
+.svc h3{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:.6rem;line-height:1.3}
+.svc p{font-size:.875rem;color:var(--mid);line-height:1.82}
+
+/* OPERATIONS */
+.ops-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1px;border-radius:2px;overflow:hidden}
+.ops-main{position:relative;overflow:hidden;background:var(--carbon);min-height:480px}
+.ops-main img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.7);transition:filter .5s}
+.ops-main:hover img{filter:brightness(.85)}
+.ops-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(30,28,28,.95) 0%,rgba(30,28,28,.4) 50%,transparent 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem;
+}
+.ops-overlay h3{font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.75rem;line-height:1.2}
+.ops-overlay p{font-size:.875rem;color:rgba(255,255,255,.65);line-height:1.8}
+.ops-right{display:grid;grid-template-rows:1fr 1fr;gap:1px}
+.ops-mini{position:relative;overflow:hidden;background:var(--carbon)}
+.ops-mini img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.65);transition:transform .6s var(--ease),filter .4s}
+.ops-mini:hover img{transform:scale(1.05);filter:brightness(.85)}
+.ops-mini-label{
+  position:absolute;bottom:.85rem;right:.85rem;
+  font-size:.68rem;font-weight:700;color:rgba(255,255,255,.8);
+  background:rgba(30,28,28,.7);backdrop-filter:blur(4px);
+  padding:.3rem .7rem;border-radius:2px;
+}
+
+/* METRICS */
+.metrics-wrap{display:grid;grid-template-columns:1fr 3fr;gap:4rem;align-items:center}
+.metrics-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;
+}
+.metric{background:rgba(255,255,255,.03);padding:2rem 1.5rem;border-top:2px solid var(--green);transition:background .25s}
+.metric:hover{background:rgba(255,255,255,.06)}
+.metric-n{font-size:2.8rem;font-weight:800;color:var(--gl);line-height:1;margin-bottom:.4rem}
+.metric-l{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.4}
+
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3px}
+.gal-item{overflow:hidden;position:relative}
+.gal-item img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  aspect-ratio:1;transition:transform .7s var(--ease),filter .4s;filter:brightness(.75) saturate(.9);
+}
+.gal-item:first-child img{aspect-ratio:16/10}
+.gal-item:hover img{transform:scale(1.07);filter:brightness(.95) saturate(1.1)}
+.gal-label{
+  position:absolute;bottom:0;left:0;right:0;padding:.65rem .85rem;
+  background:linear-gradient(to top,rgba(30,28,28,.85),transparent);
+  font-size:.72rem;font-weight:600;color:rgba(255,255,255,.75);
+  transform:translateY(100%);transition:transform .3s var(--ease);
+}
+.gal-item:hover .gal-label{transform:translateY(0)}
+
+/* PARTNERSHIP */
+.pship-wrap{display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border-radius:2px}
+.pship-left{
+  background:var(--green);padding:4rem 3.5rem;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.pship-left::after{
+  content:'';position:absolute;width:400px;height:400px;border-radius:50%;
+  border:80px solid rgba(255,255,255,.04);top:-100px;left:-100px;pointer-events:none;
+}
+.de-flag{display:flex;gap:.4rem;align-items:center;margin-bottom:1.75rem}
+.flag-stripe{height:5px;border-radius:1px}
+.flag-stripe.b{background:#2d2b2b;width:30px}
+.flag-stripe.r{background:#CC0000;width:30px}
+.flag-stripe.g{background:#FFCE00;width:30px}
+.pship-left h2{color:#fff;font-size:clamp(1.5rem,2.5vw,2.2rem);font-weight:800;margin-bottom:.85rem;line-height:1.2}
+.pship-left p{color:rgba(255,255,255,.8);font-size:.925rem;line-height:1.85;margin-bottom:1.75rem}
+.pship-specs{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:2rem}
+.pspec{background:rgba(255,255,255,.1);border-radius:2px;padding:.7rem 1rem}
+.pspec strong{display:block;font-size:.65rem;color:rgba(255,255,255,.45);margin-bottom:.15rem}
+.pspec span{font-size:.85rem;color:rgba(255,255,255,.88);font-weight:500}
+.pship-right{display:grid;grid-template-rows:1fr 1fr;min-height:420px}
+.pship-img{overflow:hidden;position:relative}
+.pship-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease);filter:brightness(.65)}
+.pship-img:hover img{transform:scale(1.05);filter:brightness(.8)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.contact-grid h2{color:#fff}
+.contact-grid p{color:rgba(255,255,255,.7);font-size:.95rem;line-height:1.9;margin:1rem 0 2rem}
+.contact-links{display:flex;flex-direction:column;gap:.6rem}
+.clink{
+  display:flex;align-items:center;gap:.85rem;text-decoration:none;
+  color:rgba(255,255,255,.6);font-size:.9rem;
+  padding:.65rem 0;border-bottom:1px solid rgba(255,255,255,.06);transition:color .2s;
+}
+.clink:hover{color:#fff}
+.clink-icon{width:36px;height:36px;border-radius:2px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.quick-links-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:2px;padding:2rem;display:flex;flex-direction:column;gap:.5rem}
+.qlink{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.85rem 1rem;background:rgba(255,255,255,.04);border-radius:2px;
+  text-decoration:none;color:rgba(255,255,255,.6);font-size:.9rem;transition:background .2s,color .2s;
+}
+.qlink:hover{background:rgba(255,255,255,.08);color:#fff}
+.qlink-green{background:rgba(0,83,64,.2);border:1px solid rgba(0,83,64,.3);color:rgba(255,255,255,.8)!important}
+.qlink-green:hover{background:rgba(0,83,64,.35)!important}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding:2rem 3rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{height:30px;width:auto;opacity:.5}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap}
+.footer-links a,.footer-links span{font-size:.8rem;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.65)}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.18)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+@media(max-width:1024px){
+  .hero-content{grid-template-columns:1fr}
+  .hero-stats{flex-direction:row;min-width:auto}
+  .hstat{flex:1}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .ops-wrap,.pship-wrap,.contact-grid{grid-template-columns:1fr}
+  .metrics-wrap{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery{grid-template-columns:1fr 1fr}
+  .gal-item:first-child img{aspect-ratio:1}
+}
+@media(max-width:768px){
+  .hdr{padding:0 1.5rem}
+  nav a:not(.nav-cta):not(.nav-new):not(.nav-lang){display:none}
+  .wrap{padding:0 1.5rem}
+  .hero-content{padding:0 1.5rem 5rem}
+  .hero h1{font-size:clamp(2.2rem,9vw,3.5rem)}
+  .hero-stats{display:none}
+  .svc-grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr 1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .section{padding:5rem 0}
+  footer{padding:1.75rem 1.5rem}
+  .intro-inner{flex-direction:column;gap:1.5rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-img{animation:none;transform:scale(1)}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <a class="brand" href="./">
+    <img src="../assets/img/hic-logo-white.png" alt="هورايزن إنتيغريشن"/>
+    <span class="brand-name">هورايزن إنتيغريشن</span>
+  </a>
+  <nav>
+    <a href="#services">الخدمات</a>
+    <a href="#operations">المشاريع</a>
+    <a href="#contact">تواصل</a>
+    <a href="building-systems/" class="nav-new">◆ الحلول الإنشائية</a>
+    <a href="profile/" class="nav-cta">البروفايل</a>
+    <a href="../" class="nav-lang">EN</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-img" id="hero-bg" data-hic-bg="home_ar_img_hero"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">KSA</div><div class="hstat-l">تغطية شاملة</div></div>
+      <div class="hstat"><div class="hstat-n">4</div><div class="hstat-l">خطوط خدمة</div></div>
+      <div class="hstat"><div class="hstat-n">ISO</div><div class="hstat-l">9001:2015</div></div>
+      <div class="hstat"><div class="hstat-n">DE</div><div class="hstat-l">شريك ألماني</div></div>
+    </div>
+    <div class="hero-left">
+      <div class="hero-eyebrow">المملكة العربية السعودية · البنية التحتية والإنشاء</div>
+      <h1>ننفّذ.<br/><em>نلتزم.</em><br/>نُسلّم.</h1>
+      <p class="hero-sub">شركة سعودية متخصصة في تنفيذ مشاريع البنية التحتية والأعمال المدنية — الطرق والأسفلت، والمعدات الثقيلة، وتوريد المواد، والأعمال الحضرية، في جميع مناطق المملكة.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">← خدماتنا</a>
+        <a href="profile/" class="btn-outline">الملف التعريفي</a>
+        <a href="building-systems/" class="btn-accent">◆ الحلول الإنشائية</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<div class="intro-strip">
+  <div class="wrap">
+    <div class="intro-inner">
+      <p class="intro-text" data-hic-edit="home_ar_intro">نعتمد منهجية تنفيذ ميدانية مبنية على جاهزية المعدات، وانضباط التنفيذ، والإشراف الهندسي الدقيق — لضمان أداء موثوق في كل مشروع وفي جميع مناطق المملكة.</p>
+      <div class="intro-tags">
+        <span class="itag">الطرق والأسفلت</span>
+        <span class="itag">أنظمة التصريف</span>
+        <span class="itag">المعدات الثقيلة</span>
+        <span class="itag">توريد المواد</span>
+        <span class="itag">الأعمال الحضرية</span>
+        <span class="itag">دهان الطرق</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section section-bg" id="services">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:flex-end;margin-bottom:3rem">
+      <div class="reveal">
+        <div class="tag">نطاق الأعمال</div>
+        <h2 class="title" data-hic-edit="home_ar_svc_title">مجالات أعمالنا</h2>
+      </div>
+      <p class="body reveal d1" data-hic-edit="home_ar_svc_body" style="padding-bottom:.2rem">نغطّي دورة العمل كاملة — من توريد المواد وتشغيل المعدات إلى التنفيذ الميداني والتسليم النهائي — ضمن منظومة واحدة منسّقة.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="svc-num">٠١</div>
+        <h3 data-hic-edit="home_ar_svc1_title">الطرق والأسفلت</h3>
+        <p data-hic-edit="home_ar_svc1_body">تنفيذ كامل لأعمال الأسفلت: تجهيز الأسطح، وطبقة الربط، والرصف، والدمك، ودهان الطرق — على مدار اليوم.</p>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-num">٠٢</div>
+        <h3 data-hic-edit="home_ar_svc2_title">المعدات الثقيلة والأسطول</h3>
+        <p data-hic-edit="home_ar_svc2_body">أسطول متكامل من معدات الرصف والدمك والحفر والتحميل والنقل، جاهز للتشغيل وفق احتياج كل مشروع مع دعم لوجستي كامل.</p>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-num">٠٣</div>
+        <h3 data-hic-edit="home_ar_svc3_title">توريد المواد</h3>
+        <p data-hic-edit="home_ar_svc3_body">توريد موثوق للركام وحجر الفلتر والرصيف الحجري ومواد الردم وطبقات الأساس — لمختلف المشاريع وفي جميع المناطق.</p>
+      </div>
+      <div class="svc reveal d3">
+        <div class="svc-num">٠٤</div>
+        <h3 data-hic-edit="home_ar_svc4_title">اللاند سكيب والأعمال المدنية</h3>
+        <p data-hic-edit="home_ar_svc4_body">أنظمة تصريف، وتبليط إنترلوك، وأرصفة، وتركيب رصيف حجري، وأعمال تنسيق حضري لمشاريع التطوير.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-carbon" id="operations">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:flex-end;margin-bottom:3rem">
+      <div class="reveal">
+        <div class="tag tag-light">التنفيذ الميداني</div>
+        <h2 class="title title-w" data-hic-edit="home_ar_ops_title">خبرة ميدانية</h2>
+      </div>
+      <p class="body body-light reveal d1" data-hic-edit="home_ar_ops_body" style="padding-bottom:.2rem">تنفّذ فرقنا مشاريع متنوعة بجودة ثابتة — من رصف الطرق الرئيسية إلى أنظمة التصريف والتنسيق الحضري.</p>
+    </div>
+    <div class="ops-wrap reveal">
+      <div class="ops-main">
+        <img data-hic-img="home_ar_img_ops_main" src="../assets/img/projects/proj_158.jpeg" alt="عمليات أسفلت ليلية"/>
+        <div class="ops-overlay">
+          <div class="tag tag-light">عمليات ليلية · جدة</div>
+          <h3 data-hic-edit="home_ar_ops_card_title">رصف الطرق الحضرية متعددة المسارات</h3>
+          <p data-hic-edit="home_ar_ops_card_body">عمليات رصف ليلية بتنسيق دقيق بين معدات الرصف والدمك والتزويد — لإنجاز الطرق دون تعطيل الحركة نهاراً.</p>
+        </div>
+      </div>
+      <div class="ops-right">
+        <div class="ops-mini">
+          <img data-hic-img="home_ar_img_ops_mini1" src="../assets/img/projects/proj_021.jpg" alt="رصف الأسفلت"/>
+          <div class="ops-mini-label">رصف الأسفلت</div>
+        </div>
+        <div class="ops-mini">
+          <img data-hic-img="home_ar_img_ops_mini2" src="../assets/img/projects/proj_043.jpg" alt="الأعمال الحضرية"/>
+          <div class="ops-mini-label">الأعمال الحضرية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="wrap">
+    <div class="metrics-wrap">
+      <div class="reveal">
+        <div class="tag tag-light">القدرات التشغيلية</div>
+        <h2 class="title title-w" data-hic-edit="home_ar_metrics_title">إمكانياتنا</h2>
+        <p class="body body-light" data-hic-edit="home_ar_metrics_body">معدات ومواد وكوادر مؤهلة، منسّقة عبر عدة مواقع ومناطق، لتنفيذ يلتزم بالجودة والمواعيد.</p>
+      </div>
+      <div class="metrics-grid reveal d1">
+        <div class="metric"><div class="metric-n">KSA</div><div class="metric-l">تغطية جميع المناطق</div></div>
+        <div class="metric"><div class="metric-n">24/7</div><div class="metric-l">عمليات نهارية وليلية</div></div>
+        <div class="metric"><div class="metric-n">ISO</div><div class="metric-l">معتمد 9001:2015</div></div>
+        <div class="metric"><div class="metric-n">DE</div><div class="metric-l">هندسة ألمانية</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--carbon);padding:1px 0 0">
+  <div class="gallery reveal">
+    <div class="gal-item">
+      <img data-hic-img="home_ar_img_gal_01" src="../assets/img/projects/proj_154.jpeg" alt="عمليات ليلية"/>
+      <div class="gal-label">عمليات ليلية</div>
+    </div>
+    <div class="gal-item">
+      <img data-hic-img="home_ar_img_gal_02" src="../assets/img/projects/proj_003.jpg" alt="الأسطول"/>
+      <div class="gal-label">الأسطول</div>
+    </div>
+    <div class="gal-item">
+      <img data-hic-img="home_ar_img_gal_03" src="../assets/img/projects/proj_070.jpg" alt="دهان الطرق"/>
+      <div class="gal-label">دهان الطرق</div>
+    </div>
+    <div class="gal-item">
+      <img data-hic-img="home_ar_img_gal_04" src="../assets/img/projects/proj_041.jpg" alt="المواد"/>
+      <div class="gal-label">المواد</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="building-systems">
+  <div class="wrap">
+    <div class="pship-wrap reveal">
+      <div class="pship-right" style="order:2">
+        <div class="pship-img">
+          <img data-hic-img="home_ar_img_pship_01" src="../assets/img/building-systems/bs-stone-bracket.jpg" alt="أنظمة الواجهات"/>
+        </div>
+        <div class="pship-img">
+          <img data-hic-img="home_ar_img_pship_02" src="../assets/img/building-systems/bs-steel-structure.jpg" alt="الواجهات المعمارية"/>
+        </div>
+      </div>
+      <div class="pship-left" style="order:1">
+        <div class="de-flag">
+          <div class="flag-stripe b"></div>
+          <div class="flag-stripe r"></div>
+          <div class="flag-stripe g"></div>
+        </div>
+        <div class="tag" style="color:rgba(255,255,255,.5);flex-direction:row"><span style="width:18px;height:1px;background:rgba(255,255,255,.3);display:inline-block"></span> شراكة هندسية ألمانية</div>
+        <h2 class="title title-w" data-hic-edit="home_ar_pship_title">الحلول الإنشائية المتكاملة</h2>
+        <p class="body body-light" data-hic-edit="home_ar_pship_body">بالشراكة مع مكتب هندسي ألماني متخصص، نوفّر أنظمة دعم الواجهات الحجرية والأسقف المعدنية وحلول الأغلفة الإنشائية وفق المعايير الدولية.</p>
+        <div class="pship-specs" style="margin-top:1.5rem;margin-bottom:2rem">
+          <div class="pspec"><strong>التخصص</strong><span>أنظمة الواجهات</span></div>
+          <div class="pspec"><strong>الشريك</strong><span>ألمانيا</span></div>
+          <div class="pspec"><strong>المعايير</strong><span>دولية</span></div>
+          <div class="pspec"><strong>التغطية</strong><span>كامل المملكة</span></div>
+        </div>
+        <a href="building-systems/" class="btn-primary" style="width:fit-content">← استعرض القسم</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-carbon" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="tag tag-light">تواصل معنا</div>
+        <h2 class="title title-w" data-hic-edit="home_ar_contact_title">لنبدأ مشروعك</h2>
+        <p data-hic-edit="home_ar_contact_body">للاستفسار عن المشاريع أو المعدات أو توريد المواد أو الحلول الإنشائية — تواصل معنا وسنرد عليك في أقرب وقت.</p>
+        <div class="contact-links">
+          <a class="clink" href="mailto:sales@saudihic.com"><div class="clink-icon">📧</div>sales@saudihic.com</a>
+          <a class="clink" href="tel:0536821111"><div class="clink-icon">📞</div>053 682 1111</a>
+          <a class="clink" href="https://www.saudihic.com"><div class="clink-icon">🌐</div>www.saudihic.com</a>
+          <a class="clink" href="#"><div class="clink-icon">📍</div>المملكة العربية السعودية</a>
+        </div>
+      </div>
+      <div class="quick-links-box reveal d1">
+        <div class="tag tag-light" style="margin-bottom:1rem">روابط سريعة</div>
+        <a href="profile/" class="qlink"><span>الملف التعريفي (AR)</span><span>←</span></a>
+        <a href="../profile/" class="qlink"><span>Company Profile (EN)</span><span>←</span></a>
+        <a href="building-systems/" class="qlink qlink-green"><span>◆ الحلول الإنشائية المتكاملة</span><span>←</span></a>
+        <a href="../" class="qlink"><span>EN Site</span><span>←</span></a>
+        <a href="../assets/docs/HIC_Profile.pdf" class="qlink" target="_blank"><span>⬇ تحميل الملف التعريفي</span><span>←</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <img class="footer-logo" src="../assets/img/hic-logo-white.png" alt="HIC"/>
+    <div class="footer-links">
+      <a href="profile/">البروفايل</a>
+      <a href="building-systems/">الحلول الإنشائية</a>
+      <a href="../">EN</a>
+      <a href="../admin/">الإدارة</a>
+    </div>
+    <span class="footer-copy">© هورايزن إنتيغريشن — المملكة العربية السعودية</span>
+  </div>
+</footer>
+
+<script>
+const hdr=document.getElementById('hdr');
+window.addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(!t)return;e.preventDefault();
+    window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-68,behavior:'smooth'});
+  });
+});
+</script>
+
+
+<script id="hic-cms">
+(function(){
+  function apply(data){
+    if(!data||!data.pages)return;
+    Object.values(data.pages).forEach(function(pg){
+      var imgs=pg.images||{};
+      Object.keys(imgs).forEach(function(id){
+        if(imgs[id]&&imgs[id].src){
+          document.querySelectorAll('[data-hic-img="'+id+'"]').forEach(function(el){
+            el.src=imgs[id].src;
+            var bg=el.id||'';
+            if(el.classList&&el.classList.contains('hero-img-target')){el.style.backgroundImage="url('"+imgs[id].src+"')";}
+          });
+          // hero background elements
+          document.querySelectorAll('[data-hic-bg="'+id+'"]').forEach(function(el){
+            el.style.backgroundImage="url('"+imgs[id].src+"')";
+          });
+        }
+      });
+      var texts=pg.texts||{};
+      Object.keys(texts).forEach(function(id){
+        if(texts[id]!==undefined&&texts[id]!==null){
+          document.querySelectorAll('[data-hic-edit="'+id+'"]').forEach(function(el){
+            el.textContent=texts[id];
+          });
+        }
+      });
+    });
+  }
+  // API (KV) is the source of truth on the live site.
+  // localStorage is used only as a fallback when the API is unreachable (e.g. opened locally as a file).
+  fetch('/api/content',{cache:'no-store'})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d&&d.pages&&Object.keys(d.pages).length){
+        apply(d);
+        try{localStorage.setItem('hic_content',JSON.stringify(d));}catch(e){}
+      }
+    })
+    .catch(function(){
+      try{var local=localStorage.getItem('hic_content');if(local)apply(JSON.parse(local));}catch(e){}
+    });
+})();
+</script>
+</body>
+</html>
