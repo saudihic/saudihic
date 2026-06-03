@@ -1,9 +1,0 @@
-REAL POLISH PASS
-- Used the V2-based build as the base; no clean rebuild or alternate design system.
-- Kept homepage structure and DNA; applied only light polish.
-- Unified identity color around #005340 / #005852; removed warm/gold direction.
-- Unified Arabic typography using Alexandria; improved RTL line-height and heading balance.
-- Applied the homepage banner mood to profile pages through profile CSS overrides.
-- Applied the homepage-style green institutional ending to profile footers.
-- Kept clients inside the profile pages only; no standalone clients page was added.
-- Preserved detailed profile content from the existing full profile pages.
