@@ -44,8 +44,6 @@ nav a:hover{color:#fff}
 .hero-bg{
   position:absolute;inset:0;
   background:url('../assets/img/projects/proj_027.jpg') center/cover no-repeat;
-  background-size:cover;
-  background-position:center;
 }
 .hero-bg::after{
   content:'';position:absolute;inset:0;
@@ -241,7 +239,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 
 <header class="hdr">
   <a class="hdr-brand" href="../">
-    <img src="../assets/img/hic-logo-white.png" alt="Horizon Integration"/>
+    <img data-hic-img="profile_en_img_logo" src="../assets/img/hic-logo-white.png" alt="Horizon Integration"/>
   </a>
   <nav>
     <a href="#about">About</a>
@@ -257,11 +255,11 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg" data-hic-bg="profile_en_img_hero"></div>
+  <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Executive Corporate Profile</div>
-    <h1>Infrastructure &<br/><strong>Urban Execution</strong></h1>
-    <p class="hero-sub">Delivering roads, asphalt, drainage, road marking, external works, and civil execution through field-proven operational capability across Saudi Arabia.</p>
+    <div class="hero-eyebrow"><span data-hic-edit="profile_en_hero_eyebrow">Executive Corporate Profile</span></div>
+    <h1><span data-hic-edit="profile_en_hero_l1">Infrastructure &</span><br/><strong data-hic-edit="profile_en_hero_l2">Urban Execution</strong></h1>
+    <p class="hero-sub"><span data-hic-edit="profile_en_hero_sub">Delivering roads, asphalt, drainage, road marking, external works, and civil execution through field-proven operational capability across Saudi Arabia.</span></p>
     <div class="hero-tags">
       <span class="hero-tag">Infrastructure</span>
       <span class="hero-tag">Civil Works</span>
@@ -331,7 +329,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
       <div class="tag">Our Values</div>
       <h2 class="title" data-hic-edit="profile_en_values_title">What We Stand For</h2>
     </div>
-    <div class="svc-grid reveal" style="grid-template-columns:repeat(2,1fr)">
+    <div class="svc-grid reveal">
       <div class="svc">
         <div class="svc-n">01</div>
         <h3 data-hic-edit="profile_en_val1_title">Safety First</h3>
@@ -355,6 +353,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
     </div>
   </div>
 </section>
+
 
 <!-- SERVICES -->
 <section class="section section-bg" id="services">
@@ -408,7 +407,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
       <p class="body body-light">Paving, compaction, bitumen support, and road marking operations executed through integrated field coordination and real operational deployment.</p>
     </div>
     <div class="ops-hero reveal">
-      <img data-hic-img="profile_en_img_ops_main" src="../assets/img/projects/proj_154.jpeg" alt="Night Asphalt Operations"/>
+      <img data-hic-img="profile_en_img_hero" data-hic-img="profile_en_img_ops_main" src="../assets/img/projects/proj_154.jpeg" alt="Night Asphalt Operations"/>
       <div class="ops-hero-overlay">
         <span class="ops-hero-label">Primary Execution · Asphalt Paving Operations</span>
       </div>
@@ -568,7 +567,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 
 <footer id="footer">
   <div class="footer-inner">
-    <img class="footer-logo" src="../assets/img/hic-logo-white.png" alt="HIC"/>
+    <img class="footer-logo" data-hic-img="profile_en_img_logo_footer" src="../assets/img/hic-logo-white.png" alt="HIC"/>
     <div class="footer-links">
       <a href="https://www.saudihic.com">www.saudihic.com</a>
       <a href="mailto:sales@saudihic.com">sales@saudihic.com</a>
@@ -590,6 +589,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 });
 </script>
 
+
 <script id="hic-cms">
 (function(){
   function apply(data){
@@ -600,11 +600,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
         if(imgs[id]&&imgs[id].src){
           document.querySelectorAll('[data-hic-img="'+id+'"]').forEach(function(el){
             el.src=imgs[id].src;
+            var bg=el.id||'';
+            if(el.classList&&el.classList.contains('hero-img-target')){el.style.backgroundImage="url('"+imgs[id].src+"')";}
           });
+          // hero background elements
           document.querySelectorAll('[data-hic-bg="'+id+'"]').forEach(function(el){
             el.style.backgroundImage="url('"+imgs[id].src+"')";
-            el.style.backgroundSize="cover";
-            el.style.backgroundPosition="center";
           });
         }
       });
@@ -618,6 +619,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       });
     });
   }
+  // API (KV) is the source of truth on the live site.
+  // localStorage is used only as a fallback when the API is unreachable (e.g. opened locally as a file).
   fetch('/api/content',{cache:'no-store'})
     .then(function(r){return r.json();})
     .then(function(d){
