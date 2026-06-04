@@ -226,7 +226,10 @@ h2.title{
 }
 .svc:hover{background:var(--bg)}
 .svc:hover::before{transform:scaleX(1)}
-.svc-num{width:24px;height:2px;background:var(--green);margin-bottom:1.25rem;border-radius:1px}
+.svc-num{
+  font-size:3rem;font-weight:900;color:rgba(0,83,64,.07);
+  line-height:1;margin-bottom:1.5rem;letter-spacing:-.03em;
+}
 .svc h3{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:.6rem;letter-spacing:.02em;text-transform:uppercase}
 .svc p{font-size:.855rem;color:var(--mid);line-height:1.8}
 
@@ -464,9 +467,9 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-left">
-      <div class="hero-eyebrow">Saudi Arabia · Infrastructure & Construction</div>
-      <h1>Built.<br/><em>On Time.</em><br/>On Ground.</h1>
-      <p class="hero-sub">Full-cycle infrastructure execution across the Kingdom — asphalt operations, heavy equipment, materials supply, and urban civil works delivered by experienced field teams.</p>
+      <div class="hero-eyebrow"><span data-hic-edit="home_en_hero_eyebrow">Saudi Arabia · Infrastructure & Construction</span></div>
+      <h1><span data-hic-edit="home_en_hero_l1">Built.</span><br/><em data-hic-edit="home_en_hero_l2">On Time.</em><br/><span data-hic-edit="home_en_hero_l3">On Ground.</span></h1>
+      <p class="hero-sub"><span data-hic-edit="home_en_hero_sub">Full-cycle infrastructure execution across the Kingdom — asphalt operations, heavy equipment, materials supply, and urban civil works delivered by experienced field teams.</span></p>
       <div class="hero-btns">
         <a href="#services" class="btn-primary">Our Services →</a>
         <a href="profile/" class="btn-outline">Company Profile</a>
@@ -517,22 +520,22 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding
     </div>
     <div class="svc-grid">
       <div class="svc reveal">
-        <div class="svc-num"></div>
+        <div class="svc-num">01</div>
         <h3 data-hic-edit="home_en_svc1_title">Asphalt & Road Works</h3>
         <p data-hic-edit="home_en_svc1_body">Full-cycle asphalt execution — surface preparation, tack coat, paving, compaction, and road marking operations day and night.</p>
       </div>
       <div class="svc reveal d1">
-        <div class="svc-num"></div>
+        <div class="svc-num">02</div>
         <h3 data-hic-edit="home_en_svc2_title">Heavy Equipment & Fleet</h3>
         <p data-hic-edit="home_en_svc2_body">Operational fleet of finishers, rollers, excavators, loaders, and dump trucks — deployed on project or term basis with full site support.</p>
       </div>
       <div class="svc reveal d2">
-        <div class="svc-num"></div>
+        <div class="svc-num">03</div>
         <h3 data-hic-edit="home_en_svc3_title">Materials Supply</h3>
         <p data-hic-edit="home_en_svc3_body">Aggregate, filter stone, curbstone, sand fill, and sub-base — sourced and delivered reliably across all KSA regions for any project scope.</p>
       </div>
       <div class="svc reveal d3">
-        <div class="svc-num"></div>
+        <div class="svc-num">04</div>
         <h3 data-hic-edit="home_en_svc4_title">Urban Landscape & Civils</h3>
         <p data-hic-edit="home_en_svc4_body">Drainage systems, interlock paving, sidewalks, curbstone installation, and public landscape works for city development environments.</p>
       </div>
@@ -678,7 +681,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding
 
 <footer>
   <div class="footer-inner">
-    <img class="footer-logo" src="assets/img/hic-logo-white.png" alt="HIC"/>
+    <img class="footer-logo" data-hic-img="home_en_img_logo_footer" src="assets/img/hic-logo-white.png" alt="HIC"/>
     <div class="footer-links">
       <a href="profile/">Profile</a>
       <a href="building-systems/">Building Systems</a>
