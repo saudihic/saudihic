@@ -60,11 +60,11 @@ nav a:hover{color:#fff}
 .hero-content{
   position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;
   padding:0 3rem 5rem;
-  display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:flex-end;
+  display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:flex-end;
 }
-.hero-left{max-width:680px}
+.hero-left{max-width:680px;text-align:right;justify-self:start}
 .hero-eyebrow{
-  display:flex;align-items:center;gap:.75rem;flex-direction:row-reverse;
+  display:flex;align-items:center;gap:.75rem;flex-direction:row-reverse;justify-content:flex-start;
   font-size:.75rem;font-weight:600;letter-spacing:.06em;
   color:rgba(255,255,255,.6);margin-bottom:1.5rem;
   animation:fadeUp .8s var(--ease) .2s both;
@@ -334,12 +334,6 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding
   <div class="hero-img" id="hero-bg" data-hic-bg="home_ar_img_hero"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-stats">
-      <div class="hstat"><div class="hstat-n">KSA</div><div class="hstat-l">تغطية شاملة</div></div>
-      <div class="hstat"><div class="hstat-n">4</div><div class="hstat-l">خطوط خدمة</div></div>
-      <div class="hstat"><div class="hstat-n">ISO</div><div class="hstat-l">9001:2015</div></div>
-      <div class="hstat"><div class="hstat-n">DE</div><div class="hstat-l">شريك ألماني</div></div>
-    </div>
     <div class="hero-left">
       <div class="hero-eyebrow"><span data-hic-edit="home_ar_hero_eyebrow">المملكة العربية السعودية · البنية التحتية والإنشاء</span></div>
       <h1><span data-hic-edit="home_ar_hero_l1">ننفّذ.</span><br/><em data-hic-edit="home_ar_hero_l2">نلتزم.</em><br/><span data-hic-edit="home_ar_hero_l3">نُسلّم.</span></h1>
@@ -349,6 +343,12 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding
         <a href="profile/" class="btn-outline">الملف التعريفي</a>
         <a href="../ar/building-systems/" class="btn-accent">◆ الحلول الإنشائية</a>
       </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">KSA</div><div class="hstat-l">تغطية شاملة</div></div>
+      <div class="hstat"><div class="hstat-n">4</div><div class="hstat-l">خطوط خدمة</div></div>
+      <div class="hstat"><div class="hstat-n">ISO</div><div class="hstat-l">9001:2015</div></div>
+      <div class="hstat"><div class="hstat-n">DE</div><div class="hstat-l">شريك ألماني</div></div>
     </div>
   </div>
 </section>
