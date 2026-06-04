@@ -255,6 +255,47 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
   .systems-grid,.tech-grid,.process{grid-template-columns:1fr}
   .section{padding:4.5rem 0}
 }
+
+
+/* RTL small-title green line final fix: keep the group aligned right and put the line to the visual right of the text */
+html[dir="rtl"] .hero-eyebrow,
+html[dir="rtl"] .hero-kicker,
+html[dir="rtl"] .tag{
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex-direction: row !important;
+  direction: ltr !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  text-align: right !important;
+}
+html[dir="rtl"] .hero-eyebrow span,
+html[dir="rtl"] .hero-kicker span,
+html[dir="rtl"] .tag span{
+  direction: rtl !important;
+  unicode-bidi: plaintext !important;
+}
+html[dir="rtl"] .hero-eyebrow::before,
+html[dir="rtl"] .hero-kicker::before,
+html[dir="rtl"] .tag::before{
+  display: none !important;
+  content: none !important;
+}
+html[dir="rtl"] .hero-eyebrow::after,
+html[dir="rtl"] .hero-kicker::after,
+html[dir="rtl"] .tag::after{
+  content: '' !important;
+  display: inline-block !important;
+  width: 34px !important;
+  height: 2px !important;
+  background: var(--gl, var(--green, #008b68)) !important;
+  flex: 0 0 auto !important;
+}
+html[dir="rtl"] .tag::after{ width: 20px !important; }
+
 </style>
 </head>
 <body>
