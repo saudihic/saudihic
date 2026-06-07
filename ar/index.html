@@ -605,7 +605,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
           });
           // hero background elements
           document.querySelectorAll('[data-hic-bg="'+id+'"]').forEach(function(el){
-            el.style.backgroundImage="url('"+imgs[id].src+"')";
+            var img=new Image();
+            img.onload=function(){el.style.backgroundImage="url('"+imgs[id].src+"')";el.style.opacity='1';};
+            img.src=imgs[id].src;
           });
         }
       });
