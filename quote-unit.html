@@ -343,6 +343,7 @@ tr.row-grand td.money {
   [contenteditable]{background:transparent!important;border-bottom:none!important;}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -624,10 +625,28 @@ function toggleEdit(){
 }
 
 function doPrint(){
-  var bar=document.querySelector('.bar'),pg=document.getElementById('pg');
-  bar.style.display='none'; pg.style.marginTop='0';
-  window.print();
-  setTimeout(function(){bar.style.display='flex';pg.style.marginTop='62px';},800);
+  saveAll();
+  var qn = document.getElementById('qn') ? document.getElementById('qn').innerText.trim() : 'HIC-Quote';
+  var cn = document.getElementById('cn') ? document.getElementById('cn').innerText.trim() : '';
+  var filename = cn ? qn + ' - ' + cn + '.pdf' : qn + '.pdf';
+
+  var bar=document.querySelector('.bar');
+  var pg=document.getElementById('pg');
+  bar.style.display='none';
+  pg.style.marginTop='0';
+
+  var opt = {
+    margin: 0,
+    filename: filename,
+    image: { type:'jpeg', quality:0.98 },
+    html2canvas: { scale:2, useCORS:true, letterRendering:true },
+    jsPDF: { unit:'mm', format:'a4', orientation:'portrait' }
+  };
+
+  html2pdf().set(opt).from(pg).save().then(function(){
+    bar.style.display='flex';
+    pg.style.marginTop='62px';
+  });
 }
 
 function addSec(){saveAll();var newId=D.sections.length+1;D.sections.push({id:newId,title:newId+'/0 — قسم جديد',rows:[]});sc=newId+1;render();if(!em)toggleEdit();}
