@@ -529,19 +529,25 @@ function getImgSrc(pageKey,id,def){
 }
 function handleUpload(input,pageKey,id){
   const file=input.files[0]; if(!file)return;
-  toast('جاري معالجة الصورة...','ok');
-  compressImage(file, 1800, 0.82).then(function(result){
-    setImgChange(pageKey,id,result);
-    document.getElementById('prev-'+id).src=result;
-    toast('✓ تم تحميل الصورة وضغطها تلقائياً','ok');
+  toast('جاري رفع الصورة...','ok');
+  const form=new FormData();
+  form.append('file', file);
+  form.append('filename', file.name);
+  fetch('/api/upload',{
+    method:'POST',
+    headers:{'x-admin-password': PASS},
+    body: form
+  }).then(function(r){ return r.json(); })
+  .then(function(res){
+    if(res.ok && res.url){
+      setImgChange(pageKey,id,res.url);
+      document.getElementById('prev-'+id).src=res.url;
+      toast('✅ تم رفع الصورة بنجاح','ok');
+    } else {
+      toast('⚠️ فشل رفع الصورة: '+(res.error||'خطأ غير معروف'),'err');
+    }
   }).catch(function(){
-    const reader=new FileReader();
-    reader.onload=e=>{
-      setImgChange(pageKey,id,e.target.result);
-      document.getElementById('prev-'+id).src=e.target.result;
-      toast('✓ تم تحميل الصورة','ok');
-    };
-    reader.readAsDataURL(file);
+    toast('⚠️ تعذّر الاتصال بالسيرفر لرفع الصورة','err');
   });
 }
 function compressImage(file, maxDim, quality){
@@ -683,10 +689,27 @@ async function saveAll(){
     localStorage.setItem('hic_last_save', new Date().toISOString());
   } catch(e){ toast('⚠️ المساحة ممتلئة محلياً — الصورة ضُغطت تلقائياً، لكن جرّب حفظ صورة أقل أو استخدم رابط صورة','err'); return; }
 
+  // Build a clean payload for KV — strip base64 images (keep only URLs)
+  function cleanForKV(d){
+    const out={pages:{}};
+    Object.keys(d.pages||{}).forEach(function(pg){
+      const p=d.pages[pg];
+      const imgs={};
+      Object.keys(p.images||{}).forEach(function(id){
+        const src=(p.images[id]||{}).src||'';
+        // Only keep http/https URLs, skip base64 data URIs
+        if(src && !src.startsWith('data:')) imgs[id]={src};
+      });
+      out.pages[pg]={images:imgs, texts:p.texts||{}};
+    });
+    return out;
+  }
+
   // Try API too (works on Cloudflare)
   let apiOk=false;
   try {
-    const r=await fetch('/api/content',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:PASS,content:data})});
+    const payload=cleanForKV(data);
+    const r=await fetch('/api/content',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:PASS,content:payload})});
     const res=await r.json(); apiOk=res.ok||res.success;
   } catch(e){}
 
