@@ -46,6 +46,8 @@ nav a:hover{color:#fff}
   background:url('../assets/img/projects/proj_027.jpg') center/cover no-repeat;
   background-size:cover;
   background-position:center;
+  opacity:0;
+  transition:opacity .5s ease;
 }
 .hero-bg::after{
   content:'';position:absolute;inset:0;
@@ -574,9 +576,15 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
             el.src=imgs[id].src;
           });
           document.querySelectorAll('[data-hic-bg="'+id+'"]').forEach(function(el){
-            el.style.backgroundImage="url('"+imgs[id].src+"')";
-            el.style.backgroundSize="cover";
-            el.style.backgroundPosition="center";
+            var img=new Image();
+            img.onload=function(){
+              el.style.backgroundImage="url('"+imgs[id].src+"')";
+              el.style.backgroundSize="cover";
+              el.style.backgroundPosition="center";
+              el.style.opacity='1';
+            };
+            img.onerror=function(){el.style.opacity='1';};
+            img.src=imgs[id].src;
           });
         }
       });
