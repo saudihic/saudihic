@@ -717,6 +717,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
           document.querySelectorAll('[data-hic-bg="'+id+'"]').forEach(function(el){
             var img=new Image();
             img.onload=function(){el.style.backgroundImage="url('"+imgs[id].src+"')";el.style.opacity='1';};
+            img.onerror=function(){el.style.opacity='1';};
             img.src=imgs[id].src;
           });
         }
