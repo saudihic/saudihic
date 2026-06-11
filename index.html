@@ -51,8 +51,8 @@ nav a:hover{color:#fff}
 .nav-cta:hover{background:var(--gl)!important}
 .nav-new{border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.75)!important;padding:.4rem 1rem;border-radius:2px}
 .nav-new:hover{border-color:#fff;color:#fff!important}
-.nav-lang{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.5)!important;padding:.38rem .8rem;border-radius:2px}
-.nav-lang:hover{color:rgba(255,255,255,.8)!important}
+.nav-lang{border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.8)!important;padding:.38rem .8rem;border-radius:2px}
+.nav-lang:hover{border-color:#fff;color:#fff!important}
 
 /* ── HERO ── */
 .hero{
@@ -448,6 +448,33 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding
   .hero-img{animation:none;transform:scale(1)}
   .reveal{opacity:1;transform:none;transition:none}
   @keyframes heroZoom{to{transform:scale(1.05)}}
+}
+</style>
+<style id="hic-mobile-fix">
+/* ── MOBILE HEADER FIX ── */
+@media(max-width:768px){
+  .hdr{padding:0 1rem;gap:.6rem}
+  .brand{min-width:0;gap:.6rem}
+  .brand img{height:30px}
+  .brand-name{display:none}
+  nav{gap:.5rem;flex-shrink:0}
+  .nav-new{display:none!important}
+  .nav-cta,.nav-lang{white-space:nowrap;padding:.55rem 1rem;font-size:.72rem}
+  /* collapse inline 2-col section headers */
+  .wrap > div[style*="grid-template-columns:1fr 1fr"]{display:block!important}
+  .wrap > div[style*="grid-template-columns:1fr 1fr"] > .body{margin-top:1.25rem;padding-bottom:0!important}
+  .nav-lang{
+    background:rgba(30,28,28,.5);
+    border:1px solid rgba(255,255,255,.65);
+    color:#fff!important;
+    font-weight:700;
+    backdrop-filter:blur(6px);
+  }
+}
+@media(max-width:360px){
+  .brand img{height:24px}
+  .nav-cta,.nav-lang{padding:.45rem .65rem;font-size:.68rem}
+  nav{gap:.4rem}
 }
 </style>
 </head>
