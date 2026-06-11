@@ -34,7 +34,7 @@ nav a{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.65);text-decoratio
 nav a:hover{color:#fff}
 .nav-cta{background:var(--green);color:#fff!important;padding:.42rem 1.1rem;border-radius:2px}
 .nav-cta:hover{background:var(--gl)!important}
-.nav-lang{border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.5)!important;padding:.38rem .8rem;border-radius:2px}
+.nav-lang{border:1px solid rgba(255,255,255,.4);color:rgba(255,255,255,.85)!important;padding:.38rem .8rem;border-radius:2px}
 
 /* HERO */
 .hero{
@@ -264,6 +264,16 @@ html[dir="rtl"] .tag::after{
 }
 html[dir="rtl"] .tag::after{ width: 20px !important; }
 
+</style>
+<style id="hic-mobile-fix">
+/* ── MOBILE FIX ── */
+@media(max-width:768px){
+  .client{padding:1.5rem 1rem;min-width:0}
+  .client img{max-width:100%}
+}
+@media(max-width:480px){
+  .clients-grid{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
