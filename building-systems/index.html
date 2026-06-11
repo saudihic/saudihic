@@ -254,6 +254,21 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
   .section{padding:4.5rem 0}
 }
 </style>
+<style id="hic-mobile-fix">
+/* ── MOBILE HEADER FIX ── */
+@media(max-width:768px){
+  .hdr{padding:0 1rem;gap:.6rem}
+  .hdr-left{gap:.6rem;min-width:0}
+  .hdr-back{white-space:nowrap;font-size:.72rem}
+  .hdr-sep,.hdr-flag{display:none}
+  .hdr-brand img{height:26px}
+  .hdr-tag{white-space:nowrap;font-size:.62rem;padding:.26rem .55rem}
+  .hdr .btn-contact{white-space:nowrap;padding:.5rem .85rem;font-size:.7rem}
+}
+@media(max-width:380px){
+  .hdr-tag{display:none}
+}
+</style>
 </head>
 <body>
 <header class="hdr">
@@ -267,7 +282,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding
 </div>
 <div style="display:flex;align-items:center;gap:1rem">
 <div class="hdr-flag"><div class="fs b"></div><div class="fs r"></div><div class="fs g"></div></div>
-<a class="btn-contact" data-hic-edit="building_systems_txt_005" href="../ar/building-systems/" style="background:transparent;border:1px solid rgba(255,255,255,.2)">عربي</a>
+<a class="btn-contact" data-hic-edit="building_systems_txt_005" href="../ar/building-systems/" style="background:rgba(30,28,28,.4);border:1px solid rgba(255,255,255,.5)">عربي</a>
 <a class="btn-contact" data-hic-edit="building_systems_txt_006" href="mailto:sales@saudihic.com">Contact</a>
 </div>
 </header>
