@@ -1,786 +1,230 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Horizon Integration | Infrastructure &amp; Construction — Saudi Arabia</title>
-<meta content="Horizon Integration — Full-cycle infrastructure execution across Saudi Arabia. Asphalt operations, heavy equipment, materials supply, and urban civil works." name="description"/>
-<link href="favicon.ico" rel="icon"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&amp;family=Alexandria:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --dark:#302e2e;
-  --carbon:#1e1c1c;
-  --green:#005340;
-  --teal:#005852;
-  --gl:#006b52;
-  --bg:#f0f0f0;
-  --white:#ffffff;
-  --mid:#3d3b38;
-  --light:#d8d7d3;
-  --font:'Raleway',sans-serif;
-  --ease:cubic-bezier(.25,.46,.45,.94);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--white);color:var(--dark);overflow-x:hidden;line-height:1.7}
-
-/* ── HEADER ── */
-.hdr{
-  position:fixed;top:0;left:0;right:0;z-index:900;
-  height:68px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 3rem;
-  background:rgba(48,46,46,0);
-  transition:background .4s,border-color .4s;
-  border-bottom:1px solid rgba(255,255,255,0);
-}
-.hdr.scrolled{
-  background:rgba(48,46,46,.97);
-  border-bottom-color:rgba(255,255,255,.06);
-  backdrop-filter:blur(16px);
-}
-.brand{display:flex;align-items:center;gap:.85rem;text-decoration:none}
-.brand img{height:36px;width:auto}
-.brand-name{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75)}
-nav{display:flex;align-items:center;gap:2rem}
-nav a{font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s}
-nav a:hover{color:#fff}
-.nav-cta{background:var(--green);color:#fff!important;padding:.42rem 1.2rem;border-radius:2px;transition:background .2s!important}
-.nav-cta:hover{background:var(--gl)!important}
-.nav-new{border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.75)!important;padding:.4rem 1rem;border-radius:2px}
-.nav-new:hover{border-color:#fff;color:#fff!important}
-.nav-lang{border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.8)!important;padding:.38rem .8rem;border-radius:2px}
-.nav-lang:hover{border-color:#fff;color:#fff!important}
-
-/* ── HERO ── */
-.hero{
-  height:100vh;min-height:700px;
-  position:relative;overflow:hidden;
-  display:flex;align-items:flex-end;
-}
-.hero-img{
-  position:absolute;inset:0;
-  background:url('assets/img/projects/proj_158.jpeg') center/cover no-repeat;
-  transform:scale(1.05);
-  animation:heroZoom 8s var(--ease) forwards;
-  opacity:0;
-  transition:opacity .4s ease;
-}
-@keyframes heroZoom{to{transform:scale(1)}}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:
-    linear-gradient(to top, rgba(30,28,28,1) 0%, rgba(30,28,28,.75) 25%, rgba(30,28,28,.3) 55%, rgba(30,28,28,.15) 100%),
-    linear-gradient(to right, rgba(30,28,28,.6) 0%, transparent 65%);
-}
-.hero-content{
-  position:relative;z-index:2;
-  width:100%;max-width:1200px;margin:0 auto;
-  padding:88px 3rem 5rem;
-  display:grid;grid-template-columns:1fr auto;
-  gap:4rem;align-items:flex-end;
-}
-.hero-left{max-width:680px}
-.hero-eyebrow{
-  display:flex;align-items:center;gap:.75rem;
-  font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.6);margin-bottom:1.5rem;
-  animation:fadeUp .8s var(--ease) .2s both;
-}
-.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gl)}
-.hero h1{
-  font-size:clamp(3rem,7vw,5rem);
-  font-weight:900;line-height:1.05;
-  letter-spacing:-.03em;color:#fff;
-  text-transform:uppercase;
-  margin-bottom:2rem;
-  animation:fadeUp .8s var(--ease) .3s both;
-}
-.hero h1 em{
-  display:block;color:var(--gl);
-  font-style:normal;font-weight:900;
-}
-.hero-sub{
-  font-size:1rem;color:rgba(255,255,255,.75);
-  line-height:1.85;margin-bottom:2.5rem;max-width:520px;
-  font-weight:400;
-  animation:fadeUp .8s var(--ease) .4s both;
-}
-.hero-btns{
-  display:flex;gap:.85rem;flex-wrap:wrap;
-  animation:fadeUp .8s var(--ease) .5s both;
-}
-.btn-primary{
-  font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  background:var(--green);color:#fff;
-  padding:.88rem 1.85rem;border-radius:2px;
-  text-decoration:none;transition:background .25s,transform .2s;
-  display:inline-flex;align-items:center;gap:.5rem;
-}
-.btn-primary:hover{background:var(--gl);transform:translateY(-2px)}
-.btn-outline{
-  font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.85);
-  padding:.88rem 1.85rem;border-radius:2px;
-  text-decoration:none;transition:border-color .2s,color .2s;
-}
-.btn-outline:hover{border-color:#fff;color:#fff}
-.btn-accent{
-  font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  border:1px solid rgba(0,107,82,.5);color:rgba(255,255,255,.7);
-  padding:.88rem 1.5rem;border-radius:2px;
-  text-decoration:none;transition:background .25s,color .2s;
-  display:inline-flex;align-items:center;gap:.4rem;
-}
-.btn-accent:hover{background:rgba(0,107,82,.2);color:#fff}
-
-/* Hero right — stats */
-.hero-stats{
-  display:flex;flex-direction:column;gap:1px;
-  background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;
-  animation:fadeUp .8s var(--ease) .6s both;
-  min-width:160px;
-}
-.hstat{
-  background:rgba(255,255,255,.04);
-  padding:1.25rem 1.5rem;
-  border-bottom:1px solid rgba(255,255,255,.05);
-  transition:background .25s;
-}
-.hstat:last-child{border-bottom:none}
-.hstat:hover{background:rgba(255,255,255,.07)}
-.hstat-n{
-  font-size:2rem;font-weight:900;color:var(--gl);
-  line-height:1;letter-spacing:-.02em;
-}
-.hstat-l{font-size:.68rem;color:rgba(255,255,255,.45);margin-top:.2rem;letter-spacing:.06em;text-transform:uppercase}
-
-/* Scroll indicator */
-.scroll-hint{
-  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
-  z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem;
-  animation:fadeUp .8s var(--ease) 1s both;
-  opacity:.5;
-}
-.scroll-hint span{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
-.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent);animation:scrollPulse 1.8s ease infinite}
-@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
-
-/* ── LAYOUT ── */
-main{padding-top:0}
-.section{padding:7rem 0}
-.section-bg{background:var(--bg)}
-.section-dark{background:var(--dark)}
-.section-carbon{background:var(--carbon)}
-.wrap{max-width:1200px;margin:0 auto;padding:0 3rem}
-
-.tag{
-  font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--green);display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem;
-}
-.tag::before{content:'';width:18px;height:1px;background:var(--green)}
-.tag-light{color:rgba(255,255,255,.55)}
-.tag-light::before{background:rgba(255,255,255,.35)}
-
-h2.title{
-  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;
-  line-height:1.1;letter-spacing:-.025em;margin-bottom:1.1rem;
-  text-transform:uppercase;
-}
-.title-w{color:#fff}
-.body{font-size:.95rem;line-height:1.85;color:var(--mid);max-width:560px}
-.body-light{color:rgba(255,255,255,.75)}
-
-/* ── INTRO STRIP ── */
-.intro-strip{
-  background:var(--dark);
-  padding:3rem 0;
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
-.intro-inner{
-  display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap;
-}
-.intro-text{font-size:.875rem;color:rgba(255,255,255,.55);max-width:560px;line-height:1.8}
-.intro-tags{display:flex;flex-wrap:wrap;gap:.5rem}
-.itag{
-  font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-  color:rgba(255,255,255,.6);padding:.32rem .75rem;border-radius:2px;
-}
-
-/* ── SERVICES ── */
-.svc-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--light);border:1px solid var(--light);
-  border-radius:2px;overflow:hidden;
-}
-.svc{
-  background:#fff;padding:2.25rem 1.75rem;
-  position:relative;overflow:hidden;transition:background .3s;
-  cursor:default;
-}
-.svc::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--green);transform:scaleX(0);transform-origin:left;
-  transition:transform .4s var(--ease);
-}
-.svc:hover{background:var(--bg)}
-.svc:hover::before{transform:scaleX(1)}
-.svc-num{
-  width:96px;height:4px;background:var(--green);
-  display:block;border-radius:999px;margin-bottom:2.25rem;
-  font-size:0;line-height:0;color:transparent;letter-spacing:0;
-}
-.svc h3{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:.6rem;letter-spacing:.02em;text-transform:uppercase}
-.svc p{font-size:.855rem;color:var(--mid);line-height:1.8}
-
-/* ── OPERATIONS ── */
-.ops-wrap{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:1px;border-radius:2px;overflow:hidden;
-}
-.ops-main{
-  position:relative;overflow:hidden;
-  background:var(--carbon);
-  min-height:520px;
-}
-.ops-main img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  filter:brightness(.7);transition:filter .5s;
-}
-.ops-main:hover img{filter:brightness(.85)}
-.ops-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top, rgba(30,28,28,.95) 0%, rgba(30,28,28,.4) 50%, transparent 100%);
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding:2.5rem;
-}
-.ops-overlay .tag{color:rgba(255,255,255,.5)}
-.ops-overlay .tag::before{background:rgba(255,255,255,.3)}
-.ops-overlay h3{
-  font-size:clamp(1.4rem,2.5vw,2rem);font-weight:800;color:#fff;
-  text-transform:uppercase;letter-spacing:-.02em;margin-bottom:.85rem;line-height:1.1;
-}
-.ops-overlay p{font-size:.875rem;color:rgba(255,255,255,.65);line-height:1.8;max-width:400px}
-
-.ops-right{
-  display:grid;grid-template-rows:1fr 1fr;
-  gap:1px;
-}
-.ops-mini{
-  position:relative;overflow:hidden;background:var(--carbon);
-}
-.ops-mini img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  filter:brightness(.65);transition:transform .6s var(--ease),filter .4s;
-}
-.ops-mini:hover img{transform:scale(1.05);filter:brightness(.85)}
-.ops-mini-label{
-  position:absolute;bottom:.85rem;left:.85rem;
-  font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.8);
-  background:rgba(30,28,28,.7);backdrop-filter:blur(4px);
-  padding:.3rem .7rem;border-radius:2px;
-}
-
-/* ── METRICS ── */
-.metrics-wrap{
-  display:grid;grid-template-columns:1fr 3fr;
-  gap:4rem;align-items:center;
-}
-.metrics-text .title{margin-bottom:.85rem}
-.metrics-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:rgba(255,255,255,.06);
-  border-radius:2px;overflow:hidden;
-}
-.metric{
-  background:rgba(255,255,255,.03);
-  padding:2rem 1.5rem;border-top:2px solid var(--green);
-  transition:background .25s;
-}
-.metric:hover{background:rgba(255,255,255,.06)}
-.metric-n{
-  font-size:2.8rem;font-weight:900;color:var(--gl);
-  line-height:1;letter-spacing:-.03em;margin-bottom:.4rem;
-}
-.metric-l{font-size:.72rem;color:rgba(255,255,255,.45);letter-spacing:.06em;text-transform:uppercase;line-height:1.4}
-
-/* ── GALLERY STRIP ── */
-.gallery{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3px}
-.gal-item{overflow:hidden;position:relative}
-.gal-item img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  aspect-ratio:1;transition:transform .7s var(--ease),filter .4s;
-  filter:brightness(.75) saturate(.9);
-}
-.gal-item:first-child img{aspect-ratio:16/10}
-.gal-item:hover img{transform:scale(1.07);filter:brightness(.95) saturate(1.1)}
-.gal-label{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:.65rem .85rem;
-  background:linear-gradient(to top,rgba(30,28,28,.85),transparent);
-  font-size:.62rem;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(255,255,255,.75);
-  transform:translateY(100%);transition:transform .3s var(--ease);
-}
-.gal-item:hover .gal-label{transform:translateY(0)}
-
-/* ── PARTNERSHIP ── */
-.pship-wrap{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:0;overflow:hidden;border-radius:2px;
-}
-.pship-left{
-  background:var(--green);padding:5rem 4rem;
-  display:flex;flex-direction:column;justify-content:center;
-  position:relative;overflow:hidden;
-}
-.pship-left::after{
-  content:'';position:absolute;
-  width:400px;height:400px;border-radius:50%;
-  border:80px solid rgba(255,255,255,.04);
-  top:-100px;right:-100px;pointer-events:none;
-}
-.de-flag{display:flex;gap:.4rem;align-items:center;margin-bottom:2rem}
-.flag-stripe{height:5px;border-radius:1px}
-.flag-stripe.b{background:#2d2b2b;width:30px}
-.flag-stripe.r{background:#CC0000;width:30px}
-.flag-stripe.g{background:#FFCE00;width:30px}
-.pship-left h2{color:#fff;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:1rem}
-.pship-left p{color:rgba(255,255,255,.78);font-size:.925rem;line-height:1.85;margin-bottom:2rem}
-.pship-specs{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:2.5rem}
-.pspec{background:rgba(255,255,255,.1);border-radius:2px;padding:.75rem 1rem}
-.pspec strong{display:block;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.2rem}
-.pspec span{font-size:.82rem;color:rgba(255,255,255,.88);font-weight:500}
-.pship-right{display:grid;grid-template-rows:1fr 1fr;min-height:480px}
-.pship-img{overflow:hidden;position:relative}
-.pship-img img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform .8s var(--ease);filter:brightness(.65);
-}
-.pship-img:hover img{transform:scale(1.05);filter:brightness(.8)}
-
-/* ── CONTACT ── */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.contact-grid h2{color:#fff;text-transform:uppercase;letter-spacing:-.02em}
-.contact-grid p{color:rgba(255,255,255,.65);font-size:.95rem;line-height:1.85;margin:1rem 0 2rem}
-.contact-links{display:flex;flex-direction:column;gap:.6rem}
-.clink{
-  display:flex;align-items:center;gap:.85rem;
-  text-decoration:none;color:rgba(255,255,255,.6);font-size:.9rem;
-  padding:.65rem 0;border-bottom:1px solid rgba(255,255,255,.06);
-  transition:color .2s;
-}
-.clink:hover{color:#fff}
-.clink-icon{
-  width:36px;height:36px;border-radius:2px;
-  background:rgba(255,255,255,.06);
-  display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;
-}
-.quick-links-box{
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
-  border-radius:2px;padding:2rem;display:flex;flex-direction:column;gap:.5rem;
-}
-.qlink{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:.85rem 1rem;background:rgba(255,255,255,.04);border-radius:2px;
-  text-decoration:none;color:rgba(255,255,255,.6);font-size:.875rem;
-  transition:background .2s,color .2s;
-}
-.qlink:hover{background:rgba(255,255,255,.08);color:#fff}
-.qlink-green{background:rgba(0,83,64,.2);border:1px solid rgba(0,83,64,.3);color:rgba(255,255,255,.8)!important}
-.qlink-green:hover{background:rgba(0,83,64,.35)!important}
-
-/* ── FOOTER ── */
-footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding:2rem 3rem}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.footer-logo{height:30px;width:auto;opacity:.5}
-.footer-links{display:flex;gap:2rem;flex-wrap:wrap}
-.footer-links a,.footer-links span{font-size:.75rem;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:rgba(255,255,255,.65)}
-.footer-copy{font-size:.7rem;color:rgba(255,255,255,.18)}
-
-/* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1366px) and (min-width:1025px){
-  .hero h1{font-size:clamp(2.8rem,5.5vw,4.2rem);}
-  .hero-eyebrow{font-size:.65rem;}
-}
-@media(max-width:1024px){
-  .hero-content{grid-template-columns:1fr}
-  .hero-stats{flex-direction:row;min-width:auto}
-  .hstat{flex:1}
-  .svc-grid{grid-template-columns:1fr 1fr}
-  .ops-wrap{grid-template-columns:1fr}
-  .ops-main{min-height:360px}
-  .metrics-wrap{grid-template-columns:1fr}
-  .metrics-grid{grid-template-columns:repeat(2,1fr)}
-  .gallery{grid-template-columns:1fr 1fr}
-  .gal-item:first-child img{aspect-ratio:1}
-  .pship-wrap{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
-}
-@media(max-width:768px){
-  .hdr{padding:0 1.5rem}
-  nav a:not(.nav-cta):not(.nav-new):not(.nav-lang){display:none}
-  .wrap{padding:0 1.5rem}
-  .hero-content{padding:88px 1.5rem 5rem}
-  .hero h1{font-size:clamp(2.5rem,10vw,4rem)}
-  .hero-stats{display:none}
-  .svc-grid{grid-template-columns:1fr}
-  .gallery{grid-template-columns:1fr 1fr}
-  .metrics-grid{grid-template-columns:1fr 1fr}
-  .pship-specs{grid-template-columns:1fr 1fr}
-  .section{padding:5rem 0}
-  footer{padding:1.75rem 1.5rem}
-  .intro-inner{flex-direction:column;gap:1.5rem}
-  .scroll-hint{display:none}
-}
-@media(prefers-reduced-motion:reduce){
-  .hero-img{animation:none;transform:scale(1)}
-  .reveal{opacity:1;transform:none;transition:none}
-  @keyframes heroZoom{to{transform:scale(1.05)}}
-}
-</style>
-<style id="hic-mobile-fix">
-/* ── MOBILE HEADER FIX ── */
-@media(max-width:768px){
-  .hdr{padding:0 1rem;gap:.6rem}
-  .brand{min-width:0;gap:.6rem}
-  .brand img{height:30px}
-  .brand-name{display:none}
-  nav{gap:.5rem;flex-shrink:0}
-  .nav-new{display:none!important}
-  .nav-cta,.nav-lang{white-space:nowrap;padding:.55rem 1rem;font-size:.72rem}
-  /* collapse inline 2-col section headers */
-  .wrap > div[style*="grid-template-columns:1fr 1fr"]{display:block!important}
-  .wrap > div[style*="grid-template-columns:1fr 1fr"] > .body{margin-top:1.25rem;padding-bottom:0!important}
-  .nav-lang{
-    background:rgba(30,28,28,.5);
-    border:1px solid rgba(255,255,255,.65);
-    color:#fff!important;
-    font-weight:700;
-    backdrop-filter:blur(6px);
-  }
-}
-@media(max-width:360px){
-  .brand img{height:24px}
-  .nav-cta,.nav-lang{padding:.45rem .65rem;font-size:.68rem}
-  nav{gap:.4rem}
-}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Horizon Integration | Infrastructure & Construction — Saudi Arabia</title>
+<meta name="description" content="HIC delivers infrastructure works and integrated construction solutions across Saudi Arabia.">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/hic.css">
 </head>
-<body>
+<body class="en" data-page="home_en">
+
 <header class="hdr" id="hdr">
-<a class="brand" href="/">
-<img alt="Horizon Integration" data-hic-img="home_en_img_logo" src="assets/img/hic-logo-white.png"/>
-<span class="brand-name" data-hic-edit="home_en_txt_003">Horizon Integration</span>
-</a>
-<nav>
-<a data-hic-edit="home_en_txt_004" href="#services">Services</a>
-<a data-hic-edit="home_en_txt_005" href="#operations">Operations</a>
-<a data-hic-edit="home_en_txt_006" href="#contact">Contact</a>
-<a class="nav-new" data-hic-edit="home_en_txt_007" href="building-systems/">◆ Building Systems</a>
-<a class="nav-cta" data-hic-edit="home_en_txt_008" href="profile/">Profile</a>
-<a class="nav-lang" data-hic-edit="home_en_txt_009" href="ar/">عربي</a>
-</nav>
+  <a class="hdr-logo" href="/"><img src="assets/img/hic-logo-white.png" alt="HIC" data-hic-img="home_en_img_logo"/></a>
+  <nav class="hdr-nav">
+    <a href="#services" data-hic-edit="home_en_nav_svc">Services</a>
+    <a href="#operations" data-hic-edit="home_en_nav_ops">Operations</a>
+    <a href="#solutions" data-hic-edit="home_en_nav_bs">Building Systems</a>
+    <a href="#contact" data-hic-edit="home_en_nav_contact">Contact</a>
+    <a class="hdr-lang" href="/ar/">AR</a>
+  </nav>
 </header>
+
 <section class="hero">
-<div class="hero-img" data-hic-bg="home_en_img_hero" id="hero-bg"></div>
-<div class="hero-overlay"></div>
-<div class="hero-content">
-<div class="hero-left">
-<div class="hero-eyebrow"><span data-hic-edit="home_en_hero_eyebrow">Saudi Arabia · Infrastructure &amp; Construction</span></div>
-<h1><span data-hic-edit="home_en_hero_l1">Built.</span><br/><em data-hic-edit="home_en_hero_l2">On Time.</em><br/><span data-hic-edit="home_en_hero_l3">On Ground.</span></h1>
-<p class="hero-sub"><span data-hic-edit="home_en_hero_sub">Full-cycle infrastructure execution across the Kingdom — asphalt operations, heavy equipment, materials supply, and urban civil works delivered by experienced field teams.</span></p>
-<div class="hero-btns">
-<a class="btn-primary" data-hic-edit="home_en_txt_011" href="#services">Our Services →</a>
-<a class="btn-outline" data-hic-edit="home_en_txt_012" href="profile/">Company Profile</a>
-<a class="btn-accent" data-hic-edit="home_en_txt_013" href="building-systems/">◆ Building Systems</a>
-</div>
-</div>
-<div class="hero-stats">
-<div class="hstat"><div class="hstat-n" data-hic-edit="home_en_txt_014">KSA</div><div class="hstat-l" data-hic-edit="home_en_txt_015">Nationwide</div></div>
-<div class="hstat"><div class="hstat-n" data-hic-edit="home_en_txt_016">4</div><div class="hstat-l" data-hic-edit="home_en_txt_017">Service Lines</div></div>
-<div class="hstat"><div class="hstat-n" data-hic-edit="home_en_txt_018">ISO</div><div class="hstat-l" data-hic-edit="home_en_txt_019">9001:2015</div></div>
-<div class="hstat"><div class="hstat-n" data-hic-edit="home_en_txt_020">DE</div><div class="hstat-l" data-hic-edit="home_en_txt_021">Engineering Partner</div></div>
-</div>
-</div>
-<div class="scroll-hint">
-<span data-hic-edit="home_en_txt_022">Scroll</span>
-<div class="scroll-line"></div>
-</div>
+  <div class="hero-bg" style="background-image:url('assets/img/projects/proj_158.jpeg')" data-hic-bg="home_en_img_hero"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow" data-hic-edit="home_en_eyebrow">Saudi Arabia · Infrastructure Contractor</div>
+      <h1>
+        <span data-hic-edit="home_en_h1_1">Building Saudi</span><br>
+        <em data-hic-edit="home_en_h1_2">Infrastructure.</em>
+      </h1>
+      <p class="hero-sub" data-hic-edit="home_en_hero_sub">HIC delivers civil works, roads, asphalt, utilities, earthworks and integrated construction solutions through coordinated field execution across Saudi Arabia.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#services" data-hic-edit="home_en_btn1">Explore Services →</a>
+        <a class="btn-outline" href="assets/docs/HIC_Profile_EN.pdf" target="_blank" data-hic-edit="home_en_btn2">⬇ Company Profile</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">KSA</div><div class="hstat-l" data-hic-edit="home_en_stat1">Nationwide</div></div>
+      <div class="hstat"><div class="hstat-n">24/7</div><div class="hstat-l" data-hic-edit="home_en_stat2">Day & Night Ops</div></div>
+      <div class="hstat"><div class="hstat-n">ISO</div><div class="hstat-l" data-hic-edit="home_en_stat3">9001:2015</div></div>
+      <div class="hstat"><div class="hstat-n">DE</div><div class="hstat-l" data-hic-edit="home_en_stat4">Engineering Partner</div></div>
+    </div>
+  </div>
 </section>
-<main>
-<div class="intro-strip">
-<div class="wrap">
-<div class="intro-inner">
-<p class="intro-text" data-hic-edit="home_en_intro">Horizon Integration operates through proven field execution systems — delivering infrastructure works with equipment readiness, disciplined coordination, and reliable site performance across all regions of Saudi Arabia.</p>
-<div class="intro-tags">
-<span class="itag" data-hic-edit="home_en_txt_024">Roads &amp; Asphalt</span>
-<span class="itag" data-hic-edit="home_en_txt_025">Drainage Systems</span>
-<span class="itag" data-hic-edit="home_en_txt_026">Heavy Equipment</span>
-<span class="itag" data-hic-edit="home_en_txt_027">Materials Supply</span>
-<span class="itag" data-hic-edit="home_en_txt_028">Urban Works</span>
-<span class="itag" data-hic-edit="home_en_txt_029">Road Marking</span>
-</div>
-</div>
-</div>
-</div>
-<section class="section section-bg" id="services">
-<div class="wrap">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:flex-end;margin-bottom:3rem">
-<div class="reveal">
-<div class="tag" data-hic-edit="home_en_txt_031">Scope of Work</div>
-<h2 class="title" data-hic-edit="home_en_svc_title">Four Integrated<br/>Execution Lines</h2>
-</div>
-<p class="body reveal d1" data-hic-edit="home_en_svc_body" style="padding-bottom:.2rem">Every service line is built around field-proven capability — from materials to machinery to final surface delivery, coordinated as one integrated execution system.</p>
-</div>
-<div class="svc-grid">
-<div class="svc reveal">
-<div aria-hidden="true" class="svc-num"></div>
-<h3 data-hic-edit="home_en_svc1_title">Asphalt &amp; Road Works</h3>
-<p data-hic-edit="home_en_svc1_body">Full-cycle asphalt execution — surface preparation, tack coat, paving, compaction, and road marking operations day and night.</p>
-</div>
-<div class="svc reveal d1">
-<div aria-hidden="true" class="svc-num"></div>
-<h3 data-hic-edit="home_en_svc2_title">Heavy Equipment &amp; Fleet</h3>
-<p data-hic-edit="home_en_svc2_body">Operational fleet of finishers, rollers, excavators, loaders, and dump trucks — deployed on project or term basis with full site support.</p>
-</div>
-<div class="svc reveal d2">
-<div aria-hidden="true" class="svc-num"></div>
-<h3 data-hic-edit="home_en_svc3_title">Materials Supply</h3>
-<p data-hic-edit="home_en_svc3_body">Aggregate, filter stone, curbstone, sand fill, and sub-base — sourced and delivered reliably across all KSA regions for any project scope.</p>
-</div>
-<div class="svc reveal d3">
-<div aria-hidden="true" class="svc-num"></div>
-<h3 data-hic-edit="home_en_svc4_title">Urban Landscape &amp; Civils</h3>
-<p data-hic-edit="home_en_svc4_body">Drainage systems, interlock paving, sidewalks, curbstone installation, and public landscape works for city development environments.</p>
-</div>
-</div>
-</div>
+
+<section class="intro-strip">
+  <div class="wrap intro-inner">
+    <p class="intro-text" data-hic-edit="home_en_intro">Horizon Integration operates through proven field execution systems — delivering infrastructure works with equipment readiness, disciplined coordination, and reliable site performance across all regions of Saudi Arabia.</p>
+    <div class="intro-tags">
+      <span class="itag">Roads & Asphalt</span>
+      <span class="itag">Drainage Systems</span>
+      <span class="itag">Heavy Equipment</span>
+      <span class="itag">Materials Supply</span>
+      <span class="itag">Earthworks</span>
+      <span class="itag">Road Marking</span>
+    </div>
+  </div>
 </section>
-<section class="section section-carbon" id="operations">
-<div class="wrap">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:flex-end;margin-bottom:3rem">
-<div class="reveal">
-<div class="tag tag-light" data-hic-edit="home_en_txt_033">Field Execution</div>
-<h2 class="title title-w" data-hic-edit="home_en_ops_title">Proven on<br/>the Ground</h2>
-</div>
-<p class="body body-light reveal d1" data-hic-edit="home_en_ops_body" style="padding-bottom:.2rem">Our field teams execute across Saudi Arabia with consistent quality — from multi-lane highway paving to urban drainage and landscape works.</p>
-</div>
-<div class="ops-wrap reveal">
-<div class="ops-main">
-<img alt="Night Asphalt Operations" data-hic-img="home_en_img_ops_main" src="assets/img/projects/proj_158.jpeg"/>
-<div class="ops-overlay">
-<div class="tag tag-light" data-hic-edit="home_en_txt_034">Night Operations · Jeddah</div>
-<h3 data-hic-edit="home_en_ops_card_title">Multi-Lane Urban Asphalt Execution</h3>
-<p data-hic-edit="home_en_ops_card_body">Coordinated night paving operations — finisher, tack truck, and roller teams working in sequence across urban road environments.</p>
-</div>
-</div>
-<div class="ops-right">
-<div class="ops-mini">
-<img alt="Asphalt Paving" data-hic-img="home_en_img_ops_mini1" src="assets/img/projects/proj_021.jpg"/>
-<div class="ops-mini-label" data-hic-edit="home_en_txt_035">Asphalt Paving</div>
-</div>
-<div class="ops-mini">
-<img alt="Urban Works" data-hic-img="home_en_img_ops_mini2" src="assets/img/projects/proj_043.jpg"/>
-<div class="ops-mini-label" data-hic-edit="home_en_txt_036">Urban Works</div>
-</div>
-</div>
-</div>
-</div>
+
+<section class="section s-carbon" id="services">
+  <div class="wrap">
+    <div class="section-hdr-split">
+      <div class="reveal">
+        <div class="tag tag-dim" data-hic-edit="home_en_svc_tag">Scope of Work</div>
+        <h2 class="title" data-hic-edit="home_en_svc_title">Five Integrated<br>Execution Lines</h2>
+      </div>
+      <p class="body-text reveal d1" data-hic-edit="home_en_svc_body">Every service line is built around field-proven capability — from materials to machinery to final surface delivery, coordinated as one integrated execution system.</p>
+    </div>
+    <div class="svc-grid svc-grid-5">
+      <div class="svc reveal">
+        <div class="svc-bar"></div>
+        <h3 data-hic-edit="home_en_svc1_t">Roads & Asphalt</h3>
+        <p data-hic-edit="home_en_svc1_b">Full-cycle asphalt execution — surface preparation, tack coat, paving, compaction, and road marking day and night.</p>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-bar"></div>
+        <h3 data-hic-edit="home_en_svc2_t">Heavy Equipment & Fleet</h3>
+        <p data-hic-edit="home_en_svc2_b">Operational fleet of finishers, rollers, excavators, loaders and dump trucks deployed with full site support.</p>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-bar"></div>
+        <h3 data-hic-edit="home_en_svc3_t">Materials Supply</h3>
+        <p data-hic-edit="home_en_svc3_b">Aggregate, filter stone, curbstone, sand fill and sub-base — sourced and delivered reliably across all KSA regions.</p>
+      </div>
+      <div class="svc reveal d3">
+        <div class="svc-bar"></div>
+        <h3 data-hic-edit="home_en_svc4_t">Landscape & Civil Works</h3>
+        <p data-hic-edit="home_en_svc4_b">Drainage systems, interlock paving, sidewalks, curbstone installation and urban landscaping.</p>
+      </div>
+      <div class="svc reveal d3">
+        <div class="svc-bar"></div>
+        <h3 data-hic-edit="home_en_svc5_t">Earthworks & Site Preparation</h3>
+        <p data-hic-edit="home_en_svc5_b">Bulk excavation, cut and fill, site levelling and ground preparation for buildings, industrial facilities and infrastructure.</p>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="section section-dark">
-<div class="wrap">
-<div class="metrics-wrap">
-<div class="reveal">
-<div class="tag tag-light" data-hic-edit="home_en_txt_038">Operational Capabilities</div>
-<h2 class="title title-w" data-hic-edit="home_en_metrics_title">Built for<br/>Scale</h2>
-<p class="body body-light" data-hic-edit="home_en_metrics_body">Equipment, materials, and manpower — coordinated across multiple sites and regions for consistent field delivery.</p>
-</div>
-<div class="metrics-grid reveal d1">
-<div class="metric"><div class="metric-n" data-hic-edit="home_en_txt_039">KSA</div><div class="metric-l" data-hic-edit="home_en_txt_040">All Regions Covered</div></div>
-<div class="metric"><div class="metric-n" data-hic-edit="home_en_txt_041">24/7</div><div class="metric-l" data-hic-edit="home_en_txt_042">Day &amp; Night Ops</div></div>
-<div class="metric"><div class="metric-n" data-hic-edit="home_en_txt_043">ISO</div><div class="metric-l" data-hic-edit="home_en_txt_044">9001:2015 Certified</div></div>
-<div class="metric"><div class="metric-n" data-hic-edit="home_en_txt_045">DE</div><div class="metric-l" data-hic-edit="home_en_txt_046">German Engineering</div></div>
-</div>
-</div>
-</div>
+
+<section class="section s-dark" id="operations">
+  <div class="wrap">
+    <div class="section-hdr-split">
+      <div class="reveal">
+        <div class="tag tag-dim" data-hic-edit="home_en_ops_tag">Field Execution</div>
+        <h2 class="title" data-hic-edit="home_en_ops_title">Proven on<br>the Ground</h2>
+      </div>
+      <p class="body-text reveal d1" data-hic-edit="home_en_ops_body">Our field teams execute across Saudi Arabia with consistent quality — from multi-lane highway paving to urban drainage and landscape works.</p>
+    </div>
+    <div class="ops-wrap reveal">
+      <div class="ops-main">
+        <img src="assets/img/projects/proj_154.jpeg" alt="Night operations" data-hic-img="home_en_img_ops_main"/>
+        <div class="ops-overlay">
+          <div class="tag tag-dim" data-hic-edit="home_en_ops_loc">Night Operations · Jeddah</div>
+          <h3 data-hic-edit="home_en_ops_card_t">Multi-Lane Urban Asphalt Execution</h3>
+          <p data-hic-edit="home_en_ops_card_b">Coordinated night paving — finisher, tack truck, and roller teams working in sequence.</p>
+        </div>
+      </div>
+      <div class="ops-right">
+        <div class="ops-mini">
+          <img src="assets/img/projects/proj_021.jpg" alt="Paving" data-hic-img="home_en_img_ops_mini1"/>
+          <div class="ops-mini-label" data-hic-edit="home_en_ops_mini1">Asphalt Paving</div>
+        </div>
+        <div class="ops-mini">
+          <img src="assets/img/projects/proj_070.jpg" alt="Road marking" data-hic-img="home_en_img_ops_mini2"/>
+          <div class="ops-mini-label" data-hic-edit="home_en_ops_mini2">Road Marking</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<section style="background:var(--carbon);padding:1px 0 0">
-<div class="gallery reveal">
-<div class="gal-item">
-<img alt="Night Operations" data-hic-img="home_en_img_gal_01" src="assets/img/projects/proj_154.jpeg"/>
-<div class="gal-label" data-hic-edit="home_en_txt_048">Night Operations</div>
-</div>
-<div class="gal-item">
-<img alt="Fleet" data-hic-img="home_en_img_gal_02" src="assets/img/projects/proj_003.jpg"/>
-<div class="gal-label" data-hic-edit="home_en_txt_049">Fleet</div>
-</div>
-<div class="gal-item">
-<img alt="Road Marking" data-hic-img="home_en_img_gal_03" src="assets/img/projects/proj_070.jpg"/>
-<div class="gal-label" data-hic-edit="home_en_txt_050">Road Marking</div>
-</div>
-<div class="gal-item">
-<img alt="Materials" data-hic-img="home_en_img_gal_04" src="assets/img/projects/proj_041.jpg"/>
-<div class="gal-label" data-hic-edit="home_en_txt_051">Materials</div>
-</div>
-</div>
+
+<section class="section s-carbon" id="solutions">
+  <div class="wrap">
+    <div class="pship-wrap">
+      <div class="pship-imgs reveal">
+        <div class="pship-img"><img src="assets/img/building-systems/bs-stone-bracket.jpg" alt="Facade systems" data-hic-img="home_en_img_bs1"/></div>
+        <div class="pship-img"><img src="assets/img/building-systems/bs-glass-tower.jpg" alt="Building systems" data-hic-img="home_en_img_bs2"/></div>
+      </div>
+      <div class="reveal d1">
+        <div class="de-flag"><div class="fs b"></div><div class="fs r"></div><div class="fs g"></div></div>
+        <div class="tag tag-dim" data-hic-edit="home_en_bs_tag">German Engineering Partner</div>
+        <h2 class="title" data-hic-edit="home_en_bs_title">Integrated Construction<br>Solutions</h2>
+        <p class="body-text" data-hic-edit="home_en_bs_body">In collaboration with a specialized German engineering consultancy — facade support systems, metal ceilings, gypsum board and building envelope solutions across Saudi Arabia.</p>
+        <div class="pship-specs">
+          <div class="pspec"><strong>Specialty</strong><span data-hic-edit="home_en_bs_spec1">Facade Systems</span></div>
+          <div class="pspec"><strong>Partner</strong><span data-hic-edit="home_en_bs_spec2">Germany</span></div>
+          <div class="pspec"><strong>Standards</strong><span data-hic-edit="home_en_bs_spec3">International</span></div>
+          <div class="pspec"><strong>Coverage</strong><span data-hic-edit="home_en_bs_spec4">KSA Wide</span></div>
+        </div>
+        <a class="btn-primary" href="building-systems/" data-hic-edit="home_en_bs_btn">Explore Division →</a>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="section section-dark" id="building-systems">
-<div class="wrap">
-<div class="pship-wrap reveal">
-<div class="pship-left">
-<div class="de-flag">
-<div class="flag-stripe b"></div>
-<div class="flag-stripe r"></div>
-<div class="flag-stripe g"></div>
+
+<div style="background:var(--carbon);padding:1px 0 0">
+  <div class="gal-grid">
+    <div class="gal-item"><img src="assets/img/projects/proj_154.jpeg" alt="" data-hic-img="home_en_gal1"/><div class="gal-label" data-hic-edit="home_en_gal1">Night Operations</div></div>
+    <div class="gal-item"><img src="assets/img/projects/proj_003.jpg" alt="" data-hic-img="home_en_gal2"/><div class="gal-label" data-hic-edit="home_en_gal2">Fleet</div></div>
+    <div class="gal-item"><img src="assets/img/projects/proj_070.jpg" alt="" data-hic-img="home_en_gal3"/><div class="gal-label" data-hic-edit="home_en_gal3">Road Marking</div></div>
+    <div class="gal-item"><img src="assets/img/projects/proj_041.jpg" alt="" data-hic-img="home_en_gal4"/><div class="gal-label" data-hic-edit="home_en_gal4">Materials</div></div>
+  </div>
 </div>
-<div class="tag tag-light" data-hic-edit="home_en_txt_053">Integrated Construction Solutions</div>
-<h2 class="title title-w" data-hic-edit="home_en_pship_title">Integrated Construction Solutions</h2>
-<p class="body body-light" data-hic-edit="home_en_pship_body">In collaboration with a specialized German engineering consultancy — facade support systems, metal ceilings, and building envelope solutions across Saudi Arabia.</p>
-<div class="pship-specs" style="margin-top:1.5rem;margin-bottom:2rem">
-<div class="pspec"><strong data-hic-edit="home_en_txt_054">Specialty</strong><span data-hic-edit="home_en_txt_055">Facade Systems</span></div>
-<div class="pspec"><strong data-hic-edit="home_en_txt_056">Partner</strong><span data-hic-edit="home_en_txt_057">Germany</span></div>
-<div class="pspec"><strong data-hic-edit="home_en_txt_058">Standards</strong><span data-hic-edit="home_en_txt_059">International</span></div>
-<div class="pspec"><strong data-hic-edit="home_en_txt_060">Coverage</strong><span data-hic-edit="home_en_txt_061">KSA Wide</span></div>
-</div>
-<a class="btn-primary" data-hic-edit="home_en_txt_062" href="building-systems/" style="width:fit-content">Explore Division →</a>
-</div>
-<div class="pship-right">
-<div class="pship-img">
-<img alt="Facade Bracket System" data-hic-img="home_en_img_pship_01" src="assets/img/building-systems/bs-stone-bracket.jpg"/>
-</div>
-<div class="pship-img">
-<img alt="Building Facade" data-hic-img="home_en_img_pship_02" src="assets/img/building-systems/bs-steel-structure.jpg"/>
-</div>
-</div>
-</div>
-</div>
+
+<section class="section s-dark" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="tag tag-dim" data-hic-edit="home_en_contact_tag">Get In Touch</div>
+        <h2 class="title" data-hic-edit="home_en_contact_title">Ready When You Are</h2>
+        <p class="body-text" data-hic-edit="home_en_contact_body">For project inquiries, equipment availability, material sourcing, or Building Systems — our team responds promptly.</p>
+        <div class="contact-links">
+          <a class="clink" href="mailto:sales@saudihic.com"><span class="clink-icon">📧</span><span data-hic-edit="home_en_email">sales@saudihic.com</span></a>
+          <a class="clink" href="tel:0536821111"><span class="clink-icon">📞</span><span data-hic-edit="home_en_phone">053 682 1111</span></a>
+          <a class="clink" href="https://www.saudihic.com"><span class="clink-icon">🌐</span><span>www.saudihic.com</span></a>
+        </div>
+      </div>
+      <div class="qlinks-box reveal d1">
+        <div class="tag tag-dim" style="margin-bottom:1rem" data-hic-edit="home_en_qlinks_tag">Quick Links</div>
+        <a class="qlink" href="profile/"><span data-hic-edit="home_en_ql1">Company Profile</span><span>→</span></a>
+        <a class="qlink" href="building-systems/"><span data-hic-edit="home_en_ql2">Building Systems</span><span>→</span></a>
+        <a class="qlink" href="ar/"><span data-hic-edit="home_en_ql3">الموقع بالعربي</span><span>→</span></a>
+        <a class="qlink" href="assets/docs/HIC_Profile_EN.pdf" target="_blank"><span data-hic-edit="home_en_ql4">Download Profile PDF</span><span>⬇</span></a>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="section section-carbon" id="contact">
-<div class="wrap">
-<div class="contact-grid">
-<div class="reveal">
-<div class="tag tag-light" data-hic-edit="home_en_txt_064">Get In Touch</div>
-<h2 class="title title-w" data-hic-edit="home_en_contact_title">Ready When<br/>You Are</h2>
-<p data-hic-edit="home_en_contact_body">For project inquiries, equipment availability, material sourcing, or Building Systems — our team responds promptly.</p>
-<div class="contact-links">
-<a class="clink" data-hic-contact="email" href="mailto:sales@saudihic.com"><div class="clink-icon">📧</div><span data-hic-edit="home_en_contact_email">sales@saudihic.com</span></a>
-<a class="clink" data-hic-contact="phone" href="tel:0536821111"><div class="clink-icon">📞</div><span data-hic-edit="home_en_contact_phone">053 682 1111</span></a>
-<a class="clink" data-hic-contact="web" href="https://www.saudihic.com"><div class="clink-icon">🌐</div><span data-hic-edit="home_en_contact_web">www.saudihic.com</span></a>
-<a class="clink" href="#"><div class="clink-icon">📍</div><span data-hic-edit="home_en_txt_065">Kingdom of Saudi Arabia</span></a>
-</div>
-</div>
-<div class="quick-links-box reveal d1">
-<div class="tag tag-light" data-hic-edit="home_en_txt_066" style="margin-bottom:1rem">Quick Links</div>
-<a class="qlink" href="profile/"><span data-hic-edit="home_en_txt_067">Company Profile</span><span>→</span></a>
-<a class="qlink qlink-green" href="building-systems/"><span data-hic-edit="home_en_txt_069">◆ Integrated Construction Solutions</span><span>→</span></a>
-</div>
-</div>
-</div>
-</section>
-</main>
-<footer>
-<div class="footer-inner">
-<img alt="HIC" class="footer-logo" data-hic-img="home_en_img_logo_footer" src="assets/img/hic-logo-white.png"/>
-<div class="footer-links">
-<a data-hic-edit="home_en_txt_072" href="profile/">Profile</a>
-<a data-hic-edit="home_en_txt_073" href="building-systems/">Building Systems</a>
-<a data-hic-edit="home_en_txt_074" href="ar/">عربي</a>
-<a data-hic-edit="home_en_txt_075" href="admin/">Admin</a>
-</div>
-<span class="footer-copy" data-hic-edit="home_en_txt_076">© Horizon Integration — Saudi Arabia</span>
-</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="assets/img/hic-logo.png" alt="HIC" data-hic-img="home_en_img_footer_logo"/></div>
+        <p class="footer-desc" data-hic-edit="home_en_footer_desc">Infrastructure · Civil Works · Roads · Asphalt · Drainage · Earthworks · Urban Works</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services">Roads & Asphalt</a>
+        <a href="#services">Heavy Equipment</a>
+        <a href="#services">Materials Supply</a>
+        <a href="#services">Earthworks</a>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="profile/">Company Profile</a>
+        <a href="building-systems/">Building Systems</a>
+        <a href="ar/">عربي</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:sales@saudihic.com">sales@saudihic.com</a>
+        <a href="tel:0536821111">053 682 1111</a>
+        <a href="admin/" style="color:rgba(255,255,255,.25);font-size:.75rem">🔒 Admin</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Horizon Integration. All Rights Reserved.</span>
+      <span>saudihic.com</span>
+    </div>
+  </div>
 </footer>
-<script>
-// Header on scroll
-const hdr=document.getElementById('hdr');
-window.addEventListener('scroll',()=>{
-  hdr.classList.toggle('scrolled', window.scrollY > 80);
-},{passive:true});
 
-// Reveal on scroll
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
-},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(!t)return;e.preventDefault();
-    window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-68,behavior:'smooth'});
-  });
-});
-</script>
-<script id="hic-cms">
-(function(){
-  function apply(data){
-    if(!data||!data.pages)return;
-    Object.values(data.pages).forEach(function(pg){
-      var imgs=pg.images||{};
-      Object.keys(imgs).forEach(function(id){
-        if(imgs[id]&&imgs[id].src){
-          document.querySelectorAll('[data-hic-img="'+id+'"]').forEach(function(el){
-            el.src=imgs[id].src;
-            var bg=el.id||'';
-            if(el.classList&&el.classList.contains('hero-img-target')){el.style.backgroundImage="url('"+imgs[id].src+"')";}
-          });
-          // hero background elements
-          document.querySelectorAll('[data-hic-bg="'+id+'"]').forEach(function(el){
-            var img=new Image();
-            img.onload=function(){el.style.backgroundImage="url('"+imgs[id].src+"')";el.style.opacity='1';};
-            img.onerror=function(){el.style.opacity='1';};
-            img.src=imgs[id].src;
-          });
-        }
-      });
-      var texts=pg.texts||{};
-      Object.keys(texts).forEach(function(id){
-        if(texts[id]!==undefined&&texts[id]!==null){
-          document.querySelectorAll('[data-hic-edit="'+id+'"]').forEach(function(el){
-            el.textContent=texts[id];
-            var a=el.closest&&el.closest('a[data-hic-contact]');
-            if(a){
-              var type=a.getAttribute('data-hic-contact');
-              var val=String(texts[id]).trim();
-              if(type==='email'){a.href='mailto:'+val;}
-              if(type==='phone'){a.href='tel:'+val.replace(/[^0-9+]/g,'');}
-              if(type==='web'){
-                var url=/^https?:\/\//i.test(val)?val:'https://'+val;
-                a.href=url;
-              }
-            }
-          });
-        }
-      });
-    });
-  }
-  // API (KV) is the source of truth on the live site.
-  // localStorage is used only as a fallback when the API is unreachable (e.g. opened locally as a file).
-  fetch('/api/content',{cache:'no-store'})
-    .then(function(r){return r.json();})
-    .then(function(d){
-      if(d&&d.pages&&Object.keys(d.pages).length){
-        apply(d);
-        try{localStorage.setItem('hic_content',JSON.stringify(d));}catch(e){}
-      }
-    })
-    .catch(function(){
-      try{var local=localStorage.getItem('hic_content');if(local)apply(JSON.parse(local));}catch(e){}
-    });
-})();
-</script>
+<script src="assets/js/hic.js"></script>
 </body>
 </html>
