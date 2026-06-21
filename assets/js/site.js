@@ -1,6 +1,6 @@
-// HORIZON INTEGRATION — site.js
+// HIC — site.js
 
-// Reveal on scroll
+// Scroll reveal
 (function(){
   var els = document.querySelectorAll('.reveal');
   if(!els.length) return;
@@ -20,23 +20,10 @@
       var target = document.getElementById(id);
       if(!target) return;
       e.preventDefault();
-      var header = document.querySelector('header');
+      var header = document.querySelector('.nav');
       var offset = header ? header.getBoundingClientRect().height + 16 : 80;
       var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     });
   });
-})();
-
-// Header scroll state
-(function(){
-  var header = document.querySelector('.site-header, header.nav, header');
-  if(!header) return;
-  window.addEventListener('scroll', function(){
-    if(window.scrollY > 20){
-      header.style.background = 'rgba(14,14,14,0.98)';
-    } else {
-      header.style.background = '';
-    }
-  }, { passive: true });
 })();
