@@ -1,559 +1,129 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>الحلول الإنشائية المتكاملة | هورايزن إنتيغريشن</title>
-<meta content="أنظمة دعم الواجهات وحلول الأغلفة الإنشائية — بهندسة ألمانية، تُورّد وتُركّب في جميع أنحاء المملكة العربية السعودية." name="description"/>
-<link href="../../favicon.ico" rel="icon"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --dark:#302e2e;--carbon:#1e1c1c;--slate:#252322;
-  --green:#005340;--teal:#005852;--gl:#006b52;
-  --bg:#f0f0f0;--mid:#3d3b38;--white:#fff;
-  --font:'Alexandria',sans-serif;--ease:cubic-bezier(.25,.46,.45,.94);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--dark);overflow-x:hidden;line-height:1.7}
-
-/* HEADER */
-.hdr{
-  position:fixed;top:0;left:0;right:0;z-index:990;height:68px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 3rem;background:rgba(48,46,46,.97);
-  backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06);
-}
-.hdr-left{display:flex;align-items:center;gap:1.25rem}
-.hdr-back{
-  display:flex;align-items:center;gap:.45rem;flex-direction:row-reverse;color:rgba(255,255,255,.6);
-  text-decoration:none;font-size:.78rem;font-weight:600;
-  letter-spacing:.04em;transition:color .2s;
-}
-.hdr-back:hover{color:#fff}
-.hdr-sep{width:1px;height:18px;background:rgba(255,255,255,.12)}
-.hdr-brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
-.hdr-brand img{height:32px;width:auto}
-.hdr-tag{
-  font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  background:var(--green);color:#fff;padding:.28rem .7rem;border-radius:2px;
-}
-.hdr-flag{display:flex;gap:3px;align-items:center}
-.fs{height:4px;border-radius:1px}
-.fs.b{background:#302e2e;width:20px}.fs.r{background:#CC0000;width:20px}.fs.g{background:#FFCE00;width:20px}
-.btn-contact{
-  font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  background:var(--green);color:#fff;padding:.42rem 1.1rem;border-radius:2px;
-  text-decoration:none;transition:background .2s;
-}
-.btn-contact:hover{background:var(--gl)}
-
-/* HERO */
-.hero{
-  min-height:100vh;display:flex;align-items:center;
-  position:relative;overflow:hidden;padding-top:68px;
-}
-.hero-bg-img{
-  position:absolute;inset:0;
-  background:url('../../assets/img/building-systems/bs-facade-architecture.jpg') center/cover no-repeat;
-  filter:brightness(.35);
-}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to right, rgba(48,46,46,.95) 45%, rgba(48,46,46,.2) 100%);
-}
-.hero-inner{
-  position:relative;z-index:2;
-  max-width:1200px;margin:0 auto;width:100%;
-  padding:5rem 3rem;
-  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
-}
-.hero-kicker{
-  display:flex;align-items:center;gap:.6rem;
-  font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.65);margin-bottom:1.5rem;
-}
-.hero-kicker::after{content:'';width:22px;height:1px;background:var(--gl)}
-.hero-kicker::before{display:none}
-.hero h1{
-  font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;
-  line-height:1.35;letter-spacing:0;color:#fff;margin-bottom:1.5rem;
-}
-.hero h1 strong{color:var(--gl);font-weight:800}
-.hero-desc{font-size:.975rem;color:rgba(255,255,255,.92);line-height:1.85;margin-bottom:2.5rem}
-.hero-btns{display:flex;gap:.85rem;flex-wrap:wrap}
-.btn-primary{
-  font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  background:var(--green);color:#fff;padding:.82rem 1.75rem;border-radius:2px;
-  text-decoration:none;transition:background .25s,transform .2s;
-}
-.btn-primary:hover{background:var(--gl);transform:translateY(-2px)}
-.btn-ghost{
-  font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.85);
-  padding:.82rem 1.75rem;border-radius:2px;
-  text-decoration:none;transition:border-color .2s,color .2s;
-}
-.btn-ghost:hover{border-color:#fff;color:#fff}
-/* Hero right - image mosaic */
-.hero-mosaic{
-  display:grid;grid-template-columns:1fr 1fr;
-  grid-template-rows:200px 200px;gap:4px;
-  border-radius:3px;overflow:hidden;
-}
-.mosaic-item{overflow:hidden;position:relative}
-.mosaic-item:first-child{grid-row:span 2}
-.mosaic-item img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform .7s var(--ease);filter:brightness(.85);
-}
-.mosaic-item:hover img{transform:scale(1.06);filter:brightness(1)}
-
-/* LAYOUT */
-.section{padding:6rem 0}
-.section-light{background:var(--bg)}
-.section-carbon{background:var(--carbon)}
-.wrap{max-width:1200px;margin:0 auto;padding:0 3rem}
-.tag{
-  font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--green);display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem;
-}
-.tag::before{content:'';width:18px;height:1px;background:var(--green)}
-.tag-dark{color:var(--green)}
-.tag-dark::after{background:var(--green)}
-.tag-dark::before{display:none}
-h2.title{
-  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;
-  line-height:1.35;letter-spacing:0;margin-bottom:1.1rem;
-}
-.title-dark{color:var(--dark)}
-.body{font-size:.95rem;line-height:1.85;max-width:580px}
-.body-dark{color:var(--mid)}
-.body-light{color:rgba(255,255,255,.85)}
-
-/* SYSTEMS */
-.systems-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--light,#d8d7d3);
-  border:1px solid var(--light,#d8d7d3);
-  border-radius:2px;overflow:hidden;margin-top:4rem;
-}
-.sys{
-  background:var(--bg);padding:2.25rem 2rem;
-  position:relative;overflow:hidden;transition:background .3s;
-}
-.sys::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--green);transform:scaleX(0);transform-origin:left;
-  transition:transform .4s var(--ease);
-}
-.sys:hover{background:#e4e3e0}
-.sys:hover::after{transform:scaleX(1)}
-.sys-n{font-size:.65rem;font-weight:700;letter-spacing:.14em;color:var(--green);margin-bottom:1.25rem}
-.sys h3{
-  font-size:1rem;font-weight:700;color:var(--dark);
-  line-height:1.5;margin-bottom:.75rem;
-}
-.sys p{font-size:.855rem;color:var(--mid);line-height:1.8}
-
-/* TECHNICAL IMAGES */
-.tech-grid{
-  display:grid;grid-template-columns:1fr 1fr 1fr;
-  gap:4px;margin-top:4rem;border-radius:2px;overflow:hidden;
-}
-.tech-item{overflow:hidden;position:relative}
-.tech-item img{
-  width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
-  transition:transform .6s var(--ease);filter:brightness(.9);
-}
-.tech-item:hover img{transform:scale(1.05);filter:brightness(1)}
-.tech-item-wide{grid-column:span 2}
-.tech-item-wide img{aspect-ratio:16/7}
-
-/* PARTNERSHIP SPLIT */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.split-img{overflow:hidden;border-radius:2px;aspect-ratio:4/3;position:relative}
-.split-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease)}
-.split-img:hover img{transform:scale(1.04)}
-.german-flag{display:flex;gap:.4rem;margin-bottom:1.75rem}
-.gf{height:5px;border-radius:1px}
-.gf.b{background:#302e2e;width:30px}.gf.r{background:#CC0000;width:30px}.gf.g{background:#FFCE00;width:30px}
-.partner-points{display:flex;flex-direction:column;gap:.65rem;margin-top:1.5rem}
-.pt{
-  display:flex;align-items:flex-start;gap:.85rem;
-  padding:.85rem 1rem;background:var(--bg);border-radius:2px;
-}
-.pt-icon{font-size:1rem;flex-shrink:0;margin-top:.1rem}
-.pt-text{font-size:.875rem;color:var(--mid);line-height:1.65}
-.pt-text strong{color:var(--dark);display:block;font-size:.9rem;margin-bottom:.15rem}
-
-/* PROCESS */
-.process{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--light,#d8d7d3);
-  border-radius:2px;overflow:hidden;margin-top:4rem;
-}
-.process-step{background:#fff;padding:2rem 1.75rem}
-.ps-n{
-  font-size:2rem;font-weight:800;color:var(--green);
-  line-height:1;margin-bottom:1rem;font-family:var(--font);
-}
-.process-step h4{font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:.5rem}
-.process-step p{font-size:.835rem;color:var(--mid);line-height:1.8}
-
-/* CTA */
-.cta{background:var(--green);padding:4rem 0}
-.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
-.cta h2{color:#fff;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-.02em}
-.cta p{color:rgba(255,255,255,.82);font-size:.9rem;margin-top:.5rem}
-.cta-btns{display:flex;gap:.75rem;flex-wrap:wrap}
-.btn-white{
-  font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  background:#fff;color:var(--green);padding:.82rem 1.75rem;border-radius:2px;
-  text-decoration:none;transition:opacity .2s,transform .2s;
-}
-.btn-white:hover{opacity:.92;transform:translateY(-2px)}
-.btn-woutline{
-  font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  border:1px solid rgba(255,255,255,.4);color:#fff;
-  padding:.82rem 1.75rem;border-radius:2px;
-  text-decoration:none;transition:border-color .2s;
-}
-.btn-woutline:hover{border-color:#fff}
-
-/* FOOTER */
-footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding:1.75rem 3rem}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.footer-logo{height:28px;width:auto;opacity:.55}
-.footer-back{font-size:.76rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
-.footer-back:hover{color:rgba(255,255,255,.7)}
-.footer-copy{font-size:.72rem;color:rgba(255,255,255,.2)}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-
-@media(max-width:1024px){
-  .hero-inner,.split{grid-template-columns:1fr;gap:3rem}
-  .hero-mosaic{display:none}
-  .systems-grid{grid-template-columns:1fr 1fr}
-  .tech-grid{grid-template-columns:1fr 1fr}
-  .tech-item-wide{grid-column:span 1}
-  .tech-item-wide img{aspect-ratio:4/3}
-  .process{grid-template-columns:1fr 1fr}
-  .cta-inner{flex-direction:column;text-align:center}
-  .cta-btns{justify-content:center}
-}
-@media(max-width:768px){
-  .hdr{padding:0 1.5rem}
-  .wrap{padding:0 1.5rem}
-  .hero-inner{padding:4rem 1.5rem}
-  .systems-grid,.tech-grid,.process{grid-template-columns:1fr}
-  .section{padding:4.5rem 0}
-}
-
-
-/* RTL small-title green line final fix: keep the group aligned right and put the line to the visual right of the text */
-html[dir="rtl"] .hero-eyebrow,
-html[dir="rtl"] .hero-kicker,
-html[dir="rtl"] .tag{
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  flex-direction: row !important;
-  direction: ltr !important;
-  width: max-content !important;
-  max-width: 100% !important;
-  margin-left: auto !important;
-  margin-right: 0 !important;
-  text-align: right !important;
-}
-html[dir="rtl"] .hero-eyebrow span,
-html[dir="rtl"] .hero-kicker span,
-html[dir="rtl"] .tag span{
-  direction: rtl !important;
-  unicode-bidi: plaintext !important;
-}
-html[dir="rtl"] .hero-eyebrow::before,
-html[dir="rtl"] .hero-kicker::before,
-html[dir="rtl"] .tag::before{
-  display: none !important;
-  content: none !important;
-}
-html[dir="rtl"] .hero-eyebrow::after,
-html[dir="rtl"] .hero-kicker::after,
-html[dir="rtl"] .tag::after{
-  content: '' !important;
-  display: inline-block !important;
-  width: 34px !important;
-  height: 2px !important;
-  background: var(--gl, var(--green, #008b68)) !important;
-  flex: 0 0 auto !important;
-}
-html[dir="rtl"] .tag::after{ width: 20px !important; }
-
-</style>
-<style id="hic-mobile-fix">
-/* ── MOBILE HEADER FIX ── */
-@media(max-width:768px){
-  .hdr{padding:0 1rem;gap:.6rem}
-  .hdr-left{gap:.6rem;min-width:0}
-  .hdr-back{white-space:nowrap;font-size:.72rem}
-  .hdr-sep,.hdr-flag,.hdr-tag{display:none}
-  .hdr-brand img{height:26px}
-  .hdr .btn-contact{white-space:nowrap;padding:.5rem .85rem;font-size:.78rem}
-}
-@media(max-width:380px){
-  .hdr-tag{display:none}
-}
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>أنظمة البناء | هورايزن إنتيغريشن</title>
+<link rel="icon" href="../../favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../css/hic.css"/>
 </head>
-<body>
-<header class="hdr">
-<div class="hdr-left">
-<a class="hdr-back" data-hic-edit="building_systems_ar_txt_003" href="../../ar/">HIC →</a>
-<div class="hdr-sep"></div>
-<a class="hdr-brand" href="../../ar/">
-<img alt="HIC" data-hic-img="building_systems_ar_img_logo" src="../../assets/img/hic-logo-white.png"/>
-</a>
-</div>
-<div style="display:flex;align-items:center;gap:1rem">
-<div class="hdr-flag"><div class="fs b"></div><div class="fs r"></div><div class="fs g"></div></div>
-<a class="btn-contact" data-hic-edit="building_systems_ar_txt_005" href="../../building-systems/" style="background:rgba(30,28,28,.4);border:1px solid rgba(255,255,255,.5)">EN</a>
-<a class="btn-contact" data-hic-edit="building_systems_ar_txt_006" href="mailto:sales@saudihic.com">تواصل</a>
-</div>
+<body class="ar" data-page="bs_ar">
+
+<header class="hdr" id="hdr">
+  <div style="display:flex;align-items:center;gap:.75rem">
+    <a class="btn-primary" href="mailto:sales@saudihic.com" style="padding:.42rem 1rem;font-size:.78rem">تواصل معنا</a>
+    <a class="hdr-lang" href="../../building-systems/">EN</a>
+    <div class="de-flag" style="margin:0"><div class="fs b"></div><div class="fs r"></div><div class="fs g"></div></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <a class="hdr-logo" href="../../ar/"><img src="../../assets/img/hic-logo-white.png" alt="HIC" data-hic-img="bs_ar_img_logo"/></a>
+    <div style="width:1px;height:18px;background:rgba(255,255,255,.12)"></div>
+    <a style="font-size:.78rem;font-weight:700;color:rgba(255,255,255,.45);transition:color .2s" href="../../ar/" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">HIC ←</a>
+  </div>
 </header>
+
 <section class="hero">
-<div class="hero-bg-img"></div>
-<div class="hero-overlay"></div>
-<div class="hero-inner">
-<div>
-<div class="hero-kicker" data-hic-edit="building_systems_ar_txt_008">هورايزن إنتيغريشن × الهندسة الألمانية</div>
-<h1><span data-hic-edit="building_systems_ar_txt_009">قسم</span><br/><strong data-hic-edit="building_systems_ar_txt_010">الحلول</strong><br/><span data-hic-edit="building_systems_ar_txt_011">الإنشائية</span></h1>
-<p class="hero-desc" data-hic-edit="building_systems_ar_txt_012">
-        أنظمة دعم الواجهات وحلول الأغلفة الإنشائية المتقدمة — بهندسة إنشائية ألمانية، تُورّد وتُركّب في جميع أنحاء المملكة.
-      </p>
-<div class="hero-btns">
-<a class="btn-primary" data-hic-edit="building_systems_ar_txt_013" href="#systems">← أنظمتنا</a>
-<a class="btn-ghost" data-hic-edit="building_systems_ar_txt_014" href="../../assets/docs/HIC_BuildingSystems.pdf" target="_blank">تحميل الملف التعريفي</a>
-</div>
-</div>
-<div class="hero-mosaic">
-<div class="mosaic-item">
-<img alt="Stone Facade Bracket" data-hic-img="bs_img_mos_01" src="../../assets/img/building-systems/bs-stone-bracket.jpg"/>
-</div>
-<div class="mosaic-item">
-<img alt="Building Facade" data-hic-img="bs_img_mos_02" src="../../assets/img/building-systems/bs-glass-building.jpg"/>
-</div>
-<div class="mosaic-item">
-<img alt="System Drawing" data-hic-img="bs_img_tech_02" src="../../assets/img/building-systems/bs-facade-system-drawing.jpg"/>
-</div>
-</div>
-</div>
+  <div class="hero-bg" style="background-image:url('../../assets/img/building-systems/bs-glass-tower.jpg');filter:brightness(.5)" data-hic-bg="bs_ar_img_hero"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow" data-hic-edit="bs_ar_eyebrow">هورايزن إنتيغريشن × هندسة ألمانية</div>
+      <h1>
+        <span data-hic-edit="bs_ar_h1_1">قسم</span><br>
+        <em data-hic-edit="bs_ar_h1_2">أنظمة</em><br>
+        <span data-hic-edit="bs_ar_h1_3" style="color:rgba(255,255,255,.6);font-size:.55em;font-weight:600;letter-spacing:.02em">البناء</span>
+      </h1>
+      <p class="hero-sub" data-hic-edit="bs_ar_hero_sub">أنظمة دعم الواجهات والأغلفة الإنشائية المتقدمة — مُصمَّمة هندسياً في ألمانيا، مُورَّدة ومُركَّبة في مختلف مناطق المملكة.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#systems">← استعرض الأنظمة</a>
+        <a class="btn-outline" href="../../assets/docs/HIC_BuildingSystems.pdf" target="_blank">⬇ تحميل البروفايل</a>
+      </div>
+    </div>
+    <div class="hero-mosaic">
+      <div class="mosaic-item"><img src="../../assets/img/building-systems/bs-stone-bracket.jpg" alt="" data-hic-img="bs_ar_img_mos1"/></div>
+      <div class="mosaic-item"><img src="../../assets/img/building-systems/bs-glass-building.jpg" alt="" data-hic-img="bs_ar_img_mos2"/></div>
+      <div class="mosaic-item"><img src="../../assets/img/building-systems/bs-facade-system-drawing.jpg" alt="" data-hic-img="bs_ar_img_mos3"/></div>
+    </div>
+  </div>
 </section>
-<section class="section" id="systems" style="background:#fff">
-<div class="wrap">
-<div class="reveal">
-<div class="tag tag-dark" data-hic-edit="building_systems_ar_txt_016">ما نقدمه</div>
-<h2 class="title title-dark" data-hic-edit="bs_systems_title">أنظمة إنشائية مهندسة</h2>
-<p class="body body-dark" data-hic-edit="building_systems_ar_txt_017">
-        كل نظام يُصمَّم ويُراجَع إنشائياً من قبل شريكنا الهندسي الألماني، ثم يُورَّد ويُركَّب بواسطة فرقنا الميدانية في المملكة.
-      </p>
-</div>
-<div class="systems-grid">
-<div class="sys reveal">
-<div class="sys-n" data-hic-edit="building_systems_ar_txt_018">٠١ / نظام</div>
-<h3 data-hic-edit="bs_sys1_title">أنظمة حوامل الواجهات الحجرية</h3>
-<p data-hic-edit="building_systems_ar_txt_019">أنظمة دعم إنشائية لكسوة الحجر الطبيعي والمركّب — مصممة لتحمّل أحمال الرياح والتمدد الحراري وأداء الواجهة طويل المدى.</p>
-</div>
-<div class="sys reveal d1">
-<div class="sys-n" data-hic-edit="building_systems_ar_txt_020">٠٢ / نظام</div>
-<h3 data-hic-edit="bs_sys2_title">أنظمة دعم الأسقف المعدنية</h3>
-<p data-hic-edit="building_systems_ar_txt_021">هياكل دعم أسقف معدنية معلّقة وسطحية للمنشآت التجارية والمؤسسية.</p>
-</div>
-<div class="sys reveal d2">
-<div class="sys-n" data-hic-edit="building_systems_ar_txt_022">٠٣ / نظام</div>
-<h3 data-hic-edit="bs_sys3_title">أنظمة الجبس بورد</h3>
-<p data-hic-edit="building_systems_ar_txt_023">أنظمة تأطير ودعم كاملة للقواطع والأسقف وكسوة الواجهات — منسّقة مع المتطلبات الإنشائية والكهروميكانيكية.</p>
-</div>
-<div class="sys reveal">
-<div class="sys-n" data-hic-edit="building_systems_ar_txt_024">٠٤ / نظام</div>
-<h3 data-hic-edit="bs_sys4_title">أنظمة حوامل الكابلات</h3>
-<p data-hic-edit="building_systems_ar_txt_025">أنظمة دعم الكابلات الكهربائية للمباني والمنشآت الصناعية — مصممة لسعة الأحمال وسهولة الصيانة.</p>
-</div>
-<div class="sys reveal d1">
-<div class="sys-n" data-hic-edit="building_systems_ar_txt_026">٠٥ / نظام</div>
-<h3 data-hic-edit="bs_sys5_title">أنظمة التثبيت والتربيط</h3>
-<p data-hic-edit="building_systems_ar_txt_027">أنظمة تثبيت ميكانيكية وكيميائية — تُختار وتُحدَّد حسب نوع القاعدة والأحمال والظروف البيئية.</p>
-</div>
-<div class="sys reveal d2">
-<div class="sys-n" data-hic-edit="building_systems_ar_txt_028">٠٦ / نظام</div>
-<h3 data-hic-edit="bs_sys6_title">الدعم الهندسي الفني</h3>
-<p data-hic-edit="building_systems_ar_txt_029">التحقق من الأحمال والمراجعة الإنشائية وإعداد بيان طريقة العمل والتوثيق الكامل من شريكنا الهندسي الألماني.</p>
-</div>
-</div>
-</div>
+
+<section class="section s-carbon" id="systems">
+  <div class="wrap">
+    <div class="section-hdr-split">
+      <div class="reveal"><div class="tag tag-dim">ما نوفره</div><h2 class="title">أنظمة بناء مُهندَسة</h2></div>
+      <p class="body-text reveal d1">كل نظام يُصمَّم ويُراجَع هيكلياً من قِبل شريكنا الهندسي الألماني، ثم يُوَرَّد ويُركَّب من قِبل فرقنا الميدانية في المملكة.</p>
+    </div>
+    <div class="sys-grid">
+      <div class="sys reveal"><img class="sys-img" src="../../assets/img/building-systems/bs-stone-bracket.jpg" alt="" data-hic-img="bs_ar_sys1_img"/><div class="sys-body"><div class="sys-n">01 / النظام</div><h3>أنظمة دعامات الواجهة الحجرية</h3><p>أنظمة دعم هيكلي للكسوة الحجرية — دعامات وقنوات تثبيت ومشابك ضبط مُصمَّمة للامتثال للأحمال.</p></div></div>
+      <div class="sys reveal d1"><img class="sys-img" src="../../assets/img/building-systems/bs-grid-detail.jpg" alt="" data-hic-img="bs_ar_sys2_img"/><div class="sys-body"><div class="sys-n">02 / النظام</div><h3>أنظمة الأسقف المعدنية</h3><p>حلول أسقف معدنية معلّقة ومخفية — أنظمة ألمنيوم ومثقّبة وخطية للمشاريع التجارية.</p></div></div>
+      <div class="sys reveal d2"><img class="sys-img" src="../../assets/img/building-systems/bs-technical-detail.jpg" alt="" data-hic-img="bs_ar_sys3_img"/><div class="sys-body"><div class="sys-n">03 / النظام</div><h3>أنظمة الجبس البورد</h3><p>أنظمة حواجز وتبطين وأسقف بالجبس البورد القياسي ومقاوم الرطوبة ومقاوم الحريق.</p></div></div>
+      <div class="sys reveal d3"><img class="sys-img" src="../../assets/img/building-systems/bs-installation-diagram.jpg" alt="" data-hic-img="bs_ar_sys4_img"/><div class="sys-body"><div class="sys-n">04 / النظام</div><h3>أنظمة كابل تراي</h3><p>كابل تراي مثقّب وسلّمي وذو قاع مصمت مع هياكل دعم كاملة للمنشآت الكبرى.</p></div></div>
+    </div>
+  </div>
 </section>
-<section class="section section-light" style="padding-top:0">
-<div class="wrap">
-<div class="tech-grid reveal">
-<div class="tech-item tech-item-wide">
-<img alt="Installation System Diagram" data-hic-img="bs_img_tech_01" src="../../assets/img/building-systems/bs-installation-diagram.jpg"/>
-</div>
-<div class="tech-item">
-<img alt="Facade System" data-hic-img="building_systems_ar_img_auto_001" src="../../assets/img/building-systems/bs-facade-system-drawing.jpg"/>
-</div>
-<div class="tech-item">
-<img alt="Engineering Drawing" data-hic-img="bs_img_tech_03" src="../../assets/img/building-systems/bs-engineering-drawing.jpg"/>
-</div>
-<div class="tech-item">
-<img alt="Technical Detail" data-hic-img="bs_img_tech_04" src="../../assets/img/building-systems/bs-technical-detail.jpg"/>
-</div>
-</div>
-</div>
+
+<section class="section s-dark" id="partnership">
+  <div class="wrap">
+    <div class="pship-wrap">
+      <div class="pship-imgs reveal">
+        <div class="pship-img"><img src="../../assets/img/building-systems/bs-engineering-drawing.jpg" alt="" data-hic-img="bs_ar_pship_img1"/></div>
+        <div class="pship-img"><img src="../../assets/img/building-systems/bs-facade-lines.jpg" alt="" data-hic-img="bs_ar_pship_img2"/></div>
+      </div>
+      <div class="reveal d1">
+        <div class="de-flag"><div class="fs b"></div><div class="fs r"></div><div class="fs g"></div></div>
+        <div class="tag tag-dim">الشريك الهندسي الألماني</div>
+        <h2 class="title">تصميم ألماني.<br>تنفيذ سعودي.</h2>
+        <p class="body-text">يوفر شريكنا الهندسي الألماني التصميم الهيكلي وحسابات الأحمال والوثائق التقنية ومراجعة الامتثال لكل نظام نورّده. تتولى فرقنا السعودية التوريد والخدمات اللوجستية والتركيب الميداني.</p>
+        <div class="pship-specs">
+          <div class="pspec"><strong>التصميم الهيكلي</strong><span>ألمانيا</span></div>
+          <div class="pspec"><strong>المعايير</strong><span>DIN / EN / دولية</span></div>
+          <div class="pspec"><strong>التوريد والتركيب</strong><span>المملكة العربية السعودية</span></div>
+          <div class="pspec"><strong>التغطية</strong><span>جميع مناطق المملكة</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<section class="section" id="partner" style="background:#fff">
-<div class="wrap">
-<div class="split">
-<div class="split-img reveal">
-<img alt="Steel Structure" data-hic-img="bs_img_partner" src="../../assets/img/building-systems/bs-steel-structure.jpg"/>
+
+<div style="background:var(--carbon);padding:1px 0 0">
+  <div class="gal-grid">
+    <div class="gal-item"><img src="../../assets/img/building-systems/bs-curved-facade.jpg" alt="" data-hic-img="bs_ar_gal1"/><div class="gal-label">واجهة منحنية</div></div>
+    <div class="gal-item"><img src="../../assets/img/building-systems/bs-facade-architecture.jpg" alt="" data-hic-img="bs_ar_gal2"/><div class="gal-label">عمارة الواجهات</div></div>
+    <div class="gal-item"><img src="../../assets/img/building-systems/bs-quality-facade.jpg" alt="" data-hic-img="bs_ar_gal3"/><div class="gal-label">جودة الواجهات</div></div>
+    <div class="gal-item"><img src="../../assets/img/building-systems/bs-component-detail.jpg" alt="" data-hic-img="bs_ar_gal4"/><div class="gal-label">تفصيل المكوّن</div></div>
+  </div>
 </div>
-<div class="reveal d1">
-<div class="german-flag">
-<div class="gf b"></div><div class="gf r"></div><div class="gf g"></div>
-</div>
-<div class="tag tag-dark" data-hic-edit="building_systems_ar_txt_032">شراكة استراتيجية</div>
-<h2 class="title title-dark" data-hic-edit="bs_partner_title">سند هندسي ألماني</h2>
-<p class="body body-light" data-hic-edit="building_systems_ar_txt_033">
-          كل نظام نقترحه يُراجَع إنشائياً ويُعتمَد من شريكنا الهندسي الألماني — لضمان الموثوقية والتوافق مع المعايير الدولية والتوثيق الفني الكامل.
-        </p>
-<div class="partner-points">
-<div class="pt">
-<div class="pt-icon">📐</div>
-<div class="pt-text"><strong data-hic-edit="building_systems_ar_txt_034">حسابات الأحمال</strong><span data-hic-edit="building_systems_ar_txt_035">كل نظام يُتحقَّق منه لأحمال الرياح والزلازل والحرارة.</span></div>
-</div>
-<div class="pt">
-<div class="pt-icon">📋</div>
-<div class="pt-text"><strong data-hic-edit="building_systems_ar_txt_036">توثيق كامل</strong><span data-hic-edit="building_systems_ar_txt_037">بيانات طريقة العمل والمخططات التنفيذية وحزم الاعتماد.</span></div>
-</div>
-<div class="pt">
-<div class="pt-icon">✓</div>
-<div class="pt-text"><strong data-hic-edit="building_systems_ar_txt_038">معتمد ISO 9001:2015</strong><span data-hic-edit="building_systems_ar_txt_039">إدارة الجودة في جميع أنشطة التوريد والتركيب.</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="section section-light">
-<div class="wrap">
-<div class="reveal" style="text-align:center;margin-bottom:1rem">
-<div class="tag tag-dark" data-hic-edit="building_systems_ar_txt_041" style="justify-content:center">آلية العمل</div>
-<h2 class="title title-dark" data-hic-edit="bs_process_title">مراحل تنفيذ المشروع</h2>
-</div>
-<div class="process reveal">
-<div class="process-step">
-<div class="ps-n" data-hic-edit="building_systems_ar_txt_042">٠١</div>
-<h4 data-hic-edit="building_systems_ar_txt_043">مراجعة الموقع والمخططات</h4>
-<p data-hic-edit="building_systems_ar_txt_044">تقييم مخططات المشروع وظروف القاعدة والمتطلبات الفنية لتحديد النظام المناسب.</p>
-</div>
-<div class="process-step">
-<div class="ps-n" data-hic-edit="building_systems_ar_txt_045">٠٢</div>
-<h4 data-hic-edit="building_systems_ar_txt_046">التصميم الهندسي</h4>
-<p data-hic-edit="building_systems_ar_txt_047">المكتب الهندسي الألماني يحسب الأحمال ويُنتج التوثيق الفني المعتمد.</p>
-</div>
-<div class="process-step">
-<div class="ps-n" data-hic-edit="building_systems_ar_txt_048">٠٣</div>
-<h4 data-hic-edit="building_systems_ar_txt_049">التوريد والتنسيق</h4>
-<p data-hic-edit="building_systems_ar_txt_050">توريد المواد حسب المواصفات، بالتنسيق مع الجدول الزمني وجاهزية الموقع.</p>
-</div>
-<div class="process-step">
-<div class="ps-n" data-hic-edit="building_systems_ar_txt_051">٠٤</div>
-<h4 data-hic-edit="building_systems_ar_txt_052">التركيب والتسليم</h4>
-<p data-hic-edit="building_systems_ar_txt_053">فرق ميدانية مدرّبة تركّب وتفحص وتسلّم رسمياً مع التوثيق الكامل.</p>
-</div>
-</div>
-</div>
-</section>
-<section class="cta">
-<div class="wrap">
-<div class="cta-inner">
-<div class="reveal">
-<h2 data-hic-edit="building_systems_ar_txt_055">لنتحدث عن مشروعك</h2>
-<p data-hic-edit="building_systems_ar_txt_056">لاستفسارات أنظمة الواجهات أو الاستشارات الفنية أو طلب ملفنا التعريفي الكامل</p>
-</div>
-<div class="cta-btns reveal d1">
-<a class="btn-white" data-hic-edit="building_systems_ar_txt_057" href="mailto:sales@saudihic.com">📧 sales@saudihic.com</a>
-<a class="btn-woutline" data-hic-edit="building_systems_ar_txt_058" href="../../assets/docs/HIC_BuildingSystems.pdf" target="_blank">⬇ تحميل الملف التعريفي</a>
-</div>
-</div>
-</div>
-</section>
-<footer>
-<div class="footer-inner">
-<img alt="HIC" class="footer-logo" data-hic-img="building_systems_ar_img_logo_footer" src="../../assets/img/hic-logo-white.png"/>
-<a class="footer-back" data-hic-edit="building_systems_ar_txt_059" href="../../ar/">العودة للموقع الرئيسي →</a>
-<span class="footer-copy" data-hic-edit="building_systems_ar_txt_060">© هورايزن إنتيغريشن — قسم الحلول الإنشائية</span>
-</div>
+
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <div class="contact-grid" style="margin-bottom:3rem">
+      <div class="reveal">
+        <div class="tag tag-dim">تواصل معنا</div>
+        <h2 class="title">اطلب المواصفات التقنية</h2>
+        <p class="body-text">للاستفسار عن مواصفات الأنظمة والرسومات الهيكلية والتوريد والتركيب في مختلف مناطق المملكة.</p>
+        <div class="contact-links">
+          <a class="clink" href="mailto:sales@saudihic.com"><span class="clink-icon">📧</span><span>sales@saudihic.com</span></a>
+          <a class="clink" href="tel:0536821111"><span class="clink-icon">📞</span><span>053 682 1111</span></a>
+        </div>
+      </div>
+      <div class="qlinks-box reveal d1">
+        <div class="tag tag-dim" style="margin-bottom:1rem">التحميلات</div>
+        <a class="qlink" href="../../assets/docs/HIC_BuildingSystems.pdf" target="_blank"><span>بروفايل أنظمة البناء PDF</span><span>⬇</span></a>
+        <a class="qlink" href="../../assets/docs/HIC_Profile_AR.pdf" target="_blank"><span>البروفايل المؤسسي AR</span><span>⬇</span></a>
+        <a class="qlink" href="../../building-systems/"><span>النسخة الإنجليزية</span><span>→</span></a>
+        <a class="qlink" href="../../ar/"><span>← الموقع الرئيسي</span><span></span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 هورايزن إنتيغريشن — قسم أنظمة البناء</span>
+      <span>saudihic.com</span>
+    </div>
+  </div>
 </footer>
-<script>
-const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(!t)return;e.preventDefault();
-    window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-68,behavior:'smooth'});
-  });
-});
-</script>
-<script id="hic-cms">
-(function(){
-  function apply(data){
-    if(!data||!data.pages)return;
-    Object.values(data.pages).forEach(function(pg){
-      var imgs=pg.images||{};
-      Object.keys(imgs).forEach(function(id){
-        if(imgs[id]&&imgs[id].src){
-          document.querySelectorAll('[data-hic-img="'+id+'"]').forEach(function(el){
-            el.src=imgs[id].src;
-            var bg=el.id||'';
-            if(el.classList&&el.classList.contains('hero-img-target')){el.style.backgroundImage="url('"+imgs[id].src+"')";}
-          });
-          // hero background elements
-          document.querySelectorAll('[data-hic-bg="'+id+'"]').forEach(function(el){
-            el.style.backgroundImage="url('"+imgs[id].src+"')";
-          });
-        }
-      });
-      var texts=pg.texts||{};
-      Object.keys(texts).forEach(function(id){
-        if(texts[id]!==undefined&&texts[id]!==null){
-          document.querySelectorAll('[data-hic-edit="'+id+'"]').forEach(function(el){
-            el.textContent=texts[id];
-          });
-        }
-      });
-    });
-  }
-  // API (KV) is the source of truth on the live site.
-  // localStorage is used only as a fallback when the API is unreachable (e.g. opened locally as a file).
-  fetch('/api/content',{cache:'no-store'})
-    .then(function(r){return r.json();})
-    .then(function(d){
-      if(d&&d.pages&&Object.keys(d.pages).length){
-        apply(d);
-        try{localStorage.setItem('hic_content',JSON.stringify(d));}catch(e){}
-      }
-    })
-    .catch(function(){
-      try{var local=localStorage.getItem('hic_content');if(local)apply(JSON.parse(local));}catch(e){}
-    });
-})();
-</script>
+
+<script src="../../assets/js/hic.js"></script>
 </body>
 </html>
