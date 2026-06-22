@@ -12,11 +12,11 @@
 </head>
 <body class="en" data-page="bs_en">
 
-<header class="hdr" id="hdr">
+<header class="hdr dark-hdr" id="hdr">
   <div style="display:flex;align-items:center;gap:1rem">
-    <a style="font-size:.78rem;font-weight:700;color:rgba(255,255,255,.45);transition:color .2s" href="../" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">← HIC</a>
-    <div style="width:1px;height:18px;background:rgba(255,255,255,.12)"></div>
-    <a class="hdr-logo" href="../"><img src="../assets/img/hic-logo-white.png" alt="HIC" data-hic-img="bs_img_logo"/></a>
+    <a style="font-size:.78rem;font-weight:700;color:rgba(255,255,255,.45)" href="../">← HIC</a>
+    <div style="width:1px;height:18px;background:rgba(255,255,255,.15)"></div>
+    <a class="hdr-logo" href="../"><img src="../assets/img/hic-logo-white.png" alt="HIC"/></a>
   </div>
   <div style="display:flex;align-items:center;gap:.75rem">
     <div class="de-flag" style="margin:0"><div class="fs b"></div><div class="fs r"></div><div class="fs g"></div></div>
@@ -25,54 +25,60 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-bg" style="background-image:url('../assets/img/building-systems/bs-glass-tower.jpg');filter:brightness(.5)" data-hic-bg="bs_img_hero"></div>
+<!-- HERO — DARK -->
+<section class="hero hero-dark">
+  <div class="hero-bg" style="background-image:url('../assets/img/building-systems/bs-glass-tower.jpg');filter:brightness(.5)" data-hic-bg="bs_en_img_hero"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-eyebrow" data-hic-edit="bs_eyebrow">Horizon Integration × German Engineering</div>
-      <h1>
-        <span data-hic-edit="bs_h1_1">Building</span><br>
-        <em data-hic-edit="bs_h1_2">Systems</em><br>
-        <span data-hic-edit="bs_h1_3" style="color:rgba(255,255,255,.6);font-size:.55em;font-weight:600;letter-spacing:.02em">Division</span>
-      </h1>
+      <h1 data-hic-edit="bs_h1_1"><span>Building</span><br data-hic-edit="bs_h1_2"><em>Systems</em><br><span style="color:rgba(255,255,255,.5);font-size:.55em;font-weight:600">Division</span></h1>
       <p class="hero-sub" data-hic-edit="bs_hero_sub">Advanced facade support systems and building envelope solutions — structurally engineered in Germany, supplied and installed across Saudi Arabia.</p>
       <div class="hero-btns">
         <a class="btn-primary" href="#systems">Our Systems →</a>
-        <a class="btn-outline" href="../assets/docs/HIC_BuildingSystems.pdf" target="_blank">⬇ Download Profile</a>
+        <a class="btn-outline-dark" href="../assets/docs/HIC_BuildingSystems.pdf" target="_blank">⬇ Download Profile</a>
       </div>
     </div>
     <div class="hero-mosaic">
-      <div class="mosaic-item"><img src="../assets/img/building-systems/bs-stone-bracket.jpg" alt="" data-hic-img="bs_img_mos1"/></div>
-      <div class="mosaic-item"><img src="../assets/img/building-systems/bs-glass-building.jpg" alt="" data-hic-img="bs_img_mos2"/></div>
-      <div class="mosaic-item"><img src="../assets/img/building-systems/bs-facade-system-drawing.jpg" alt="" data-hic-img="bs_img_mos3"/></div>
+      <div class="mosaic-item"><img src="../assets/img/building-systems/bs-stone-bracket.jpg" data-hic-img="bs_en_img_sys1" alt=""/></div>
+      <div class="mosaic-item"><img src="../assets/img/building-systems/bs-glass-building.jpg" alt=""/></div>
+      <div class="mosaic-item"><img src="../assets/img/building-systems/bs-facade-system-drawing.jpg" alt=""/></div>
     </div>
   </div>
 </section>
 
-<section class="section s-carbon" id="systems">
+<!-- SYSTEMS — WHITE -->
+<section class="section s-white" id="systems">
   <div class="wrap">
     <div class="section-hdr-split">
-      <div class="reveal"><div class="tag tag-dim">What We Provide</div><h2 class="title">Engineered Building Systems</h2></div>
+      <div class="reveal">
+        <div class="tag tag-gold">What We Provide</div>
+        <h2 class="title title-g">Engineered Building Systems</h2>
+      </div>
       <p class="body-text reveal d1">Each system is designed and structurally reviewed by our German engineering partner, then supplied and installed by our KSA field teams.</p>
     </div>
     <div class="sys-grid">
-      <div class="sys reveal"><img class="sys-img" src="../assets/img/building-systems/bs-stone-bracket.jpg" alt="" data-hic-img="bs_sys1_img"/><div class="sys-body"><div class="sys-n">01 / SYSTEM</div><h3>Stone Facade Bracket Systems</h3><p>Structural support for natural stone cladding — brackets, anchor channels and adjustment clips engineered for load compliance.</p></div></div>
-      <div class="sys reveal d1"><img class="sys-img" src="../assets/img/building-systems/bs-grid-detail.jpg" alt="" data-hic-img="bs_sys2_img"/><div class="sys-body"><div class="sys-n">02 / SYSTEM</div><h3>Metal Ceiling Systems</h3><p>Suspended and concealed metal ceiling solutions — aluminum, perforated and linear systems for commercial projects.</p></div></div>
-      <div class="sys reveal d2"><img class="sys-img" src="../assets/img/building-systems/bs-technical-detail.jpg" alt="" data-hic-img="bs_sys3_img"/><div class="sys-body"><div class="sys-n">03 / SYSTEM</div><h3>Gypsum Board Systems</h3><p>Partition, lining and ceiling systems in standard, moisture-resistant and fire-rated gypsum board.</p></div></div>
-      <div class="sys reveal d3"><img class="sys-img" src="../assets/img/building-systems/bs-installation-diagram.jpg" alt="" data-hic-img="bs_sys4_img"/><div class="sys-body"><div class="sys-n">04 / SYSTEM</div><h3>Cable Tray Systems</h3><p>Perforated, ladder and solid-bottom cable trays with full support structures for large-scale facilities.</p></div></div>
+      <div class="sys reveal"><img class="sys-img" src="../assets/img/building-systems/bs-stone-bracket.jpg" alt=""/><div class="sys-body"><div class="sys-n">01 / SYSTEM</div><h3>Stone Facade Bracket Systems</h3><p>Structural support for natural stone cladding — brackets, anchor channels and adjustment clips engineered for load compliance.</p></div></div>
+      <div class="sys reveal d1"><img class="sys-img" src="../assets/img/building-systems/bs-grid-detail.jpg" data-hic-img="bs_en_img_sys2" alt=""/><div class="sys-body"><div class="sys-n">02 / SYSTEM</div><h3>Metal Ceiling Systems</h3><p>Suspended and concealed metal ceiling solutions — aluminum, perforated and linear systems for commercial projects.</p></div></div>
+      <div class="sys reveal d2"><img class="sys-img" src="../assets/img/building-systems/bs-technical-detail.jpg" data-hic-img="bs_en_img_sys3" alt=""/><div class="sys-body"><div class="sys-n">03 / SYSTEM</div><h3>Gypsum Board Systems</h3><p>Partition, lining and ceiling systems in standard, moisture-resistant and fire-rated gypsum board.</p></div></div>
+      <div class="sys reveal d3"><img class="sys-img" src="../assets/img/building-systems/bs-installation-diagram.jpg" data-hic-img="bs_en_img_sys4" alt=""/><div class="sys-body"><div class="sys-n">04 / SYSTEM</div><h3>Cable Tray Systems</h3><p>Perforated, ladder and solid-bottom cable trays with full support structures for large-scale facilities.</p></div></div>
     </div>
   </div>
 </section>
 
-<section class="section s-dark" id="partnership">
+<!-- PARTNERSHIP — GREEN DARK -->
+<section class="section s-gd" id="partnership">
   <div class="wrap">
     <div class="pship-wrap">
-      <div class="reveal">
+      <div class="pship-imgs reveal">
+        <div class="pship-img"><img src="../assets/img/building-systems/bs-engineering-drawing.jpg" data-hic-img="bs_en_img_pship1" alt=""/></div>
+        <div class="pship-img"><img src="../assets/img/building-systems/bs-facade-lines.jpg" data-hic-img="bs_en_img_pship2" alt=""/></div>
+      </div>
+      <div class="reveal d1">
         <div class="de-flag"><div class="fs b"></div><div class="fs r"></div><div class="fs g"></div></div>
-        <div class="tag tag-dim">German Engineering Partner</div>
-        <h2 class="title">Engineered in Germany.<br>Delivered in Saudi Arabia.</h2>
-        <p class="body-text">Our German engineering partner provides structural design, load calculations, technical documentation and compliance review for every system we supply. Our Saudi field teams handle supply chain, logistics and on-site installation.</p>
+        <div class="tag tag-light">German Engineering Partner</div>
+        <h2 class="title title-w">Engineered in Germany.<br>Delivered in Saudi Arabia.</h2>
+        <p class="body-text body-light">We are committed to applying international quality standards in every system we supply — working with our specialized German engineering partner to ensure full compliance with DIN, EN and international specifications for facade and ceiling solutions.</p>
         <div class="pship-specs">
           <div class="pspec"><strong>Structural Design</strong><span>Germany</span></div>
           <div class="pspec"><strong>Standards</strong><span>DIN / EN / International</span></div>
@@ -80,29 +86,27 @@
           <div class="pspec"><strong>Coverage</strong><span>Nationwide KSA</span></div>
         </div>
       </div>
-      <div class="pship-imgs reveal d1">
-        <div class="pship-img"><img src="../assets/img/building-systems/bs-engineering-drawing.jpg" alt="" data-hic-img="bs_pship_img1"/></div>
-        <div class="pship-img"><img src="../assets/img/building-systems/bs-facade-lines.jpg" alt="" data-hic-img="bs_pship_img2"/></div>
-      </div>
     </div>
   </div>
 </section>
 
+<!-- GALLERY — CARBON -->
 <div style="background:var(--carbon);padding:1px 0 0">
   <div class="gal-grid">
-    <div class="gal-item"><img src="../assets/img/building-systems/bs-curved-facade.jpg" alt="" data-hic-img="bs_gal1"/><div class="gal-label">Curved Facade</div></div>
-    <div class="gal-item"><img src="../assets/img/building-systems/bs-facade-architecture.jpg" alt="" data-hic-img="bs_gal2"/><div class="gal-label">Facade Architecture</div></div>
-    <div class="gal-item"><img src="../assets/img/building-systems/bs-quality-facade.jpg" alt="" data-hic-img="bs_gal3"/><div class="gal-label">Quality Facade Works</div></div>
-    <div class="gal-item"><img src="../assets/img/building-systems/bs-component-detail.jpg" alt="" data-hic-img="bs_gal4"/><div class="gal-label">Component Detail</div></div>
+    <div class="gal-item"><img src="../assets/img/building-systems/bs-curved-facade.jpg" data-hic-img="bs_en_gal1" alt=""/><div class="gal-label">Curved Facade</div></div>
+    <div class="gal-item"><img src="../assets/img/building-systems/bs-facade-architecture.jpg" data-hic-img="bs_en_gal2" alt=""/><div class="gal-label">Facade Architecture</div></div>
+    <div class="gal-item"><img src="../assets/img/building-systems/bs-quality-facade.jpg" data-hic-img="bs_en_gal3" alt=""/><div class="gal-label">Quality Facade Works</div></div>
+    <div class="gal-item"><img src="../assets/img/building-systems/bs-component-detail.jpg" data-hic-img="bs_en_gal4" alt=""/><div class="gal-label">Component Detail</div></div>
   </div>
 </div>
 
-<footer class="footer" id="contact">
+<!-- CONTACT — SOFT -->
+<section class="section s-soft" id="contact">
   <div class="wrap">
-    <div class="contact-grid" style="margin-bottom:3rem">
+    <div class="contact-grid">
       <div class="reveal">
-        <div class="tag tag-dim">Get In Touch</div>
-        <h2 class="title">Request Technical Specifications</h2>
+        <div class="tag">Get In Touch</div>
+        <h2 class="title title-g">Request Technical Specifications</h2>
         <p class="body-text">For system specifications, structural drawings, supply and installation inquiries across Saudi Arabia.</p>
         <div class="contact-links">
           <a class="clink" href="mailto:sales@saudihic.com"><span class="clink-icon">📧</span><span>sales@saudihic.com</span></a>
@@ -110,14 +114,19 @@
         </div>
       </div>
       <div class="qlinks-box reveal d1">
-        <div class="tag tag-dim" style="margin-bottom:1rem">Downloads</div>
+        <div class="tag" style="margin-bottom:1rem">Downloads</div>
         <a class="qlink" href="../assets/docs/HIC_BuildingSystems.pdf" target="_blank"><span>Building Systems Profile PDF</span><span>⬇</span></a>
         <a class="qlink" href="../assets/docs/HIC_Profile_EN.pdf" target="_blank"><span>Company Profile EN</span><span>⬇</span></a>
         <a class="qlink" href="../ar/building-systems/"><span>Arabic Version</span><span>→</span></a>
         <a class="qlink" href="../"><span>← Main Site</span><span></span></a>
       </div>
     </div>
-    <div class="footer-bottom">
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="padding-top:0;border-top:none">
       <span>© 2026 Horizon Integration — Building Systems Division</span>
       <span>saudihic.com</span>
     </div>
