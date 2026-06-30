@@ -434,6 +434,7 @@ a { text-decoration: none; color: inherit; }
 }
 .clink:hover { background: var(--light); border-color: var(--green); }
 .clink-icon { font-size: 1.1rem; }
+.clink-icon svg { width: 18px; height: 18px; color: var(--green); flex-shrink: 0; }
 .qlinks-box { background: var(--soft); border: 1px solid #e8e3d8; border-radius: 2px; padding: 1.75rem; }
 .qlink {
   display: flex; align-items: center; justify-content: space-between;
