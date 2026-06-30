@@ -337,6 +337,7 @@ a { text-decoration: none; color: inherit; }
 .wf-step { background: var(--soft); padding: 1.5rem; display: flex; flex-direction: column; gap: .5rem; }
 .wf-n { font-size: 1.6rem; font-weight: 800; color: var(--green); line-height: 1; }
 .wf-step span { font-size: .82rem; color: var(--mid); font-weight: 600; }
+@media (max-width: 960px) { .wf-step:nth-child(5) { grid-column: 1 / -1; } }
 
 /* ── MATERIALS ── */
 .mat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 2.5rem; }
