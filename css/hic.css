@@ -68,7 +68,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ── HERO (LIGHT) ── */
 .hero {
-  height: 100vh; min-height: 700px;
+  min-height: 100vh;
   position: relative; overflow: hidden;
   display: flex; align-items: flex-end;
   background: var(--soft);
