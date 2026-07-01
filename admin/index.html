@@ -203,52 +203,239 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
     <div class="panel active" id="panel-home_ar">
       <div class="panel-hdr"><h2>🏠 الرئيسية — عربي</h2><p>نصوص وصور الصفحة الرئيسية العربية</p></div>
 
+      <
+
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 صور الصفحة</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div style="padding:.75rem 1rem;background:rgba(200,169,110,.08);border:1px solid rgba(200,169,110,.25);border-radius:4px;font-size:.8rem;color:#C8A96E;line-height:1.8">
-            🔗 صور الرئيسية العربية والإنجليزية موحّدة — عدّل الصور من قسم <strong>الرئيسية الإنجليزية</strong> وستنعكس تلقائياً على النسخة العربية.
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>🧭 Navigation / التنقل</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">الخدمات</label><input type="text" data-key="home_ar_nav1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">التنفيذ</label><input type="text" data-key="home_ar_nav2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الحلول الإنشائية</label><input type="text" data-key="home_ar_nav3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تواصل</label><input type="text" data-key="home_ar_nav4" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📊 إحصائيات الهيرو</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">KSA — القيمة</label><input type="text" data-key="home_ar_stat1_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">KSA — التعليق</label><input type="text" data-key="home_ar_stat1_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">24/7 — القيمة</label><input type="text" data-key="home_ar_stat2_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">24/7 — التعليق</label><input type="text" data-key="home_ar_stat2_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">ISO — القيمة</label><input type="text" data-key="home_ar_stat3_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">ISO — التعليق</label><input type="text" data-key="home_ar_stat3_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">DE — القيمة</label><input type="text" data-key="home_ar_stat4_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">DE — التعليق</label><input type="text" data-key="home_ar_stat4_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">زر الخدمات</label><input type="text" data-key="home_ar_btn1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">زر البروفايل</label><input type="text" data-key="home_ar_btn2" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>🏷️ تاقات المقدمة</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">تاق 1</label><input type="text" data-key="home_ar_tag1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تاق 2</label><input type="text" data-key="home_ar_tag2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تاق 3</label><input type="text" data-key="home_ar_tag3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تاق 4</label><input type="text" data-key="home_ar_tag4" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تاق 5</label><input type="text" data-key="home_ar_tag5" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تاق 6</label><input type="text" data-key="home_ar_tag6" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 قسم الخدمات</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="home_ar_svc_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الوصف</label><textarea data-key="home_ar_svc_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 1 — رقم</label><input type="text" data-key="home_ar_svc1_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 1 — عنوان</label><input type="text" data-key="home_ar_svc1_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 1 — وصف</label><textarea data-key="home_ar_svc1_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 2 — رقم</label><input type="text" data-key="home_ar_svc2_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 2 — عنوان</label><input type="text" data-key="home_ar_svc2_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 2 — وصف</label><textarea data-key="home_ar_svc2_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 3 — رقم</label><input type="text" data-key="home_ar_svc3_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 3 — عنوان</label><input type="text" data-key="home_ar_svc3_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 3 — وصف</label><textarea data-key="home_ar_svc3_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 4 — رقم</label><input type="text" data-key="home_ar_svc4_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 4 — عنوان</label><input type="text" data-key="home_ar_svc4_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 4 — وصف</label><textarea data-key="home_ar_svc4_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 5 — رقم</label><input type="text" data-key="home_ar_svc5_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 5 — عنوان</label><input type="text" data-key="home_ar_svc5_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 5 — وصف</label><textarea data-key="home_ar_svc5_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 6 — رقم</label><input type="text" data-key="home_ar_svc6_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 6 — عنوان</label><input type="text" data-key="home_ar_svc6_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 6 — وصف</label><textarea data-key="home_ar_svc6_desc" oninput="markDirty()"></textarea></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 قسم التنفيذ</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="home_ar_ops_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الوصف</label><textarea data-key="home_ar_ops_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">تاق الكارد</label><input type="text" data-key="home_ar_ops_card_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">عنوان الكارد</label><input type="text" data-key="home_ar_ops_card_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">وصف الكارد</label><textarea data-key="home_ar_ops_card_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">تسمية صورة 1</label><input type="text" data-key="home_ar_ops_mini1_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تسمية صورة 2</label><input type="text" data-key="home_ar_ops_mini2_label" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 الحلول الإنشائية</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="home_ar_bs_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الوصف</label><textarea data-key="home_ar_bs_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">مواصفة 1 — تسمية</label><input type="text" data-key="home_ar_spec1_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 1 — قيمة</label><input type="text" data-key="home_ar_spec1_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 2 — تسمية</label><input type="text" data-key="home_ar_spec2_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 2 — قيمة</label><input type="text" data-key="home_ar_spec2_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 3 — تسمية</label><input type="text" data-key="home_ar_spec3_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 3 — قيمة</label><input type="text" data-key="home_ar_spec3_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 4 — تسمية</label><input type="text" data-key="home_ar_spec4_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 4 — قيمة</label><input type="text" data-key="home_ar_spec4_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">زر القسم</label><input type="text" data-key="home_ar_bs_btn" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>🖼️ تسميات المعرض</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">صورة 1</label><input type="text" data-key="home_ar_gal1_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">صورة 2</label><input type="text" data-key="home_ar_gal2_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">صورة 3</label><input type="text" data-key="home_ar_gal3_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">صورة 4</label><input type="text" data-key="home_ar_gal4_label" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📞 التواصل والفوتر</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="home_ar_contact_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">العنوان</label><input type="text" data-key="home_ar_contact_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الوصف</label><textarea data-key="home_ar_contact_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">وصف الفوتر</label><textarea data-key="home_ar_footer_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">حقوق النشر</label><input type="text" data-key="home_ar_footer_copy" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🦸 هيرو — نص</h3><i class="chevron">▼</i></div>
+        <div class="card-body open">
+          <div class="fields-grid">
+              <div class="">
+                <label class="field-label">Eyebrow</label>
+                <input class="field-input" type="text" data-key="home_ar_eyebrow" placeholder="المملكة العربية السعودية · مقاول بنية تحتية"/>
+              </div>
+              <div class="">
+                <label class="field-label">العنوان سطر 1</label>
+                <input class="field-input" type="text" data-key="home_ar_h1_1" placeholder="بنية تحتية"/>
+              </div>
+              <div class="">
+                <label class="field-label">العنوان سطر 2 (مائل)</label>
+                <input class="field-input" type="text" data-key="home_ar_h1_2" placeholder="تُنفَّذ على أرض الواقع"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">النص التمهيدي</label>
+                <input class="field-input" type="text" data-key="home_ar_hero_sub" placeholder="النص التمهيدي"/>
+              </div>
+              <div class="">
+                <label class="field-label">عنوان قسم الخدمات</label>
+                <input class="field-input" type="text" data-key="home_ar_svc_title" placeholder="ست خطوط تنفيذ متكاملة"/>
+              </div>
+              <div class="">
+                <label class="field-label">عنوان قسم التنفيذ</label>
+                <input class="field-input" type="text" data-key="home_ar_ops_title" placeholder="خبرة ميدانية مُثبَتة"/>
+              </div>
+              <div class="">
+                <label class="field-label">عنوان قسم الحلول الإنشائية</label>
+                <input class="field-input" type="text" data-key="home_ar_bs_title" placeholder="الحلول الإنشائية المتكاملة"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">النص التمهيدي (الشريط الأخضر)</label>
+                <input class="field-input" type="text" data-key="home_ar_intro" placeholder="النص التمهيدي (الشريط الأخضر)"/>
+              </div>
           </div>
         </div>
-        <div class="card-hdr open" onclick="toggleCard(this)"><h3>📝 نصوص الهيرو</h3><i class="chevron">▼</i></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr open" onclick="toggleCard(this)"><h3>📋 التحميلات</h3><i class="chevron">▼</i></div>
         <div class="card-body open">
-          <div class="field"><label class="field-label">النص العلوي (Eyebrow)</label><input type="text" data-key="home_ar_eyebrow" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">العنوان — سطر 1</label><input type="text" data-key="home_ar_h1_1" placeholder="بنية تحتية" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">العنوان — سطر 2 (أخضر)</label><input type="text" data-key="home_ar_h1_2" placeholder="تُنفَّذ على أرض الواقع" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">النص التمهيدي</label><textarea data-key="home_ar_hero_sub" oninput="markDirty()"></textarea></div>
-          <div class="field"><label class="field-label">نص الشريط الأخضر</label><textarea data-key="home_ar_intro" oninput="markDirty()"></textarea></div>
+          <div class="fields-grid">
+              <div class="">
+                <label class="field-label">وسم القسم</label>
+                <input class="field-input" type="text" data-key="home_ar_dl_tag" placeholder="التحميلات"/>
+              </div>
+              <div class="">
+                <label class="field-label">عنوان القسم</label>
+                <input class="field-input" type="text" data-key="home_ar_dl_title" placeholder="البروفايلات المؤسسية"/>
+              </div>
+              <div class="">
+                <label class="field-label">بطاقة 1 — النوع</label>
+                <input class="field-input" type="text" data-key="home_ar_dl1_type" placeholder="PDF · عربي"/>
+              </div>
+              <div class="">
+                <label class="field-label">بطاقة 1 — العنوان</label>
+                <input class="field-input" type="text" data-key="home_ar_dl1_title" placeholder="البروفايل المؤسسي"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">بطاقة 1 — الوصف</label>
+                <input class="field-input" type="text" data-key="home_ar_dl1_desc" placeholder="بطاقة 1 — الوصف"/>
+              </div>
+              <div class="">
+                <label class="field-label">بطاقة 2 — النوع</label>
+                <input class="field-input" type="text" data-key="home_ar_dl2_type" placeholder="PDF · EN"/>
+              </div>
+              <div class="">
+                <label class="field-label">بطاقة 2 — العنوان</label>
+                <input class="field-input" type="text" data-key="home_ar_dl2_title" placeholder="Company Profile"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">بطاقة 2 — الوصف</label>
+                <input class="field-input" type="text" data-key="home_ar_dl2_desc" placeholder="بطاقة 2 — الوصف"/>
+              </div>
+              <div class="">
+                <label class="field-label">بطاقة 3 — النوع</label>
+                <input class="field-input" type="text" data-key="home_ar_dl3_type" placeholder="PDF · عربي/EN"/>
+              </div>
+              <div class="">
+                <label class="field-label">بطاقة 3 — العنوان</label>
+                <input class="field-input" type="text" data-key="home_ar_dl3_title" placeholder="الحلول الإنشائية"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">بطاقة 3 — الوصف</label>
+                <input class="field-input" type="text" data-key="home_ar_dl3_desc" placeholder="بطاقة 3 — الوصف"/>
+              </div>
+          </div>
         </div>
       </div>
-
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 الخدمات</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="home_ar_svc_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">الوصف</label><textarea data-key="home_ar_svc_body" oninput="markDirty()"></textarea></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 التنفيذ الميداني</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="home_ar_ops_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">الوصف</label><textarea data-key="home_ar_ops_body" oninput="markDirty()"></textarea></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 الحلول الإنشائية</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="home_ar_bs_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">الوصف</label><textarea data-key="home_ar_bs_body" oninput="markDirty()"></textarea></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📞 التواصل</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="field"><label class="field-label">البريد الإلكتروني</label><input type="text" data-key="home_ar_email" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">رقم الهاتف</label><input type="text" data-key="home_ar_phone" oninput="markDirty()"/></div>
+        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🔗 الفوتر — عناوين</h3><i class="chevron">▼</i></div>
+        <div class="card-body open">
+          <div class="fields-grid">
+              <div class="">
+                <label class="field-label">عنوان عمود الخدمات</label>
+                <input class="field-input" type="text" data-key="home_ar_footer_h_svc" placeholder="الخدمات"/>
+              </div>
+              <div class="">
+                <label class="field-label">عنوان عمود الصفحات</label>
+                <input class="field-input" type="text" data-key="home_ar_footer_h_pages" placeholder="الصفحات"/>
+              </div>
+              <div class="">
+                <label class="field-label">عنوان عمود التواصل</label>
+                <input class="field-input" type="text" data-key="home_ar_footer_h_contact" placeholder="تواصل"/>
+              </div>
+              <div class="">
+                <label class="field-label">البريد الإلكتروني</label>
+                <input class="field-input" type="text" data-key="home_ar_email" placeholder="sales@saudihic.com"/>
+              </div>
+              <div class="">
+                <label class="field-label">الهاتف</label>
+                <input class="field-input" type="text" data-key="home_ar_phone" placeholder="053 682 1111"/>
+              </div>
+          </div>
         </div>
       </div>
     </div>
@@ -538,479 +725,1419 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
     </div>
 
     <!-- ═══ PROFILE AR ═══ -->
+      <div class="card">
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 صور البروفايل العربي</h3><i class="chevron">▼</i></div>
+        <div class="card-body">
+          <div class="img-grid">
+            <div>
+              <span class="field-label">هيرو الخلفية</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_hero" src="../../assets/img/projects/proj_158.jpeg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_hero</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_hero" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_hero')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">نبذة</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_about" src="../../assets/img/projects/proj_021.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_about</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_about" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_about')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">تنفيذ — رئيسية</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_ops_main" src="../../assets/img/projects/proj_154.jpeg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_ops_main</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_ops_main" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_ops_main')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">تنفيذ — مصغرة 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_ops_mini1" src="../../assets/img/projects/proj_021.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_ops_mini1</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_ops_mini1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_ops_mini1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">تنفيذ — مصغرة 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_ops_mini2" src="../../assets/img/projects/proj_070.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_ops_mini2</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_ops_mini2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_ops_mini2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">تنفيذ — فرعية 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_sub1" src="../../assets/img/projects/proj_003.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_sub1</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_sub1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_sub1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">تنفيذ — فرعية 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_sub2" src="../../assets/img/projects/proj_041.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_sub2</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_sub2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_sub2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">تنفيذ — فرعية 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_sub3" src="../../assets/img/projects/proj_043.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_sub3</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_sub3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_sub3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">مواد 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_mat1" src="../../assets/img/projects/proj_041.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_mat1</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_mat1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_mat1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">مواد 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_mat2" src="../../assets/img/projects/proj_033.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_mat2</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_mat2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_mat2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">مواد 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_mat3" src="../../assets/img/projects/proj_035.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_mat3</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_mat3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_mat3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">مواد 4</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_mat4" src="../../assets/img/projects/proj_077.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_mat4</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_mat4" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_mat4')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">أسطول 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_fleet1" src="../../assets/img/equipment/eq_01.png" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_fleet1</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_fleet1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_fleet1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">أسطول 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_fleet2" src="../../assets/img/equipment/eq_02.png" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_fleet2</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_fleet2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_fleet2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">أسطول 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_fleet3" src="../../assets/img/equipment/eq_03.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_fleet3</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_fleet3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_fleet3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">أسطول 4</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_fleet4" src="../../assets/img/equipment/eq_04.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_fleet4</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_fleet4" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_fleet4')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client1" src="../../assets/img/clients/client_01.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_client1</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_client1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client2" src="../../assets/img/clients/client_02.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_client2</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_client2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client3" src="../../assets/img/clients/client_03.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_client3</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_client3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 4</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client4" src="../../assets/img/clients/client_04.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_client4</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_client4" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client4')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 5</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client5" src="../../assets/img/clients/client_05.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_client5</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_client5" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client5')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 6</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client6" src="../../assets/img/clients/client_06.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_client6</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_client6" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client6')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">أعمال حضرية</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_urban" src="../../assets/img/projects/proj_043.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_ar_img_urban</span>
+                  <input class="img-url-input" type="text" data-key="profile_ar_img_urban" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_urban')"/></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="panel" id="panel-profile_ar">
       <div class="panel-hdr"><h2>📋 البروفايل — عربي</h2><p>نصوص وصور صفحة البروفايل العربية</p></div>
 
+      <
+
       <div class="card">
-        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🖼 صور الهيرو والعمليات</h3><i class="chevron">▼</i></div>
-        <div class="card-body open">
-          <div class="img-grid">
-            <div><span class="field-label">صورة الهيرو (خلفية)</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_hero" src="../assets/img/projects/proj_158.jpeg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_hero" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_hero')"/></label></div></div></div>
-            <div><span class="field-label">صورة من نحن</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_about" src="../assets/img/projects/proj_021.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_about" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_about')"/></label></div></div></div>
-            <div><span class="field-label">العمليات — رئيسية</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_ops_main" src="../assets/img/projects/proj_154.jpeg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_ops_main" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_ops_main')"/></label></div></div></div>
-            <div><span class="field-label">العمليات — صغيرة 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_ops_mini1" src="../assets/img/projects/proj_021.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_ops_mini1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_ops_mini1')"/></label></div></div></div>
-            <div><span class="field-label">العمليات — صغيرة 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_ops_mini2" src="../assets/img/projects/proj_070.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_ops_mini2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_ops_mini2')"/></label></div></div></div>
-            <div><span class="field-label">صورة الأعمال الحضرية</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_urban" src="../assets/img/projects/proj_043.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_urban" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_urban')"/></label></div></div></div>
-            <div><span class="field-label">صورة فرعية 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_sub1" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_sub1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_sub1')"/></label></div></div></div>
-            <div><span class="field-label">صورة فرعية 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_sub2" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_sub2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_sub2')"/></label></div></div></div>
-            <div><span class="field-label">صورة فرعية 3</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_sub3" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_sub3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_sub3')"/></label></div></div></div>
-          </div>
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>🧭 التنقل</h3><i class="chevron">▼</i></div>
+        <div class="card-body">
+          <div class="field"><label class="field-label">من نحن</label><input type="text" data-key="profile_ar_nav1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">رؤيتنا</label><input type="text" data-key="profile_ar_nav2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الخدمات</label><input type="text" data-key="profile_ar_nav3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">التنفيذ</label><input type="text" data-key="profile_ar_nav4" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الأسطول</label><input type="text" data-key="profile_ar_nav5" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">العملاء</label><input type="text" data-key="profile_ar_nav6" oninput="markDirty()"/></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 صور المواد</h3><i class="chevron">▼</i></div>
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>📊 هيرو — كامل</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="img-grid">
-            <div><span class="field-label">مادة 1 — رمل وردم</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_mat1" src="../assets/img/projects/proj_041.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_mat1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_mat1')"/></label></div></div></div>
-            <div><span class="field-label">مادة 2 — قاعدة ركامية</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_mat2" src="../assets/img/projects/proj_033.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_mat2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_mat2')"/></label></div></div></div>
-            <div><span class="field-label">مادة 3 — أعمال حفر</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_mat3" src="../assets/img/projects/proj_035.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_mat3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_mat3')"/></label></div></div></div>
-            <div><span class="field-label">مادة 4 — حجر فلتر</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_mat4" src="../assets/img/projects/proj_077.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_mat4" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_mat4')"/></label></div></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 الأسطول والعملاء</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="img-grid">
-            <div><span class="field-label">معدة 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_fleet1" src="../assets/img/equipment/eq_01.png" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_fleet1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_fleet1')"/></label></div></div></div>
-            <div><span class="field-label">معدة 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_fleet2" src="../assets/img/equipment/eq_02.png" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_fleet2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_fleet2')"/></label></div></div></div>
-            <div><span class="field-label">معدة 3</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_fleet3" src="../assets/img/equipment/eq_03.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_fleet3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_fleet3')"/></label></div></div></div>
-            <div><span class="field-label">معدة 4</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_fleet4" src="../assets/img/equipment/eq_04.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_fleet4" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_fleet4')"/></label></div></div></div>
-            <div><span class="field-label">عميل 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client1" src="../assets/img/clients/client_01.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_client1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client1')"/></label></div></div></div>
-            <div><span class="field-label">عميل 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client2" src="../assets/img/clients/client_02.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_client2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client2')"/></label></div></div></div>
-            <div><span class="field-label">عميل 3</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client3" src="../assets/img/clients/client_03.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_client3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client3')"/></label></div></div></div>
-            <div><span class="field-label">عميل 4</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client4" src="../assets/img/clients/client_04.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_client4" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client4')"/></label></div></div></div>
-            <div><span class="field-label">عميل 5</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client5" src="../assets/img/clients/client_05.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_client5" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client5')"/></label></div></div></div>
-            <div><span class="field-label">عميل 6</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_ar_img_client6" src="../assets/img/clients/client_06.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_ar_img_client6" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_ar_img_client6')"/></label></div></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 نصوص الهيرو</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="field"><label class="field-label">النص العلوي (Eyebrow)</label><input type="text" data-key="profile_ar_eyebrow" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">العنوان — سطر 1</label><input type="text" data-key="profile_ar_h1_1" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">العنوان — سطر 2</label><input type="text" data-key="profile_ar_h1_2" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">النص التمهيدي</label><textarea data-key="profile_ar_hero_sub" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">تاق 1</label><input type="text" data-key="profile_ar_htag1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تاق 2</label><input type="text" data-key="profile_ar_htag2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تاق 3</label><input type="text" data-key="profile_ar_htag3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تاق 4</label><input type="text" data-key="profile_ar_htag4" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">زر 1</label><input type="text" data-key="profile_ar_btn1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">زر 2 — تحميل</label><input type="text" data-key="profile_ar_btn2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">KSA — قيمة</label><input type="text" data-key="profile_ar_stat1_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">KSA — تعليق</label><input type="text" data-key="profile_ar_stat1_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">24/7 — قيمة</label><input type="text" data-key="profile_ar_stat2_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">24/7 — تعليق</label><input type="text" data-key="profile_ar_stat2_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">ISO — قيمة</label><input type="text" data-key="profile_ar_stat3_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">ISO — تعليق</label><input type="text" data-key="profile_ar_stat3_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">DE — قيمة</label><input type="text" data-key="profile_ar_stat4_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">DE — تعليق</label><input type="text" data-key="profile_ar_stat4_l" oninput="markDirty()"/></div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 من نحن</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="profile_ar_about_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">الفقرة الأولى</label><textarea data-key="profile_ar_about_body1" oninput="markDirty()"></textarea></div>
-          <div class="field"><label class="field-label">الفقرة الثانية</label><textarea data-key="profile_ar_about_body2" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="profile_ar_about_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">فقرة 1</label><textarea data-key="profile_ar_about_p1" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">فقرة 2</label><textarea data-key="profile_ar_about_p2" oninput="markDirty()"></textarea></div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 الرؤية والمهمة</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">عنوان الرؤية</label><input type="text" data-key="profile_ar_vision_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">نص الرؤية</label><textarea data-key="profile_ar_vision_body" oninput="markDirty()"></textarea></div>
-          <div class="field"><label class="field-label">عنوان المهمة</label><input type="text" data-key="profile_ar_mission_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">نص المهمة</label><textarea data-key="profile_ar_mission_body" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">تصنيف الرؤية</label><input type="text" data-key="profile_ar_vision_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">وصف الرؤية</label><textarea data-key="profile_ar_vision_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">تصنيف المهمة</label><input type="text" data-key="profile_ar_mission_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">وصف المهمة</label><textarea data-key="profile_ar_mission_desc" oninput="markDirty()"></textarea></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 القيم</h3><i class="chevron">▼</i></div>
+        <div class="card-body">
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="profile_ar_val_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">قيمة 1 — عنوان</label><input type="text" data-key="profile_ar_val1_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">قيمة 1 — وصف</label><textarea data-key="profile_ar_val1_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">قيمة 2 — عنوان</label><input type="text" data-key="profile_ar_val2_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">قيمة 2 — وصف</label><textarea data-key="profile_ar_val2_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">قيمة 3 — عنوان</label><input type="text" data-key="profile_ar_val3_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">قيمة 4 — عنوان</label><input type="text" data-key="profile_ar_val4_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">قيمة 4 — وصف</label><textarea data-key="profile_ar_val4_desc" oninput="markDirty()"></textarea></div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 الخدمات</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="profile_ar_svc_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">الوصف</label><textarea data-key="profile_ar_svc_body" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="profile_ar_svc_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الوصف</label><textarea data-key="profile_ar_svc_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 1 — رقم</label><input type="text" data-key="profile_ar_svc1_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 1 — عنوان</label><input type="text" data-key="profile_ar_svc1_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 1 — وصف</label><textarea data-key="profile_ar_svc1_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 2 — رقم</label><input type="text" data-key="profile_ar_svc2_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 2 — عنوان</label><input type="text" data-key="profile_ar_svc2_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 2 — وصف</label><textarea data-key="profile_ar_svc2_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 3 — رقم</label><input type="text" data-key="profile_ar_svc3_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 3 — عنوان</label><input type="text" data-key="profile_ar_svc3_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 3 — وصف</label><textarea data-key="profile_ar_svc3_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 4 — رقم</label><input type="text" data-key="profile_ar_svc4_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 4 — عنوان</label><input type="text" data-key="profile_ar_svc4_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 4 — وصف</label><textarea data-key="profile_ar_svc4_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 5 — رقم</label><input type="text" data-key="profile_ar_svc5_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 5 — عنوان</label><input type="text" data-key="profile_ar_svc5_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 5 — وصف</label><textarea data-key="profile_ar_svc5_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">خدمة 6 — رقم</label><input type="text" data-key="profile_ar_svc6_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 6 — عنوان</label><input type="text" data-key="profile_ar_svc6_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خدمة 6 — وصف</label><textarea data-key="profile_ar_svc6_desc" oninput="markDirty()"></textarea></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 التنفيذ الميداني</h3><i class="chevron">▼</i></div>
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 التنفيذ</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="profile_ar_ops_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">الوصف</label><textarea data-key="profile_ar_ops_body" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="profile_ar_ops_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الوصف</label><textarea data-key="profile_ar_ops_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">تاق الكارد</label><input type="text" data-key="profile_ar_ops_card_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">عنوان الكارد</label><input type="text" data-key="profile_ar_ops_card_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">وصف الكارد</label><textarea data-key="profile_ar_ops_card_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">تسمية صورة 1</label><input type="text" data-key="profile_ar_ops_mini1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تسمية صورة 2</label><input type="text" data-key="profile_ar_ops_mini2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تسمية فرعية 1</label><input type="text" data-key="profile_ar_ops_sub1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تسمية فرعية 2</label><input type="text" data-key="profile_ar_ops_sub2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تسمية فرعية 3</label><input type="text" data-key="profile_ar_ops_sub3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خطوة 1</label><input type="text" data-key="profile_ar_wf1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خطوة 2</label><input type="text" data-key="profile_ar_wf2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خطوة 3</label><input type="text" data-key="profile_ar_wf3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خطوة 4</label><input type="text" data-key="profile_ar_wf4" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">خطوة 5</label><input type="text" data-key="profile_ar_wf5" oninput="markDirty()"/></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 توريد المواد</h3><i class="chevron">▼</i></div>
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 المواد</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="profile_ar_mat_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">الوصف</label><textarea data-key="profile_ar_mat_body" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="profile_ar_mat_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">العنوان</label><input type="text" data-key="profile_ar_mat_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الوصف</label><textarea data-key="profile_ar_mat_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">مادة 1 — رقم</label><input type="text" data-key="profile_ar_mat1_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مادة 1 — عنوان</label><input type="text" data-key="profile_ar_mat1_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مادة 2 — رقم</label><input type="text" data-key="profile_ar_mat2_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مادة 2 — عنوان</label><input type="text" data-key="profile_ar_mat2_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مادة 3 — رقم</label><input type="text" data-key="profile_ar_mat3_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مادة 3 — عنوان</label><input type="text" data-key="profile_ar_mat3_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مادة 4 — رقم</label><input type="text" data-key="profile_ar_mat4_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مادة 4 — عنوان</label><input type="text" data-key="profile_ar_mat4_title" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 الأسطول والعملاء والتواصل</h3><i class="chevron">▼</i></div>
+        <div class="card-body">
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="profile_ar_fleet_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">العنوان</label><input type="text" data-key="profile_ar_fleet_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الوصف</label><input type="text" data-key="profile_ar_fleet_desc" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">معدة 1</label><input type="text" data-key="profile_ar_fleet1_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">معدة 2</label><input type="text" data-key="profile_ar_fleet2_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">معدة 3</label><input type="text" data-key="profile_ar_fleet3_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">معدة 4</label><input type="text" data-key="profile_ar_fleet4_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تصنيف العملاء</label><input type="text" data-key="profile_ar_clients_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">عنوان العملاء</label><input type="text" data-key="profile_ar_clients_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تصنيف التواصل</label><input type="text" data-key="profile_ar_contact_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">عنوان التواصل</label><input type="text" data-key="profile_ar_contact_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">وصف التواصل</label><textarea data-key="profile_ar_contact_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">حقوق النشر</label><input type="text" data-key="profile_ar_footer_copy" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🦸 هيرو — نص إضافي</h3><i class="chevron">▼</i></div>
+        <div class="card-body open">
+          <div class="fields-grid">
+              <div class="">
+                <label class="field-label">Eyebrow</label>
+                <input class="field-input" type="text" data-key="profile_ar_eyebrow" placeholder="البروفايل المؤسسي"/>
+              </div>
+              <div class="">
+                <label class="field-label">العنوان سطر 1</label>
+                <input class="field-input" type="text" data-key="profile_ar_h1_1" placeholder="البنية التحتية"/>
+              </div>
+              <div class="">
+                <label class="field-label">العنوان سطر 2 (مائل)</label>
+                <input class="field-input" type="text" data-key="profile_ar_h1_2" placeholder="والتنفيذ الحضري"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">النص التمهيدي</label>
+                <input class="field-input" type="text" data-key="profile_ar_hero_sub" placeholder="النص التمهيدي"/>
+              </div>
+              <div class="">
+                <label class="field-label">هيرو تاج 5</label>
+                <input class="field-input" type="text" data-key="profile_ar_htag5" placeholder="الأعمال الخارجية"/>
+              </div>
+              <div class="">
+                <label class="field-label">هيرو تاج 6</label>
+                <input class="field-input" type="text" data-key="profile_ar_htag6" placeholder="دهان الطرق"/>
+              </div>
+              <div class="">
+                <label class="field-label">نبذة — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_about_title" placeholder="نبذة عن الشركة"/>
+              </div>
+              <div class="">
+                <label class="field-label">نبذة — نقطة 1</label>
+                <input class="field-input" type="text" data-key="profile_ar_about_pt1" placeholder="مقاول بنية تحتية سعودي"/>
+              </div>
+              <div class="">
+                <label class="field-label">نبذة — نقطة 2</label>
+                <input class="field-input" type="text" data-key="profile_ar_about_pt2" placeholder="حضور ميداني في مناطق متعددة"/>
+              </div>
+              <div class="">
+                <label class="field-label">نبذة — نقطة 3</label>
+                <input class="field-input" type="text" data-key="profile_ar_about_pt3" placeholder="معتمد ISO 9001:2015"/>
+              </div>
+              <div class="">
+                <label class="field-label">رؤية — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_vision_title" placeholder="الريادة في تسليم البنية التحتية"/>
+              </div>
+              <div class="">
+                <label class="field-label">مهمة — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_mission_title" placeholder="تنفيذ يمكن الاعتماد عليه"/>
+              </div>
+              <div class="">
+                <label class="field-label">القيم — عنوان القسم</label>
+                <input class="field-input" type="text" data-key="profile_ar_val_title" placeholder="ما نؤمن به"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">قيمة 3 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_val3_desc" placeholder="قيمة 3 — الوصف"/>
+              </div>
+              <div class="">
+                <label class="field-label">الخدمات — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_svc_title" placeholder="قدرة تنفيذية متكاملة"/>
+              </div>
+              <div class="">
+                <label class="field-label">التنفيذ — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_ops_title" placeholder="قدرة تنفيذ أسفلت مدفوعة ميدانياً"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">مواد 1 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_mat1_desc" placeholder="مواد 1 — الوصف"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">مواد 2 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_mat2_desc" placeholder="مواد 2 — الوصف"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">مواد 3 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_mat3_desc" placeholder="مواد 3 — الوصف"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">الأسطول — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_fleet_desc" placeholder="الأسطول — الوصف"/>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🏙 الأعمال الحضرية</h3><i class="chevron">▼</i></div>
+        <div class="card-body open">
+          <div class="fields-grid">
+              <div class="">
+                <label class="field-label">وسم القسم</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban_tag" placeholder="البيئة الحضرية"/>
+              </div>
+              <div class="">
+                <label class="field-label">عنوان القسم</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban_title" placeholder="التكامل مع الفضاء العام"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">وصف القسم</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban_desc" placeholder="وصف القسم"/>
+              </div>
+              <div class="">
+                <label class="field-label">نقطة 1 — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban1_title" placeholder="تركيب الإنترلوك"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">نقطة 1 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban1_desc" placeholder="نقطة 1 — الوصف"/>
+              </div>
+              <div class="">
+                <label class="field-label">نقطة 2 — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban2_title" placeholder="أعمال الرصيف الحجري"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">نقطة 2 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban2_desc" placeholder="نقطة 2 — الوصف"/>
+              </div>
+              <div class="">
+                <label class="field-label">نقطة 3 — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban3_title" placeholder="التكامل مع اللاند سكيب"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">نقطة 3 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban3_desc" placeholder="نقطة 3 — الوصف"/>
+              </div>
+              <div class="">
+                <label class="field-label">نقطة 4 — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban4_title" placeholder="دعم الفضاء العام"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">نقطة 4 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_urban4_desc" placeholder="نقطة 4 — الوصف"/>
+              </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- ═══ PROFILE EN ═══ -->
-    <div class="panel" id="panel-profile_en">
-      <div class="panel-hdr"><h2>📋 Company Profile — English</h2><p>Texts and images for the English profile page</p></div>
       <div class="card">
-        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🖼 Page Images</h3><i class="chevron">▼</i></div>
-        <div class="card-body open">
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 صور البروفايل الإنجليزي</h3><i class="chevron">▼</i></div>
+        <div class="card-body">
           <div class="img-grid">
-            <div><span class="field-label">Hero Background</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_hero" src="../assets/img/projects/proj_158.jpeg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_hero" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_hero')"/></label></div></div></div>
-            <div><span class="field-label">About Image</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_about" src="../assets/img/projects/proj_021.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_about" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_about')"/></label></div></div></div>
-            <div><span class="field-label">Operations — Main Image</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_ops_main" src="../assets/img/projects/proj_154.jpeg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_ops_main" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_ops_main')"/></label></div></div></div>
-            <div><span class="field-label">Subsection Image 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_sub1" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_sub1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_sub1')"/></label></div></div></div>
-            <div><span class="field-label">Subsection Image 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_sub2" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_sub2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_sub2')"/></label></div></div></div>
-            <div><span class="field-label">Subsection Image 3</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_sub3" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_sub3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_sub3')"/></label></div></div></div>
-            <div><span class="field-label">Urban Works Image</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_urban" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_urban" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_urban')"/></label></div></div></div>
-            <div><span class="field-label">Materials 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_mat1" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_mat1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_mat1')"/></label></div></div></div>
-            <div><span class="field-label">Materials 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_mat2" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_mat2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_mat2')"/></label></div></div></div>
-            <div><span class="field-label">Materials 3</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_mat3" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_mat3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_mat3')"/></label></div></div></div>
-            <div><span class="field-label">Materials 4</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_mat4" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_mat4" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_mat4')"/></label></div></div></div>
-            <div><span class="field-label">Fleet 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_fleet1" src="../assets/img/equipment/eq_01.png" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_fleet1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_fleet1')"/></label></div></div></div>
-            <div><span class="field-label">Fleet 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_fleet2" src="../assets/img/equipment/eq_02.png" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_fleet2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_fleet2')"/></label></div></div></div>
-            <div><span class="field-label">Fleet 3</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_fleet3" src="../assets/img/equipment/eq_03.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_fleet3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_fleet3')"/></label></div></div></div>
-            <div><span class="field-label">Fleet 4</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_fleet4" src="../assets/img/equipment/eq_04.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_fleet4" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_fleet4')"/></label></div></div></div>
-            <div><span class="field-label">Client 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client1" src="../assets/img/clients/client_01.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_client1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client1')"/></label></div></div></div>
-            <div><span class="field-label">Client 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client2" src="../assets/img/clients/client_02.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_client2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client2')"/></label></div></div></div>
-            <div><span class="field-label">Client 3</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client3" src="../assets/img/clients/client_03.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_client3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client3')"/></label></div></div></div>
-            <div><span class="field-label">Client 4</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client4" src="../assets/img/clients/client_04.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_client4" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client4')"/></label></div></div></div>
-            <div><span class="field-label">Client 5</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client5" src="../assets/img/clients/client_05.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_client5" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client5')"/></label></div></div></div>
-            <div><span class="field-label">Client 6</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client6" src="../assets/img/clients/client_06.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="profile_en_img_client6" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client6')"/></label></div></div></div>
+            <div>
+              <span class="field-label">هيرو الخلفية</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_hero" src="../assets/img/projects/proj_158.jpeg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_hero</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_hero" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_hero')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">نبذة</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_about" src="../assets/img/projects/proj_021.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_about</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_about" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_about')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">تنفيذ — رئيسية</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_ops_main" src="../assets/img/projects/proj_154.jpeg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_ops_main</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_ops_main" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_ops_main')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">تنفيذ — فرعية 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_sub1" src="../assets/img/projects/proj_003.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_sub1</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_sub1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_sub1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">تنفيذ — فرعية 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_sub2" src="../assets/img/projects/proj_041.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_sub2</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_sub2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_sub2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">تنفيذ — فرعية 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_sub3" src="../assets/img/projects/proj_043.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_sub3</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_sub3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_sub3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">مواد 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_mat1" src="../assets/img/projects/proj_041.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_mat1</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_mat1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_mat1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">مواد 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_mat2" src="../assets/img/projects/proj_033.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_mat2</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_mat2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_mat2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">مواد 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_mat3" src="../assets/img/projects/proj_035.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_mat3</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_mat3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_mat3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">مواد 4</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_mat4" src="../assets/img/projects/proj_077.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_mat4</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_mat4" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_mat4')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">أسطول 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_fleet1" src="../assets/img/equipment/eq_01.png" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_fleet1</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_fleet1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_fleet1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">أسطول 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_fleet2" src="../assets/img/equipment/eq_02.png" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_fleet2</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_fleet2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_fleet2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">أسطول 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_fleet3" src="../assets/img/equipment/eq_03.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_fleet3</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_fleet3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_fleet3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">أسطول 4</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_fleet4" src="../assets/img/equipment/eq_04.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_fleet4</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_fleet4" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_fleet4')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client1" src="../assets/img/clients/client_01.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_client1</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_client1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client2" src="../assets/img/clients/client_02.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_client2</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_client2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client3" src="../assets/img/clients/client_03.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_client3</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_client3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 4</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client4" src="../assets/img/clients/client_04.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_client4</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_client4" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client4')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 5</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client5" src="../assets/img/clients/client_05.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_client5</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_client5" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client5')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">عميل 6</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_client6" src="../assets/img/clients/client_06.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_client6</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_client6" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_client6')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">أعمال حضرية</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-profile_en_img_urban" src="../assets/img/projects/proj_043.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">profile_en_img_urban</span>
+                  <input class="img-url-input" type="text" data-key="profile_en_img_urban" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'profile_en_img_urban')"/></label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    <div class="panel" id="panel-profile_en">
+      <div class="panel-hdr"><h2>📋 Company Profile — English</h2><p>Texts and images for the English profile page</p></div>
+      <
+
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 Hero Texts</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="field"><label class="field-label">Eyebrow Label</label><input type="text" data-key="profile_en_eyebrow" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Headline Line 1</label><input type="text" data-key="profile_en_h1_1" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Headline Line 2</label><input type="text" data-key="profile_en_h1_2" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Hero Subtitle</label><textarea data-key="profile_en_hero_sub" oninput="markDirty()"></textarea></div>
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>🧭 Navigation</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">Nav — About</label><input type="text" data-key="profile_en_nav1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Nav — Vision</label><input type="text" data-key="profile_en_nav2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Nav — Services</label><input type="text" data-key="profile_en_nav3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Nav — Operations</label><input type="text" data-key="profile_en_nav4" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Nav — Fleet</label><input type="text" data-key="profile_en_nav5" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Nav — Clients</label><input type="text" data-key="profile_en_nav6" oninput="markDirty()"/></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 About</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="field"><label class="field-label">Section Title</label><input type="text" data-key="profile_en_about_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Paragraph 1</label><textarea data-key="profile_en_about_body1" oninput="markDirty()"></textarea></div>
-          <div class="field"><label class="field-label">Paragraph 2</label><textarea data-key="profile_en_about_body2" oninput="markDirty()"></textarea></div>
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📊 Hero — Full</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">H1 — Line 1</label><input type="text" data-key="profile_en_h1_1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Tag 1</label><input type="text" data-key="profile_en_htag1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Tag 2</label><input type="text" data-key="profile_en_htag2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Tag 3</label><input type="text" data-key="profile_en_htag3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Tag 4</label><input type="text" data-key="profile_en_htag4" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Tag 5</label><input type="text" data-key="profile_en_htag5" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Tag 6</label><input type="text" data-key="profile_en_htag6" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Button — View</label><input type="text" data-key="profile_en_btn1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Button — PDF</label><input type="text" data-key="profile_en_btn2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Stat 1 — Value</label><input type="text" data-key="profile_en_stat1_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Stat 1 — Label</label><input type="text" data-key="profile_en_stat1_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Stat 2 — Value</label><input type="text" data-key="profile_en_stat2_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Stat 2 — Label</label><input type="text" data-key="profile_en_stat2_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Stat 3 — Value</label><input type="text" data-key="profile_en_stat3_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Stat 3 — Label</label><input type="text" data-key="profile_en_stat3_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Stat 4 — Value</label><input type="text" data-key="profile_en_stat4_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Stat 4 — Label</label><input type="text" data-key="profile_en_stat4_l" oninput="markDirty()"/></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 Vision & Mission</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="field"><label class="field-label">Vision Title</label><input type="text" data-key="profile_en_vision_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Vision Body</label><textarea data-key="profile_en_vision_body" oninput="markDirty()"></textarea></div>
-          <div class="field"><label class="field-label">Mission Title</label><input type="text" data-key="profile_en_mission_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Mission Body</label><textarea data-key="profile_en_mission_body" oninput="markDirty()"></textarea></div>
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 About</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">Tag</label><input type="text" data-key="profile_en_about_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Paragraph 1</label><textarea data-key="profile_en_about_p1" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Paragraph 2</label><textarea data-key="profile_en_about_p2" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Point 1</label><input type="text" data-key="profile_en_about_pt1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Point 2</label><input type="text" data-key="profile_en_about_pt2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Point 3</label><input type="text" data-key="profile_en_about_pt3" oninput="markDirty()"/></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 Services</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="field"><label class="field-label">Section Title</label><input type="text" data-key="profile_en_svc_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Description</label><textarea data-key="profile_en_svc_body" oninput="markDirty()"></textarea></div>
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 Vision & Mission</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">Vision Tag</label><input type="text" data-key="profile_en_vision_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Vision Desc</label><textarea data-key="profile_en_vision_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Mission Tag</label><input type="text" data-key="profile_en_mission_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Mission Desc</label><textarea data-key="profile_en_mission_desc" oninput="markDirty()"></textarea></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 Materials Supply</h3><i class="chevron">▼</i></div>
-        <div class="card-body">
-          <div class="field"><label class="field-label">Section Title</label><input type="text" data-key="profile_en_mat_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Description</label><textarea data-key="profile_en_mat_body" oninput="markDirty()"></textarea></div>
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 Values</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">Tag</label><input type="text" data-key="profile_en_val_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Value 1 — Title</label><input type="text" data-key="profile_en_val1_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Value 1 — Desc</label><textarea data-key="profile_en_val1_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Value 2 — Title</label><input type="text" data-key="profile_en_val2_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Value 2 — Desc</label><textarea data-key="profile_en_val2_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Value 3 — Title</label><input type="text" data-key="profile_en_val3_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Value 3 — Desc</label><textarea data-key="profile_en_val3_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Value 4 — Title</label><input type="text" data-key="profile_en_val4_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Value 4 — Desc</label><textarea data-key="profile_en_val4_desc" oninput="markDirty()"></textarea></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 Services</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">Tag</label><input type="text" data-key="profile_en_svc_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Desc</label><textarea data-key="profile_en_svc_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Svc 1 — #</label><input type="text" data-key="profile_en_svc1_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 1 — Title</label><input type="text" data-key="profile_en_svc1_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 1 — Desc</label><textarea data-key="profile_en_svc1_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Svc 2 — #</label><input type="text" data-key="profile_en_svc2_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 2 — Title</label><input type="text" data-key="profile_en_svc2_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 2 — Desc</label><textarea data-key="profile_en_svc2_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Svc 3 — #</label><input type="text" data-key="profile_en_svc3_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 3 — Title</label><input type="text" data-key="profile_en_svc3_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 3 — Desc</label><textarea data-key="profile_en_svc3_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Svc 4 — #</label><input type="text" data-key="profile_en_svc4_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 4 — Title</label><input type="text" data-key="profile_en_svc4_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 4 — Desc</label><textarea data-key="profile_en_svc4_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Svc 5 — #</label><input type="text" data-key="profile_en_svc5_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 5 — Title</label><input type="text" data-key="profile_en_svc5_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 5 — Desc</label><textarea data-key="profile_en_svc5_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Svc 6 — #</label><input type="text" data-key="profile_en_svc6_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 6 — Title</label><input type="text" data-key="profile_en_svc6_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Svc 6 — Desc</label><textarea data-key="profile_en_svc6_desc" oninput="markDirty()"></textarea></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 Operations</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">Tag</label><input type="text" data-key="profile_en_ops_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Title Line 1</label><input type="text" data-key="profile_en_ops_title1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Title Line 2</label><input type="text" data-key="profile_en_ops_title2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Desc</label><textarea data-key="profile_en_ops_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Card Tag</label><input type="text" data-key="profile_en_ops_card_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Card Title</label><input type="text" data-key="profile_en_ops_card_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Card Desc</label><textarea data-key="profile_en_ops_card_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Mini Label 1</label><input type="text" data-key="profile_en_ops_mini1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Mini Label 2</label><input type="text" data-key="profile_en_ops_mini2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Sub Label 1</label><input type="text" data-key="profile_en_ops_sub1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Sub Label 2</label><input type="text" data-key="profile_en_ops_sub2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Sub Label 3</label><input type="text" data-key="profile_en_ops_sub3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Workflow 1</label><input type="text" data-key="profile_en_wf1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Workflow 2</label><input type="text" data-key="profile_en_wf2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Workflow 3</label><input type="text" data-key="profile_en_wf3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Workflow 4</label><input type="text" data-key="profile_en_wf4" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Workflow 5</label><input type="text" data-key="profile_en_wf5" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 Materials</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">Tag</label><input type="text" data-key="profile_en_mat_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Title</label><input type="text" data-key="profile_en_mat_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Desc</label><textarea data-key="profile_en_mat_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Mat 1 — #</label><input type="text" data-key="profile_en_mat1_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Mat 1 — Title</label><input type="text" data-key="profile_en_mat1_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Mat 1 — Desc</label><textarea data-key="profile_en_mat1_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Mat 2 — #</label><input type="text" data-key="profile_en_mat2_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Mat 2 — Title</label><input type="text" data-key="profile_en_mat2_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Mat 2 — Desc</label><textarea data-key="profile_en_mat2_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Mat 3 — #</label><input type="text" data-key="profile_en_mat3_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Mat 3 — Title</label><input type="text" data-key="profile_en_mat3_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Mat 3 — Desc</label><textarea data-key="profile_en_mat3_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Mat 4 — #</label><input type="text" data-key="profile_en_mat4_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Mat 4 — Title</label><input type="text" data-key="profile_en_mat4_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Mat 4 — Desc</label><textarea data-key="profile_en_mat4_desc" oninput="markDirty()"></textarea></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 Urban Works</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">Tag</label><input type="text" data-key="profile_en_urban_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Title</label><input type="text" data-key="profile_en_urban_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Desc</label><textarea data-key="profile_en_urban_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Point 1 — Title</label><input type="text" data-key="profile_en_urban1_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Point 1 — Desc</label><textarea data-key="profile_en_urban1_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Point 2 — Title</label><input type="text" data-key="profile_en_urban2_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Point 2 — Desc</label><textarea data-key="profile_en_urban2_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Point 3 — Title</label><input type="text" data-key="profile_en_urban3_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Point 3 — Desc</label><textarea data-key="profile_en_urban3_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Point 4 — Title</label><input type="text" data-key="profile_en_urban4_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Point 4 — Desc</label><textarea data-key="profile_en_urban4_desc" oninput="markDirty()"></textarea></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 Fleet</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">Tag</label><input type="text" data-key="profile_en_fleet_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Title</label><input type="text" data-key="profile_en_fleet_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Desc</label><textarea data-key="profile_en_fleet_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Fleet 1 — Label</label><input type="text" data-key="profile_en_fleet1_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Fleet 2 — Label</label><input type="text" data-key="profile_en_fleet2_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Fleet 3 — Label</label><input type="text" data-key="profile_en_fleet3_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Fleet 4 — Label</label><input type="text" data-key="profile_en_fleet4_label" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 Clients & Contact & Footer</h3><i class="chevron">▼</i></div>
+        <div class="card-body ">
+          <div class="field"><label class="field-label">Clients Tag</label><input type="text" data-key="profile_en_clients_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Clients Title</label><input type="text" data-key="profile_en_clients_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Contact Tag</label><input type="text" data-key="profile_en_contact_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Contact Title</label><input type="text" data-key="profile_en_contact_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Contact Desc</label><textarea data-key="profile_en_contact_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Copyright</label><input type="text" data-key="profile_en_footer_copy" oninput="markDirty()"/></div>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🦸 هيرو — نص إضافي</h3><i class="chevron">▼</i></div>
+        <div class="card-body open">
+          <div class="fields-grid">
+              <div class="">
+                <label class="field-label">Eyebrow</label>
+                <input class="field-input" type="text" data-key="profile_en_eyebrow" placeholder="Executive Corporate Profile"/>
+              </div>
+              <div class="">
+                <label class="field-label">H1 Line 2 (italic)</label>
+                <input class="field-input" type="text" data-key="profile_en_h1_2" placeholder="Urban Execution"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">Hero Subtitle</label>
+                <input class="field-input" type="text" data-key="profile_en_hero_sub" placeholder="Hero Subtitle"/>
+              </div>
+              <div class="">
+                <label class="field-label">About — Title</label>
+                <input class="field-input" type="text" data-key="profile_en_about_title" placeholder="About the Company"/>
+              </div>
+              <div class="">
+                <label class="field-label">Vision — Title</label>
+                <input class="field-input" type="text" data-key="profile_en_vision_title" placeholder="Leadership in Infrastructure Delivery"/>
+              </div>
+              <div class="">
+                <label class="field-label">Mission — Title</label>
+                <input class="field-input" type="text" data-key="profile_en_mission_title" placeholder="Execution You Can Rely On"/>
+              </div>
+              <div class="">
+                <label class="field-label">Values — Section Title</label>
+                <input class="field-input" type="text" data-key="profile_en_val_title" placeholder="What We Stand For"/>
+              </div>
+              <div class="">
+                <label class="field-label">Services — Section Title</label>
+                <input class="field-input" type="text" data-key="profile_en_svc_title" placeholder="Integrated Execution Capability"/>
+              </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- ═══ BS AR ═══ -->
-    <div class="panel" id="panel-bs_ar">
-      <div class="panel-hdr"><h2>🏗 أنظمة البناء — عربي</h2><p>نصوص وصور صفحة أنظمة البناء العربية</p></div>
       <div class="card">
-        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🖼 صور الأنظمة</h3><i class="chevron">▼</i></div>
-        <div class="card-body open">
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 صور Building Systems AR</h3><i class="chevron">▼</i></div>
+        <div class="card-body">
           <div class="img-grid">
-            <div><span class="field-label">الهيرو (خلفية)</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_hero" src="../assets/img/building-systems/bs-glass-tower.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_img_hero" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_hero')"/></label></div></div></div>
-            <div><span class="field-label">نظام 1 — دعامات حجرية</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_sys1" src="../assets/img/building-systems/bs-stone-bracket.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_img_sys1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_sys1')"/></label></div></div></div>
-            <div><span class="field-label">نظام 2 — أسقف معدنية</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_sys2" src="../assets/img/building-systems/bs-grid-detail.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_img_sys2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_sys2')"/></label></div></div></div>
-            <div><span class="field-label">نظام 3 — جبس بورد</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_sys3" src="../assets/img/building-systems/bs-technical-detail.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_img_sys3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_sys3')"/></label></div></div></div>
-            <div><span class="field-label">نظام 4 — كابل تراي</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_sys4" src="../assets/img/building-systems/bs-installation-diagram.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_img_sys4" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_sys4')"/></label></div></div></div>
-            <div><span class="field-label">شراكة 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_pship1" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_img_pship1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_pship1')"/></label></div></div></div>
-            <div><span class="field-label">شراكة 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_pship2" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_img_pship2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_pship2')"/></label></div></div></div>
-            <div><span class="field-label">غاليري 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_gal1" src="../assets/img/building-systems/bs-curved-facade.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_gal1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_gal1')"/></label></div></div></div>
-            <div><span class="field-label">غاليري 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_gal2" src="../assets/img/building-systems/bs-facade-architecture.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_gal2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_gal2')"/></label></div></div></div>
-            <div><span class="field-label">غاليري 3</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_gal3" src="../assets/img/building-systems/bs-quality-facade.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_gal3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_gal3')"/></label></div></div></div>
-            <div><span class="field-label">غاليري 4</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_gal4" src="../assets/img/building-systems/bs-component-detail.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_ar_gal4" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_gal4')"/></label></div></div></div>
+            <div>
+              <span class="field-label">هيرو الخلفية</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_hero" src="../../assets/img/building-systems/bs-glass-tower.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_img_hero</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_img_hero" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_hero')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">نظام 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_sys1" src="../../assets/img/building-systems/bs-stone-bracket.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_img_sys1</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_img_sys1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_sys1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">نظام 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_sys2" src="../../assets/img/building-systems/bs-grid-detail.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_img_sys2</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_img_sys2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_sys2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">نظام 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_sys3" src="../../assets/img/building-systems/bs-technical-detail.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_img_sys3</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_img_sys3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_sys3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">نظام 4</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_sys4" src="../../assets/img/building-systems/bs-installation-diagram.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_img_sys4</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_img_sys4" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_sys4')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">شراكة 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_pship1" src="../../assets/img/building-systems/bs-engineering-drawing.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_img_pship1</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_img_pship1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_pship1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">شراكة 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_img_pship2" src="../../assets/img/building-systems/bs-facade-lines.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_img_pship2</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_img_pship2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_img_pship2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">معرض 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_gal1" src="../../assets/img/building-systems/bs-curved-facade.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_gal1</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_gal1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_gal1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">معرض 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_gal2" src="../../assets/img/building-systems/bs-facade-architecture.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_gal2</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_gal2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_gal2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">معرض 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_gal3" src="../../assets/img/building-systems/bs-quality-facade.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_gal3</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_gal3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_gal3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">معرض 4</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_ar_gal4" src="../../assets/img/building-systems/bs-component-detail.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_ar_gal4</span>
+                  <input class="img-url-input" type="text" data-key="bs_ar_gal4" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_ar_gal4')"/></label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    <div class="panel" id="panel-bs_ar">
+      <div class="panel-hdr"><h2>🏗 أنظمة البناء — عربي</h2><p>نصوص وصور صفحة أنظمة البناء العربية</p></div>
+      <
+
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 نصوص الهيرو</h3><i class="chevron">▼</i></div>
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>🧭 الهيدر والهيرو</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">الإيقاظ</label><input type="text" data-key="bs_ar_eyebrow" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">العنوان سطر 1</label><input type="text" data-key="bs_ar_h1_1" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">العنوان سطر 2</label><input type="text" data-key="bs_ar_h1_2" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">النص التمهيدي</label><textarea data-key="bs_ar_hero_sub" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">زر التواصل</label><input type="text" data-key="bs_ar_hdr_contact" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Eyebrow</label><input type="text" data-key="bs_ar_eyebrow" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">H1 — سطر 1</label><input type="text" data-key="bs_ar_h1_1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">H1 — سطر 2</label><input type="text" data-key="bs_ar_h1_2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">H1 — سطر 3</label><input type="text" data-key="bs_ar_h1_line3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">العنوان الفرعي</label><textarea data-key="bs_ar_hero_sub" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">زر الأنظمة</label><input type="text" data-key="bs_ar_btn_systems" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">زر PDF</label><input type="text" data-key="bs_ar_btn_pdf" oninput="markDirty()"/></div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 الأنظمة</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="bs_ar_sys_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">الوصف</label><textarea data-key="bs_ar_sys_body" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="bs_ar_sys_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">العنوان</label><input type="text" data-key="bs_ar_sys_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الوصف</label><textarea data-key="bs_ar_sys_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">نظام 1 — رقم</label><input type="text" data-key="bs_ar_sys1_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">نظام 1 — عنوان</label><input type="text" data-key="bs_ar_sys1_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">نظام 1 — وصف</label><textarea data-key="bs_ar_sys1_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">نظام 2 — رقم</label><input type="text" data-key="bs_ar_sys2_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">نظام 2 — عنوان</label><input type="text" data-key="bs_ar_sys2_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">نظام 2 — وصف</label><textarea data-key="bs_ar_sys2_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">نظام 3 — رقم</label><input type="text" data-key="bs_ar_sys3_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">نظام 3 — عنوان</label><input type="text" data-key="bs_ar_sys3_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">نظام 3 — وصف</label><textarea data-key="bs_ar_sys3_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">نظام 4 — رقم</label><input type="text" data-key="bs_ar_sys4_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">نظام 4 — عنوان</label><input type="text" data-key="bs_ar_sys4_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">نظام 4 — وصف</label><textarea data-key="bs_ar_sys4_desc" oninput="markDirty()"></textarea></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 الشراكة الألمانية</h3><i class="chevron">▼</i></div>
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 الشراكة والمعرض والتواصل</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">العنوان</label><input type="text" data-key="bs_ar_pship_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">النص</label><textarea data-key="bs_ar_pship_body" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="bs_ar_pship_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">عنوان — سطر 1</label><input type="text" data-key="bs_ar_pship_title1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">عنوان — سطر 2</label><input type="text" data-key="bs_ar_pship_title2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">الوصف</label><textarea data-key="bs_ar_pship_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">مواصفة 1 — تسمية</label><input type="text" data-key="bs_ar_spec1_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 1 — قيمة</label><input type="text" data-key="bs_ar_spec1_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 2 — تسمية</label><input type="text" data-key="bs_ar_spec2_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 2 — قيمة</label><input type="text" data-key="bs_ar_spec2_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 3 — تسمية</label><input type="text" data-key="bs_ar_spec3_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 3 — قيمة</label><input type="text" data-key="bs_ar_spec3_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 4 — تسمية</label><input type="text" data-key="bs_ar_spec4_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">مواصفة 4 — قيمة</label><input type="text" data-key="bs_ar_spec4_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">معرض 1</label><input type="text" data-key="bs_ar_gal1_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">معرض 2</label><input type="text" data-key="bs_ar_gal2_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">معرض 3</label><input type="text" data-key="bs_ar_gal3_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">معرض 4</label><input type="text" data-key="bs_ar_gal4_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">تصنيف التواصل</label><input type="text" data-key="bs_ar_contact_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">عنوان التواصل</label><input type="text" data-key="bs_ar_contact_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">وصف التواصل</label><textarea data-key="bs_ar_contact_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">حقوق النشر</label><input type="text" data-key="bs_ar_footer_copy" oninput="markDirty()"/></div>
         </div>
       </div>
+
     </div>
 
     <!-- ═══ BS EN ═══ -->
-    <div class="panel" id="panel-bs_en">
-      <div class="panel-hdr"><h2>🏗 Building Systems — English</h2><p>Texts and images for the Building Systems English page</p></div>
       <div class="card">
-        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🖼 Page Images</h3><i class="chevron">▼</i></div>
-        <div class="card-body open">
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 صور Building Systems EN</h3><i class="chevron">▼</i></div>
+        <div class="card-body">
           <div class="img-grid">
-            <div><span class="field-label">Hero Background</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_hero" src="../assets/img/building-systems/bs-glass-tower.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_img_hero" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_hero')"/></label></div></div></div>
-            <div><span class="field-label">System 1 — Stone Bracket</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_sys1" src="../assets/img/building-systems/bs-stone-bracket.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_img_sys1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_sys1')"/></label></div></div></div>
-            <div><span class="field-label">System 2 — Metal Ceiling</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_sys2" src="../assets/img/building-systems/bs-grid-detail.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_img_sys2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_sys2')"/></label></div></div></div>
-            <div><span class="field-label">System 3 — Gypsum</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_sys3" src="../assets/img/building-systems/bs-technical-detail.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_img_sys3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_sys3')"/></label></div></div></div>
-            <div><span class="field-label">System 4</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_sys4" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_img_sys4" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_sys4')"/></label></div></div></div>
-            <div><span class="field-label">Partnership 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_pship1" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_img_pship1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_pship1')"/></label></div></div></div>
-            <div><span class="field-label">Partnership 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_pship2" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_img_pship2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_pship2')"/></label></div></div></div>
-            <div><span class="field-label">Gallery 1</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_gal1" src="../assets/img/building-systems/bs-curved-facade.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_gal1" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_gal1')"/></label></div></div></div>
-            <div><span class="field-label">Gallery 2</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_gal2" src="../assets/img/building-systems/bs-facade-architecture.jpg" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_gal2" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_gal2')"/></label></div></div></div>
-            <div><span class="field-label">Gallery 3</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_gal3" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_gal3" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_gal3')"/></label></div></div></div>
-            <div><span class="field-label">Gallery 4</span>
-              <div class="img-field"><div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_gal4" src="" onerror="this.style.opacity='.3'"/></div>
-              <div class="img-field-right"><input class="img-url-input" type="text" data-key="bs_en_gal4" oninput="markDirty();previewImg(this)"/>
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_gal4')"/></label></div></div></div>
+            <div>
+              <span class="field-label">هيرو الخلفية</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_hero" src="../assets/img/building-systems/bs-glass-tower.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_img_hero</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_img_hero" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_hero')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">نظام 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_sys1" src="../assets/img/building-systems/bs-stone-bracket.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_img_sys1</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_img_sys1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_sys1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">نظام 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_sys2" src="../assets/img/building-systems/bs-grid-detail.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_img_sys2</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_img_sys2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_sys2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">نظام 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_sys3" src="../assets/img/building-systems/bs-technical-detail.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_img_sys3</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_img_sys3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_sys3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">نظام 4</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_sys4" src="../assets/img/building-systems/bs-installation-diagram.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_img_sys4</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_img_sys4" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_sys4')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">شراكة 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_pship1" src="../assets/img/building-systems/bs-engineering-drawing.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_img_pship1</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_img_pship1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_pship1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">شراكة 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_img_pship2" src="../assets/img/building-systems/bs-facade-lines.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_img_pship2</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_img_pship2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_img_pship2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">معرض 1</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_gal1" src="../assets/img/building-systems/bs-curved-facade.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_gal1</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_gal1" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_gal1')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">معرض 2</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_gal2" src="../assets/img/building-systems/bs-facade-architecture.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_gal2</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_gal2" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_gal2')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">معرض 3</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_gal3" src="../assets/img/building-systems/bs-quality-facade.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_gal3</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_gal3" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_gal3')"/></label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="field-label">معرض 4</span>
+              <div class="img-field">
+                <div class="img-preview-wrap"><img class="img-preview" id="prev-bs_en_gal4" src="../assets/img/building-systems/bs-component-detail.jpg" onerror="this.style.opacity='.3'"/></div>
+                <div class="img-field-right">
+                  <span class="img-field-label">bs_en_gal4</span>
+                  <input class="img-url-input" type="text" data-key="bs_en_gal4" placeholder="رابط الصورة" oninput="markDirty();previewImg(this)"/>
+                  <label class="img-upload-label">📁 رفع<input type="file" accept="image/*" onchange="uploadImg(this,'bs_en_gal4')"/></label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    <div class="panel" id="panel-bs_en">
+      <div class="panel-hdr"><h2>🏗 Building Systems — English</h2><p>Texts and images for the Building Systems English page</p></div>
+      <
+
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 Hero Texts</h3><i class="chevron">▼</i></div>
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>🧭 Header & Hero</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">Eyebrow</label><input type="text" data-key="bs_eyebrow" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Headline Line 1</label><input type="text" data-key="bs_h1_1" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Headline Line 2</label><input type="text" data-key="bs_h1_2" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Hero Subtitle</label><textarea data-key="bs_hero_sub" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Header — Contact Btn</label><input type="text" data-key="bs_en_hdr_contact" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Eyebrow</label><input type="text" data-key="bs_en_eyebrow" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">H1 Line 1</label><input type="text" data-key="bs_en_h1_line1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">H1 Line 2</label><input type="text" data-key="bs_en_h1_line2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">H1 Line 3</label><input type="text" data-key="bs_en_h1_line3" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Subtitle</label><textarea data-key="bs_en_hero_sub" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Button — Systems</label><input type="text" data-key="bs_en_btn_systems" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Button — PDF</label><input type="text" data-key="bs_en_btn_pdf" oninput="markDirty()"/></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 Systems Section</h3><i class="chevron">▼</i></div>
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 Systems</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">Section Title</label><input type="text" data-key="bs_sys_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Description</label><textarea data-key="bs_sys_body" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Tag</label><input type="text" data-key="bs_en_sys_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Title</label><input type="text" data-key="bs_en_sys_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Desc</label><textarea data-key="bs_en_sys_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">System 1 — #</label><input type="text" data-key="bs_en_sys1_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">System 1 — Title</label><input type="text" data-key="bs_en_sys1_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">System 1 — Desc</label><textarea data-key="bs_en_sys1_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">System 2 — #</label><input type="text" data-key="bs_en_sys2_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">System 2 — Title</label><input type="text" data-key="bs_en_sys2_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">System 2 — Desc</label><textarea data-key="bs_en_sys2_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">System 3 — #</label><input type="text" data-key="bs_en_sys3_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">System 3 — Title</label><input type="text" data-key="bs_en_sys3_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">System 3 — Desc</label><textarea data-key="bs_en_sys3_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">System 4 — #</label><input type="text" data-key="bs_en_sys4_n" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">System 4 — Title</label><input type="text" data-key="bs_en_sys4_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">System 4 — Desc</label><textarea data-key="bs_en_sys4_desc" oninput="markDirty()"></textarea></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 German Partnership</h3><i class="chevron">▼</i></div>
+        <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 Partnership & Gallery & Contact</h3><i class="chevron">▼</i></div>
         <div class="card-body">
-          <div class="field"><label class="field-label">Title</label><input type="text" data-key="bs_pship_title" oninput="markDirty()"/></div>
-          <div class="field"><label class="field-label">Body Text</label><textarea data-key="bs_pship_body" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Tag</label><input type="text" data-key="bs_en_pship_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Title Line 1</label><input type="text" data-key="bs_en_pship_title1" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Title Line 2</label><input type="text" data-key="bs_en_pship_title2" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Desc</label><textarea data-key="bs_en_pship_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Spec 1 — Label</label><input type="text" data-key="bs_en_spec1_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Spec 1 — Value</label><input type="text" data-key="bs_en_spec1_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Spec 2 — Label</label><input type="text" data-key="bs_en_spec2_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Spec 2 — Value</label><input type="text" data-key="bs_en_spec2_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Spec 3 — Label</label><input type="text" data-key="bs_en_spec3_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Spec 3 — Value</label><input type="text" data-key="bs_en_spec3_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Spec 4 — Label</label><input type="text" data-key="bs_en_spec4_l" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Spec 4 — Value</label><input type="text" data-key="bs_en_spec4_v" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Gallery 1</label><input type="text" data-key="bs_en_gal1_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Gallery 2</label><input type="text" data-key="bs_en_gal2_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Gallery 3</label><input type="text" data-key="bs_en_gal3_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Gallery 4</label><input type="text" data-key="bs_en_gal4_label" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Contact Tag</label><input type="text" data-key="bs_en_contact_tag" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Contact Title</label><input type="text" data-key="bs_en_contact_title" oninput="markDirty()"/></div>
+          <div class="field"><label class="field-label">Contact Desc</label><textarea data-key="bs_en_contact_desc" oninput="markDirty()"></textarea></div>
+          <div class="field"><label class="field-label">Copyright</label><input type="text" data-key="bs_en_footer_copy" oninput="markDirty()"/></div>
         </div>
       </div>
+
     </div>
 
     <!-- ═══ QUOTE ═══ -->
