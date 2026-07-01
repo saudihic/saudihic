@@ -46,7 +46,7 @@ a { text-decoration: none; color: inherit; }
   border-bottom-color: rgba(255,255,255,.06);
   backdrop-filter: blur(16px);
 }
-.hdr-logo img { height: 40px; width: auto; transition: opacity .2s; }
+.hdr-logo img, .brand img { height: 40px; width: auto; max-height: 40px; transition: opacity .2s; }
 .hdr-logo-dark img { height: 40px; width: auto; }
 .hdr-nav { display: flex; align-items: center; gap: 1.75rem; }
 .hdr-nav a { font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
