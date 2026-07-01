@@ -4,7 +4,17 @@
 (function(){
   var hdr = document.getElementById('hdr');
   if(!hdr) return;
-  function onScroll(){ hdr.classList.toggle('scrolled', window.scrollY > 40); }
+  var logos = document.querySelectorAll('.brand img, .hdr-logo img');
+  var greenLogo = logos.length ? logos[0].src.replace(/hic-logo[^.]*\.png/, 'hic-logo-new-green.png') : '';
+  var whiteLogo = logos.length ? logos[0].src.replace(/hic-logo[^.]*\.png/, 'hic-logo-new-white.png') : '';
+
+  function onScroll(){
+    var scrolled = window.scrollY > 40;
+    hdr.classList.toggle('scrolled', scrolled);
+    logos.forEach(function(img){
+      img.src = scrolled ? whiteLogo : greenLogo;
+    });
+  }
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 })();

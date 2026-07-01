@@ -46,9 +46,8 @@ a { text-decoration: none; color: inherit; }
   border-bottom-color: rgba(255,255,255,.06);
   backdrop-filter: blur(16px);
 }
-.hdr-logo img { height: 44px; width: auto; content: url('../assets/img/hic-logo-new-green.png'); transition: opacity .3s; }
-.hdr.scrolled .hdr-logo img { content: url('../assets/img/hic-logo-new-white.png'); }
-.hdr-logo-dark img { height: 44px; width: auto; }
+.hdr-logo img { height: 40px; width: auto; transition: opacity .2s; }
+.hdr-logo-dark img { height: 40px; width: auto; }
 .hdr-nav { display: flex; align-items: center; gap: 1.75rem; }
 .hdr-nav a { font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
 .hdr-nav a:hover { color: #fff; }
