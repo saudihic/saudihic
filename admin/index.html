@@ -51,6 +51,9 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 .sb-item{display:flex;align-items:center;gap:.55rem;padding:.55rem 1rem;cursor:pointer;border-right:2px solid transparent;font-size:12px;color:var(--muted);transition:.12s}
 .sb-item:hover{background:var(--s2);color:#fff}
 .sb-item.active{background:var(--s2);color:#fff;border-right-color:var(--g)}
+.sb-item{display:flex;align-items:center;justify-content:space-between}
+.sb-badge{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:2px;background:rgba(200,169,110,.15);color:#C8A96E;letter-spacing:.05em}
+.sb-item.active .sb-badge{background:rgba(255,255,255,.15);color:#fff}
 .sb-divider{height:1px;background:var(--border);margin:.4rem 0}
 
 /* CONTENT */
@@ -71,6 +74,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 .card-hdr.open .chevron{transform:rotate(180deg)}
 .card-body{display:none;padding:1.1rem}
 .card-body.open{display:block}
+.card-hint{font-size:.72rem;color:var(--muted);padding:.35rem 1rem .4rem;background:rgba(0,83,64,.04);border-bottom:1px solid var(--border);}
 
 /* FIELD */
 .field{margin-bottom:1rem}
@@ -178,29 +182,48 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 
   <!-- SIDEBAR -->
   <div class="sidebar">
-    <div class="sb-section">الصفحات</div>
-    <div class="sb-item active" id="nav-home_ar" onclick="show('home_ar')">🏠 الرئيسية — عربي</div>
-    <div class="sb-item" id="nav-home_en" onclick="show('home_en')">🏠 الرئيسية — EN</div>
+    <div class="sb-section">🏠 الرئيسية</div>
+    <div class="sb-item active" id="nav-home_en" onclick="show('home_en')">
+      <span>English</span><span class="sb-badge">EN</span>
+    </div>
+    <div class="sb-item" id="nav-home_ar" onclick="show('home_ar')">
+      <span>العربية</span><span class="sb-badge">AR</span>
+    </div>
     <div class="sb-divider"></div>
-    <div class="sb-item" id="nav-profile_ar" onclick="show('profile_ar')">📋 البروفايل — عربي</div>
-    <div class="sb-item" id="nav-profile_en" onclick="show('profile_en')">📋 البروفايل — EN</div>
+    <div class="sb-section">📋 البروفايل</div>
+    <div class="sb-item" id="nav-profile_en" onclick="show('profile_en')">
+      <span>English</span><span class="sb-badge">EN</span>
+    </div>
+    <div class="sb-item" id="nav-profile_ar" onclick="show('profile_ar')">
+      <span>العربية</span><span class="sb-badge">AR</span>
+    </div>
     <div class="sb-divider"></div>
-    <div class="sb-item" id="nav-bs_ar" onclick="show('bs_ar')">🏗 أنظمة البناء — عربي</div>
-    <div class="sb-item" id="nav-bs_en" onclick="show('bs_en')">🏗 أنظمة البناء — EN</div>
+    <div class="sb-section">🏗 أنظمة البناء</div>
+    <div class="sb-item" id="nav-bs_en" onclick="show('bs_en')">
+      <span>English</span><span class="sb-badge">EN</span>
+    </div>
+    <div class="sb-item" id="nav-bs_ar" onclick="show('bs_ar')">
+      <span>العربية</span><span class="sb-badge">AR</span>
+    </div>
     <div class="sb-divider"></div>
-    <div class="sb-section">الكوتيشن</div>
-    <div class="sb-item" id="nav-quote" onclick="show('quote')">📄 عرض سعر ثابت</div>
-    <div class="sb-item" id="nav-quote_unit" onclick="show('quote_unit')">📊 عرض سعر وحدة</div>
+    <div class="sb-section">📄 عروض الأسعار</div>
+    <div class="sb-item" id="nav-quote" onclick="show('quote')">
+      <span>عرض سعر ثابت</span>
+    </div>
+    <div class="sb-item" id="nav-quote_unit" onclick="show('quote_unit')">
+      <span>عرض سعر وحدة</span>
+    </div>
     <div class="sb-divider"></div>
-    <div class="sb-section">الموقع</div>
-    <div class="sb-item" id="nav-links" onclick="show('links')">🔗 روابط الصفحات</div>
+    <div class="sb-item" id="nav-links" onclick="show('links')">
+      🔗 روابط الموقع
+    </div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
 
     <!-- ═══ HOME AR ═══ -->
-    <div class="panel active" id="panel-home_ar">
+    <div class="panel" id="panel-home_ar">
       <div class="panel-hdr"><h2>🏠 الرئيسية — عربي</h2><p>نصوص وصور الصفحة الرئيسية العربية</p></div>
 
       <
@@ -323,6 +346,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 
       <div class="card">
         <div class="card-hdr open" onclick="toggleCard(this)"><h3>🦸 هيرو — نص</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 الصورة الرئيسية أعلى الصفحة · العنوان والنص التمهيدي والأزرار</div>
         <div class="card-body open">
           <div class="fields-grid">
               <div class="">
@@ -362,6 +386,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
       </div>
       <div class="card">
         <div class="card-hdr open" onclick="toggleCard(this)"><h3>📋 التحميلات</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 كروت تحميل الـPDF الثلاثة</div>
         <div class="card-body open">
           <div class="fields-grid">
               <div class="">
@@ -413,6 +438,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
       </div>
       <div class="card">
         <div class="card-hdr open" onclick="toggleCard(this)"><h3>🔗 الفوتر — عناوين</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 ذيل الصفحة الداكن · عناوين الأعمدة والروابط</div>
         <div class="card-body open">
           <div class="fields-grid">
               <div class="">
@@ -441,7 +467,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
     </div>
 
     <!-- ═══ HOME EN ═══ -->
-    <div class="panel" id="panel-home_en">
+    <div class="panel active" id="panel-home_en">
       <div class="panel-hdr"><h2>🏠 Home — English</h2><p>Texts and images for the English home page</p></div>
 
       <div class="card">
@@ -781,6 +807,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 الرؤية والمهمة</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 قسم الرؤية والمهمة بعد نبذة الشركة</div>
         <div class="card-body">
           <div class="field"><label class="field-label">تصنيف الرؤية</label><input type="text" data-key="profile_ar_vision_tag" oninput="markDirty()"/></div>
           <div class="field"><label class="field-label">وصف الرؤية</label><textarea data-key="profile_ar_vision_desc" oninput="markDirty()"></textarea></div>
@@ -791,6 +818,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 القيم</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 قسم القيم الأربعة</div>
         <div class="card-body">
           <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="profile_ar_val_tag" oninput="markDirty()"/></div>
           <div class="field"><label class="field-label">قيمة 1 — عنوان</label><input type="text" data-key="profile_ar_val1_title" oninput="markDirty()"/></div>
@@ -805,6 +833,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 الخدمات</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 كروت الخدمات الست مع الأرقام والعناوين</div>
         <div class="card-body">
           <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="profile_ar_svc_tag" oninput="markDirty()"/></div>
           <div class="field"><label class="field-label">الوصف</label><textarea data-key="profile_ar_svc_desc" oninput="markDirty()"></textarea></div>
@@ -831,6 +860,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 التنفيذ</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 قسم التنفيذ الميداني الداكن</div>
         <div class="card-body">
           <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="profile_ar_ops_tag" oninput="markDirty()"/></div>
           <div class="field"><label class="field-label">الوصف</label><textarea data-key="profile_ar_ops_desc" oninput="markDirty()"></textarea></div>
@@ -852,6 +882,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>📝 المواد</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 كروت المواد الأربعة</div>
         <div class="card-body">
           <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="profile_ar_mat_tag" oninput="markDirty()"/></div>
           <div class="field"><label class="field-label">العنوان</label><input type="text" data-key="profile_ar_mat_title" oninput="markDirty()"/></div>
@@ -976,6 +1007,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
       </div>
       <div class="card">
         <div class="card-hdr open" onclick="toggleCard(this)"><h3>🏙 الأعمال الحضرية</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 قسم الأعمال الحضرية والإنترلوك</div>
         <div class="card-body open">
           <div class="fields-grid">
               <div class="">
@@ -1386,6 +1418,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
     <!-- ═══ PROFILE EN ═══ -->
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 صور البروفايل الإنجليزي</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 جميع صور صفحة البروفايل · تُطبَّق على EN وAR معاً</div>
         <div class="card-body">
           <div class="img-grid">
             <div>
@@ -1855,6 +1888,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
     <!-- ═══ BS AR ═══ -->
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 صور Building Systems AR</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 جميع صور صفحة أنظمة البناء العربية</div>
         <div class="card-body">
           <div class="img-grid">
             <div>
@@ -2051,6 +2085,7 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
     <!-- ═══ BS EN ═══ -->
       <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 صور Building Systems EN</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 جميع صور صفحة أنظمة البناء الإنجليزية</div>
         <div class="card-body">
           <div class="img-grid">
             <div>
