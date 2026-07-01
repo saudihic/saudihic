@@ -60,9 +60,12 @@ a { text-decoration: none; color: inherit; }
 .nav-cta { background:var(--green); color:#fff!important; padding:.42rem 1.2rem; border-radius:2px; transition:background .2s!important; }
 .nav-cta:hover { background:var(--teal)!important; }
 .hdr.scrolled .nav-cta { color:#fff!important; }
-.nav-new { border:1px solid rgba(255,255,255,.35); color:rgba(255,255,255,.85)!important; padding:.4rem 1rem; border-radius:2px; }
+.nav-new { border:1px solid rgba(255,255,255,.3); color:rgba(255,255,255,.75)!important; padding:.4rem 1rem; border-radius:2px; }
 .nav-new:hover { border-color:#fff; color:#fff!important; }
 .hdr.scrolled .nav-new { border-color:rgba(0,83,64,.4); color:var(--green)!important; }
+.nav-lang { border:1px solid rgba(255,255,255,.35); color:rgba(255,255,255,.8)!important; padding:.38rem .8rem; border-radius:2px; }
+.nav-lang:hover { border-color:#fff; color:#fff!important; }
+.hdr.scrolled .nav-lang { border-color:rgba(255,255,255,.2); color:rgba(255,255,255,.8)!important; }
 
 
 /* ── HERO (LIGHT) ── */
