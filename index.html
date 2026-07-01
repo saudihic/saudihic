@@ -42,7 +42,8 @@ body{font-family:var(--font);background:var(--white);color:var(--dark);overflow-
   backdrop-filter:blur(16px);
 }
 .brand{display:flex;align-items:center;gap:.85rem;text-decoration:none}
-.brand img{height:36px;width:auto}
+.brand img{height:44px;width:auto;content:url('assets/img/hic-logo-new-green.png');transition:opacity .3s}
+.hdr.scrolled .brand img{content:url('assets/img/hic-logo-new-white.png')}
 .brand-name{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 nav{display:flex;align-items:center;gap:2rem}
 nav a{font-size:.75rem;font-weight:600;letter-spacing:.02em;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s}
