@@ -37,41 +37,25 @@ a { text-decoration: none; color: inherit; }
   position: fixed; top: 0; left: 0; right: 0; z-index: 900;
   height: 68px; display: flex; align-items: center;
   justify-content: space-between; padding: 0 3rem;
-  background: linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,0));
-  transition: background .4s, box-shadow .4s;
+  background: rgba(48,46,46,0);
+  transition: background .4s, border-color .4s;
+  border-bottom: 1px solid rgba(255,255,255,0);
 }
 .hdr.scrolled {
-  background: rgba(255,255,255,.96);
-  box-shadow: 0 1px 0 #e8e3d8;
+  background: rgba(48,46,46,.97);
+  border-bottom-color: rgba(255,255,255,.06);
   backdrop-filter: blur(16px);
 }
-.hdr.dark-hdr { background: linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0,0)); }
-.hdr.dark-hdr.scrolled {
-  background: rgba(30,28,28,.97);
-  box-shadow: 0 1px 0 rgba(255,255,255,.06);
-}
-.hdr-logo img { height: 36px; width: auto; transition: filter .3s; }
-.hdr.scrolled .hdr-logo img { filter: invert(1) brightness(.3); }
-.hdr.dark-hdr.scrolled .hdr-logo img { filter: none; }
+.hdr-logo img { height: 36px; width: auto; }
 .hdr-logo-dark img { height: 36px; width: auto; }
 .hdr-nav { display: flex; align-items: center; gap: 1.75rem; }
-.hdr-nav a { font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.85); transition: color .2s; }
+.hdr-nav a { font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
 .hdr-nav a:hover { color: #fff; }
-.hdr.scrolled .hdr-nav a { color: var(--ink); }
-.hdr.scrolled .hdr-nav a:hover { color: var(--green); }
-.dark-hdr .hdr-nav a { color: rgba(255,255,255,.65); }
-.dark-hdr .hdr-nav a:hover { color: #fff; }
 .hdr-lang {
-  border: 1px solid rgba(255,255,255,.4); padding: .38rem .8rem;
-  border-radius: 2px; color: rgba(255,255,255,.85) !important;
+  border: 1px solid rgba(255,255,255,.35); padding: .38rem .8rem;
+  border-radius: 2px; color: rgba(255,255,255,.8) !important;
 }
-.hdr.scrolled .hdr-lang {
-  border-color: #d9d5cc; color: var(--green) !important;
-}
-.dark-hdr .hdr-lang {
-  border-color: rgba(255,255,255,.3);
-  color: rgba(255,255,255,.75) !important;
-}
+.hdr-lang:hover { border-color: #fff; color: #fff !important; }
 /* ── NAV CTA & NAV-NEW (shared across all pages) ── */
 .nav-cta { background:var(--green); color:#fff!important; padding:.42rem 1.2rem; border-radius:2px; transition:background .2s!important; }
 .nav-cta:hover { background:var(--teal)!important; }
