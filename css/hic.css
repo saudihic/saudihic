@@ -135,7 +135,7 @@ a { text-decoration: none; color: inherit; }
   animation: fadeUp .8s var(--ease) .3s both;
 }
 .hero h1 em { display: block; color: var(--green); font-style: normal; }
-.ar .hero h1 { line-height: 1.45; }
+.ar .hero h1 { line-height: 1.45; font-size: clamp(2rem, 4.5vw, 3.6rem); }
 .hero-dark h1 { color: #fff; }
 .hero-dark h1 em { color: var(--gl); }
 
