@@ -27,32 +27,28 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--white);color:var(--dark);overflow-x:hidden;line-height:1.7}
 
-/* ── HEADER ── */
+/* ── HEADER — uses hic.css classes ── */
 .hdr{
   position:fixed;top:0;left:0;right:0;z-index:900;
   height:68px;display:flex;align-items:center;justify-content:space-between;
   padding:0 3rem;
-  background:rgba(48,46,46,0);
-  transition:background .4s,border-color .4s;
-  border-bottom:1px solid rgba(255,255,255,0);
+  background:linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,0));
+  transition:background .4s,box-shadow .4s;
 }
 .hdr.scrolled{
-  background:rgba(48,46,46,.97);
-  border-bottom-color:rgba(255,255,255,.06);
+  background:rgba(255,255,255,.96);
+  box-shadow:0 1px 0 #e8e3d8;
   backdrop-filter:blur(16px);
 }
-.brand{display:flex;align-items:center;gap:.85rem;text-decoration:none}
-.brand img{height:36px;width:auto}
-.brand-name{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75)}
-nav{display:flex;align-items:center;gap:2rem}
-nav a{font-size:.75rem;font-weight:600;letter-spacing:.02em;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s}
-nav a:hover{color:#fff}
-.nav-cta{background:var(--green);color:#fff!important;padding:.42rem 1.2rem;border-radius:2px;transition:background .2s!important}
-.nav-cta:hover{background:var(--gl)!important}
-.nav-new{border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.75)!important;padding:.4rem 1rem;border-radius:2px}
-.nav-new:hover{border-color:#fff;color:#fff!important}
-.nav-lang{border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.8)!important;padding:.38rem .8rem;border-radius:2px}
-.nav-lang:hover{border-color:#fff;color:#fff!important}
+.hdr-logo img{height:36px;width:auto;transition:filter .3s}
+.hdr.scrolled .hdr-logo img{filter:invert(1) brightness(.3)}
+.hdr-nav{display:flex;align-items:center;gap:2rem}
+.hdr-nav a{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.85);text-decoration:none;transition:color .2s}
+.hdr-nav a:hover{color:#fff}
+.hdr.scrolled .hdr-nav a{color:var(--dark)}
+.hdr.scrolled .hdr-nav a:hover{color:var(--green)}
+.hdr-lang{border:1px solid rgba(255,255,255,.4);padding:.38rem .8rem;border-radius:2px;color:rgba(255,255,255,.85)!important}
+.hdr.scrolled .hdr-lang{border-color:#d9d5cc;color:var(--green)!important}
 
 /* ── HERO ── */
 .hero{
@@ -481,16 +477,14 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding
 </head>
 <body class="en" data-page="home_en">
 <header class="hdr" id="hdr">
-<a class="brand" href="/">
-<img alt="HIC" data-hic-img="home_en_img_logo" src="assets/img/hic-logo-white.png"/>
-</a>
-<nav>
-<a data-hic-edit="home_en_txt_004" href="#services">Services</a>
-<a data-hic-edit="home_en_txt_005" href="#operations">Operations</a>
-<a data-hic-edit="home_en_txt_006" href="#contact">Contact</a>
-<a class="nav-new" data-hic-edit="home_en_txt_007" href="building-systems/">◆ Building Systems</a>
-<a class="nav-cta" data-hic-edit="home_en_txt_008" href="profile/">Profile</a>
-<a class="nav-lang" data-hic-edit="home_en_txt_009" href="ar/">عربي</a>
+<a class="hdr-logo" href="/"><img alt="HIC" data-hic-img="home_en_img_logo" src="assets/img/hic-logo-white.png"/></a>
+<nav class="hdr-nav">
+<a href="#services" data-hic-edit="home_en_txt_004">Services</a>
+<a href="#operations" data-hic-edit="home_en_txt_005">Operations</a>
+<a href="#solutions" data-hic-edit="home_en_txt_006">Contact</a>
+<a href="building-systems/" data-hic-edit="home_en_txt_007">Building Systems</a>
+<a href="profile/" data-hic-edit="home_en_txt_008">Profile</a>
+<a class="hdr-lang" href="ar/" data-hic-edit="home_en_txt_009">عربي</a>
 </nav>
 </header>
 <section class="hero">
