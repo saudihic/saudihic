@@ -1139,28 +1139,32 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 
     <!-- ═══ QUOTE ═══ -->
     <div class="panel" id="panel-quote">
-      <div class="panel-hdr"><h2>📄 عرض سعر — ثابت</h2><p>إنشاء وتعديل عروض الأسعار بالسعر الثابت</p></div>
+      <div class="panel-hdr"><h2>📄 عرض سعر — ثابت</h2><p>سعر ثابت Lump Sum — عربي وإنجليزي</p></div>
       <div class="q-grid">
-        <div class="q-btn" onclick="window.open('../quote.html','_blank')"><div class="q-btn-icon">📄</div><div class="q-btn-title">فتح عرض سعر جديد</div><div class="q-btn-sub">سعر ثابت — lump sum</div></div>
-        <div class="q-btn" onclick="window.open('../quote-unit.html','_blank')"><div class="q-btn-icon">📊</div><div class="q-btn-title">فتح عرض سعر وحدة</div><div class="q-btn-sub">سعر الوحدة × الكمية</div></div>
+        <div class="q-btn" onclick="window.open('../quote-en.html','_blank')"><div class="q-btn-icon">🇬🇧</div><div class="q-btn-title">English Quote</div><div class="q-btn-sub">Lump sum — fixed price</div></div>
+        <div class="q-btn" onclick="window.open('../quote-ar.html','_blank')"><div class="q-btn-icon">🇸🇦</div><div class="q-btn-title">عرض سعر عربي</div><div class="q-btn-sub">سعر ثابت — Lump sum</div></div>
       </div>
       <div class="card">
         <div class="card-hdr open" onclick="toggleCard(this)"><h3>ℹ️ تعليمات الاستخدام</h3><i class="chevron">▼</i></div>
         <div class="card-body open" style="font-size:12px;color:var(--muted);line-height:2">
-          <p>١. اضغط "فتح عرض سعر جديد" — يفتح في تبويب جديد</p>
+          <p>١. اضغط على الكوتيشن المطلوب — يفتح في تبويب جديد</p>
           <p>٢. اضغط "✏️ تعديل" لتفعيل وضع التعديل</p>
           <p>٣. انقر على أي خانة لتعديلها مباشرة</p>
           <p>٤. اضغط "＋ قسم" لإضافة قسم جديد</p>
-          <p>٥. اضغط "⬇ PDF" لحفظ الكوتيشن تلقائياً باسم العميل</p>
+          <p>٥. اضغط "⬇ PDF" لحفظ الكوتيشن باسم العميل</p>
         </div>
       </div>
     </div>
 
     <!-- ═══ QUOTE UNIT ═══ -->
     <div class="panel" id="panel-quote_unit">
-      <div class="panel-hdr"><h2>📊 عرض سعر — وحدة</h2><p>إنشاء وتعديل عروض الأسعار بسعر الوحدة</p></div>
-      <div class="q-grid">
-        <div class="q-btn" onclick="window.open('../quote-unit.html','_blank')"><div class="q-btn-icon">📊</div><div class="q-btn-title">فتح عرض سعر وحدة</div><div class="q-btn-sub">سعر الوحدة × الكمية = الإجمالي</div></div>
+      <div class="panel-hdr"><h2>📊 عرض سعر — وحدة</h2><p>سعر الوحدة × الكمية = الإجمالي</p></div>
+      <div class="card">
+        <div class="card-hdr open" onclick="toggleCard(this)"><h3>⚠️ قيد الإنشاء</h3><i class="chevron">▼</i></div>
+        <div class="card-body open" style="font-size:12px;color:var(--muted);line-height:2">
+          <p>قالب عرض سعر الوحدة لم يُبنَ بعد.</p>
+          <p>في حال احتجته، أخبر المطور لبنائه بنفس ديزاين الكوتيشن الثابت مع إضافة أعمدة الكمية × سعر الوحدة.</p>
+        </div>
       </div>
     </div>
 
@@ -1177,8 +1181,8 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
             <a class="site-link" href="../ar/profile/" target="_blank">📋 البروفايل AR</a>
             <a class="site-link" href="../building-systems/" target="_blank">🏗 BS EN</a>
             <a class="site-link" href="../ar/building-systems/" target="_blank">🏗 BS AR</a>
-            <a class="site-link" href="../quote.html" target="_blank">📄 كوتيشن ثابت</a>
-            <a class="site-link" href="../quote-unit.html" target="_blank">📊 كوتيشن وحدة</a>
+            <a class="site-link" href="../quote-en.html" target="_blank">📄 كوتيشن EN</a>
+            <a class="site-link" href="../quote-ar.html" target="_blank">📄 كوتيشن AR</a>
           </div>
         </div>
       </div>
