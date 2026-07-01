@@ -5,8 +5,8 @@
   var hdr = document.getElementById('hdr');
   if(!hdr) return;
   var logos = document.querySelectorAll('.brand img, .hdr-logo img');
-  var greenLogo = logos.length ? logos[0].src.replace(/hic-logo[^.]*\.png/, 'hic-logo-new-green.png') : '';
-  var whiteLogo = logos.length ? logos[0].src.replace(/hic-logo[^.]*\.png/, 'hic-logo-new-white.png') : '';
+  var greenLogo = logos.length ? logos[0].src.replace(/hic-logo[^.]*\.png/, 'hic-logo-green.png') : '';
+  var whiteLogo = logos.length ? logos[0].src.replace(/hic-logo[^.]*\.png/, 'hic-logo-white.png') : '';
 
   function onScroll(){
     var scrolled = window.scrollY > 40;
