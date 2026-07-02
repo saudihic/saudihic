@@ -297,16 +297,13 @@ thead th.th-desc{text-align:right;padding-right:12px}
 }
 .lh-header img{height:44px;width:auto;display:block}
 .lh-header-site{font-size:11px;color:#8a8a8a;font-family:Raleway,sans-serif;letter-spacing:.02em}
+.lh-header-brand{display:flex;align-items:center;gap:10px}
+.lh-header-ar{font-family:Alexandria,sans-serif;font-size:16px;font-weight:700;color:#005340;white-space:nowrap}
 .lh-stripe{height:4px;background:linear-gradient(to right,#C8A96E,#005340)}
 .lh-footer-wrap{background:#fff}
 .lh-footer{
   display:flex;align-items:center;justify-content:space-between;gap:14px;
   direction:ltr;padding:10px 32px;background:#fff;
-}
-.lh-footer-lockup{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px}
-.lh-footer-ar{
-  font-family:Alexandria,sans-serif;font-size:12px;font-weight:700;
-  color:#005340;white-space:nowrap;
 }
 .lh-footer-vline{width:1px;height:36px;background:rgba(200,169,110,.4);flex-shrink:0}
 .lh-footer-contact{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
@@ -336,7 +333,10 @@ thead th.th-desc{text-align:right;padding-right:12px}
 <div class="page" id="pg">
 <div class="lh-header-wrap">
   <div class="lh-header">
-    <img src="/assets/img/hic-logo-main.png" alt="HIC" />
+    <div class="lh-header-brand">
+      <img src="/assets/img/hic-logo-main.png" alt="HIC" />
+      <span class="lh-header-ar">اتش آي سي</span>
+    </div>
     <span class="lh-header-site">saudihic.com</span>
   </div>
   <div class="lh-stripe"></div>
@@ -432,10 +432,7 @@ thead th.th-desc{text-align:right;padding-right:12px}
   <div class="lh-footer-wrap">
     <div class="lh-stripe"></div>
     <div class="lh-footer">
-      <div class="lh-footer-lockup">
-        <span class="lh-footer-ar">اتش آي سي</span>
-        <img class="lh-footer-mark" src="/assets/img/hic-logo-transparent.png" alt="HIC" />
-      </div>
+      <img class="lh-footer-mark" src="/assets/img/hic-logo-transparent.png" alt="HIC" />
       <div class="lh-footer-vline"></div>
       <div class="lh-footer-contact">
         <div class="lh-footer-row">
