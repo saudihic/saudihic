@@ -491,8 +491,11 @@ var fmt = function(n){return Number(n||0).toLocaleString('en-US',{minimumFractio
 function recalc(){
   var sub=0;
   document.querySelectorAll('#tb .dr').forEach(function(tr){
-    var lump=tr.dataset.lump==='1';
-    var qty=lump?1:(parseFloat((tr.querySelector('.cq').textContent||'').replace(/,/g,''))||0);
+    var cqEl=tr.querySelector('.cq');
+    var cqText=(cqEl?cqEl.textContent:'').trim();
+    var lump=(cqText===''||cqText==='—');
+    var qty=lump?1:(parseFloat(cqText.replace(/,/g,''))||0);
+    if(!lump) tr.dataset.lump='0';
     var prc=parseFloat((tr.querySelector('.cp').textContent||'').replace(/,/g,''))||0;
     var tot=qty*prc; sub+=tot;
     var tEl=tr.querySelector('.ct'); if(tEl) tEl.textContent=fmt(tot);
