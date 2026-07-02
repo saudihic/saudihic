@@ -296,9 +296,9 @@ thead th.th-desc{text-align:right;padding-right:12px}
   direction:ltr;padding:20px 32px 16px;background:#fff;
 }
 .lh-header img{height:44px;width:auto;display:block}
-.lh-header-site{font-size:11px;color:#8a8a8a;font-family:Raleway,sans-serif;letter-spacing:.02em}
-.lh-header-brand{display:flex;align-items:center;gap:10px}
+.lh-header-r{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
 .lh-header-ar{font-family:Alexandria,sans-serif;font-size:16px;font-weight:700;color:#005340;white-space:nowrap}
+.lh-header-vat{font-family:Raleway,sans-serif;font-size:10px;font-weight:600;color:#8a8a8a;white-space:nowrap;direction:ltr}
 .lh-stripe{height:4px;background:linear-gradient(to right,#C8A96E,#005340)}
 .lh-footer-wrap{background:#fff}
 .lh-footer{
@@ -333,11 +333,11 @@ thead th.th-desc{text-align:right;padding-right:12px}
 <div class="page" id="pg">
 <div class="lh-header-wrap">
   <div class="lh-header">
-    <div class="lh-header-brand">
-      <img src="/assets/img/hic-logo-main.png" alt="HIC" />
+    <img src="/assets/img/hic-logo-main.png" alt="HIC" />
+    <div class="lh-header-r">
       <span class="lh-header-ar">اتش آي سي</span>
+      <span class="lh-header-vat">VAT: 302119453700003</span>
     </div>
-    <span class="lh-header-site">saudihic.com</span>
   </div>
   <div class="lh-stripe"></div>
 </div>
@@ -458,8 +458,8 @@ thead th.th-desc{text-align:right;padding-right:12px}
           </div>
           <div class="lh-footer-sep"></div>
           <div class="lh-footer-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#005340" stroke-width="2"><path d="M9 14l2 2 4-4"/><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v3M17 4v3"/></svg>
-            <span>VAT: 302119453700003</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#005340" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18a14 14 0 010-18"/></svg>
+            <span>saudihic.com</span>
           </div>
         </div>
       </div>
