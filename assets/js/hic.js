@@ -53,7 +53,7 @@
     var pageData = data.pages[page];
     if(!pageData) return;
 
-    // Apply texts
+    // Apply texts (language-specific — read from this page's own bucket)
     var texts = pageData.texts || {};
     Object.keys(texts).forEach(function(key){
       document.querySelectorAll('[data-hic-edit="'+key+'"]').forEach(function(el){
@@ -61,8 +61,19 @@
       });
     });
 
-    // Apply images
-    var images = pageData.images || {};
+    // Apply images — images are SHARED across AR/EN. The canonical bucket is the
+    // English sibling (all image keys are named *_en_img_*). Merge the EN bucket
+    // over this page's own bucket so AR and EN always resolve to the same image,
+    // regardless of any stale independent value saved on the AR page previously.
+    var SIBLING = { home_ar:'home_en', profile_ar:'profile_en', bs_ar:'bs_en' };
+    var images = {};
+    var own = pageData.images || {};
+    Object.keys(own).forEach(function(k){ images[k] = own[k]; });
+    var sib = SIBLING[page];
+    if(sib && data.pages[sib] && data.pages[sib].images){
+      var sibImgs = data.pages[sib].images;
+      Object.keys(sibImgs).forEach(function(k){ images[k] = sibImgs[k]; });
+    }
     Object.keys(images).forEach(function(key){
       var src = images[key];
       if(!src) return;
