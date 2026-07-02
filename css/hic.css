@@ -526,7 +526,7 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 960px) {
   .wrap { padding: 0 1.5rem; }
   .hdr { padding: 0 1.5rem; }
-  .hdr-nav a:not(.hdr-lang) { display: none; }
+  .hdr-nav a:not(.hdr-lang):not(.nav-lang) { display: none; }
   .hero-content { grid-template-columns: 1fr; padding: 0 1.5rem 3.5rem; }
   .hero-stats { flex-direction: row; flex-wrap: wrap; min-width: auto; }
   .hstat { flex: 1 1 calc(50% - 1px); min-width: 140px; }
