@@ -303,8 +303,9 @@ thead th.th-desc{text-align:right;padding-right:12px}
   display:flex;align-items:center;justify-content:space-between;gap:14px;
   direction:ltr;padding:10px 32px;background:#fff;
 }
+.lh-footer-lockup{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px}
 .lh-footer-ar{
-  flex-shrink:0;font-family:Alexandria,sans-serif;font-size:14px;font-weight:700;
+  font-family:Alexandria,sans-serif;font-size:12px;font-weight:700;
   color:#005340;white-space:nowrap;
 }
 .lh-footer-vline{width:1px;height:36px;background:rgba(200,169,110,.4);flex-shrink:0}
@@ -315,8 +316,7 @@ thead th.th-desc{text-align:right;padding-right:12px}
 .lh-footer-item span{font-family:Raleway,sans-serif;font-size:8.5px;font-weight:700;color:#302E2E;direction:ltr;font-variant-numeric:lining-nums tabular-nums}
 .lh-footer-item span.ar{font-family:Alexandria,sans-serif;font-size:8.5px}
 .lh-footer-sep{width:1px;height:10px;background:rgba(200,169,110,.4)}
-.lh-footer-mark{height:22px;width:auto}
-.lh-footer-logo{height:28px;width:auto}
+.lh-footer-mark{height:20px;width:auto}
 
 </style>
 </head>
@@ -432,7 +432,10 @@ thead th.th-desc{text-align:right;padding-right:12px}
   <div class="lh-footer-wrap">
     <div class="lh-stripe"></div>
     <div class="lh-footer">
-      <img class="lh-footer-mark" src="/assets/img/hic-logo-transparent.png" alt="HIC" />
+      <div class="lh-footer-lockup">
+        <span class="lh-footer-ar">اتش آي سي</span>
+        <img class="lh-footer-mark" src="/assets/img/hic-logo-transparent.png" alt="HIC" />
+      </div>
       <div class="lh-footer-vline"></div>
       <div class="lh-footer-contact">
         <div class="lh-footer-row">
@@ -463,8 +466,6 @@ thead th.th-desc{text-align:right;padding-right:12px}
           </div>
         </div>
       </div>
-      <div class="lh-footer-vline"></div>
-      <div class="lh-footer-ar">اتش آي سي</div>
     </div>
   </div>
 
