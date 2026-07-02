@@ -2261,18 +2261,42 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 </div>
 
 <script>
-var PASS = 'Aa@6821111';
+var sessionPassword = null;
 var dirty = false;
 
 // ── LOGIN ──
 function doLogin(){
   var pw = document.getElementById('pw').value;
-  if(pw === PASS){
-    document.getElementById('login').style.display = 'none';
-    loadData();
-  } else {
-    document.getElementById('loginErr').style.display = 'block';
-  }
+  var btn = document.querySelector('.login-box button');
+  var err = document.getElementById('loginErr');
+  err.style.display = 'none';
+  btn.disabled = true;
+  var originalText = btn.textContent;
+  btn.textContent = 'جارٍ التحقق...';
+  fetch('/api/auth', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({password: pw})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    btn.disabled = false;
+    btn.textContent = originalText;
+    if(d.ok){
+      sessionPassword = pw;
+      document.getElementById('login').style.display = 'none';
+      loadData();
+    } else {
+      err.textContent = 'كلمة المرور غير صحيحة';
+      err.style.display = 'block';
+    }
+  })
+  .catch(function(){
+    btn.disabled = false;
+    btn.textContent = originalText;
+    err.textContent = 'تعذّر الاتصال بالسيرفر — حاول مرة أخرى';
+    err.style.display = 'block';
+  });
 }
 
 // ── LOAD ──
@@ -2318,7 +2342,7 @@ function saveAll(){
   fetch('/api/content', {
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({password: PASS, content: {pages: pages}})
+    body: JSON.stringify({password: sessionPassword, content: {pages: pages}})
   })
   .then(function(r){ return r.json(); })
   .then(function(d){
