@@ -186,13 +186,31 @@ textarea.field-input{min-height:80px}
   .content{padding:.85rem}
   .img-grid{grid-template-columns:1fr}
   .q-grid{grid-template-columns:1fr}
+  /* Force every 2-column layout to a single column so fields never overlap */
+  .fields-grid{grid-template-columns:1fr}
+  .card-body.open{grid-template-columns:1fr}
+  .site-link-grid{grid-template-columns:1fr}
   .topbar{padding:0 .75rem}
   .topbar-page{display:none}
   .search-wrap{margin:0 .5rem;max-width:none}
-  .tb-btn{padding:.35rem .6rem;font-size:10px}
+  .tb-btn{padding:.45rem .7rem;font-size:11px}
   .img-field{flex-direction:column}
   .img-preview-wrap{width:100%}
   .img-preview{width:100%;height:140px}
+  /* Bigger touch targets for inputs */
+  .field-input,.field input,.field textarea{font-size:16px;padding:.8rem .9rem}
+  .img-url-input{font-size:13px}
+  /* Save bar stacks nicely and never overlaps content */
+  .save-bar{flex-direction:column;gap:.5rem;align-items:stretch;padding:.75rem 1rem}
+  .save-bar-msg{text-align:center}
+}
+@media (max-width: 460px) {
+  .topbar{flex-wrap:wrap;height:auto;padding:.5rem .6rem;gap:.4rem}
+  .topbar-brand{flex:1 1 auto}
+  .tb-actions{flex:1 1 100%;justify-content:flex-end}
+  .search-wrap{order:3;flex:1 1 100%;margin:.35rem 0}
+  .card-hdr{padding:.7rem .85rem}
+  .content{padding:.65rem}
 }
 </style>
 </head>
