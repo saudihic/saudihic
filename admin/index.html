@@ -2350,7 +2350,7 @@ function saveAll(){
     var page = getPage(key);
     if(!page) return;
     if(!pages[page]) pages[page] = {texts:{}, images:{}};
-    if(isImg(key)) pages[page].images[key] = val;
+    if(el.classList.contains('img-url-input')) pages[page].images[key] = val;
     else pages[page].texts[key] = val;
   });
   fetch('/api/content', {
