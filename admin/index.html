@@ -104,7 +104,13 @@ body{font-family:'Alexandria',sans-serif;background:var(--carbon);color:var(--te
 .card-hdr .chevron{color:var(--muted);transition:.2s;font-style:normal}
 .card-hdr.open .chevron{transform:rotate(180deg)}
 .card-body{display:none;padding:1.1rem}
-.card-body.open{display:block}
+.card-body.open{display:grid;grid-template-columns:1fr 1fr;gap:0 1.25rem;align-content:start}
+.card-body > .fields-grid,
+.card-body > .img-grid,
+.card-body > .site-link-grid{grid-column:1 / -1}
+.card-body > div[style]{grid-column:1 / -1}
+.card-body > .field:has(textarea){grid-column:1 / -1}
+@media (max-width:700px){ .card-body.open{grid-template-columns:1fr} }
 .card-hint{font-size:.72rem;color:var(--muted);padding:.35rem 1rem .4rem;background:rgba(0,83,64,.04);border-bottom:1px solid var(--border);}
 
 /* FIELD */
