@@ -288,6 +288,46 @@ textarea.field-input{min-height:80px}
       </div>
 
       <div class="card">
+        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🦸 هيرو — نص</h3><i class="chevron">▼</i></div>
+        <div class="card-hint">📍 الصورة الرئيسية أعلى الصفحة · العنوان والنص التمهيدي والأزرار</div>
+        <div class="card-body open">
+          <div class="fields-grid">
+              <div class="field-wide">
+                <label class="field-label">Eyebrow</label>
+                <input class="field-input" type="text" data-key="home_ar_eyebrow" value="المملكة العربية السعودية · مقاول بنية تحتية"/>
+              </div>
+              <div class="">
+                <label class="field-label">العنوان سطر 1</label>
+                <input class="field-input" type="text" data-key="home_ar_h1_1" value="بنية تحتية"/>
+              </div>
+              <div class="">
+                <label class="field-label">العنوان سطر 2 (مائل)</label>
+                <input class="field-input" type="text" data-key="home_ar_h1_2" value="تُنفَّذ على أرض الواقع"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">النص التمهيدي</label>
+                <input class="field-input" type="text" data-key="home_ar_hero_sub" value="النص التمهيدي"/>
+              </div>
+              <div class="">
+                <label class="field-label">عنوان قسم الخدمات</label>
+                <input class="field-input" type="text" data-key="home_ar_svc_title" value="ست خطوط تنفيذ متكاملة"/>
+              </div>
+              <div class="">
+                <label class="field-label">عنوان قسم التنفيذ</label>
+                <input class="field-input" type="text" data-key="home_ar_ops_title" value="خبرة ميدانية مُثبَتة"/>
+              </div>
+              <div class="">
+                <label class="field-label">عنوان قسم الحلول الإنشائية</label>
+                <input class="field-input" type="text" data-key="home_ar_bs_title" value="الحلول الإنشائية المتكاملة"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">النص التمهيدي (الشريط الأخضر)</label>
+                <input class="field-input" type="text" data-key="home_ar_intro" value="النص التمهيدي (الشريط الأخضر)"/>
+              </div>
+          </div>
+        </div>
+      </div>
+<div class="card">
         <div class="card-hdr " onclick="toggleCard(this)"><h3>📊 إحصائيات الهيرو</h3><i class="chevron">▼</i></div>
         <div class="card-body ">
           <div class="field"><label class="field-label">KSA — القيمة</label><input type="text" data-key="home_ar_stat1_n" oninput="markDirty()" value="KSA"/></div>
@@ -393,46 +433,7 @@ textarea.field-input{min-height:80px}
       </div>
 
 
-      <div class="card">
-        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🦸 هيرو — نص</h3><i class="chevron">▼</i></div>
-        <div class="card-hint">📍 الصورة الرئيسية أعلى الصفحة · العنوان والنص التمهيدي والأزرار</div>
-        <div class="card-body open">
-          <div class="fields-grid">
-              <div class="field-wide">
-                <label class="field-label">Eyebrow</label>
-                <input class="field-input" type="text" data-key="home_ar_eyebrow" value="المملكة العربية السعودية · مقاول بنية تحتية"/>
-              </div>
-              <div class="">
-                <label class="field-label">العنوان سطر 1</label>
-                <input class="field-input" type="text" data-key="home_ar_h1_1" value="بنية تحتية"/>
-              </div>
-              <div class="">
-                <label class="field-label">العنوان سطر 2 (مائل)</label>
-                <input class="field-input" type="text" data-key="home_ar_h1_2" value="تُنفَّذ على أرض الواقع"/>
-              </div>
-              <div class="field-wide">
-                <label class="field-label">النص التمهيدي</label>
-                <input class="field-input" type="text" data-key="home_ar_hero_sub" value="النص التمهيدي"/>
-              </div>
-              <div class="">
-                <label class="field-label">عنوان قسم الخدمات</label>
-                <input class="field-input" type="text" data-key="home_ar_svc_title" value="ست خطوط تنفيذ متكاملة"/>
-              </div>
-              <div class="">
-                <label class="field-label">عنوان قسم التنفيذ</label>
-                <input class="field-input" type="text" data-key="home_ar_ops_title" value="خبرة ميدانية مُثبَتة"/>
-              </div>
-              <div class="">
-                <label class="field-label">عنوان قسم الحلول الإنشائية</label>
-                <input class="field-input" type="text" data-key="home_ar_bs_title" value="الحلول الإنشائية المتكاملة"/>
-              </div>
-              <div class="field-wide">
-                <label class="field-label">النص التمهيدي (الشريط الأخضر)</label>
-                <input class="field-input" type="text" data-key="home_ar_intro" value="النص التمهيدي (الشريط الأخضر)"/>
-              </div>
-          </div>
-        </div>
-      </div>
+      
       <div class="card">
         <div class="card-hdr open" onclick="toggleCard(this)"><h3>📋 التحميلات</h3><i class="chevron">▼</i></div>
         <div class="card-hint">📍 كروت تحميل الـPDF الثلاثة</div>
@@ -809,7 +810,94 @@ textarea.field-input{min-height:80px}
     <!-- ═══ PROFILE AR ═══ -->
       
     <div class="panel" id="panel-profile_ar">
-      <div class="panel-hdr"><h2>📋 البروفايل — عربي</h2><p>نصوص وصور صفحة البروفايل العربية</p></div>
+      <div class="panel-hdr"><h2>📋 البروفايل — عربي</h2><p>نصوص وصور صفحة البروفايل العربية</p><div class="card">
+        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🦸 هيرو — نص إضافي</h3><i class="chevron">▼</i></div>
+        <div class="card-body open">
+          <div class="fields-grid">
+              <div class="">
+                <label class="field-label">Eyebrow</label>
+                <input class="field-input" type="text" data-key="profile_ar_eyebrow" value="البروفايل المؤسسي"/>
+              </div>
+              <div class="">
+                <label class="field-label">العنوان سطر 1</label>
+                <input class="field-input" type="text" data-key="profile_ar_h1_1" value="البنية التحتية"/>
+              </div>
+              <div class="">
+                <label class="field-label">العنوان سطر 2 (مائل)</label>
+                <input class="field-input" type="text" data-key="profile_ar_h1_2" value="والتنفيذ الحضري"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">النص التمهيدي</label>
+                <input class="field-input" type="text" data-key="profile_ar_hero_sub" value="النص التمهيدي"/>
+              </div>
+              <div class="">
+                <label class="field-label">هيرو تاج 5</label>
+                <input class="field-input" type="text" data-key="profile_ar_htag5" value="الأعمال الخارجية"/>
+              </div>
+              <div class="">
+                <label class="field-label">هيرو تاج 6</label>
+                <input class="field-input" type="text" data-key="profile_ar_htag6" value="دهان الطرق"/>
+              </div>
+              <div class="">
+                <label class="field-label">نبذة — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_about_title" value="نبذة عن الشركة"/>
+              </div>
+              <div class="">
+                <label class="field-label">نبذة — نقطة 1</label>
+                <input class="field-input" type="text" data-key="profile_ar_about_pt1" value="مقاول بنية تحتية سعودي"/>
+              </div>
+              <div class="">
+                <label class="field-label">نبذة — نقطة 2</label>
+                <input class="field-input" type="text" data-key="profile_ar_about_pt2" value="حضور ميداني في مناطق متعددة"/>
+              </div>
+              <div class="">
+                <label class="field-label">نبذة — نقطة 3</label>
+                <input class="field-input" type="text" data-key="profile_ar_about_pt3" value="معتمد ISO 9001:2015"/>
+              </div>
+              <div class="">
+                <label class="field-label">رؤية — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_vision_title" value="الريادة في تسليم البنية التحتية"/>
+              </div>
+              <div class="">
+                <label class="field-label">مهمة — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_mission_title" value="تنفيذ يمكن الاعتماد عليه"/>
+              </div>
+              <div class="">
+                <label class="field-label">القيم — عنوان القسم</label>
+                <input class="field-input" type="text" data-key="profile_ar_val_title" value="ما نؤمن به"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">قيمة 3 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_val3_desc" value="قيمة 3 — الوصف"/>
+              </div>
+              <div class="">
+                <label class="field-label">الخدمات — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_svc_title" value="قدرة تنفيذية متكاملة"/>
+              </div>
+              <div class="">
+                <label class="field-label">التنفيذ — العنوان</label>
+                <input class="field-input" type="text" data-key="profile_ar_ops_title" value="قدرة تنفيذ أسفلت مدفوعة ميدانياً"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">مواد 1 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_mat1_desc" value="مواد 1 — الوصف"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">مواد 2 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_mat2_desc" value="مواد 2 — الوصف"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">مواد 3 — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_mat3_desc" value="مواد 3 — الوصف"/>
+              </div>
+              <div class="field-wide">
+                <label class="field-label">الأسطول — الوصف</label>
+                <input class="field-input" type="text" data-key="profile_ar_fleet_desc" value="الأسطول — الوصف"/>
+              </div>
+          </div>
+        </div>
+      </div>
+</div>
 <div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>🖼 صور البروفايل العربي</h3><i class="chevron">▼</i></div>
         <div class="card-body">
@@ -831,7 +919,8 @@ textarea.field-input{min-height:80px}
         </div>
       </div>
 
-      <div class="card">
+      
+<div class="card">
         <div class="card-hdr" onclick="toggleCard(this)"><h3>📊 هيرو — كامل</h3><i class="chevron">▼</i></div>
         <div class="card-body">
           <div class="field"><label class="field-label">تاق 1</label><input type="text" data-key="profile_ar_htag1" oninput="markDirty()" value="البنية التحتية"/></div>
@@ -973,93 +1062,7 @@ textarea.field-input{min-height:80px}
       </div>
 
 
-      <div class="card">
-        <div class="card-hdr open" onclick="toggleCard(this)"><h3>🦸 هيرو — نص إضافي</h3><i class="chevron">▼</i></div>
-        <div class="card-body open">
-          <div class="fields-grid">
-              <div class="">
-                <label class="field-label">Eyebrow</label>
-                <input class="field-input" type="text" data-key="profile_ar_eyebrow" value="البروفايل المؤسسي"/>
-              </div>
-              <div class="">
-                <label class="field-label">العنوان سطر 1</label>
-                <input class="field-input" type="text" data-key="profile_ar_h1_1" value="البنية التحتية"/>
-              </div>
-              <div class="">
-                <label class="field-label">العنوان سطر 2 (مائل)</label>
-                <input class="field-input" type="text" data-key="profile_ar_h1_2" value="والتنفيذ الحضري"/>
-              </div>
-              <div class="field-wide">
-                <label class="field-label">النص التمهيدي</label>
-                <input class="field-input" type="text" data-key="profile_ar_hero_sub" value="النص التمهيدي"/>
-              </div>
-              <div class="">
-                <label class="field-label">هيرو تاج 5</label>
-                <input class="field-input" type="text" data-key="profile_ar_htag5" value="الأعمال الخارجية"/>
-              </div>
-              <div class="">
-                <label class="field-label">هيرو تاج 6</label>
-                <input class="field-input" type="text" data-key="profile_ar_htag6" value="دهان الطرق"/>
-              </div>
-              <div class="">
-                <label class="field-label">نبذة — العنوان</label>
-                <input class="field-input" type="text" data-key="profile_ar_about_title" value="نبذة عن الشركة"/>
-              </div>
-              <div class="">
-                <label class="field-label">نبذة — نقطة 1</label>
-                <input class="field-input" type="text" data-key="profile_ar_about_pt1" value="مقاول بنية تحتية سعودي"/>
-              </div>
-              <div class="">
-                <label class="field-label">نبذة — نقطة 2</label>
-                <input class="field-input" type="text" data-key="profile_ar_about_pt2" value="حضور ميداني في مناطق متعددة"/>
-              </div>
-              <div class="">
-                <label class="field-label">نبذة — نقطة 3</label>
-                <input class="field-input" type="text" data-key="profile_ar_about_pt3" value="معتمد ISO 9001:2015"/>
-              </div>
-              <div class="">
-                <label class="field-label">رؤية — العنوان</label>
-                <input class="field-input" type="text" data-key="profile_ar_vision_title" value="الريادة في تسليم البنية التحتية"/>
-              </div>
-              <div class="">
-                <label class="field-label">مهمة — العنوان</label>
-                <input class="field-input" type="text" data-key="profile_ar_mission_title" value="تنفيذ يمكن الاعتماد عليه"/>
-              </div>
-              <div class="">
-                <label class="field-label">القيم — عنوان القسم</label>
-                <input class="field-input" type="text" data-key="profile_ar_val_title" value="ما نؤمن به"/>
-              </div>
-              <div class="field-wide">
-                <label class="field-label">قيمة 3 — الوصف</label>
-                <input class="field-input" type="text" data-key="profile_ar_val3_desc" value="قيمة 3 — الوصف"/>
-              </div>
-              <div class="">
-                <label class="field-label">الخدمات — العنوان</label>
-                <input class="field-input" type="text" data-key="profile_ar_svc_title" value="قدرة تنفيذية متكاملة"/>
-              </div>
-              <div class="">
-                <label class="field-label">التنفيذ — العنوان</label>
-                <input class="field-input" type="text" data-key="profile_ar_ops_title" value="قدرة تنفيذ أسفلت مدفوعة ميدانياً"/>
-              </div>
-              <div class="field-wide">
-                <label class="field-label">مواد 1 — الوصف</label>
-                <input class="field-input" type="text" data-key="profile_ar_mat1_desc" value="مواد 1 — الوصف"/>
-              </div>
-              <div class="field-wide">
-                <label class="field-label">مواد 2 — الوصف</label>
-                <input class="field-input" type="text" data-key="profile_ar_mat2_desc" value="مواد 2 — الوصف"/>
-              </div>
-              <div class="field-wide">
-                <label class="field-label">مواد 3 — الوصف</label>
-                <input class="field-input" type="text" data-key="profile_ar_mat3_desc" value="مواد 3 — الوصف"/>
-              </div>
-              <div class="field-wide">
-                <label class="field-label">الأسطول — الوصف</label>
-                <input class="field-input" type="text" data-key="profile_ar_fleet_desc" value="الأسطول — الوصف"/>
-              </div>
-          </div>
-        </div>
-      </div>
+      
       <div class="card">
         <div class="card-hdr open" onclick="toggleCard(this)"><h3>🏙 الأعمال الحضرية</h3><i class="chevron">▼</i></div>
         <div class="card-hint">📍 قسم الأعمال الحضرية والإنترلوك</div>
@@ -1113,6 +1116,7 @@ textarea.field-input{min-height:80px}
         </div>
       </div>
     </div>
+
 
           
 
@@ -1371,7 +1375,8 @@ textarea.field-input{min-height:80px}
         </div>
       </div>
 
-      <div class="card">
+      
+<div class="card">
         <div class="card-hdr " onclick="toggleCard(this)"><h3>📊 Hero — Full</h3><i class="chevron">▼</i></div>
         <div class="card-body ">
           <div class="field"><label class="field-label">H1 — Line 1</label><input type="text" data-key="profile_en_h1_1" oninput="markDirty()" value="Infrastructure &amp;"/></div>
