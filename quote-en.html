@@ -295,18 +295,26 @@ thead th.th-desc{text-align:left;padding-left:12px}
   direction:ltr;padding:20px 32px 16px;background:#fff;
 }
 .lh-header img{height:44px;width:auto;display:block}
-.lh-header-site{font-size:11px;color:#8a8a8a;font-family:Raleway,sans-serif;letter-spacing:.02em}
+.lh-header-r{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.lh-header-name{font-family:Raleway,sans-serif;font-size:16px;font-weight:700;color:#005340;white-space:nowrap;letter-spacing:.04em}
+.lh-header-nums{display:flex;align-items:center;gap:6px;direction:ltr}
+.lh-header-nums span{font-family:Raleway,sans-serif;font-size:10px;font-weight:600;color:#8a8a8a;white-space:nowrap}
+.lh-header-nums .dot{color:#C8A96E;font-size:9px}
 .lh-stripe{height:4px;background:linear-gradient(to right,#C8A96E,#005340)}
 .lh-footer-wrap{background:#fff}
 .lh-footer{
-  display:flex;align-items:center;justify-content:space-between;
-  direction:ltr;padding:12px 32px;background:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  direction:ltr;padding:10px 32px;background:#fff;
 }
-.lh-footer-mark{height:22px;width:auto}
-.lh-footer-contact{display:flex;flex-direction:column;gap:5px;font-family:Raleway,sans-serif}
-.lh-footer-contact .row1{display:flex;align-items:center;gap:10px;font-size:9px;color:#333;font-weight:700}
-.lh-footer-contact .row2{display:flex;align-items:center;gap:10px;font-size:8px;color:#999;font-weight:500}
-.lh-footer-logo{height:30px;width:auto}
+.lh-footer-vline{width:1px;height:34px;background:rgba(200,169,110,.4);flex-shrink:0}
+.lh-footer-contact{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.lh-footer-row{display:flex;align-items:center;gap:12px}
+.lh-footer-item{display:flex;align-items:center;gap:4px}
+.lh-footer-item svg{width:9px;height:9px;flex-shrink:0}
+.lh-footer-item span{font-family:Raleway,sans-serif;font-size:8.5px;font-weight:700;color:#302E2E;direction:ltr;font-variant-numeric:lining-nums tabular-nums}
+.lh-footer-sep{width:1px;height:10px;background:rgba(200,169,110,.4)}
+.lh-footer-mark{height:34px;width:auto}
+
 
 </style>
 </head>
@@ -327,7 +335,14 @@ thead th.th-desc{text-align:left;padding-left:12px}
 <div class="lh-header-wrap">
   <div class="lh-header">
     <img src="/assets/img/hic-logo-main.png" alt="HIC" />
-    <span class="lh-header-site">saudihic.com</span>
+    <div class="lh-header-r">
+      <span class="lh-header-name">HIC</span>
+      <div class="lh-header-nums">
+        <span>N.No: 7034678057</span>
+        <span class="dot">•</span>
+        <span>VAT: 302119453700003</span>
+      </div>
+    </div>
   </div>
   <div class="lh-stripe"></div>
 </div>
@@ -421,12 +436,26 @@ thead th.th-desc{text-align:left;padding-left:12px}
   <div class="lh-footer-wrap">
     <div class="lh-stripe"></div>
     <div class="lh-footer">
-      <img class="lh-footer-mark" src="/assets/img/hic-logo-transparent.png" alt="" />
+      <img class="lh-footer-mark" src="/assets/img/hic-icon-road.png" alt="HIC" />
+      <div class="lh-footer-vline"></div>
       <div class="lh-footer-contact">
-        <div class="row1"><span>sales@saudihic.com</span><span>|</span><span>N.No: 7034678057</span></div>
-        <div class="row2"><span>saudihic.com</span><span>|</span><span>KSA — Jeddah 23787</span></div>
+        <div class="lh-footer-row">
+          <div class="lh-footer-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#005340" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>sales@saudihic.com</span>
+          </div>
+          <div class="lh-footer-sep"></div>
+          <div class="lh-footer-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#005340" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>KSA — Jeddah 23787</span>
+          </div>
+          <div class="lh-footer-sep"></div>
+          <div class="lh-footer-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#005340" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18a14 14 0 010-18"/></svg>
+            <span>saudihic.com</span>
+          </div>
+        </div>
       </div>
-      <img class="lh-footer-logo" src="/assets/img/hic-logo-main.png" alt="HIC" />
     </div>
   </div>
   
