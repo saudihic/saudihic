@@ -62,7 +62,7 @@ a { text-decoration: none; color: inherit; }
 .hdr.scrolled .nav-cta { color:#fff!important; }
 .nav-new { border:1px solid rgba(255,255,255,.3); color:rgba(255,255,255,.75)!important; padding:.4rem 1rem; border-radius:2px; }
 .nav-new:hover { border-color:#fff; color:#fff!important; }
-.hdr.scrolled .nav-new { border-color:rgba(0,83,64,.4); color:var(--green)!important; }
+.hdr.scrolled .nav-new { border-color:rgba(255,255,255,.25); color:rgba(255,255,255,.85)!important; }
 .nav-lang { border:1px solid rgba(255,255,255,.35); color:rgba(255,255,255,.8)!important; padding:.38rem .8rem; border-radius:2px; }
 .nav-lang:hover { border-color:#fff; color:#fff!important; }
 .hdr.scrolled .nav-lang { border-color:rgba(255,255,255,.2); color:rgba(255,255,255,.8)!important; }
