@@ -1999,6 +1999,7 @@ function loadData(){
 function saveAll(){
   setStatus('saving');
   var pages = {};
+  var SIBLING = {home_en:'home_ar', profile_en:'profile_ar', bs_en:'bs_ar'};
   document.querySelectorAll('[data-key]').forEach(function(el){
     var key = el.getAttribute('data-key');
     var val = el.value.trim();
@@ -2006,8 +2007,18 @@ function saveAll(){
     var page = getPage(key);
     if(!page) return;
     if(!pages[page]) pages[page] = {texts:{}, images:{}};
-    if(el.classList.contains('img-url-input')) pages[page].images[key] = val;
+    var isImage = el.classList.contains('img-url-input');
+    if(isImage) pages[page].images[key] = val;
     else pages[page].texts[key] = val;
+
+    // Shared images (home_en_img_*, profile_en_img_*, bs_en_img_*) are referenced by the
+    // same key on both the EN and AR pages, but hic.js only reads its own page's bucket —
+    // so mirror the value into the sibling-language bucket too, or the AR page never sees it.
+    if(isImage && SIBLING[page]){
+      var sib = SIBLING[page];
+      if(!pages[sib]) pages[sib] = {texts:{}, images:{}};
+      pages[sib].images[key] = val;
+    }
   });
   fetch('/api/content', {
     method:'POST',
