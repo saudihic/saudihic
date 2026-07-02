@@ -308,10 +308,6 @@ textarea.field-input{min-height:80px}
                 <label class="field-label">النص التمهيدي</label>
                 <input class="field-input" type="text" data-key="home_ar_hero_sub" value="النص التمهيدي"/>
               </div>
-              
-              
-              
-              
           </div>
         </div>
       </div>
@@ -334,6 +330,7 @@ textarea.field-input{min-height:80px}
       <div class="card">
         <div class="card-hdr " onclick="toggleCard(this)"><h3>🏷️ تاقات المقدمة</h3><i class="chevron">▼</i></div>
         <div class="card-body ">
+          <div class="field"><label class="field-label">النص التمهيدي (الشريط الأخضر)</label><input type="text" data-key="home_ar_intro" oninput="markDirty()" value="النص التمهيدي (الشريط الأخضر)"/></div>
           <div class="field"><label class="field-label">تاق 1</label><input type="text" data-key="home_ar_tag1" oninput="markDirty()" value="طرق وأسفلت"/></div>
           <div class="field"><label class="field-label">تاق 2</label><input type="text" data-key="home_ar_tag2" oninput="markDirty()" value="أعمال مدنية"/></div>
           <div class="field"><label class="field-label">تاق 3</label><input type="text" data-key="home_ar_tag3" oninput="markDirty()" value="التصريف"/></div>
@@ -346,6 +343,7 @@ textarea.field-input{min-height:80px}
       <div class="card">
         <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 قسم الخدمات</h3><i class="chevron">▼</i></div>
         <div class="card-body ">
+          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="home_ar_svc_title" oninput="markDirty()" value="ست خطوط تنفيذ متكاملة"/></div>
           <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="home_ar_svc_tag" oninput="markDirty()" value="نطاق الأعمال"/></div>
           <div class="field"><label class="field-label">الوصف</label><textarea data-key="home_ar_svc_desc" oninput="markDirty()" >نغطّي دورة العمل كاملة — من توريد المواد وتشغيل المعدات إلى التنفيذ الميداني والتسليم النهائي، ضمن منظومة واحدة منسّقة.</textarea></div>
           <div class="field"><label class="field-label">خدمة 1 — رقم</label><input type="text" data-key="home_ar_svc1_n" oninput="markDirty()" value="01 / خدمة"/></div>
@@ -372,6 +370,7 @@ textarea.field-input{min-height:80px}
       <div class="card">
         <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 قسم التنفيذ</h3><i class="chevron">▼</i></div>
         <div class="card-body ">
+          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="home_ar_ops_title" oninput="markDirty()" value="خبرة ميدانية مُثبَتة"/></div>
           <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="home_ar_ops_tag" oninput="markDirty()" value="التنفيذ الميداني"/></div>
           <div class="field"><label class="field-label">الوصف</label><textarea data-key="home_ar_ops_desc" oninput="markDirty()" >تنفّذ فرقنا مشاريع متنوعة بجودة ثابتة — من رصف الطرق الرئيسية إلى أنظمة التصريف والتنسيق الحضري.</textarea></div>
           <div class="field"><label class="field-label">تاق الكارد</label><input type="text" data-key="home_ar_ops_card_tag" oninput="markDirty()" value="عمليات ليلية · جدة"/></div>
@@ -385,6 +384,7 @@ textarea.field-input{min-height:80px}
       <div class="card">
         <div class="card-hdr " onclick="toggleCard(this)"><h3>📝 الحلول الإنشائية</h3><i class="chevron">▼</i></div>
         <div class="card-body ">
+          <div class="field"><label class="field-label">عنوان القسم</label><input type="text" data-key="home_ar_bs_title" oninput="markDirty()" value="الحلول الإنشائية المتكاملة"/></div>
           <div class="field"><label class="field-label">التصنيف</label><input type="text" data-key="home_ar_bs_tag" oninput="markDirty()" value="شراكة هندسية ألمانية"/></div>
           <div class="field"><label class="field-label">الوصف</label><textarea data-key="home_ar_bs_desc" oninput="markDirty()" >بالشراكة مع مكتب هندسي ألماني متخصص، نوفّر أنظمة دعم الواجهات الحجرية والأسقف المعدنية وحلول الأغلفة الإنشائية وفق المعايير الدولية.</textarea></div>
           <div class="field"><label class="field-label">مواصفة 1 — تسمية</label><input type="text" data-key="home_ar_spec1_l" oninput="markDirty()" value="التخصص"/></div>
@@ -427,22 +427,6 @@ textarea.field-input{min-height:80px}
         <div class="card-hint">📍 كروت تحميل الـPDF الثلاثة</div>
         <div class="card-body open">
           <div class="fields-grid">
-<div class="field-wide">
-                <label class="field-label">النص التمهيدي (الشريط الأخضر)</label>
-                <input class="field-input" type="text" data-key="home_ar_intro" value="النص التمهيدي (الشريط الأخضر)"/>
-              </div>
-<div class="">
-                <label class="field-label">عنوان قسم الحلول الإنشائية</label>
-                <input class="field-input" type="text" data-key="home_ar_bs_title" value="الحلول الإنشائية المتكاملة"/>
-              </div>
-<div class="">
-                <label class="field-label">عنوان قسم التنفيذ</label>
-                <input class="field-input" type="text" data-key="home_ar_ops_title" value="خبرة ميدانية مُثبَتة"/>
-              </div>
-<div class="">
-                <label class="field-label">عنوان قسم الخدمات</label>
-                <input class="field-input" type="text" data-key="home_ar_svc_title" value="ست خطوط تنفيذ متكاملة"/>
-              </div>
               <div class="">
                 <label class="field-label">وسم القسم</label>
                 <input class="field-input" type="text" data-key="home_ar_dl_tag" value="التحميلات"/>
