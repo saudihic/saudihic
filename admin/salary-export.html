@@ -322,14 +322,24 @@ function parseCSVLine(line, delim){
   return result;
 }
 
+function decodeBestEffort(buffer){
+  const bytes = new Uint8Array(buffer);
+  // try UTF-8 strictly first
+  try{
+    const utf8Text = new TextDecoder('utf-8', {fatal:true}).decode(bytes);
+    return utf8Text.charCodeAt(0)===0xFEFF ? utf8Text.slice(1) : utf8Text;
+  }catch(e){
+    // fall back to Windows-1256 (common encoding for Arabic CSV exported from Excel on Windows)
+    return new TextDecoder('windows-1256').decode(bytes);
+  }
+}
+
 function importCSV(event){
   const file = event.target.files[0];
   if(!file) return;
   const reader = new FileReader();
   reader.onload = function(e){
-    let text = e.target.result;
-    // strip BOM
-    if(text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+    let text = decodeBestEffort(e.target.result);
     const lines = text.split(/\r\n|\n/).filter(l=>l.trim().length>0);
     if(lines.length === 0){ alert('الملف فارغ.'); return; }
 
@@ -370,7 +380,7 @@ function importCSV(event){
     }
     alert(msg);
   };
-  reader.readAsText(file, 'UTF-8');
+  reader.readAsArrayBuffer(file);
   event.target.value = '';
 }
 
