@@ -128,7 +128,7 @@
 
   <div class="panel">
     <h2>بيانات الموظفين</h2>
-    <p class="hint">أدخل بيانات كل موظف، أو استورد ملف شهر سابق وعدّل عليه.</p>
+    <p class="hint">أدخل بيانات كل موظف، أو استورد ملف شهر سابق وعدّل عليه. ⚠️ اسم الموظف: 35 حرف كحد أقصى (بالمسافات)، حروف فقط بدون أي رموز.</p>
 
     <div class="toolbar">
       <button class="action btn-add" onclick="addRow()">+ إضافة موظف</button>
@@ -245,6 +245,19 @@ function calcTotal(row){
   return (b+h+o-d);
 }
 
+// Bank rule: employee name max 35 chars (incl. spaces), letters + spaces only, no symbols
+const NAME_MAX_LEN = 35;
+const NAME_ALLOWED = /^[\u0600-\u06FFa-zA-Z\s]*$/;
+
+function validateName(name){
+  name = name || '';
+  const issues = [];
+  if(name.trim().length === 0) issues.push('الاسم فارغ');
+  if(name.length > NAME_MAX_LEN) issues.push(`الاسم أطول من ${NAME_MAX_LEN} حرف (${name.length})`);
+  if(!NAME_ALLOWED.test(name)) issues.push('الاسم يحتوي على رموز غير مسموحة');
+  return issues;
+}
+
 function renderTable(){
   const activeCols = columns.filter(c=>c.enabled || c.type==='calc').sort((a,b)=>a.order-b.order);
   const head = document.getElementById('tableHead');
@@ -260,6 +273,13 @@ function renderTable(){
         cells += `<td class="net-cell">${calcTotal(row).toFixed(2)}</td>`;
       } else if(col.key==='bank'){
         cells += `<td><input type="text" list="bankCodesList" value="${(row.bank ?? '')}" placeholder="اختر أو اكتب الرمز" oninput="updateCell(${row.id}, 'bank', this.value)"></td>`;
+      } else if(col.key==='name'){
+        const issues = validateName(row.name);
+        const invalid = issues.length > 0 && (row.name && row.name.length>0);
+        const remaining = NAME_MAX_LEN - (row.name||'').length;
+        const style = invalid ? 'border-color:#c0392b !important;background:#fdecea' : '';
+        const title = invalid ? issues.join(' | ') : `متبقي ${remaining} حرف`;
+        cells += `<td><input type="text" style="${style}" title="${title}" value="${(row.name ?? '')}" oninput="updateCell(${row.id}, 'name', this.value)"></td>`;
       } else {
         const inputType = col.type==='number' ? 'number' : 'text';
         cells += `<td><input type="${inputType}" value="${(row[col.key] ?? '')}" oninput="updateCell(${row.id}, '${col.key}', this.value)"></td>`;
@@ -386,6 +406,19 @@ function importCSV(event){
 
 function exportFile(){
   if(rows.length===0){ alert('لا يوجد موظفين لتصديرهم. أضف صفًا أولاً.'); return; }
+
+  // Validate employee names against bank rule before exporting
+  const problems = [];
+  rows.forEach(row=>{
+    const issues = validateName(row.name);
+    if(issues.length>0){
+      problems.push(`السطر ${row.seq} (${row.name || 'بدون اسم'}): ${issues.join(' / ')}`);
+    }
+  });
+  if(problems.length>0){
+    alert('لا يمكن التصدير — فيه مشاكل بأسماء الموظفين تخالف شرط البنك (35 حرف كحد أقصى، بدون أي رموز):\n\n' + problems.join('\n'));
+    return;
+  }
 
   const activeCols = columns.filter(c=>c.enabled || c.type==='calc').sort((a,b)=>a.order-b.order);
   const delim = document.getElementById('delimiter').value;
