@@ -472,9 +472,13 @@ function exportFile(){
 
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  const today = new Date().toISOString().slice(0,10);
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth()+1).padStart(2,'0');
+  const d = String(now.getDate()).padStart(2,'0');
+  const dateStr = `${y}${m}${d}`; // no dashes/underscores per bank rule: letters+numbers only
   a.href = url;
-  a.download = `HIC_Salary_${today}.${ext}`;
+  a.download = `HICSalary${dateStr}.${ext}`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
