@@ -477,6 +477,48 @@ var D = {
 };
 var em = false;
 
+// ── DRAFT AUTOSAVE (localStorage) ──
+var STORAGE_KEY = 'hic_quote_draft_en_v1';
+var HEADER_IDS = ['qn','qd','cn','openingText','closingText','phone','bankName','ibanNum','validDays','coNameAr','coNameEn'];
+
+function collectState(){
+  saveFromDOM();
+  var header={};
+  HEADER_IDS.forEach(function(id){
+    var el=document.getElementById(id); if(el) header[id]=el.innerHTML;
+  });
+  var vatEl=document.getElementById('vatRate');
+  var conds=[];
+  document.querySelectorAll('.cond-text').forEach(function(el){ conds.push(el.textContent.trim()); });
+  return {sections:D.sections, conditions:(conds.length?conds:D.conditions), header:header, vat: vatEl?vatEl.value:15};
+}
+
+function saveState(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(collectState())); }catch(e){}
+}
+
+var __savedHeader=null, __savedVat=null;
+function loadState(){
+  try{
+    var raw=localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    var st=JSON.parse(raw);
+    if(st.sections) D.sections=st.sections;
+    if(st.conditions) D.conditions=st.conditions;
+    __savedHeader=st.header||null;
+    __savedVat=(st.vat!=null?st.vat:null);
+  }catch(e){}
+}
+
+function applySavedHeader(){
+  if(__savedHeader){
+    HEADER_IDS.forEach(function(id){
+      if(__savedHeader[id]!=null){ var el=document.getElementById(id); if(el) el.innerHTML=__savedHeader[id]; }
+    });
+  }
+  if(__savedVat!=null){ var vatEl=document.getElementById('vatRate'); if(vatEl) vatEl.value=__savedVat; }
+}
+
 // ── FORMAT ──
 var fmt = function(n){return Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
 
@@ -635,7 +677,7 @@ function toggleEdit(){
   var btn=document.getElementById('eBtn');
   var pg=document.getElementById('pg');
   if(em){pg.classList.add('edit-on');btn.textContent='✓ Save';btn.classList.add('active');var eb=document.getElementById('editBanner');if(eb)eb.style.display='block';}
-  else{pg.classList.remove('edit-on');btn.textContent='✏️ Edit';btn.classList.remove('active');recalc();var eb=document.getElementById('editBanner');if(eb)eb.style.display='none';}
+  else{pg.classList.remove('edit-on');btn.textContent='✏️ Edit';btn.classList.remove('active');recalc();var eb=document.getElementById('editBanner');if(eb)eb.style.display='none';saveState();}
   document.querySelectorAll('.sec-del-btn').forEach(function(b){b.style.display=em?'inline-block':'none';});
   applyEdit();
 }
@@ -655,6 +697,7 @@ function addSec(){
   var newId=D.sections.length+1;
   D.sections.push({id:newId,title:newId+'/0 — New Section',rows:[]});
   render(); if(!em)toggleEdit();
+  saveState();
 }
 
 function addRow(sid){
@@ -662,6 +705,7 @@ function addRow(sid){
   var sec=D.sections.find(function(s){return s.id===sid;}); if(!sec) return;
   sec.rows.push({id:sid+'/'+(sec.rows.length+1),desc:'Item description',unit:'Item',qty:null,price:0});
   render();
+  saveState();
 }
 
 function delRow(btn){
@@ -670,12 +714,14 @@ function delRow(btn){
   var sec=D.sections.find(function(s){return s.id===sid;});
   if(sec) sec.rows=sec.rows.filter(function(r){return r.id!==rid;});
   render();
+  saveState();
 }
 
 function delSec(sid){
   saveFromDOM();
   D.sections=D.sections.filter(function(s){return s.id!==sid;});
   render();
+  saveState();
 }
 
 function addCond(){
@@ -687,8 +733,20 @@ function addCond(){
   li.appendChild(sp); li.appendChild(xb); ul.appendChild(li); sp.focus();
 }
 
+loadState();
 render();
 renderConds();
+applySavedHeader();
+recalc();
+
+// Global debounced autosave: catches header/condition/table edits as they happen
+(function(){
+  var t=null;
+  document.addEventListener('input', function(){
+    clearTimeout(t);
+    t=setTimeout(saveState, 400);
+  }, true);
+})();
 </script>
 </body>
 </html>
