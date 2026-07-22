@@ -130,6 +130,22 @@ async function stGet(key){
 async function stDelete(key){
   try{ await fetch('/api/store/'+encodeURIComponent(key), { method:'DELETE', headers:{'x-admin-password':HIC_ADMIN_PW} }); }catch(e){}
 }
+async function stSet(key, obj){
+  try{
+    const res = await fetch('/api/store/'+encodeURIComponent(key), {
+      method:'PUT', headers:{'x-admin-password':HIC_ADMIN_PW}, body: JSON.stringify(obj)
+    });
+    return res.ok;
+  }catch(e){ return false; }
+}
+async function removeFromIndex(qn){
+  try{
+    var idx = await stGet('quote-index');
+    if(!Array.isArray(idx)) return;
+    idx = idx.filter(function(x){ return x!==qn; });
+    await stSet('quote-index', idx);
+  }catch(e){}
+}
 
 function fmtDate(iso){
   if(!iso) return '';
@@ -174,6 +190,7 @@ function render(){
       const qn = decodeURIComponent(a.dataset.qn);
       if(!confirm('حذف عرض السعر "'+qn+'" نهائياً؟')) return;
       await stDelete('quote:'+qn);
+      await removeFromIndex(qn);
       QUOTES = QUOTES.filter(function(x){ return x.qn!==qn; });
       render();
     });
@@ -182,8 +199,24 @@ function render(){
 
 async function loadArchive(){
   try{
-    const keys = await stList('quote:');
-    const results = await Promise.all(keys.map(function(k){ return stGet(k); }));
+    var qns = [];
+    try{
+      var idx = await stGet('quote-index');
+      if(Array.isArray(idx)) qns = idx.slice();
+    }catch(e){}
+
+    // Safety net: also check the prefix list in case the index is stale/missing
+    // (KV list() can lag behind writes, so this may miss very recent saves,
+    // but catches anything the index missed for other reasons)
+    try{
+      const keys = await stList('quote:');
+      keys.forEach(function(k){
+        var qn = k.replace(/^quote:/, '');
+        if(qn && qns.indexOf(qn)===-1) qns.push(qn);
+      });
+    }catch(e){}
+
+    const results = await Promise.all(qns.map(function(qn){ return stGet('quote:'+qn); }));
     QUOTES = results.filter(Boolean).sort(function(a,b){
       return (b.savedAt||'').localeCompare(a.savedAt||'');
     });

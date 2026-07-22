@@ -544,13 +544,21 @@ async function cloudSet(key, obj){
 var __cloudSaveTimer=null;
 function cloudSaveDebounced(st){
   clearTimeout(__cloudSaveTimer);
-  __cloudSaveTimer=setTimeout(function(){
+  __cloudSaveTimer=setTimeout(async function(){
     var qn=(st.qn||'').trim();
     if(!qn) return; // need a quote number to file it in the archive
     var key=cloudKey(qn);
     currentQuoteKey=key;
-    cloudSet(key, st);
+    await cloudSet(key, st);
+    await addToIndex(qn);
   }, 900);
+}
+
+async function addToIndex(qn){
+  try{
+    var idx=(await cloudGet('quote-index'))||[];
+    if(idx.indexOf(qn)===-1){ idx.push(qn); await cloudSet('quote-index', idx); }
+  }catch(e){}
 }
 
 var __savedHeader=null, __savedVat=null;
