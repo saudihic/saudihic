@@ -729,7 +729,7 @@ function delSec(sid){
 function addCond(){
   var ul=document.getElementById('cl');
   var li=document.createElement('li'); li.className='cond-item';
-  var sp=document.createElement('span'); sp.className='cond-text'; sp.contentEditable='true'; sp.textContent='Enter condition here';
+  var sp=document.createElement('span'); sp.className='cond-text'; sp.contentEditable='true'; sp.textContent='أدخل الشرط هنا';
   var xb=document.createElement('button'); xb.className='xbtn'; xb.style.display='inline'; xb.textContent='✕';
   xb.onclick=function(){li.remove();};
   li.appendChild(sp); li.appendChild(xb); ul.appendChild(li); sp.focus();
