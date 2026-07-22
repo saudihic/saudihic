@@ -800,10 +800,23 @@ function addSec(){
   saveState();
 }
 
+function nextRowId(sec){
+  if(sec.nextNum==null){
+    var maxNum=0;
+    sec.rows.forEach(function(r){
+      var n=parseInt((r.id||'').split('/')[1]);
+      if(!isNaN(n) && n>maxNum) maxNum=n;
+    });
+    sec.nextNum=maxNum;
+  }
+  sec.nextNum++;
+  return sec.id+'/'+sec.nextNum;
+}
+
 function addRow(sid){
   saveFromDOM();
   var sec=D.sections.find(function(s){return s.id===sid;}); if(!sec) return;
-  sec.rows.push({id:sid+'/'+(sec.rows.length+1),desc:'وصف البند',unit:'بند',qty:null,price:0});
+  sec.rows.push({id:nextRowId(sec),desc:'وصف البند',unit:'بند',qty:null,price:0});
   render();
   saveState();
 }
