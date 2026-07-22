@@ -709,8 +709,12 @@ function doPrint(){
   document.title=qn.trim()+(cn.trim()?' - '+cn.trim():'');
 
   function go(){
-    window.print();
-    setTimeout(function(){document.title=oldTitle;},1000);
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        window.print();
+        setTimeout(function(){document.title=oldTitle;},1000);
+      });
+    });
   }
 
   var pending=Array.prototype.slice.call(document.images).filter(function(img){return !img.complete;});
