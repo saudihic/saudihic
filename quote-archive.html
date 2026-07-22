@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>أرشيف عروض الأسعار - HIC</title>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#005340; --teal:#005852; --carbon:#302E2E; --ink:#1E1C1C;
+    --bg:#F0F0F0; --gold:#C8A96E; --silver:#A8AAAD;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'Alexandria',sans-serif; background:var(--bg); color:var(--ink);
+    margin:0; padding:0; direction:rtl;
+  }
+  .app-header{
+    background:var(--carbon); color:#fff; padding:10px 16px;
+    display:flex; align-items:center; justify-content:space-between; min-height:56px;
+    position:sticky; top:0; z-index:50; flex-wrap:wrap; gap:8px;
+  }
+  .app-brand{font-family:'Raleway'; font-weight:800; font-size:14px; letter-spacing:.5px; white-space:nowrap;}
+  .app-brand span{color:var(--gold);}
+  .app-header a.new-btn{
+    background:var(--green); color:#fff; text-decoration:none; padding:8px 16px; border-radius:6px;
+    font-family:'Raleway'; font-weight:700; font-size:12px; white-space:nowrap;
+  }
+  .app-header a.new-btn:hover{background:#006b52;}
+
+  .wrap{max-width:1000px; margin:0 auto; padding:24px 16px 60px;}
+
+  .card{background:#fff; border-radius:10px; box-shadow:0 4px 20px rgba(0,0,0,.06); padding:20px; margin-bottom:20px;}
+  .card h2{margin:0 0 16px; font-size:16px; color:var(--green); font-family:'Raleway'; font-weight:800;}
+
+  .toolbar{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; align-items:center;}
+  .toolbar input[type=text]{
+    flex:1; min-width:180px; padding:9px 12px; border:1px solid #ddd; border-radius:6px;
+    font-family:'Alexandria'; font-size:13px;
+  }
+  .toolbar input:focus{outline:2px solid var(--teal); border-color:transparent;}
+  .toolbar select{padding:9px 10px; border:1px solid #ddd; border-radius:6px; font-family:'Alexandria'; font-size:13px; background:#fff;}
+
+  table.list{width:100%; border-collapse:collapse; font-size:13px;}
+  table.list th{
+    text-align:right; background:#faf9f6; color:#888; font-weight:700; font-size:11px;
+    padding:9px 10px; border-bottom:2px solid #eee; text-transform:uppercase; letter-spacing:.03em;
+  }
+  table.list td{padding:11px 10px; border-bottom:1px solid #f0f0f0; vertical-align:middle;}
+  table.list tr{cursor:pointer;}
+  table.list tr:hover td{background:#fafaf7;}
+  .qn-cell{font-family:'Raleway'; font-weight:700; color:var(--green);}
+  .lang-badge{
+    display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px;
+    font-family:'Raleway';
+  }
+  .lang-badge.ar{background:#e8f4f0; color:var(--green);}
+  .lang-badge.en{background:#f0ecdf; color:#8a6d2f;}
+  .total-cell{font-family:'Raleway'; font-weight:700; direction:ltr; text-align:left;}
+  .empty-hint{text-align:center; color:#aaa; font-size:13px; padding:50px 10px;}
+  .loading-hint{text-align:center; color:#aaa; font-size:13px; padding:50px 10px;}
+  .err-hint{text-align:center; color:#c0392b; font-size:13px; padding:20px 10px; background:#fdf0ee; border-radius:8px; margin-bottom:16px; display:none;}
+  .actions-cell{text-align:left; white-space:nowrap;}
+  .actions-cell a{
+    display:inline-block; font-size:11px; font-family:'Raleway'; font-weight:700; text-decoration:none;
+    color:var(--green); border:1px solid var(--green); padding:4px 10px; border-radius:5px; margin-inline-start:4px;
+  }
+  .actions-cell a:hover{background:var(--green); color:#fff;}
+  .actions-cell a.del{color:#c0392b; border-color:#eecfcb;}
+  .actions-cell a.del:hover{background:#c0392b; color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div class="app-brand">HIC <span>| أرشيف عروض الأسعار</span></div>
+  <div style="display:flex;gap:8px">
+    <a class="new-btn" href="quote-ar.html">＋ عرض جديد (عربي)</a>
+    <a class="new-btn" href="quote-en.html">＋ New (English)</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="card">
+    <h2>كل العروض المحفوظة</h2>
+    <div class="toolbar">
+      <input type="text" id="searchBox" placeholder="ابحث بالاسم أو رقم العرض...">
+      <select id="langFilter">
+        <option value="">كل اللغات</option>
+        <option value="ar">عربي</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+    <div class="err-hint" id="errHint">تعذر الوصول لأرشيف السحابة. تحقق من الاتصال بالإنترنت وحاول تحديث الصفحة.</div>
+    <div id="loadingHint" class="loading-hint">جارٍ تحميل الأرشيف...</div>
+    <table class="list" id="archiveTable" style="display:none">
+      <thead>
+        <tr>
+          <th>رقم العرض</th>
+          <th>العميل</th>
+          <th>التاريخ</th>
+          <th>اللغة</th>
+          <th>الإجمالي</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty-hint" id="emptyHint" style="display:none">ما فيه عروض أسعار محفوظة بعد</div>
+  </div>
+</div>
+
+<script>
+const CLOUD_WORKER_URL = 'https://hic-invoice-api.aalgragre.workers.dev';
+const CLOUD_API_KEY    = 'ahMed@123';
+
+let QUOTES = [];
+
+async function stList(prefix){
+  const res = await fetch(CLOUD_WORKER_URL+'/kv?prefix='+encodeURIComponent(prefix), { headers:{'X-API-Key':CLOUD_API_KEY} });
+  if(!res.ok) throw new Error('list failed');
+  const data = await res.json();
+  return (data.keys||[]).map(k=>k.key||k);
+}
+async function stGet(key){
+  const res = await fetch(CLOUD_WORKER_URL+'/kv/'+encodeURIComponent(key), { headers:{'X-API-Key':CLOUD_API_KEY} });
+  if(!res.ok) return null;
+  const data = await res.json();
+  try{ return JSON.parse(data.value); }catch(e){ return null; }
+}
+async function stDelete(key){
+  try{ await fetch(CLOUD_WORKER_URL+'/kv/'+encodeURIComponent(key), { method:'DELETE', headers:{'X-API-Key':CLOUD_API_KEY} }); }catch(e){}
+}
+
+function fmtDate(iso){
+  if(!iso) return '';
+  try{ const d=new Date(iso); return d.toLocaleDateString('en-GB'); }catch(e){ return iso; }
+}
+
+function render(){
+  const q = (document.getElementById('searchBox').value||'').trim().toLowerCase();
+  const lang = document.getElementById('langFilter').value;
+  let rows = QUOTES.filter(function(item){
+    if(lang && item.lang!==lang) return false;
+    if(!q) return true;
+    return (item.qn||'').toLowerCase().includes(q) || (item.clientName||'').toLowerCase().includes(q);
+  });
+
+  const tbody = document.querySelector('#archiveTable tbody');
+  tbody.innerHTML = '';
+  document.getElementById('emptyHint').style.display = rows.length? 'none':'block';
+  document.getElementById('archiveTable').style.display = rows.length? 'table':'none';
+
+  rows.forEach(function(item){
+    const tr = document.createElement('tr');
+    const page = item.lang==='en' ? 'quote-en.html' : 'quote-ar.html';
+    const href = page+'?id='+encodeURIComponent(item.qn);
+    tr.onclick = function(e){ if(e.target.closest('a')) return; window.location.href = href; };
+    tr.innerHTML =
+      '<td class="qn-cell">'+(item.qn||'—')+'</td>'+
+      '<td>'+(item.clientName||'—')+'</td>'+
+      '<td>'+(item.date||fmtDate(item.savedAt))+'</td>'+
+      '<td><span class="lang-badge '+(item.lang||'ar')+'">'+(item.lang==='en'?'EN':'AR')+'</span></td>'+
+      '<td class="total-cell">'+(item.total||'0.00')+'</td>'+
+      '<td class="actions-cell">'+
+        '<a href="'+href+'">فتح</a>'+
+        '<a href="#" class="del" data-qn="'+encodeURIComponent(item.qn)+'">حذف</a>'+
+      '</td>';
+    tbody.appendChild(tr);
+  });
+
+  tbody.querySelectorAll('a.del').forEach(function(a){
+    a.addEventListener('click', async function(e){
+      e.preventDefault(); e.stopPropagation();
+      const qn = decodeURIComponent(a.dataset.qn);
+      if(!confirm('حذف عرض السعر "'+qn+'" نهائياً؟')) return;
+      await stDelete('quote:'+qn);
+      QUOTES = QUOTES.filter(function(x){ return x.qn!==qn; });
+      render();
+    });
+  });
+}
+
+async function loadArchive(){
+  try{
+    const keys = await stList('quote:');
+    const results = await Promise.all(keys.map(function(k){ return stGet(k); }));
+    QUOTES = results.filter(Boolean).sort(function(a,b){
+      return (b.savedAt||'').localeCompare(a.savedAt||'');
+    });
+    document.getElementById('loadingHint').style.display = 'none';
+    render();
+  }catch(e){
+    document.getElementById('loadingHint').style.display = 'none';
+    document.getElementById('errHint').style.display = 'block';
+  }
+}
+
+document.getElementById('searchBox').addEventListener('input', render);
+document.getElementById('langFilter').addEventListener('change', render);
+
+loadArchive();
+</script>
+</body>
+</html>

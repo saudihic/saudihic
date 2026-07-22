@@ -326,6 +326,7 @@ thead th.th-desc{text-align:right;padding-right:12px}
     <span class="bar-title">عرض سعر — سعر ثابت</span>
   </div>
   <div class="bar-actions">
+    <a class="btn btn-print" href="quote-archive.html" style="text-decoration:none;display:inline-flex;align-items:center">📂 الأرشيف</a>
     <button class="btn btn-add" onclick="addSec()">＋ قسم</button>
     <button class="btn btn-edit" id="eBtn" onclick="toggleEdit()">✏️ تعديل</button>
     <button class="btn btn-print" onclick="doPrint()">⬇ PDF</button>
@@ -498,11 +499,59 @@ function collectState(){
   var vatEl=document.getElementById('vatRate');
   var conds=[];
   document.querySelectorAll('.cond-text').forEach(function(el){ conds.push(el.textContent.trim()); });
-  return {sections:D.sections, conditions:(conds.length?conds:D.conditions), header:header, vat: vatEl?vatEl.value:15, labels: D.labels};
+  var grandEl=document.getElementById('grand');
+  var qnEl=document.getElementById('qn');
+  var cnEl=document.getElementById('cn');
+  var qdEl=document.getElementById('qd');
+  return {
+    sections:D.sections, conditions:(conds.length?conds:D.conditions), header:header,
+    vat: vatEl?vatEl.value:15, labels: D.labels,
+    qn: qnEl?qnEl.innerText.trim():'', clientName: cnEl?cnEl.innerText.trim():'',
+    date: qdEl?qdEl.innerText.trim():'', total: grandEl?grandEl.textContent.trim():'0.00',
+    lang:'ar', savedAt: new Date().toISOString()
+  };
 }
 
 function saveState(){
-  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(collectState())); }catch(e){}
+  var st=collectState();
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(st)); }catch(e){}
+  cloudSaveDebounced(st);
+}
+
+/* ── CLOUD SYNC (reuses the same Worker/KV as the invoicing app) ── */
+var CLOUD_WORKER_URL = 'https://hic-invoice-api.aalgragre.workers.dev';
+var CLOUD_API_KEY    = 'ahMed@123';
+var currentQuoteKey = null; // set when opening a saved quote via ?id=
+
+function cloudKey(qn){ return 'quote:'+qn; }
+
+async function cloudGet(key){
+  try{
+    var res = await fetch(CLOUD_WORKER_URL+'/kv/'+encodeURIComponent(key), { headers:{'X-API-Key':CLOUD_API_KEY} });
+    if(!res.ok) return null;
+    var data = await res.json();
+    return JSON.parse(data.value);
+  }catch(e){ return null; }
+}
+async function cloudSet(key, obj){
+  try{
+    var res = await fetch(CLOUD_WORKER_URL+'/kv/'+encodeURIComponent(key), {
+      method:'PUT', headers:{'X-API-Key':CLOUD_API_KEY}, body: JSON.stringify(obj)
+    });
+    return res.ok;
+  }catch(e){ return false; }
+}
+
+var __cloudSaveTimer=null;
+function cloudSaveDebounced(st){
+  clearTimeout(__cloudSaveTimer);
+  __cloudSaveTimer=setTimeout(function(){
+    var qn=(st.qn||'').trim();
+    if(!qn) return; // need a quote number to file it in the archive
+    var key=cloudKey(qn);
+    currentQuoteKey=key;
+    cloudSet(key, st);
+  }, 900);
 }
 
 var __savedHeader=null, __savedVat=null;
@@ -517,6 +566,29 @@ function loadState(){
     __savedHeader=st.header||null;
     __savedVat=(st.vat!=null?st.vat:null);
   }catch(e){}
+}
+
+function applyLoadedState(st){
+  if(!st) return;
+  if(st.sections) D.sections=st.sections;
+  if(st.conditions) D.conditions=st.conditions;
+  if(st.labels) D.labels=st.labels;
+  __savedHeader=st.header||null;
+  __savedVat=(st.vat!=null?st.vat:null);
+}
+
+// If opened with ?id=QUOTE_NUMBER, load that specific saved quote from the cloud archive
+async function loadFromUrlIfPresent(){
+  var params=new URLSearchParams(window.location.search);
+  var id=params.get('id');
+  if(!id) return false;
+  var st=await cloudGet(cloudKey(id));
+  if(st){
+    currentQuoteKey=cloudKey(id);
+    applyLoadedState(st);
+    return true;
+  }
+  return false;
 }
 
 function applySavedHeader(){
@@ -754,11 +826,14 @@ function addCond(){
   li.appendChild(sp); li.appendChild(xb); ul.appendChild(li); sp.focus();
 }
 
-loadState();
-render();
-renderConds();
-applySavedHeader();
-recalc();
+(async function initQuote(){
+  var loadedFromCloud = await loadFromUrlIfPresent();
+  if(!loadedFromCloud) loadState();
+  render();
+  renderConds();
+  applySavedHeader();
+  recalc();
+})();
 
 // Global debounced autosave: catches header/condition/table edits as they happen
 (function(){
