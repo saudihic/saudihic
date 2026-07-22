@@ -111,25 +111,24 @@
 </div>
 
 <script>
-const CLOUD_WORKER_URL = 'https://hic-invoice-api.aalgragre.workers.dev';
-const CLOUD_API_KEY    = 'ahMed@123';
+const HIC_ADMIN_PW = 'Aa@6821111';
 
 let QUOTES = [];
 
 async function stList(prefix){
-  const res = await fetch(CLOUD_WORKER_URL+'/kv?prefix='+encodeURIComponent(prefix), { headers:{'X-API-Key':CLOUD_API_KEY} });
+  const res = await fetch('/api/store?prefix='+encodeURIComponent(prefix));
   if(!res.ok) throw new Error('list failed');
   const data = await res.json();
-  return (data.keys||[]).map(k=>k.key||k);
+  return data.keys||[];
 }
 async function stGet(key){
-  const res = await fetch(CLOUD_WORKER_URL+'/kv/'+encodeURIComponent(key), { headers:{'X-API-Key':CLOUD_API_KEY} });
+  const res = await fetch('/api/store/'+encodeURIComponent(key));
   if(!res.ok) return null;
   const data = await res.json();
   try{ return JSON.parse(data.value); }catch(e){ return null; }
 }
 async function stDelete(key){
-  try{ await fetch(CLOUD_WORKER_URL+'/kv/'+encodeURIComponent(key), { method:'DELETE', headers:{'X-API-Key':CLOUD_API_KEY} }); }catch(e){}
+  try{ await fetch('/api/store/'+encodeURIComponent(key), { method:'DELETE', headers:{'x-admin-password':HIC_ADMIN_PW} }); }catch(e){}
 }
 
 function fmtDate(iso){

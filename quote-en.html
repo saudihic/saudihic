@@ -516,16 +516,15 @@ function saveState(){
   cloudSaveDebounced(st);
 }
 
-/* ── CLOUD SYNC (reuses the same Worker/KV as the invoicing app) ── */
-var CLOUD_WORKER_URL = 'https://hic-invoice-api.aalgragre.workers.dev';
-var CLOUD_API_KEY    = 'ahMed@123';
+/* ── CLOUD SYNC (our own API, same repo, /functions/api/store/) ── */
+var HIC_ADMIN_PW = 'Aa@6821111';
 var currentQuoteKey = null; // set when opening a saved quote via ?id=
 
 function cloudKey(qn){ return 'quote:'+qn; }
 
 async function cloudGet(key){
   try{
-    var res = await fetch(CLOUD_WORKER_URL+'/kv/'+encodeURIComponent(key), { headers:{'X-API-Key':CLOUD_API_KEY} });
+    var res = await fetch('/api/store/'+encodeURIComponent(key));
     if(!res.ok) return null;
     var data = await res.json();
     return JSON.parse(data.value);
@@ -533,8 +532,8 @@ async function cloudGet(key){
 }
 async function cloudSet(key, obj){
   try{
-    var res = await fetch(CLOUD_WORKER_URL+'/kv/'+encodeURIComponent(key), {
-      method:'PUT', headers:{'X-API-Key':CLOUD_API_KEY}, body: JSON.stringify(obj)
+    var res = await fetch('/api/store/'+encodeURIComponent(key), {
+      method:'PUT', headers:{'x-admin-password':HIC_ADMIN_PW}, body: JSON.stringify(obj)
     });
     return res.ok;
   }catch(e){ return false; }
