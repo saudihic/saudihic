@@ -18,6 +18,12 @@ function corsHeaders() {
   };
 }
 
+function checkAuth(context) {
+  const password = context.env.HIC_ADMIN_PASSWORD || "ahMed123";
+  const supplied = context.request.headers.get("x-admin-password");
+  return supplied === password;
+}
+
 export async function onRequestOptions() {
   return new Response(null, { headers: corsHeaders() });
 }
@@ -45,6 +51,12 @@ export async function onRequestGet(context) {
 
 export async function onRequestPut(context) {
   try {
+    if (!checkAuth(context)) {
+      return new Response(JSON.stringify({ ok: false, error: "Unauthorized" }), {
+        status: 401,
+        headers: corsHeaders()
+      });
+    }
     const key = STORE_PREFIX + context.params.key;
     const bodyText = await context.request.text();
     await context.env.HIC_CONTENT.put(key, bodyText);
@@ -61,6 +73,12 @@ export async function onRequestPut(context) {
 
 export async function onRequestDelete(context) {
   try {
+    if (!checkAuth(context)) {
+      return new Response(JSON.stringify({ ok: false, error: "Unauthorized" }), {
+        status: 401,
+        headers: corsHeaders()
+      });
+    }
     const key = STORE_PREFIX + context.params.key;
     await context.env.HIC_CONTENT.delete(key);
     return new Response(JSON.stringify({ ok: true }), {
