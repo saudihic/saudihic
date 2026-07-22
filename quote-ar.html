@@ -709,8 +709,26 @@ function doPrint(){
   var cn=(document.getElementById('cn')||{}).innerText||'';
   var oldTitle=document.title;
   document.title=qn.trim()+(cn.trim()?' - '+cn.trim():'');
-  window.print();
-  setTimeout(function(){document.title=oldTitle;},1000);
+
+  function go(){
+    window.print();
+    setTimeout(function(){document.title=oldTitle;},1000);
+  }
+
+  var pending=Array.prototype.slice.call(document.images).filter(function(img){return !img.complete;});
+  if(pending.length===0){ go(); return; }
+  var done=0, finished=false;
+  var safety=setTimeout(function(){ if(!finished){ finished=true; go(); } }, 2000);
+  function check(){
+    done++;
+    if(done>=pending.length && !finished){
+      finished=true; clearTimeout(safety); go();
+    }
+  }
+  pending.forEach(function(img){
+    img.addEventListener('load', check);
+    img.addEventListener('error', check);
+  });
 }
 
 function addSec(){
