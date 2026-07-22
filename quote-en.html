@@ -335,9 +335,9 @@ thead th.th-desc{text-align:left;padding-left:12px}
   <div class="lh-header">
     <img src="/assets/img/hic-logo-main.png" alt="HIC" />
     <div class="lh-header-nums">
-      <span>N.No: 7034678057</span>
+      <span id="crNo" contenteditable="false">N.No: 7034678057</span>
       <span class="dot">•</span>
-      <span>VAT: 302119453700003</span>
+      <span id="taxNo" contenteditable="false">VAT: 302119453700003</span>
     </div>
   </div>
   <div class="lh-stripe"></div>
@@ -479,7 +479,7 @@ var em = false;
 
 // ── DRAFT AUTOSAVE (localStorage) ──
 var STORAGE_KEY = 'hic_quote_draft_en_v1';
-var HEADER_IDS = ['qn','qd','cn','openingText','closingText','phone','bankName','ibanNum','validDays','coNameAr','coNameEn'];
+var HEADER_IDS = ['qn','qd','cn','openingText','closingText','phone','bankName','ibanNum','validDays','coNameAr','coNameEn','crNo','taxNo'];
 
 function collectState(){
   saveFromDOM();
@@ -663,7 +663,7 @@ function renderConds(){
 
 function applyEdit(){
   var ce=em?'true':'false';
-  ['qn','qd','cn','openingText','closingText','phone','bankName','ibanNum','validDays','coNameAr','coNameEn'].forEach(function(id){
+  ['qn','qd','cn','openingText','closingText','phone','bankName','ibanNum','validDays','coNameAr','coNameEn','crNo','taxNo'].forEach(function(id){
     var el=document.getElementById(id); if(el) el.contentEditable=ce;
   });
   document.querySelectorAll('.sec-title').forEach(function(el){el.contentEditable=ce;});
