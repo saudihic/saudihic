@@ -607,7 +607,7 @@ function render(){
       var ce=em?'true':'false';
       tr.innerHTML=
         '<td class="desc" contenteditable="'+(em?"true":"false")+'" style="padding-left:12px">'+
-          '<span style="font-size:6pt;color:#ccc;font-family:Raleway,sans-serif;display:block;margin-bottom:1px">'+
+          '<span contenteditable="false" style="font-size:6pt;color:#ccc;font-family:Raleway,sans-serif;display:block;margin-bottom:1px">'+
             r.id+' <button class="xbtn" onclick="delRow(this)">✕</button></span>'+
           r.desc+'</td>'+
         '<td class="c" contenteditable="'+(em?"true":"false")+'">'+r.unit+'</td>'+
