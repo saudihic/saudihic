@@ -283,11 +283,10 @@ thead th.th-desc{text-align:right;padding-right:12px}
     margin:0!important;
     overflow:visible!important;
     padding-top:100px;
-    display:flex!important;
-    flex-direction:column;
+    padding-bottom:76px;
   }
   .lh-header-wrap{position:fixed;top:0;left:0;width:210mm;background:#fff;z-index:10}
-  .lh-footer-wrap{margin-top:auto}
+  .lh-footer-wrap{position:fixed;bottom:0;left:0;width:210mm;background:#fff;z-index:10}
   *[contenteditable]{outline:none!important;background:transparent!important}
   @page{margin:0;size:A4 portrait}
 }
@@ -710,30 +709,8 @@ function doPrint(){
   var cn=(document.getElementById('cn')||{}).innerText||'';
   var oldTitle=document.title;
   document.title=qn.trim()+(cn.trim()?' - '+cn.trim():'');
-
-  function go(){
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){
-        window.print();
-        setTimeout(function(){document.title=oldTitle;},1000);
-      });
-    });
-  }
-
-  var pending=Array.prototype.slice.call(document.images).filter(function(img){return !img.complete;});
-  if(pending.length===0){ go(); return; }
-  var done=0, finished=false;
-  var safety=setTimeout(function(){ if(!finished){ finished=true; go(); } }, 2000);
-  function check(){
-    done++;
-    if(done>=pending.length && !finished){
-      finished=true; clearTimeout(safety); go();
-    }
-  }
-  pending.forEach(function(img){
-    img.addEventListener('load', check);
-    img.addEventListener('error', check);
-  });
+  window.print();
+  setTimeout(function(){document.title=oldTitle;},1000);
 }
 
 function addSec(){
