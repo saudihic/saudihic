@@ -695,7 +695,8 @@ function render(){
       ' <button class="sec-del-btn" style="background:#e05050;color:#fff;border:none;border-radius:3px;font-size:7pt;padding:2px 7px;cursor:pointer;font-family:Raleway,sans-serif;margin-left:8px;" onclick="delSec('+sec.id+')">Delete ✕</button>';
     str.appendChild(std); tb.appendChild(str);
 
-    sec.rows.forEach(function(r){
+    sec.rows.forEach(function(r, rIdx){
+      var displayNum=sec.id+'/'+(rIdx+1);
       var lump=r.qty===null||r.qty===undefined;
       var tot=lump?r.price:(r.qty*r.price);
       var tr=document.createElement('tr'); tr.className='data-row dr';
@@ -704,7 +705,7 @@ function render(){
       tr.innerHTML=
         '<td class="desc" style="padding-left:12px">'+
           '<span contenteditable="false" style="font-size:6pt;color:#ccc;font-family:Raleway,sans-serif;display:block;margin-bottom:1px">'+
-            r.id+' <button class="xbtn" onclick="delRow(this)">✕</button></span>'+
+            displayNum+' <button class="xbtn" onclick="delRow(this)">✕</button></span>'+
           '<span class="desc-text" contenteditable="'+ce+'">'+r.desc+'</span></td>'+
         '<td class="c" contenteditable="'+ce+'">'+r.unit+'</td>'+
         '<td class="c cq" contenteditable="'+ce+'">'+(lump?'—':fmt(r.qty))+'</td>'+
@@ -841,7 +842,13 @@ async function doPrint(){
 
 function addSec(){
   saveFromDOM();
-  var newId=D.sections.length+1;
+  if(D.nextSecNum==null){
+    var maxSec=0;
+    D.sections.forEach(function(s){ if(s.id>maxSec) maxSec=s.id; });
+    D.nextSecNum=maxSec;
+  }
+  D.nextSecNum++;
+  var newId=D.nextSecNum;
   D.sections.push({id:newId,title:newId+'/0 — New Section',rows:[]});
   render(); if(!em)toggleEdit();
   saveState();
