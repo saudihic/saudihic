@@ -675,7 +675,7 @@ function render(){
     var str=document.createElement('tr'); str.className='sec-row'; str.dataset.sid=sec.id;
     var std=document.createElement('td'); std.colSpan=5;
     std.innerHTML='<span class="sec-title" contenteditable="'+( em?'true':'false')+'">'+sec.title+'</span>'+
-      ' <button class="sec-del-btn" style="background:#e05050;color:#fff;border:none;border-radius:3px;font-size:7pt;padding:2px 7px;cursor:pointer;font-family:Raleway,sans-serif;margin-left:8px;" onclick="delSec('+sec.id+')">Delete ✕</button>';
+      ' <button class="sec-del-btn" style="background:#e05050;color:#fff;border:none;border-radius:3px;font-size:7pt;padding:2px 7px;cursor:pointer;font-family:Raleway,sans-serif;margin-left:8px;" onclick="delSec('+sec.id+')">حذف ✕</button>';
     str.appendChild(std); tb.appendChild(str);
 
     sec.rows.forEach(function(r){
