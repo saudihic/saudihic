@@ -129,7 +129,7 @@ thead th.th-desc{text-align:right;padding-right:12px}
 }
 .data-row:hover td{background:#faf9f6}
 .data-row .desc{text-align:right;padding-right:12px;line-height:1.6;color:#222}
-.data-row .desc:focus{outline:2px solid #005340;border-radius:2px}
+.data-row .desc-text:focus{outline:2px solid #005340;border-radius:2px}
 .data-row .c:focus{outline:2px solid #005340;border-radius:2px}
 .money{font-family:Inter,Raleway,sans-serif;font-weight:600;direction:ltr}
 .cp,.cq,.ct{font-family:Inter,Raleway,sans-serif;direction:ltr;color:#222}
@@ -665,8 +665,8 @@ function saveFromDOM(){
     var sec=D.sections.find(function(s){return s.id===sid;}); if(!sec) return;
     var r=sec.rows.find(function(x){return x.id===rid;}); if(!r) return;
     // desc
-    var dEl=tr.querySelector('.desc');
-    if(dEl){var cl=dEl.cloneNode(true);var sp=cl.querySelector('span');if(sp)sp.remove();r.desc=cl.innerText.trim();}
+    var dEl=tr.querySelector('.desc-text');
+    if(dEl){ r.desc=dEl.innerText.trim(); }
     // unit
     var uEl=tr.querySelectorAll('td')[1]; if(uEl) r.unit=uEl.innerText.trim();
     // qty
@@ -705,10 +705,10 @@ function render(){
       tr.dataset.sid=sec.id; tr.dataset.rid=r.id; tr.dataset.lump=lump?'1':'0';
       var ce=em?'true':'false';
       tr.innerHTML=
-        '<td class="desc" contenteditable="'+(em?"true":"false")+'" style="padding-left:12px">'+
+        '<td class="desc" style="padding-left:12px">'+
           '<span contenteditable="false" style="font-size:6pt;color:#ccc;font-family:Raleway,sans-serif;display:block;margin-bottom:1px">'+
             r.id+' <button class="xbtn" onclick="delRow(this)">✕</button></span>'+
-          r.desc+'</td>'+
+          '<span class="desc-text" contenteditable="'+(em?"true":"false")+'">'+r.desc+'</span></td>'+
         '<td class="c" contenteditable="'+(em?"true":"false")+'">'+r.unit+'</td>'+
         '<td class="c cq" contenteditable="'+(em?"true":"false")+'">'+(lump?'—':fmt(r.qty))+'</td>'+
         '<td class="c money cp" contenteditable="'+(em?"true":"false")+'">'+fmt(r.price)+'</td>'+
@@ -720,8 +720,8 @@ function render(){
         if(!sec2) return;
         var r2=sec2.rows.find(function(x){return x.id===tr.dataset.rid;});
         if(!r2) return;
-        var dEl=tr.querySelector('.desc');
-        if(dEl){var cl=dEl.cloneNode(true);var sp=cl.querySelector('span');if(sp)sp.remove();r2.desc=cl.innerText.trim();}
+        var dEl=tr.querySelector('.desc-text');
+        if(dEl){ r2.desc=dEl.innerText.trim(); }
         var cells=tr.querySelectorAll('td');
         if(cells[1]) r2.unit=cells[1].innerText.trim();
         var cq=tr.querySelector('.cq');
@@ -786,7 +786,7 @@ function applyEdit(){
     var el=document.getElementById(id); if(el) el.contentEditable=ce;
   });
   document.querySelectorAll('.sec-title').forEach(function(el){el.contentEditable=ce;});
-  document.querySelectorAll('.dr .desc,.dr .cq,.dr .cp,.dr td:nth-child(2)').forEach(function(el){el.contentEditable=ce;});
+  document.querySelectorAll('.dr .desc-text,.dr .cq,.dr .cp,.dr td:nth-child(2)').forEach(function(el){el.contentEditable=ce;});
   document.querySelectorAll('.label-text').forEach(function(el){el.contentEditable=ce;});
   document.querySelectorAll('.cond-text').forEach(function(el){el.contentEditable=ce;});
   var cb=document.getElementById('acBtn'); if(cb) cb.style.display=em?'block':'none';
