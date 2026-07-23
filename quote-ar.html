@@ -486,7 +486,7 @@ var D = {
 };
 var em = false;
 
-// ── DRAFT AUTOSAVE (localStorage) ──
+// ── DRAFT AUTOSAVE (sessionStorage - only persists within this browser tab/session, so a fresh visit always starts blank; protects against accidental refresh mid-edit) ──
 var STORAGE_KEY = 'hic_quote_draft_ar_v1';
 var HEADER_IDS = ['qn','qd','cn','openingText','closingText','phone','bankName','ibanNum','validDays','coNameAr','coNameEn','crNo','taxNo'];
 
@@ -514,7 +514,7 @@ function collectState(){
 
 function saveState(){
   var st=collectState();
-  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(st)); }catch(e){}
+  try{ sessionStorage.setItem(STORAGE_KEY, JSON.stringify(st)); }catch(e){}
   cloudSaveDebounced(st);
 }
 
@@ -564,7 +564,7 @@ async function addToIndex(qn){
 var __savedHeader=null, __savedVat=null;
 function loadState(){
   try{
-    var raw=localStorage.getItem(STORAGE_KEY);
+    var raw=sessionStorage.getItem(STORAGE_KEY);
     if(!raw) return;
     var st=JSON.parse(raw);
     if(st.sections) D.sections=st.sections;
