@@ -565,14 +565,34 @@ var __savedHeader=null, __savedVat=null;
 function loadState(){
   try{
     var raw=sessionStorage.getItem(STORAGE_KEY);
-    if(!raw) return;
+    if(!raw) return false;
     var st=JSON.parse(raw);
     if(st.sections) D.sections=st.sections;
     if(st.conditions) D.conditions=st.conditions;
     if(st.labels) D.labels=st.labels;
     __savedHeader=st.header||null;
     __savedVat=(st.vat!=null?st.vat:null);
-  }catch(e){}
+    return true;
+  }catch(e){ return false; }
+}
+
+async function generateNextQuoteNumber(){
+  var year=new Date().getFullYear();
+  try{
+    var idx=await cloudGet('quote-index');
+    if(!Array.isArray(idx) || idx.length===0) return 'HIC-'+year+'-001';
+    var maxNum=0;
+    idx.forEach(function(qn){
+      var m=/^HIC-(\d{4})-(\d+)$/.exec(qn);
+      if(m && parseInt(m[1],10)===year){
+        var n=parseInt(m[2],10);
+        if(n>maxNum) maxNum=n;
+      }
+    });
+    return 'HIC-'+year+'-'+String(maxNum+1).padStart(3,'0');
+  }catch(e){
+    return 'HIC-'+year+'-001';
+  }
 }
 
 function applyLoadedState(st){
@@ -878,11 +898,19 @@ function addCond(){
 
 (async function initQuote(){
   var loadedFromCloud = await loadFromUrlIfPresent();
-  if(!loadedFromCloud) loadState();
+  var loadedFromSession = false;
+  if(!loadedFromCloud) loadedFromSession = loadState();
   render();
   renderConds();
   applySavedHeader();
   recalc();
+  if(!loadedFromCloud && !loadedFromSession){
+    var qnEl=document.getElementById('qn');
+    if(qnEl){
+      qnEl.textContent = await generateNextQuoteNumber();
+      saveState();
+    }
+  }
 })();
 
 // Global debounced autosave: catches header/condition/table edits as they happen
