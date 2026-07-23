@@ -467,7 +467,7 @@ thead th.th-desc{text-align:right;padding-right:12px}
 // ── DATA ──
 var D = {
   sections: [
-    {id:1, title:'1/0 — البند الأول', rows:[
+    {id:1, title:'البند الأول', rows:[
       {id:'1/1', desc:'وصف تفصيلي للبند', unit:'بند', qty:null, price:0}
     ]}
   ],
@@ -681,8 +681,12 @@ function saveFromDOM(){
     var tr=el.closest('tr'); if(!tr) return;
     var sid=parseInt(tr.dataset.sid);
     var sec=D.sections.find(function(s){return s.id===sid;}); if(!sec) return;
-    sec.title=el.innerText.trim();
+    sec.title=cleanSecTitle(el.innerText.trim());
   });
+}
+
+function cleanSecTitle(t){
+  return (t||'').replace(/^\s*\d+\/0\s*[—-]\s*/, '').trim();
 }
 
 // ── RENDER ──
@@ -690,16 +694,18 @@ function render(){
   var prevVatEl=document.getElementById('vatRate');
   var savedVatRate=prevVatEl?prevVatEl.value:15;
   var tb=document.getElementById('tb'); tb.innerHTML='';
-  D.sections.forEach(function(sec){
+  D.sections.forEach(function(sec, secIdx){
+    var secNum=(secIdx+1)+'/0';
     // Section row
     var str=document.createElement('tr'); str.className='sec-row'; str.dataset.sid=sec.id;
     var std=document.createElement('td'); std.colSpan=5;
-    std.innerHTML='<span class="sec-title" contenteditable="'+( em?'true':'false')+'">'+sec.title+'</span>'+
+    std.innerHTML='<span class="sec-num" style="color:#888">'+secNum+' — </span>'+
+      '<span class="sec-title" contenteditable="'+( em?'true':'false')+'">'+cleanSecTitle(sec.title)+'</span>'+
       ' <button class="sec-del-btn" style="background:#e05050;color:#fff;border:none;border-radius:3px;font-size:7pt;padding:2px 7px;cursor:pointer;font-family:Raleway,sans-serif;margin-left:8px;" onclick="delSec('+sec.id+')">حذف ✕</button>';
     str.appendChild(std); tb.appendChild(str);
 
     sec.rows.forEach(function(r, rIdx){
-      var displayNum=sec.id+'/'+(rIdx+1);
+      var displayNum=(secIdx+1)+'/'+(rIdx+1);
       var lump=r.qty===null||r.qty===undefined;
       var tot=lump?r.price:(r.qty*r.price);
       var tr=document.createElement('tr'); tr.className='data-row dr';
@@ -852,7 +858,7 @@ function addSec(){
   }
   D.nextSecNum++;
   var newId=D.nextSecNum;
-  D.sections.push({id:newId,title:newId+'/0 — New Section',rows:[]});
+  D.sections.push({id:newId,title:'قسم جديد',rows:[]});
   render(); if(!em)toggleEdit();
   saveState();
 }
