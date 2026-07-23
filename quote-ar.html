@@ -782,12 +782,42 @@ function toggleEdit(){
   applyEdit();
 }
 
-function doPrint(){
+async function preparePrintLayout(){
+  try{ await document.fonts.ready; }catch(e){}
+  await new Promise(function(r){ requestAnimationFrame(function(){ requestAnimationFrame(r); }); });
+
+  var pg=document.getElementById('pg');
+  var footer=pg.querySelector('.lh-footer-wrap');
+  var pgTop=pg.getBoundingClientRect().top;
+  var contentBottom=footer?footer.getBoundingClientRect().bottom:pg.getBoundingClientRect().bottom;
+  var contentH=contentBottom-pgTop;
+  var a4H=1122.52; // 297mm at 96dpi
+  var styleEl=document.getElementById('printDynamicStyle');
+  if(!styleEl){ styleEl=document.createElement('style'); styleEl.id='printDynamicStyle'; document.head.appendChild(styleEl); }
+
+  if(contentH<=a4H){
+    styleEl.textContent='';
+    return;
+  }
+  var ratio=contentH/a4H;
+  if(ratio<=1.25){
+    // Small overflow: shrink to fit on one page (like Excel's "fit to page")
+    styleEl.textContent='@media print{ .page{ zoom:'+((1/ratio)*0.96).toFixed(3)+'; } }';
+  }else{
+    // Genuinely multi-page: let it flow naturally, add page numbers.
+    // Base @page has margin:0 (no room for a margin box), so reserve a small
+    // bottom margin here specifically for the page-number line.
+    styleEl.textContent='@media print{ @page{ margin:0 0 12mm 0; @bottom-center{ content: counter(page) " / " counter(pages); direction:ltr; unicode-bidi:bidi-override; font-family:"Raleway",sans-serif; font-size:9px; color:#888; } } }';
+  }
+}
+
+async function doPrint(){
   if(em) toggleEdit();
   var qn=(document.getElementById('qn')||{}).innerText||'HIC-Quote';
   var cn=(document.getElementById('cn')||{}).innerText||'';
   var oldTitle=document.title;
   document.title=qn.trim()+(cn.trim()?' - '+cn.trim():'');
+  await preparePrintLayout();
   window.print();
   setTimeout(function(){document.title=oldTitle;},1000);
 }
