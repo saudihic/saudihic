@@ -1,3 +1,6 @@
 /quote.html /quote.html 200
 /quote-unit.html /quote-unit.html 200
+/quote-ar.html /admin/quote-ar.html 301
+/quote-en.html /admin/quote-en.html 301
+/quote-archive.html /admin/quote-archive.html 301
 /* /index.html 200

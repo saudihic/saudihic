@@ -37,6 +37,17 @@ html,body{background:#1a1a1a;font-family:'Raleway',sans-serif;color:#1e1c1c;dire
 .btn-print{background:rgba(255,255,255,.06);color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.1)}
 .btn-print:hover{background:rgba(255,255,255,.12);color:#fff}
 
+/* ── LOGIN GATE ── */
+#hicLogin{position:fixed;inset:0;z-index:9999;background:#1a1a1a;display:flex;align-items:center;justify-content:center}
+.hic-login-box{background:#1e1c1c;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:2.5rem;width:340px;max-width:88vw;text-align:center}
+.hic-login-logo{font:800 22px Alexandria;color:#005340;margin-bottom:.4rem}
+.hic-login-sub{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:2rem;font-family:Alexandria}
+.hic-login-box input{width:100%;background:#141414;border:1px solid rgba(255,255,255,.1);border-radius:6px;color:#fff;padding:.75rem 1rem;font-family:Alexandria;font-size:14px;margin-bottom:1rem;outline:none;text-align:center}
+.hic-login-box input:focus{border-color:#005340}
+.hic-login-box button{width:100%;background:#005340;color:#fff;border:none;border-radius:6px;padding:.85rem;font:700 14px Alexandria;cursor:pointer}
+.hic-login-box button:hover{background:#006b52}
+.hic-login-err{color:#ff6b6b;font-size:12px;margin-top:.75rem;display:none;font-family:Alexandria}
+
 /* ── PAGE WRAPPER ── */
 .page-wrap{padding:74px 1.5rem 2rem;display:flex;justify-content:center}
 
@@ -319,6 +330,38 @@ thead th.th-desc{text-align:left;padding-left:12px}
 </style>
 </head>
 <body>
+<div id="hicLogin">
+  <div class="hic-login-box">
+    <div class="hic-login-logo">HIC</div>
+    <div class="hic-login-sub">Quotation — Restricted Access</div>
+    <input type="password" id="hicPw" placeholder="Password" onkeydown="if(event.key==='Enter')hicDoLogin()"/>
+    <button id="hicLoginBtn" onclick="hicDoLogin()">Login</button>
+    <div class="hic-login-err" id="hicLoginErr">Incorrect password</div>
+  </div>
+</div>
+<script>
+(function(){
+  function unlock(){ var el=document.getElementById('hicLogin'); if(el) el.style.display='none'; }
+  window.hicDoLogin=function(){
+    var pw=document.getElementById('hicPw').value;
+    var btn=document.getElementById('hicLoginBtn');
+    var err=document.getElementById('hicLoginErr');
+    err.style.display='none'; btn.disabled=true; var t=btn.textContent; btn.textContent='Checking...';
+    fetch('/api/auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      btn.disabled=false; btn.textContent=t;
+      if(d.ok){ sessionStorage.setItem('hic_admin_ok','1'); unlock(); }
+      else { err.textContent='Incorrect password'; err.style.display='block'; }
+    })
+    .catch(function(){
+      btn.disabled=false; btn.textContent=t;
+      err.textContent='Could not reach server'; err.style.display='block';
+    });
+  };
+  if(sessionStorage.getItem('hic_admin_ok')==='1') unlock();
+})();
+</script>
 <div class="bar">
   <div class="bar-brand">
     <div class="bar-logo">HIC</div>
