@@ -328,6 +328,8 @@ thead th.th-desc{text-align:left;padding-left:12px}
 
 
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase-config.js"></script>
 </head>
 <body>
 <div id="hicLogin">
@@ -369,9 +371,48 @@ thead th.th-desc{text-align:left;padding-left:12px}
   </div>
   <div class="bar-actions">
     <a class="btn btn-print" href="quote-archive.html" style="text-decoration:none;display:inline-flex;align-items:center">📂 Archive</a>
+    <button class="btn btn-add" onclick="openClientPicker()">👤 Select Client</button>
     <button class="btn btn-add" onclick="addSec()">＋ Section</button>
     <button class="btn btn-edit" id="eBtn" onclick="toggleEdit()">✏️ Edit</button>
     <button class="btn btn-print" onclick="doPrint()">⬇ PDF</button>
+  </div>
+</div>
+<div id="clientPickerOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:12px;padding:24px;width:min(420px,92vw);max-height:85vh;overflow:auto;font-family:Raleway,sans-serif;direction:ltr">
+    <h3 style="margin:0 0 4px;color:#1E1C1C">Select Client</h3>
+    <div style="font-size:12px;color:#888;margin-bottom:14px">Same client database as the accounting system</div>
+    <input id="cpSearch" oninput="renderClientPickerList()" placeholder="Search by name..." style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-family:inherit;margin-bottom:10px">
+    <div id="cpList" style="max-height:220px;overflow:auto;border:1px solid #eee;border-radius:8px;margin-bottom:16px"></div>
+    <div id="cpStatus" style="font-size:12px;color:#888;margin-bottom:10px"></div>
+    <div style="border-top:1px dashed #ddd;padding-top:14px;margin-top:6px">
+      <div style="font-size:13px;font-weight:700;color:#005340;margin-bottom:8px">Or add a new client</div>
+      <input id="cpNewName" placeholder="Client or company name" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-family:inherit;margin-bottom:10px">
+      <div style="display:flex;gap:8px">
+        <button onclick="saveNewClientAndSelect()" style="flex:1;background:#005340;color:#fff;border:none;padding:10px;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit">💾 Save &amp; Select</button>
+        <button onclick="closeClientPicker()" style="background:#f2f2f2;color:#333;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="itemPickerOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:12px;padding:24px;width:min(460px,92vw);max-height:85vh;overflow:auto;font-family:Raleway,sans-serif;direction:ltr">
+    <h3 style="margin:0 0 4px;color:#1E1C1C">Select Item/Service</h3>
+    <div style="font-size:12px;color:#888;margin-bottom:14px">Same catalog as the accounting system</div>
+    <input id="ipSearch" oninput="renderItemPickerList()" placeholder="Search by name..." style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-family:inherit;margin-bottom:10px">
+    <div id="ipList" style="max-height:220px;overflow:auto;border:1px solid #eee;border-radius:8px;margin-bottom:16px"></div>
+    <div id="ipStatus" style="font-size:12px;color:#888;margin-bottom:10px"></div>
+    <div style="border-top:1px dashed #ddd;padding-top:14px;margin-top:6px">
+      <div style="font-size:13px;font-weight:700;color:#005340;margin-bottom:8px">Or add a new item</div>
+      <input id="ipNewName" placeholder="Item/service name" style="width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-family:inherit;margin-bottom:8px">
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <input id="ipNewUnit" placeholder="Unit (ton, lump sum...)" style="flex:1;box-sizing:border-box;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-family:inherit">
+        <input id="ipNewPrice" type="number" step="0.01" placeholder="Default price" style="flex:1;box-sizing:border-box;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-family:inherit">
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="saveNewItemAndSelect()" style="flex:1;background:#005340;color:#fff;border:none;padding:10px;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit">💾 Save &amp; Select</button>
+        <button onclick="closeItemPicker()" style="background:#f2f2f2;color:#333;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit">Cancel</button>
+      </div>
+    </div>
   </div>
 </div>
 <div class="page-wrap">
@@ -567,7 +608,7 @@ function cloudKey(qn){ return 'quote:'+qn; }
 
 async function cloudGet(key){
   try{
-    var res = await fetch('/api/store/'+encodeURIComponent(key));
+    var res = await fetch('/api/store/'+encodeURIComponent(key), { headers:{'x-admin-password':HIC_ADMIN_PW} });
     if(!res.ok) return null;
     var data = await res.json();
     return JSON.parse(data.value);
@@ -754,7 +795,7 @@ function render(){
       tr.innerHTML=
         '<td class="desc" style="padding-left:12px">'+
           '<span contenteditable="false" style="font-size:6pt;color:#ccc;font-family:Raleway,sans-serif;display:block;margin-bottom:1px">'+
-            displayNum+' <button class="xbtn" onclick="delRow(this)">✕</button></span>'+
+            displayNum+' <button class="xbtn" onclick="delRow(this)">✕</button> <button class="xbtn" style="color:#005340" onclick="openItemPicker('+sec.id+',\''+r.id+'\')" title="Select from item catalog">📋</button></span>'+
           '<span class="desc-text" contenteditable="'+ce+'">'+r.desc+'</span></td>'+
         '<td class="c" contenteditable="'+ce+'">'+r.unit+'</td>'+
         '<td class="c cq" contenteditable="'+ce+'">'+(lump?'—':fmt(r.qty))+'</td>'+
@@ -973,6 +1014,187 @@ function addCond(){
     clearTimeout(t);
     t=setTimeout(saveState, 400);
   }, true);
+})();
+</script>
+<script>
+(function(){
+  let SHARED_PARTIES = [];
+  let SHARED_STATE = null;
+
+  function sbClient(){
+    try{
+      const c = window.KING_SUPABASE_CONFIG || {};
+      if(!c.url || !c.anonKey || !window.supabase) return null;
+      return window.supabase.createClient(c.url, c.anonKey);
+    }catch(e){ return null; }
+  }
+
+  async function fetchSharedState(){
+    const sb = sbClient();
+    const c = window.KING_SUPABASE_CONFIG || {};
+    if(!sb) return null;
+    const { data, error } = await sb.from(c.table || 'king_accounting_state')
+      .select('data').eq('company_id', c.companyId || 'main').maybeSingle();
+    if(error || !data) return null;
+    return data.data || null;
+  }
+
+  async function saveSharedState(state){
+    const sb = sbClient();
+    const c = window.KING_SUPABASE_CONFIG || {};
+    if(!sb) return false;
+    const payload = { company_id: c.companyId || 'main', data: state, updated_at: new Date().toISOString(), updated_by: 'quote-tool' };
+    const { error } = await sb.from(c.table || 'king_accounting_state').upsert(payload, { onConflict: 'company_id' });
+    return !error;
+  }
+
+  window.openClientPicker = async function(){
+    document.getElementById('clientPickerOverlay').style.display = 'flex';
+    document.getElementById('cpSearch').value = '';
+    document.getElementById('cpNewName').value = '';
+    document.getElementById('cpStatus').textContent = 'Loading client list...';
+    document.getElementById('cpList').innerHTML = '';
+    const state = await fetchSharedState();
+    if(!state){
+      document.getElementById('cpStatus').textContent = 'Could not reach the shared client database. Check your internet connection.';
+      return;
+    }
+    SHARED_STATE = state;
+    SHARED_PARTIES = (state.parties || []).filter(p => p.type === 'customer');
+    document.getElementById('cpStatus').textContent = SHARED_PARTIES.length ? '' : 'No clients yet, add the first one below.';
+    renderClientPickerList();
+  };
+
+  window.closeClientPicker = function(){
+    document.getElementById('clientPickerOverlay').style.display = 'none';
+  };
+
+  window.renderClientPickerList = function(){
+    const q = (document.getElementById('cpSearch').value || '').trim().toLowerCase();
+    const list = document.getElementById('cpList');
+    const filtered = SHARED_PARTIES.filter(p => !q || (p.name || '').toLowerCase().includes(q));
+    if(!filtered.length){
+      list.innerHTML = '<div style="padding:14px;color:#999;font-size:13px;text-align:center">No matches</div>';
+      return;
+    }
+    list.innerHTML = filtered.map(p =>
+      '<div onclick="selectClientFromPicker(\''+String(p.name).replace(/'/g,"\\'")+'\')" style="padding:10px 12px;border-bottom:1px solid #f2f2f2;cursor:pointer" onmouseover="this.style.background=\'#f7f7f7\'" onmouseout="this.style.background=\'#fff\'">'+
+      '<div style="font-weight:700;color:#1E1C1C">'+p.name+'</div>'+
+      (p.vat ? '<div style="font-size:11px;color:#999">VAT: '+p.vat+'</div>' : '') +
+      '</div>'
+    ).join('');
+  };
+
+  window.selectClientFromPicker = function(name){
+    const cn = document.getElementById('cn');
+    if(cn) cn.textContent = name;
+    closeClientPicker();
+  };
+
+  window.saveNewClientAndSelect = async function(){
+    const name = (document.getElementById('cpNewName').value || '').trim();
+    if(!name){ alert('Enter a client name first'); return; }
+    if(!SHARED_STATE){ alert('Client database not loaded yet, reopen the window'); return; }
+    const exists = (SHARED_STATE.parties || []).some(p => (p.name||'').trim().toLowerCase() === name.toLowerCase());
+    if(exists){ selectClientFromPicker(name); return; }
+    document.getElementById('cpStatus').textContent = 'Saving...';
+    const newParty = {
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2),
+      type: 'customer', name: name, vat: '', cr: '', phone: '', email: '', address: ''
+    };
+    SHARED_STATE.parties = SHARED_STATE.parties || [];
+    SHARED_STATE.parties.push(newParty);
+    const ok = await saveSharedState(SHARED_STATE);
+    if(!ok){ document.getElementById('cpStatus').textContent = 'Save failed, try again.'; return; }
+    selectClientFromPicker(name);
+  };
+
+  // ── ITEM PICKER (reuses fetchSharedState/saveSharedState) ──
+  let SHARED_ITEMS = [];
+  let ITEM_STATE = null;
+  let ACTIVE_ROW = null;
+
+  window.openItemPicker = async function(sid, rid){
+    ACTIVE_ROW = { sid: sid, rid: rid };
+    document.getElementById('itemPickerOverlay').style.display = 'flex';
+    document.getElementById('ipSearch').value = '';
+    document.getElementById('ipNewName').value = '';
+    document.getElementById('ipNewUnit').value = '';
+    document.getElementById('ipNewPrice').value = '';
+    document.getElementById('ipStatus').textContent = 'Loading item catalog...';
+    document.getElementById('ipList').innerHTML = '';
+    const state = await fetchSharedState();
+    if(!state){
+      document.getElementById('ipStatus').textContent = 'Could not reach the shared item catalog. Check your internet connection.';
+      return;
+    }
+    ITEM_STATE = state;
+    SHARED_ITEMS = state.items || [];
+    document.getElementById('ipStatus').textContent = SHARED_ITEMS.length ? '' : 'No items yet, add the first one below.';
+    renderItemPickerList();
+  };
+
+  window.closeItemPicker = function(){
+    document.getElementById('itemPickerOverlay').style.display = 'none';
+  };
+
+  window.renderItemPickerList = function(){
+    const q = (document.getElementById('ipSearch').value || '').trim().toLowerCase();
+    const list = document.getElementById('ipList');
+    const filtered = SHARED_ITEMS.filter(it => !q || (it.name||'').toLowerCase().includes(q));
+    if(!filtered.length){
+      list.innerHTML = '<div style="padding:14px;color:#999;font-size:13px;text-align:center">No matches</div>';
+      return;
+    }
+    list.innerHTML = filtered.map(it => {
+      const cost = parseFloat(it.cost)||0, price = parseFloat(it.price)||0;
+      const margin = (cost>0 && price>0) ? (((price-cost)/price)*100) : null;
+      const marginColor = margin===null ? '#999' : (margin<0 ? '#b91c1c' : (margin<15 ? '#b45309' : '#005340'));
+      const marginTxt = margin===null ? '' : ' <span style="color:'+marginColor+';font-weight:700">| margin '+margin.toFixed(0)+'%</span>';
+      return '<div onclick="selectItemFromPicker(\''+String(it.name).replace(/'/g,"\\'")+'\',\''+String(it.unit||'').replace(/'/g,"\\'")+'\','+(it.price||0)+')" style="padding:10px 12px;border-bottom:1px solid #f2f2f2;cursor:pointer" onmouseover="this.style.background=\'#f7f7f7\'" onmouseout="this.style.background=\'#fff\'">'+
+      '<div style="font-weight:700;color:#1E1C1C">'+it.name+'</div>'+
+      '<div style="font-size:11px;color:#999">'+(it.unit||'')+(it.price?' — SAR '+it.price:'')+marginTxt+'</div>'+
+      '</div>';
+    }).join('');
+  };
+
+  window.selectItemFromPicker = function(name, unit, price){
+    if(ACTIVE_ROW){
+      const sec = D.sections.find(function(s){ return s.id === ACTIVE_ROW.sid; });
+      if(sec){
+        const r = sec.rows.find(function(x){ return x.id === ACTIVE_ROW.rid; });
+        if(r){
+          r.desc = name;
+          r.unit = unit || r.unit;
+          if(price) r.price = price;
+          render();
+          saveState();
+        }
+      }
+    }
+    closeItemPicker();
+  };
+
+  window.saveNewItemAndSelect = async function(){
+    const name = (document.getElementById('ipNewName').value || '').trim();
+    const unit = (document.getElementById('ipNewUnit').value || '').trim();
+    const price = parseFloat(document.getElementById('ipNewPrice').value) || 0;
+    if(!name){ alert('Enter an item name first'); return; }
+    if(!ITEM_STATE){ alert('Item catalog not loaded yet, reopen the window'); return; }
+    const exists = (ITEM_STATE.items || []).some(it => (it.name||'').trim().toLowerCase() === name.toLowerCase());
+    if(!exists){
+      document.getElementById('ipStatus').textContent = 'Saving...';
+      const newItem = {
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2),
+        name: name, unit: unit, price: price, vatRate: 15, notes: ''
+      };
+      ITEM_STATE.items = ITEM_STATE.items || [];
+      ITEM_STATE.items.push(newItem);
+      const ok = await saveSharedState(ITEM_STATE);
+      if(!ok){ document.getElementById('ipStatus').textContent = 'Save failed, try again.'; return; }
+    }
+    selectItemFromPicker(name, unit, price);
+  };
 })();
 </script>
 </body>

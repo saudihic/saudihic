@@ -1,7 +1,20 @@
 export async function onRequestPost(context) {
   try {
     const body = await context.request.json();
-    const password = context.env.HIC_ADMIN_PASSWORD || "Aa@6821111";
+    const password = context.env.HIC_ADMIN_PASSWORD;
+
+    if (!password) {
+      return new Response(
+        JSON.stringify({ ok: false, error: "Server not configured" }),
+        {
+          status: 500,
+          headers: {
+            "content-type": "application/json; charset=utf-8",
+            "cache-control": "no-store"
+          }
+        }
+      );
+    }
 
     if (body && body.password === password) {
       return new Response(

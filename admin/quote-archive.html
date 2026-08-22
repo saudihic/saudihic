@@ -160,13 +160,13 @@ const HIC_ADMIN_PW = 'ahMed123';
 let QUOTES = [];
 
 async function stList(prefix){
-  const res = await fetch('/api/store?prefix='+encodeURIComponent(prefix));
+  const res = await fetch('/api/store?prefix='+encodeURIComponent(prefix), { headers:{'x-admin-password':HIC_ADMIN_PW} });
   if(!res.ok) throw new Error('list failed');
   const data = await res.json();
   return data.keys||[];
 }
 async function stGet(key){
-  const res = await fetch('/api/store/'+encodeURIComponent(key));
+  const res = await fetch('/api/store/'+encodeURIComponent(key), { headers:{'x-admin-password':HIC_ADMIN_PW} });
   if(!res.ok) return null;
   const data = await res.json();
   try{ return JSON.parse(data.value); }catch(e){ return null; }
