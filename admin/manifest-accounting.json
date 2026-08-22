@@ -1,0 +1,15 @@
+{
+  "name": "نظام HIC المحاسبي",
+  "short_name": "محاسبة HIC",
+  "description": "نظام محاسبي سحابي - اتش آي سي",
+  "start_url": "./accounting.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F0F0F0",
+  "theme_color": "#005340",
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
