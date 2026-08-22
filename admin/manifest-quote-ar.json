@@ -1,9 +1,10 @@
 {
+  "id": "/admin/quote-ar.html",
   "name": "عروض أسعار HIC",
   "short_name": "عروض أسعار HIC",
   "description": "أداة عروض الأسعار - اتش آي سي",
   "start_url": "./quote-ar.html",
-  "scope": "./",
+  "scope": "./quote-ar.html",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#F0F0F0",

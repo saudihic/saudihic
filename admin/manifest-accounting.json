@@ -1,9 +1,10 @@
 {
+  "id": "/admin/accounting.html",
   "name": "نظام HIC المحاسبي",
   "short_name": "محاسبة HIC",
   "description": "نظام محاسبي سحابي - اتش آي سي",
   "start_url": "./accounting.html",
-  "scope": "./",
+  "scope": "./accounting.html",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#F0F0F0",

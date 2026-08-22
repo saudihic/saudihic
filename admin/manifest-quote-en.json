@@ -1,9 +1,10 @@
 {
+  "id": "/admin/quote-en.html",
   "name": "HIC Quotes",
   "short_name": "HIC Quotes",
   "description": "Quotation tool - HIC",
   "start_url": "./quote-en.html",
-  "scope": "./",
+  "scope": "./quote-en.html",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#F0F0F0",
