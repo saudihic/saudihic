@@ -673,7 +673,7 @@ function renderProjects(){
 }
 function projectPaymentStatus(projectId2){
   let contractIds=new Set((S.contracts||[]).filter(c=>c.projectId===projectId2).map(c=>c.id));
-  let collected=0,pending=0,invCount=0;
+  let collected=0,pending=0,invCount=0,retained=0;
   (S.invoices||[]).forEach(d=>{
     if(d.type!=='sale'||d.docClass!=='invoice')return;
     if(d.projectId!==projectId2&&!(d.contractId&&contractIds.has(d.contractId)))return;
@@ -681,8 +681,11 @@ function projectPaymentStatus(projectId2){
     let info=invoicePaymentInfo(d.id);
     collected+=info.paid;
     pending+=info.remaining;
+    retained+=n(d.retentionAmount||0);
   });
-  return{collected:n(collected),pending:n(pending),invoiceCount:invCount};
+  let released=(S.retentionReleases||[]).filter(r=>r.projectId===projectId2).reduce((s,r)=>s+n(r.amount),0);
+  retained=n(retained-released);
+  return{collected:n(collected),pending:n(pending),invoiceCount:invCount,retained:n(retained)};
 }
 function projectRevenueCost(projectId2){
   let contractIds=new Set((S.contracts||[]).filter(c=>c.projectId===projectId2).map(c=>c.id));
@@ -711,19 +714,20 @@ function projectProfitRows(filterProjectId=''){
       finShare=mode==='amount'?n(n(p.financierAmount)*finPct/100):n(rc.profit*finPct/100);
     }
     let companyShare=n(rc.profit-finShare);
-    return{'المشروع':p.name,'العميل':p.clientName||'','الحالة':p.status,'الإيرادات':rc.revenue,'التكلفة':rc.cost,'الربح/الخسارة':rc.profit,'المحصّل من العميل':pay.collected,'المعلّق/لم يُحصّل':pay.pending,'المموّل':p.financier||'-','طريقة الاحتساب':p.financier?(mode==='amount'?'نسبة من مبلغ التمويل':'نسبة من صافي الأرباح'):'-','نصيب المموّل':finShare,'نصيب الشركة':p.financier?companyShare:rc.profit};
+    return{'المشروع':p.name,'العميل':p.clientName||'','الحالة':p.status,'الإيرادات':rc.revenue,'التكلفة':rc.cost,'الربح/الخسارة':rc.profit,'المحصّل من العميل':pay.collected,'المعلّق/لم يُحصّل':pay.pending,'المحتجز':pay.retained,'المموّل':p.financier||'-','طريقة الاحتساب':p.financier?(mode==='amount'?'نسبة من مبلغ التمويل':'نسبة من صافي الأرباح'):'-','نصيب المموّل':finShare,'نصيب الشركة':p.financier?companyShare:rc.profit};
   });
 }
 function renderProjectProfitTable(){
   if(!window.projectProfitTable)return;
   let filterId=window.projectProfitFilter?projectProfitFilter.value:'';
   let rows=projectProfitRows(filterId);
-  let head='<thead><tr><th>المشروع</th><th>العميل</th><th>الحالة</th><th>الإيرادات</th><th>التكلفة</th><th>الربح/الخسارة</th><th>المحصّل من العميل</th><th>المعلّق/لم يُحصّل</th><th>المموّل</th><th>طريقة الاحتساب</th><th>نصيب المموّل</th><th>نصيب الشركة</th></tr></thead>';
+  let head='<thead><tr><th>المشروع</th><th>العميل</th><th>الحالة</th><th>الإيرادات</th><th>التكلفة</th><th>الربح/الخسارة</th><th>المحصّل من العميل</th><th>المعلّق/لم يُحصّل</th><th>المحتجز</th><th>المموّل</th><th>طريقة الاحتساب</th><th>نصيب المموّل</th><th>نصيب الشركة</th></tr></thead>';
   let body='<tbody>'+rows.map(r=>{
     let profit=r['الربح/الخسارة'],profitColor=profit<0?'#b91c1c':'#005340',profitLabel=profit<0?'خسارة':'ربح';
     let coShare=r['نصيب الشركة'],coColor=coShare<0?'#b91c1c':'#005340';
     let pending=r['المعلّق/لم يُحصّل'],pendingColor=pending>0?'#b45309':'#005340';
-    return `<tr><td>${esc(r['المشروع'])}</td><td>${esc(r['العميل'])}</td><td>${esc(r['الحالة'])}</td><td>${money(r['الإيرادات'])}</td><td>${money(r['التكلفة'])}</td><td style="color:${profitColor};font-weight:800">${money(profit)} <small>(${profitLabel})</small></td><td style="color:#005340;font-weight:700">${money(r['المحصّل من العميل'])}</td><td style="color:${pendingColor};font-weight:700">${money(pending)}</td><td>${esc(r['المموّل'])}</td><td>${esc(r['طريقة الاحتساب'])}</td><td>${money(r['نصيب المموّل'])}</td><td style="color:${coColor};font-weight:800">${money(coShare)}</td></tr>`;
+    let retained=r['المحتجز'],retColor=retained>0?'#6d28d9':'#005340';
+    return `<tr><td>${esc(r['المشروع'])}</td><td>${esc(r['العميل'])}</td><td>${esc(r['الحالة'])}</td><td>${money(r['الإيرادات'])}</td><td>${money(r['التكلفة'])}</td><td style="color:${profitColor};font-weight:800">${money(profit)} <small>(${profitLabel})</small></td><td style="color:#005340;font-weight:700">${money(r['المحصّل من العميل'])}</td><td style="color:${pendingColor};font-weight:700">${money(pending)}</td><td style="color:${retColor};font-weight:700">${money(retained)}</td><td>${esc(r['المموّل'])}</td><td>${esc(r['طريقة الاحتساب'])}</td><td>${money(r['نصيب المموّل'])}</td><td style="color:${coColor};font-weight:800">${money(coShare)}</td></tr>`;
   }).join('')+'</tbody>';
   projectProfitTable.innerHTML=head+body;
 }
