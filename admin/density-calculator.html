@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="./manifest-density-calculator.json">
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png">
+<link rel="apple-touch-icon" href="./icons/icon-180.png">
+<meta name="theme-color" content="#005340">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="حاسبة الكثافة HIC">
+<title>حاسبة الكثافة والأوزان | HIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#005340;
+    --gold:#C8A96E;
+    --carbon:#302E2E;
+    --ink:#1E1C1C;
+    --bg:#F0F0F0;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Alexandria',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    min-height:100vh;
+  }
+  .topbar{
+    background:var(--green);
+    padding:20px 18px 22px;
+    color:var(--white);
+    position:relative;
+    overflow:hidden;
+  }
+  .topbar::after{
+    content:"";
+    position:absolute;
+    left:-40px; top:-40px;
+    width:140px; height:140px;
+    border-radius:50%;
+    background:rgba(200,169,110,0.15);
+  }
+  .topbar-logo{
+    height:38px;
+    width:auto;
+    display:block;
+    margin-bottom:10px;
+  }
+  .brand{
+    font-family:'Raleway',sans-serif;
+    font-weight:800;
+    letter-spacing:1px;
+    font-size:13px;
+    color:var(--gold);
+    text-transform:uppercase;
+  }
+  .topbar h1{
+    margin:6px 0 4px;
+    font-size:22px;
+    font-weight:700;
+  }
+  .topbar p{
+    margin:0;
+    font-size:13px;
+    opacity:0.85;
+  }
+  .tabs{
+    display:flex;
+    max-width:520px;
+    margin:16px auto 0;
+    padding:0 14px;
+    gap:8px;
+  }
+  .tab{
+    flex:1;
+    text-align:center;
+    padding:11px 6px;
+    background:var(--white);
+    border:2px solid transparent;
+    border-radius:10px;
+    font-weight:600;
+    font-size:13.5px;
+    color:var(--carbon);
+    cursor:pointer;
+    box-shadow:0 1px 3px rgba(0,0,0,0.08);
+  }
+  .tab.active{
+    background:var(--green);
+    color:var(--white);
+    border-color:var(--gold);
+  }
+  main{
+    max-width:520px;
+    margin:16px auto;
+    padding:0 14px 40px;
+  }
+  .card{
+    background:var(--white);
+    border-radius:14px;
+    padding:18px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom:14px;
+    display:none;
+  }
+  .card.active{display:block;}
+  .card h2{
+    font-size:15px;
+    margin:0 0 14px;
+    color:var(--green);
+    font-weight:700;
+    border-bottom:2px solid var(--bg);
+    padding-bottom:10px;
+  }
+  label{
+    display:block;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--carbon);
+    margin:12px 0 5px;
+  }
+  input[type=number], select{
+    width:100%;
+    padding:11px 12px;
+    border-radius:9px;
+    border:1.5px solid #DDD;
+    font-family:'Alexandria',sans-serif;
+    font-size:15px;
+    background:#FAFAFA;
+    color:var(--ink);
+  }
+  input[type=number]:focus, select:focus{
+    outline:none;
+    border-color:var(--green);
+    background:var(--white);
+  }
+  .row2{display:flex;gap:10px;}
+  .row2 > div{flex:1;}
+  .density-hint{
+    font-size:11.5px;
+    color:#777;
+    margin-top:4px;
+  }
+  .result{
+    margin-top:16px;
+    background:var(--green);
+    border-radius:12px;
+    padding:16px;
+    color:var(--white);
+    text-align:center;
+  }
+  .result .big{
+    font-family:'Raleway',sans-serif;
+    font-size:30px;
+    font-weight:800;
+    color:var(--gold);
+    line-height:1.2;
+  }
+  .result .small{
+    font-size:12px;
+    opacity:0.85;
+    margin-top:4px;
+  }
+  .toggle-wrap{
+    display:flex;
+    background:#EEE;
+    border-radius:9px;
+    padding:3px;
+    margin-top:12px;
+  }
+  .toggle-btn{
+    flex:1;
+    text-align:center;
+    padding:9px 4px;
+    font-size:13px;
+    font-weight:600;
+    border-radius:7px;
+    cursor:pointer;
+    color:var(--carbon);
+  }
+  .toggle-btn.active{
+    background:var(--green);
+    color:var(--white);
+  }
+  .note{
+    font-size:11.5px;
+    color:#888;
+    text-align:center;
+    margin-top:18px;
+    line-height:1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <img class="topbar-logo" src="/assets/img/hic-logo-white.png" alt="HIC">
+  <h1>حاسبة الكثافة ⇄ الوزن</h1>
+  <p>تحويل الحجم والمساحة إلى طن، والعكس — لمواد الطرق والبنية التحتية</p>
+</div>
+
+<div class="tabs">
+  <div class="tab active" data-tab="asphalt">طبقة إسفلت</div>
+  <div class="tab" data-tab="general">مواد عامة</div>
+</div>
+
+<main>
+
+  <!-- ASPHALT LAYER CALCULATOR -->
+  <div class="card active" id="asphalt">
+    <h2>حساب طن الإسفلت من المساحة والسماكة</h2>
+
+    <div class="toggle-wrap">
+      <div class="toggle-btn active" data-amode="area2ton">من المساحة إلى الطن</div>
+      <div class="toggle-btn" data-amode="ton2area">من الطن إلى المساحة</div>
+    </div>
+
+    <label id="a-input-label">المساحة (م²)</label>
+    <input type="text" id="a-area" placeholder="مثال: 10000" inputmode="decimal">
+
+    <label>سماكة الطبقة (سم)</label>
+    <input type="text" id="a-thick" placeholder="مثال: 5" inputmode="decimal">
+
+    <label>الكثافة (طن/م³)</label>
+    <select id="a-density">
+      <option value="2.4" selected>إسفلت مضغوط عادي — 2.4</option>
+      <option value="2.35">طبقة رابطة (Binder) — 2.35</option>
+      <option value="2.45">طبقة سطحية (Surface/Wearing) — 2.45</option>
+      <option value="2.5">طبقة أساس إسفلتي (Base) — 2.5</option>
+      <option value="custom">كثافة مخصصة...</option>
+    </select>
+    <input type="text" id="a-density-custom" placeholder="أدخل الكثافة بالطن/م³" style="display:none;margin-top:8px;" inputmode="decimal">
+    <div class="density-hint">القيمة الافتراضية 2.4 طن/م³ هي المتوسط الشائع للإسفلت المضغوط في مشاريع الطرق</div>
+
+    <div class="result" id="a-result">
+      <div class="big">—</div>
+      <div class="small">أدخل البيانات لعرض النتيجة</div>
+    </div>
+  </div>
+
+  <!-- GENERAL MATERIAL CALCULATOR -->
+  <div class="card" id="general">
+    <h2>تحويل عام: حجم ⇄ وزن لأي مادة</h2>
+
+    <label>نوع المادة</label>
+    <select id="g-material">
+      <option value="1.6">رمل — 1.6 طن/م³</option>
+      <option value="1.65">بحص (دقر) — 1.65 طن/م³</option>
+      <option value="1.7">ركام مكسر / سبيس — 1.7 طن/م³</option>
+      <option value="1.9">سبيس مدكوك (طبقة أساس) — 1.9 طن/م³</option>
+      <option value="1.75">مواد ردم / دمار (هدم) — 1.75 طن/م³</option>
+      <option value="2.4">خرسانة عادية — 2.4 طن/م³</option>
+      <option value="1.6">تربة طبيعية — 1.6 طن/م³</option>
+      <option value="custom">كثافة مخصصة...</option>
+    </select>
+    <input type="text" id="g-density-custom" placeholder="أدخل الكثافة بالطن/م³" style="display:none;margin-top:8px;" inputmode="decimal">
+
+    <div class="toggle-wrap">
+      <div class="toggle-btn active" data-mode="v2w">من حجم (م³) إلى طن</div>
+      <div class="toggle-btn" data-mode="w2v">من طن إلى حجم (م³)</div>
+    </div>
+
+    <label id="g-input-label">الحجم (م³)</label>
+    <input type="text" id="g-input" placeholder="مثال: 10" inputmode="decimal">
+
+    <div class="result" id="g-result">
+      <div class="big">—</div>
+      <div class="small">أدخل البيانات لعرض النتيجة</div>
+    </div>
+  </div>
+
+  <div class="note">
+    القيم الافتراضية للكثافة تقريبية ومتعارف عليها في مشاريع الطرق بالمملكة — يفضّل مطابقتها مع نتائج المختبر أو المواصفة الفنية للمشروع عند الاعتماد الرسمي.
+  </div>
+
+</main>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  function fmt(n){
+    if(!isFinite(n)) return '—';
+    return n.toLocaleString('ar-EG', {maximumFractionDigits:2});
+  }
+
+  // Converts Arabic-Indic (٠١٢٣٤٥٦٧٨٩) and Persian digits to Latin digits,
+  // and Arabic decimal separator (٫) to a normal dot, so typing on an
+  // Arabic keyboard still parses correctly.
+  function toNum(str){
+    if(str === null || str === undefined) return NaN;
+    const map = {
+      '٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9',
+      '۰':'0','۱':'1','۲':'2','۳':'3','۴':'4','۵':'5','۶':'6','۷':'7','۸':'8','۹':'9',
+      '٫':'.',',':'.'
+    };
+    const cleaned = String(str).replace(/[٠-٩۰-۹٫,]/g, ch => map[ch] !== undefined ? map[ch] : ch);
+    return parseFloat(cleaned);
+  }
+
+  // ASPHALT CALC
+  const aArea = document.getElementById('a-area');
+  const aThick = document.getElementById('a-thick');
+  const aInputLabel = document.getElementById('a-input-label');
+  const aDensitySel = document.getElementById('a-density');
+  const aDensityCustom = document.getElementById('a-density-custom');
+  const aResult = document.getElementById('a-result');
+  let aMode = 'area2ton'; // or 'ton2area'
+
+  document.querySelectorAll('[data-amode]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('[data-amode]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      aMode = btn.dataset.amode;
+      if(aMode === 'area2ton'){
+        aInputLabel.textContent = 'المساحة (م²)';
+        aArea.placeholder = 'مثال: 10000';
+      } else {
+        aInputLabel.textContent = 'الوزن (طن)';
+        aArea.placeholder = 'مثال: 240';
+      }
+      calcAsphalt();
+    });
+  });
+
+  aDensitySel.addEventListener('change', ()=>{
+    aDensityCustom.style.display = aDensitySel.value === 'custom' ? 'block' : 'none';
+    calcAsphalt();
+  });
+
+  function getAsphaltDensity(){
+    if(aDensitySel.value === 'custom'){
+      return toNum(aDensityCustom.value) || 0;
+    }
+    return parseFloat(aDensitySel.value);
+  }
+
+  function calcAsphalt(){
+    const inputVal = toNum(aArea.value);
+    const thickCm = toNum(aThick.value);
+    const density = getAsphaltDensity();
+    if(!inputVal || !thickCm || !density){
+      aResult.querySelector('.big').textContent = '—';
+      aResult.querySelector('.small').textContent = 'أدخل البيانات لعرض النتيجة';
+      return;
+    }
+    if(aMode === 'area2ton'){
+      const volume = inputVal * (thickCm/100); // m3
+      const weight = volume * density; // tons
+      aResult.querySelector('.big').textContent = fmt(weight) + ' طن';
+      aResult.querySelector('.small').textContent = 'الحجم: ' + fmt(volume) + ' م³ × الكثافة ' + fmt(density) + ' طن/م³';
+    } else {
+      const volume = inputVal / density; // m3, since input is tons
+      const area = volume / (thickCm/100); // m2
+      aResult.querySelector('.big').textContent = fmt(area) + ' م²';
+      aResult.querySelector('.small').textContent = fmt(inputVal) + ' طن ÷ ' + fmt(density) + ' طن/م³ = ' + fmt(volume) + ' م³ عند سماكة ' + fmt(thickCm) + ' سم';
+    }
+  }
+  [aArea, aThick, aDensityCustom].forEach(el=>el.addEventListener('input', calcAsphalt));
+
+  // GENERAL CALC
+  const gMaterial = document.getElementById('g-material');
+  const gDensityCustom = document.getElementById('g-density-custom');
+  const gInput = document.getElementById('g-input');
+  const gInputLabel = document.getElementById('g-input-label');
+  const gResult = document.getElementById('g-result');
+  let gMode = 'v2w';
+
+  document.querySelectorAll('.toggle-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      gMode = btn.dataset.mode;
+      gInputLabel.textContent = gMode === 'v2w' ? 'الحجم (م³)' : 'الوزن (طن)';
+      gInput.placeholder = gMode === 'v2w' ? 'مثال: 10' : 'مثال: 18';
+      calcGeneral();
+    });
+  });
+
+  gMaterial.addEventListener('change', ()=>{
+    gDensityCustom.style.display = gMaterial.value === 'custom' ? 'block' : 'none';
+    calcGeneral();
+  });
+
+  function getGeneralDensity(){
+    if(gMaterial.value === 'custom'){
+      return toNum(gDensityCustom.value) || 0;
+    }
+    return parseFloat(gMaterial.value);
+  }
+
+  function calcGeneral(){
+    const val = toNum(gInput.value);
+    const density = getGeneralDensity();
+    if(!val || !density){
+      gResult.querySelector('.big').textContent = '—';
+      gResult.querySelector('.small').textContent = 'أدخل البيانات لعرض النتيجة';
+      return;
+    }
+    if(gMode === 'v2w'){
+      const weight = val * density;
+      gResult.querySelector('.big').textContent = fmt(weight) + ' طن';
+      gResult.querySelector('.small').textContent = fmt(val) + ' م³ × ' + fmt(density) + ' طن/م³';
+    } else {
+      const volume = val / density;
+      gResult.querySelector('.big').textContent = fmt(volume) + ' م³';
+      gResult.querySelector('.small').textContent = fmt(val) + ' طن ÷ ' + fmt(density) + ' طن/م³';
+    }
+  }
+  [gInput, gDensityCustom].forEach(el=>el.addEventListener('input', calcGeneral));
+</script>
+
+</body>
+</html>
