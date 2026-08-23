@@ -241,9 +241,16 @@
     <input type="text" id="a-density-custom" placeholder="أدخل الكثافة بالطن/م³" style="display:none;margin-top:8px;" inputmode="decimal">
     <div class="density-hint">القيمة الافتراضية 2.4 طن/م³ هي المتوسط الشائع للإسفلت المضغوط في مشاريع الطرق</div>
 
+    <label>سعر الطن (ريال) <span style="font-weight:400;color:#999;">— اختياري</span></label>
+    <input type="text" id="a-price" placeholder="مثال: 150" inputmode="decimal">
+
     <div class="result" id="a-result">
       <div class="big">—</div>
       <div class="small">أدخل البيانات لعرض النتيجة</div>
+    </div>
+    <div class="result" id="a-cost-result" style="display:none;background:var(--carbon);margin-top:10px;">
+      <div class="big">—</div>
+      <div class="small">—</div>
     </div>
   </div>
 
@@ -320,7 +327,9 @@
   const aInputLabel = document.getElementById('a-input-label');
   const aDensitySel = document.getElementById('a-density');
   const aDensityCustom = document.getElementById('a-density-custom');
+  const aPrice = document.getElementById('a-price');
   const aResult = document.getElementById('a-result');
+  const aCostResult = document.getElementById('a-cost-result');
   let aMode = 'area2ton'; // or 'ton2area'
 
   document.querySelectorAll('[data-amode]').forEach(btn=>{
@@ -355,24 +364,42 @@
     const inputVal = toNum(aArea.value);
     const thickCm = toNum(aThick.value);
     const density = getAsphaltDensity();
+    const price = toNum(aPrice.value);
+
     if(!inputVal || !thickCm || !density){
       aResult.querySelector('.big').textContent = '—';
       aResult.querySelector('.small').textContent = 'أدخل البيانات لعرض النتيجة';
+      aCostResult.style.display = 'none';
       return;
     }
+
+    let weight, area, volume;
     if(aMode === 'area2ton'){
-      const volume = inputVal * (thickCm/100); // m3
-      const weight = volume * density; // tons
+      area = inputVal;
+      volume = area * (thickCm/100); // m3
+      weight = volume * density; // tons
       aResult.querySelector('.big').textContent = fmt(weight) + ' طن';
       aResult.querySelector('.small').textContent = 'الحجم: ' + fmt(volume) + ' م³ × الكثافة ' + fmt(density) + ' طن/م³';
     } else {
-      const volume = inputVal / density; // m3, since input is tons
-      const area = volume / (thickCm/100); // m2
+      weight = inputVal;
+      volume = weight / density; // m3, since input is tons
+      area = volume / (thickCm/100); // m2
       aResult.querySelector('.big').textContent = fmt(area) + ' م²';
-      aResult.querySelector('.small').textContent = fmt(inputVal) + ' طن ÷ ' + fmt(density) + ' طن/م³ = ' + fmt(volume) + ' م³ عند سماكة ' + fmt(thickCm) + ' سم';
+      aResult.querySelector('.small').textContent = fmt(weight) + ' طن ÷ ' + fmt(density) + ' طن/م³ = ' + fmt(volume) + ' م³ عند سماكة ' + fmt(thickCm) + ' سم';
+    }
+
+    // Cost breakdown (only if price entered)
+    if(price && area){
+      const totalCost = weight * price;
+      const costPerM2 = totalCost / area;
+      aCostResult.style.display = 'block';
+      aCostResult.querySelector('.big').textContent = fmt(costPerM2) + ' ريال/م²';
+      aCostResult.querySelector('.small').textContent = 'التكلفة الإجمالية: ' + fmt(totalCost) + ' ريال  (' + fmt(weight) + ' طن × ' + fmt(price) + ' ريال/طن)';
+    } else {
+      aCostResult.style.display = 'none';
     }
   }
-  [aArea, aThick, aDensityCustom].forEach(el=>el.addEventListener('input', calcAsphalt));
+  [aArea, aThick, aDensityCustom, aPrice].forEach(el=>el.addEventListener('input', calcAsphalt));
 
   // GENERAL CALC
   const gMaterial = document.getElementById('g-material');
