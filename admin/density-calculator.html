@@ -279,9 +279,16 @@
     <label id="g-input-label">الحجم (م³)</label>
     <input type="text" id="g-input" placeholder="مثال: 10" inputmode="decimal">
 
+    <label>سعر الطن (ريال) <span style="font-weight:400;color:#999;">— اختياري</span></label>
+    <input type="text" id="g-price" placeholder="مثال: 45" inputmode="decimal">
+
     <div class="result" id="g-result">
       <div class="big">—</div>
       <div class="small">أدخل البيانات لعرض النتيجة</div>
+    </div>
+    <div class="result" id="g-cost-result" style="display:none;background:var(--carbon);margin-top:10px;">
+      <div class="big">—</div>
+      <div class="small">—</div>
     </div>
   </div>
 
@@ -406,12 +413,14 @@
   const gDensityCustom = document.getElementById('g-density-custom');
   const gInput = document.getElementById('g-input');
   const gInputLabel = document.getElementById('g-input-label');
+  const gPrice = document.getElementById('g-price');
   const gResult = document.getElementById('g-result');
+  const gCostResult = document.getElementById('g-cost-result');
   let gMode = 'v2w';
 
-  document.querySelectorAll('.toggle-btn').forEach(btn=>{
+  document.querySelectorAll('#general .toggle-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
-      document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('#general .toggle-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
       gMode = btn.dataset.mode;
       gInputLabel.textContent = gMode === 'v2w' ? 'الحجم (م³)' : 'الوزن (طن)';
@@ -435,22 +444,39 @@
   function calcGeneral(){
     const val = toNum(gInput.value);
     const density = getGeneralDensity();
+    const price = toNum(gPrice.value);
+
     if(!val || !density){
       gResult.querySelector('.big').textContent = '—';
       gResult.querySelector('.small').textContent = 'أدخل البيانات لعرض النتيجة';
+      gCostResult.style.display = 'none';
       return;
     }
+
+    let weight, volume;
     if(gMode === 'v2w'){
-      const weight = val * density;
+      volume = val;
+      weight = val * density;
       gResult.querySelector('.big').textContent = fmt(weight) + ' طن';
       gResult.querySelector('.small').textContent = fmt(val) + ' م³ × ' + fmt(density) + ' طن/م³';
     } else {
-      const volume = val / density;
+      weight = val;
+      volume = val / density;
       gResult.querySelector('.big').textContent = fmt(volume) + ' م³';
       gResult.querySelector('.small').textContent = fmt(val) + ' طن ÷ ' + fmt(density) + ' طن/م³';
     }
+
+    if(price && weight){
+      const totalCost = weight * price;
+      const costPerM3 = volume ? totalCost / volume : 0;
+      gCostResult.style.display = 'block';
+      gCostResult.querySelector('.big').textContent = fmt(totalCost) + ' ريال';
+      gCostResult.querySelector('.small').textContent = fmt(weight) + ' طن × ' + fmt(price) + ' ريال/طن' + (volume ? '  •  ' + fmt(costPerM3) + ' ريال/م³' : '');
+    } else {
+      gCostResult.style.display = 'none';
+    }
   }
-  [gInput, gDensityCustom].forEach(el=>el.addEventListener('input', calcGeneral));
+  [gInput, gDensityCustom, gPrice].forEach(el=>el.addEventListener('input', calcGeneral));
 </script>
 
 </body>
