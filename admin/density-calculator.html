@@ -84,12 +84,12 @@
   .tab{
     flex:1;
     text-align:center;
-    padding:11px 6px;
+    padding:10px 4px;
     background:var(--white);
     border:2px solid transparent;
     border-radius:10px;
     font-weight:600;
-    font-size:13.5px;
+    font-size:12px;
     color:var(--carbon);
     cursor:pointer;
     box-shadow:0 1px 3px rgba(0,0,0,0.08);
@@ -210,6 +210,7 @@
 
 <div class="tabs">
   <div class="tab active" data-tab="asphalt">طبقة إسفلت</div>
+  <div class="tab" data-tab="base">طبقة ردم/سبيس</div>
   <div class="tab" data-tab="general">مواد عامة</div>
 </div>
 
@@ -249,6 +250,47 @@
       <div class="small">أدخل البيانات لعرض النتيجة</div>
     </div>
     <div class="result" id="a-cost-result" style="display:none;background:var(--carbon);margin-top:10px;">
+      <div class="big">—</div>
+      <div class="small">—</div>
+    </div>
+  </div>
+
+  <!-- BASE / FILL LAYER CALCULATOR -->
+  <div class="card" id="base">
+    <h2>حساب طن الردم / السبيس من المساحة والسماكة</h2>
+
+    <div class="toggle-wrap">
+      <div class="toggle-btn active" data-bmode="area2ton">من المساحة إلى الطن</div>
+      <div class="toggle-btn" data-bmode="ton2area">من الطن إلى المساحة</div>
+    </div>
+
+    <label id="b-input-label">المساحة (م²)</label>
+    <input type="text" id="b-area" placeholder="مثال: 10000" inputmode="decimal">
+
+    <label>سماكة الطبقة (سم)</label>
+    <input type="text" id="b-thick" placeholder="مثال: 20" inputmode="decimal">
+
+    <label>نوع المادة</label>
+    <select id="b-density">
+      <option value="1.9" selected>سبيس مدكوك (طبقة أساس) — 1.9</option>
+      <option value="1.7">سبيس / ركام مكسر غير مدكوك — 1.7</option>
+      <option value="1.75">ردم / دمار (هدم) — 1.75</option>
+      <option value="1.65">بحص (دقر) — 1.65</option>
+      <option value="1.6">رمل — 1.6</option>
+      <option value="1.6">تربة طبيعية (ردم عادي) — 1.6</option>
+      <option value="custom">كثافة مخصصة...</option>
+    </select>
+    <input type="text" id="b-density-custom" placeholder="أدخل الكثافة بالطن/م³" style="display:none;margin-top:8px;" inputmode="decimal">
+    <div class="density-hint">مثال: طبقة سبيس مدكوك سماكة 20 سم — استخدم الكثافة 1.9 طن/م³</div>
+
+    <label>سعر الطن (ريال) <span style="font-weight:400;color:#999;">— اختياري</span></label>
+    <input type="text" id="b-price" placeholder="مثال: 40" inputmode="decimal">
+
+    <div class="result" id="b-result">
+      <div class="big">—</div>
+      <div class="small">أدخل البيانات لعرض النتيجة</div>
+    </div>
+    <div class="result" id="b-cost-result" style="display:none;background:var(--carbon);margin-top:10px;">
       <div class="big">—</div>
       <div class="small">—</div>
     </div>
@@ -407,6 +449,85 @@
     }
   }
   [aArea, aThick, aDensityCustom, aPrice].forEach(el=>el.addEventListener('input', calcAsphalt));
+
+  // BASE / FILL LAYER CALC
+  const bArea = document.getElementById('b-area');
+  const bThick = document.getElementById('b-thick');
+  const bInputLabel = document.getElementById('b-input-label');
+  const bDensitySel = document.getElementById('b-density');
+  const bDensityCustom = document.getElementById('b-density-custom');
+  const bPrice = document.getElementById('b-price');
+  const bResult = document.getElementById('b-result');
+  const bCostResult = document.getElementById('b-cost-result');
+  let bMode = 'area2ton';
+
+  document.querySelectorAll('#base [data-bmode]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#base [data-bmode]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      bMode = btn.dataset.bmode;
+      if(bMode === 'area2ton'){
+        bInputLabel.textContent = 'المساحة (م²)';
+        bArea.placeholder = 'مثال: 10000';
+      } else {
+        bInputLabel.textContent = 'الوزن (طن)';
+        bArea.placeholder = 'مثال: 3800';
+      }
+      calcBase();
+    });
+  });
+
+  bDensitySel.addEventListener('change', ()=>{
+    bDensityCustom.style.display = bDensitySel.value === 'custom' ? 'block' : 'none';
+    calcBase();
+  });
+
+  function getBaseDensity(){
+    if(bDensitySel.value === 'custom'){
+      return toNum(bDensityCustom.value) || 0;
+    }
+    return parseFloat(bDensitySel.value);
+  }
+
+  function calcBase(){
+    const inputVal = toNum(bArea.value);
+    const thickCm = toNum(bThick.value);
+    const density = getBaseDensity();
+    const price = toNum(bPrice.value);
+
+    if(!inputVal || !thickCm || !density){
+      bResult.querySelector('.big').textContent = '—';
+      bResult.querySelector('.small').textContent = 'أدخل البيانات لعرض النتيجة';
+      bCostResult.style.display = 'none';
+      return;
+    }
+
+    let weight, area, volume;
+    if(bMode === 'area2ton'){
+      area = inputVal;
+      volume = area * (thickCm/100);
+      weight = volume * density;
+      bResult.querySelector('.big').textContent = fmt(weight) + ' طن';
+      bResult.querySelector('.small').textContent = 'الحجم: ' + fmt(volume) + ' م³ × الكثافة ' + fmt(density) + ' طن/م³';
+    } else {
+      weight = inputVal;
+      volume = weight / density;
+      area = volume / (thickCm/100);
+      bResult.querySelector('.big').textContent = fmt(area) + ' م²';
+      bResult.querySelector('.small').textContent = fmt(weight) + ' طن ÷ ' + fmt(density) + ' طن/م³ = ' + fmt(volume) + ' م³ عند سماكة ' + fmt(thickCm) + ' سم';
+    }
+
+    if(price && area){
+      const totalCost = weight * price;
+      const costPerM2 = totalCost / area;
+      bCostResult.style.display = 'block';
+      bCostResult.querySelector('.big').textContent = fmt(costPerM2) + ' ريال/م²';
+      bCostResult.querySelector('.small').textContent = 'التكلفة الإجمالية: ' + fmt(totalCost) + ' ريال  (' + fmt(weight) + ' طن × ' + fmt(price) + ' ريال/طن)';
+    } else {
+      bCostResult.style.display = 'none';
+    }
+  }
+  [bArea, bThick, bDensityCustom, bPrice].forEach(el=>el.addEventListener('input', calcBase));
 
   // GENERAL CALC
   const gMaterial = document.getElementById('g-material');
