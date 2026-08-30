@@ -1167,7 +1167,7 @@ function reportMetaItems(title){let items=[],add=(k,v)=>{if(v!==undefined&&v!==n
 function reportMetaHTML(title){let items=reportMetaItems(title);return items.length?`<div class="report-filters">${items.map(([k,v])=>`<div><b>${esc(k)}:</b> ${esc(v)}</div>`).join('')}</div>`:''}
 function reportTotalsHTML(rows){
  if(!rows||!rows.length)return'';
- let include=k=>/(مدين|دائن|رصيد|الرصيد|حركة|الإجمالي|اجمالي|إجمالي|الصافي|المبلغ|الضريبة|الخصم|قبل|بعد|إضافات|خصومات|الوعاء|الزكاة|إيراد|ايراد|مصروف|ربح|خسارة|تكلفة|VAT)/.test(String(k))&&!/(رقم|كود|التاريخ|تاريخ|نسبة|%|السطر|م$|الدورة|الشهر)/.test(String(k));
+ let include=k=>/(مدين|دائن|حركة|الإجمالي|اجمالي|إجمالي|الصافي|المبلغ|الضريبة|الخصم|قبل|بعد|إضافات|خصومات|الوعاء|الزكاة|إيراد|ايراد|مصروف|ربح|خسارة|تكلفة|VAT|رصيد)/.test(String(k))&&!/(رقم|كود|التاريخ|تاريخ|نسبة|%|السطر|م$|الدورة|الشهر)/.test(String(k))&&String(k).trim()!=='الرصيد';
  let isTotalRow=r=>Object.values(r||{}).some(v=>typeof v==='string'&&/^(الإجمالي|الإجماليات|إجمالي|اجمالي|المجموع)$/i.test(String(v).trim()));
  let dataRows=rows.filter(r=>!isTotalRow(r)); if(!dataRows.length)dataRows=rows;
  let keys=Object.keys(rows[0]||{}).filter(k=>include(k)&&dataRows.some(r=>typeof r[k]==='number'||(/^[-+]?\d+(\.\d+)?$/.test(String(r[k]).trim()))));
