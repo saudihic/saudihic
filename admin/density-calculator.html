@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="./manifest-density-calculator.json">
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png">
+<link rel="apple-touch-icon" href="./icons/icon-180.png">
+<meta name="theme-color" content="#005340">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="حاسبة الكثافة HIC">
+<title>حاسبة الكثافة والأوزان | HIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#005340;
+    --gold:#C8A96E;
+    --carbon:#302E2E;
+    --ink:#1E1C1C;
+    --bg:#F0F0F0;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Alexandria',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    min-height:100vh;
+  }
+  .topbar{
+    background:var(--green);
+    padding:20px 18px 22px;
+    color:var(--white);
+    position:relative;
+    overflow:hidden;
+  }
+  .topbar::after{
+    content:"";
+    position:absolute;
+    left:-40px; top:-40px;
+    width:140px; height:140px;
+    border-radius:50%;
+    background:rgba(200,169,110,0.15);
+  }
+  .logo-row{
+    direction:ltr;
+    text-align:left;
+  }
+  .topbar-logo{
+    height:38px;
+    width:auto;
+    display:inline-block;
+    margin-bottom:10px;
+  }
+  .brand{
+    font-family:'Raleway',sans-serif;
+    font-weight:800;
+    letter-spacing:1px;
+    font-size:13px;
+    color:var(--gold);
+    text-transform:uppercase;
+  }
+  .topbar h1{
+    margin:6px 0 4px;
+    font-size:22px;
+    font-weight:700;
+  }
+  .topbar p{
+    margin:0;
+    font-size:13px;
+    opacity:0.85;
+  }
+  .tabs{
+    display:flex;
+    max-width:520px;
+    margin:16px auto 0;
+    padding:0 14px;
+    gap:8px;
+  }
+  .tab{
+    flex:1;
+    text-align:center;
+    padding:11px 6px;
+    background:var(--white);
+    border:2px solid transparent;
+    border-radius:10px;
+    font-weight:600;
+    font-size:13.5px;
+    color:var(--carbon);
+    cursor:pointer;
+    box-shadow:0 1px 3px rgba(0,0,0,0.08);
+  }
+  .tab.active{
+    background:var(--green);
+    color:var(--white);
+    border-color:var(--gold);
+  }
+  main{
+    max-width:520px;
+    margin:16px auto;
+    padding:0 14px 40px;
+  }
+  .card{
+    background:var(--white);
+    border-radius:14px;
+    padding:18px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom:14px;
+    display:none;
+  }
+  .card.active{display:block;}
+  .card h2{
+    font-size:15px;
+    margin:0 0 14px;
+    color:var(--green);
+    font-weight:700;
+    border-bottom:2px solid var(--bg);
+    padding-bottom:10px;
+  }
+  label{
+    display:block;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--carbon);
+    margin:12px 0 5px;
+  }
+  input[type=number], select{
+    width:100%;
+    padding:11px 12px;
+    border-radius:9px;
+    border:1.5px solid #DDD;
+    font-family:'Alexandria',sans-serif;
+    font-size:15px;
+    background:#FAFAFA;
+    color:var(--ink);
+  }
+  input[type=number]:focus, select:focus{
+    outline:none;
+    border-color:var(--green);
+    background:var(--white);
+  }
+  .row2{display:flex;gap:10px;}
+  .row2 > div{flex:1;}
+  .density-hint{
+    font-size:11.5px;
+    color:#777;
+    margin-top:4px;
+  }
+  .result{
+    margin-top:16px;
+    background:var(--green);
+    border-radius:12px;
+    padding:16px;
+    color:var(--white);
+    text-align:center;
+  }
+  .result .big{
+    font-family:'Raleway',sans-serif;
+    font-size:30px;
+    font-weight:800;
+    color:var(--gold);
+    line-height:1.2;
+  }
+  .result .small{
+    font-size:12px;
+    opacity:0.85;
+    margin-top:4px;
+  }
+  .toggle-wrap{
+    display:flex;
+    background:#EEE;
+    border-radius:9px;
+    padding:3px;
+    margin-top:12px;
+  }
+  .toggle-btn{
+    flex:1;
+    text-align:center;
+    padding:9px 4px;
+    font-size:13px;
+    font-weight:600;
+    border-radius:7px;
+    cursor:pointer;
+    color:var(--carbon);
+  }
+  .toggle-btn.active{
+    background:var(--green);
+    color:var(--white);
+  }
+  .note{
+    font-size:11.5px;
+    color:#888;
+    text-align:center;
+    margin-top:18px;
+    line-height:1.6;
+  }
+  .app-footer{
+    background:#fff;
+    padding:10px 18px;
+  }
+  .lh-stripe{height:4px;background:linear-gradient(to right,var(--gold),var(--green));}
+  .lh-footer{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    direction:ltr;padding:10px 6px;background:#fff;
+  }
+  .lh-footer-mark{height:44px;width:auto;flex-shrink:0;}
+  .lh-footer-vline{width:1px;height:40px;background:rgba(200,169,110,.4);flex-shrink:0;}
+  .lh-footer-contact{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;}
+  .lh-footer-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .lh-footer-item{display:flex;align-items:center;gap:4px;}
+  .lh-footer-item svg{width:9px;height:9px;flex-shrink:0;}
+  .lh-footer-item span{font-family:'Raleway',sans-serif;font-size:8.5px;font-weight:700;color:var(--carbon);direction:ltr;font-variant-numeric:lining-nums tabular-nums;}
+  .lh-footer-item span.ar{font-family:'Alexandria',sans-serif;font-size:8.5px;}
+  .lh-footer-sep{width:1px;height:10px;background:rgba(200,169,110,.4);flex-shrink:0;}
+  .lh-footer-ar{flex-shrink:0;font-family:'Alexandria',sans-serif;font-size:13px;font-weight:700;color:var(--green);white-space:nowrap;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo-row"><img class="topbar-logo" src="data:image/png;base64,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" alt="HIC"></div>
+  <h1>حاسبة الكثافة ⇄ الوزن</h1>
+  <p>تحويل الحجم والمساحة إلى طن، والعكس — لمواد الطرق والبنية التحتية</p>
+</div>
+
+<div class="tabs">
+  <div class="tab active" data-tab="asphalt">طبقة إسفلت</div>
+  <div class="tab" data-tab="general">مواد عامة</div>
+</div>
+
+<main>
+
+  <!-- ASPHALT LAYER CALCULATOR -->
+  <div class="card active" id="asphalt">
+    <h2>حساب طن الإسفلت من المساحة والسماكة</h2>
+
+    <div class="toggle-wrap">
+      <div class="toggle-btn active" data-amode="area2ton">من المساحة إلى الطن</div>
+      <div class="toggle-btn" data-amode="ton2area">من الطن إلى المساحة</div>
+    </div>
+
+    <label id="a-input-label">المساحة (م²)</label>
+    <input type="text" id="a-area" placeholder="مثال: 10000" inputmode="decimal">
+
+    <label>سماكة الطبقة (سم)</label>
+    <input type="text" id="a-thick" placeholder="مثال: 5" inputmode="decimal">
+
+    <label>الكثافة (طن/م³)</label>
+    <select id="a-density">
+      <option value="2.4" selected>إسفلت مضغوط عادي — 2.4</option>
+      <option value="2.35">طبقة رابطة (Binder) — 2.35</option>
+      <option value="2.45">طبقة سطحية (Surface/Wearing) — 2.45</option>
+      <option value="2.5">طبقة أساس إسفلتي (Base) — 2.5</option>
+      <option value="custom">كثافة مخصصة...</option>
+    </select>
+    <input type="text" id="a-density-custom" placeholder="أدخل الكثافة بالطن/م³" style="display:none;margin-top:8px;" inputmode="decimal">
+    <div class="density-hint">القيمة الافتراضية 2.4 طن/م³ هي المتوسط الشائع للإسفلت المضغوط في مشاريع الطرق</div>
+
+    <label>سعر الطن (ريال) <span style="font-weight:400;color:#999;">— اختياري</span></label>
+    <input type="text" id="a-price" placeholder="مثال: 150" inputmode="decimal">
+
+    <div class="result" id="a-result">
+      <div class="big">—</div>
+      <div class="small">أدخل البيانات لعرض النتيجة</div>
+    </div>
+    <div class="result" id="a-cost-result" style="display:none;background:var(--carbon);margin-top:10px;">
+      <div class="big">—</div>
+      <div class="small">—</div>
+    </div>
+  </div>
+
+  <!-- GENERAL MATERIAL CALCULATOR -->
+  <div class="card" id="general">
+    <h2>تحويل عام: حجم / طبقة ⇄ وزن لأي مادة</h2>
+
+    <label>نوع المادة</label>
+    <select id="g-material">
+      <option value="1.6">رمل — 1.6 طن/م³</option>
+      <option value="1.65">بحص (دقر) — 1.65 طن/م³</option>
+      <option value="1.7">ركام مكسر / سبيس غير مدكوك — 1.7 طن/م³</option>
+      <option value="1.9">سبيس مدكوك (طبقة أساس) — 1.9 طن/م³</option>
+      <option value="1.85">بيسكور B (Base Course B) — 1.85 طن/م³</option>
+      <option value="1.6">حجر فلتر (Filter Material) — 1.6 طن/م³</option>
+      <option value="1.8">قطع صخري (Rock Fill) — 1.8 طن/م³</option>
+      <option value="1.75">مواد ردم / دمار (هدم) — 1.75 طن/م³</option>
+      <option value="2.4">خرسانة عادية — 2.4 طن/م³</option>
+      <option value="1.6">تربة طبيعية — 1.6 طن/م³</option>
+      <option value="custom">كثافة مخصصة... (مواد أخرى)</option>
+    </select>
+    <input type="text" id="g-density-custom" placeholder="أدخل الكثافة بالطن/م³" style="display:none;margin-top:8px;" inputmode="decimal">
+
+    <label style="margin-top:16px;">طريقة الإدخال</label>
+    <div class="toggle-wrap">
+      <div class="toggle-btn active" data-gmethod="direct">حجم مباشر (م³)</div>
+      <div class="toggle-btn" data-gmethod="layer">مساحة + سماكة (طبقة)</div>
+    </div>
+
+    <div class="toggle-wrap">
+      <div class="toggle-btn active" data-gdir="toWeight">إلى الطن</div>
+      <div class="toggle-btn" data-gdir="fromWeight">من الطن</div>
+    </div>
+
+    <div id="g-layer-thick-wrap" style="display:none;">
+      <label>سماكة الطبقة (سم)</label>
+      <input type="text" id="g-thick" placeholder="مثال: 20" inputmode="decimal">
+    </div>
+
+    <label id="g-input-label">الحجم (م³)</label>
+    <input type="text" id="g-input" placeholder="مثال: 10" inputmode="decimal">
+
+    <label>سعر الطن (ريال) <span style="font-weight:400;color:#999;">— اختياري</span></label>
+    <input type="text" id="g-price" placeholder="مثال: 45" inputmode="decimal">
+
+    <div class="result" id="g-result">
+      <div class="big">—</div>
+      <div class="small">أدخل البيانات لعرض النتيجة</div>
+    </div>
+    <div class="result" id="g-cost-result" style="display:none;background:var(--carbon);margin-top:10px;">
+      <div class="big">—</div>
+      <div class="small">—</div>
+    </div>
+  </div>
+
+  <div class="note">
+    القيم الافتراضية للكثافة تقريبية ومتعارف عليها في مشاريع الطرق بالمملكة — يفضّل مطابقتها مع نتائج المختبر أو المواصفة الفنية للمشروع عند الاعتماد الرسمي.
+  </div>
+
+</main>
+
+<footer class="app-footer">
+  <div class="lh-stripe"></div>
+  <div class="lh-footer">
+    <img class="lh-footer-mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP4AAAFQCAYAAACf98N7AAAEwklEQVR4nO3WMYpUWRSA4aNUZmRiZOIGhEkMzAXTkQ5EQ5OBCV2BkSswaFGYXNRUcAcdGEw6ork7EIRxAfZrq7t5XaX/98FNXt1DHXj88GYAAAAAAAAAAAAAAAAAgNO5dI7ZP2fm7sJv32bm72Oe35qZR+f4T87mcGY+bHn3j5n5a8VdON7LmTk65vmzmdkszLybmberbbTg6cz8v3C+Lsw8PGHGWe8cLLyP49zbg32L58HC+/h6wszThZmfunzWQeDXJXwIEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQcKHIOFDkPAhSPgQJHwIEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQcKHIOFDkPAhSPgQJHwIEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ9Bm1wtwIa7MzNVT3OU3J/yGf3a9APvFpz4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQcKHIOFDkPAhSPgQJHwIEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQcKHIOFD0GbXC3Ah/p2ZL1vevTYzN1fchT0g/IYnM/Nmy7sHM/NqxV3YAz71IUj4ECR8CBI+BAkfgoQPQcKHIOFDkPAhSPgQJHwIEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQcKHIOFDkPAhSPgQJHwIEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQcKHIOFDkPAhSPgQJHwIEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQZtdL8CFeDwz97e8e33NRdgPwm+4vesF2C8+9SFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQcKHIOFDkPAhSPgQJHwIEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQcKHIOFDkPAhSPgQJHwIEj4ECR+ChA9Bm10vwIV4PzOft7x7Y2burLgLe0D4DYcz83rLuwcj/N+eT30IEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQcKHIOFDkPAhSPgQJHwIEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CBI+BAkfgoQPQcKHIOFDkPAhSPgQJHwIEj4ECR+ChA9Bwocg4UOQ8CFI+BAkfAgSPgQJH4KED0HChyDhQ5DwIUj4ECR8CNqcY/ZoZp4v/PZt4fl/J8ywns+nuPtpvKNd+Ljw/MUsd3q00i4AAAAAAAAAAAAAAAAAwA++A8H45nQQQbcDAAAAAElFTkSuQmCC" alt="HIC" />
+    <div class="lh-footer-vline"></div>
+    <div class="lh-footer-contact">
+      <div class="lh-footer-row">
+        <div class="lh-footer-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#005340" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>sales@saudihic.com</span>
+        </div>
+        <div class="lh-footer-sep"></div>
+        <div class="lh-footer-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#005340" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18a14 14 0 010-18"/></svg>
+          <span>saudihic.com</span>
+        </div>
+      </div>
+    </div>
+    <div class="lh-footer-vline"></div>
+    <span class="lh-footer-ar">اتش آي سي</span>
+  </div>
+</footer>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  function fmt(n){
+    if(!isFinite(n)) return '—';
+    return n.toLocaleString('ar-EG', {maximumFractionDigits:2});
+  }
+
+  // Converts Arabic-Indic (٠١٢٣٤٥٦٧٨٩) and Persian digits to Latin digits,
+  // and Arabic decimal separator (٫) to a normal dot, so typing on an
+  // Arabic keyboard still parses correctly.
+  function toNum(str){
+    if(str === null || str === undefined) return NaN;
+    const map = {
+      '٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9',
+      '۰':'0','۱':'1','۲':'2','۳':'3','۴':'4','۵':'5','۶':'6','۷':'7','۸':'8','۹':'9',
+      '٫':'.',',':'.'
+    };
+    const cleaned = String(str).replace(/[٠-٩۰-۹٫,]/g, ch => map[ch] !== undefined ? map[ch] : ch);
+    return parseFloat(cleaned);
+  }
+
+  // ASPHALT CALC
+  const aArea = document.getElementById('a-area');
+  const aThick = document.getElementById('a-thick');
+  const aInputLabel = document.getElementById('a-input-label');
+  const aDensitySel = document.getElementById('a-density');
+  const aDensityCustom = document.getElementById('a-density-custom');
+  const aPrice = document.getElementById('a-price');
+  const aResult = document.getElementById('a-result');
+  const aCostResult = document.getElementById('a-cost-result');
+  let aMode = 'area2ton'; // or 'ton2area'
+
+  document.querySelectorAll('[data-amode]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('[data-amode]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      aMode = btn.dataset.amode;
+      if(aMode === 'area2ton'){
+        aInputLabel.textContent = 'المساحة (م²)';
+        aArea.placeholder = 'مثال: 10000';
+      } else {
+        aInputLabel.textContent = 'الوزن (طن)';
+        aArea.placeholder = 'مثال: 240';
+      }
+      calcAsphalt();
+    });
+  });
+
+  aDensitySel.addEventListener('change', ()=>{
+    aDensityCustom.style.display = aDensitySel.value === 'custom' ? 'block' : 'none';
+    calcAsphalt();
+  });
+
+  function getAsphaltDensity(){
+    if(aDensitySel.value === 'custom'){
+      return toNum(aDensityCustom.value) || 0;
+    }
+    return parseFloat(aDensitySel.value);
+  }
+
+  function calcAsphalt(){
+    const inputVal = toNum(aArea.value);
+    const thickCm = toNum(aThick.value);
+    const density = getAsphaltDensity();
+    const price = toNum(aPrice.value);
+
+    if(!inputVal || !thickCm || !density){
+      aResult.querySelector('.big').textContent = '—';
+      aResult.querySelector('.small').textContent = 'أدخل البيانات لعرض النتيجة';
+      aCostResult.style.display = 'none';
+      return;
+    }
+
+    let weight, area, volume;
+    if(aMode === 'area2ton'){
+      area = inputVal;
+      volume = area * (thickCm/100); // m3
+      weight = volume * density; // tons
+      aResult.querySelector('.big').textContent = fmt(weight) + ' طن';
+      aResult.querySelector('.small').textContent = 'الحجم: ' + fmt(volume) + ' م³ × الكثافة ' + fmt(density) + ' طن/م³';
+    } else {
+      weight = inputVal;
+      volume = weight / density; // m3, since input is tons
+      area = volume / (thickCm/100); // m2
+      aResult.querySelector('.big').textContent = fmt(area) + ' م²';
+      aResult.querySelector('.small').textContent = fmt(weight) + ' طن ÷ ' + fmt(density) + ' طن/م³ = ' + fmt(volume) + ' م³ عند سماكة ' + fmt(thickCm) + ' سم';
+    }
+
+    // Cost breakdown (only if price entered)
+    if(price && area){
+      const totalCost = weight * price;
+      const costPerM2 = totalCost / area;
+      aCostResult.style.display = 'block';
+      aCostResult.querySelector('.big').textContent = fmt(costPerM2) + ' ريال/م²';
+      aCostResult.querySelector('.small').textContent = 'التكلفة الإجمالية: ' + fmt(totalCost) + ' ريال  (' + fmt(weight) + ' طن × ' + fmt(price) + ' ريال/طن)';
+    } else {
+      aCostResult.style.display = 'none';
+    }
+  }
+  [aArea, aThick, aDensityCustom, aPrice].forEach(el=>el.addEventListener('input', calcAsphalt));
+
+  // GENERAL CALC (supports direct volume OR area+thickness layer, both directions)
+  const gMaterial = document.getElementById('g-material');
+  const gDensityCustom = document.getElementById('g-density-custom');
+  const gInput = document.getElementById('g-input');
+  const gInputLabel = document.getElementById('g-input-label');
+  const gThickWrap = document.getElementById('g-layer-thick-wrap');
+  const gThick = document.getElementById('g-thick');
+  const gPrice = document.getElementById('g-price');
+  const gResult = document.getElementById('g-result');
+  const gCostResult = document.getElementById('g-cost-result');
+  let gMethod = 'direct';  // 'direct' or 'layer'
+  let gDir = 'toWeight';   // 'toWeight' or 'fromWeight'
+
+  document.querySelectorAll('#general [data-gmethod]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#general [data-gmethod]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      gMethod = btn.dataset.gmethod;
+      gThickWrap.style.display = gMethod === 'layer' ? 'block' : 'none';
+      updateGeneralLabels();
+      calcGeneral();
+    });
+  });
+
+  document.querySelectorAll('#general [data-gdir]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#general [data-gdir]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      gDir = btn.dataset.gdir;
+      updateGeneralLabels();
+      calcGeneral();
+    });
+  });
+
+  function updateGeneralLabels(){
+    if(gDir === 'toWeight'){
+      gInputLabel.textContent = gMethod === 'direct' ? 'الحجم (م³)' : 'المساحة (م²)';
+      gInput.placeholder = gMethod === 'direct' ? 'مثال: 10' : 'مثال: 10000';
+    } else {
+      gInputLabel.textContent = 'الوزن (طن)';
+      gInput.placeholder = 'مثال: 18';
+    }
+  }
+
+  gMaterial.addEventListener('change', ()=>{
+    gDensityCustom.style.display = gMaterial.value === 'custom' ? 'block' : 'none';
+    calcGeneral();
+  });
+
+  function getGeneralDensity(){
+    if(gMaterial.value === 'custom'){
+      return toNum(gDensityCustom.value) || 0;
+    }
+    return parseFloat(gMaterial.value);
+  }
+
+  function calcGeneral(){
+    const val = toNum(gInput.value);
+    const density = getGeneralDensity();
+    const price = toNum(gPrice.value);
+    const thickCm = gMethod === 'layer' ? toNum(gThick.value) : null;
+
+    const needsThick = gMethod === 'layer';
+    if(!val || !density || (needsThick && !thickCm)){
+      gResult.querySelector('.big').textContent = '—';
+      gResult.querySelector('.small').textContent = 'أدخل البيانات لعرض النتيجة';
+      gCostResult.style.display = 'none';
+      return;
+    }
+
+    let weight, volume, area;
+
+    if(gMethod === 'direct'){
+      if(gDir === 'toWeight'){
+        volume = val;
+        weight = volume * density;
+        gResult.querySelector('.big').textContent = fmt(weight) + ' طن';
+        gResult.querySelector('.small').textContent = fmt(volume) + ' م³ × ' + fmt(density) + ' طن/م³';
+      } else {
+        weight = val;
+        volume = weight / density;
+        gResult.querySelector('.big').textContent = fmt(volume) + ' م³';
+        gResult.querySelector('.small').textContent = fmt(weight) + ' طن ÷ ' + fmt(density) + ' طن/م³';
+      }
+    } else { // layer method
+      if(gDir === 'toWeight'){
+        area = val;
+        volume = area * (thickCm/100);
+        weight = volume * density;
+        gResult.querySelector('.big').textContent = fmt(weight) + ' طن';
+        gResult.querySelector('.small').textContent = 'الحجم: ' + fmt(volume) + ' م³ × الكثافة ' + fmt(density) + ' طن/م³';
+      } else {
+        weight = val;
+        volume = weight / density;
+        area = volume / (thickCm/100);
+        gResult.querySelector('.big').textContent = fmt(area) + ' م²';
+        gResult.querySelector('.small').textContent = fmt(weight) + ' طن ÷ ' + fmt(density) + ' طن/م³ = ' + fmt(volume) + ' م³ عند سماكة ' + fmt(thickCm) + ' سم';
+      }
+    }
+
+    if(price && weight){
+      const totalCost = weight * price;
+      gCostResult.style.display = 'block';
+      if(gMethod === 'layer' && area){
+        const costPerM2 = totalCost / area;
+        gCostResult.querySelector('.big').textContent = fmt(costPerM2) + ' ريال/م²';
+        gCostResult.querySelector('.small').textContent = 'التكلفة الإجمالية: ' + fmt(totalCost) + ' ريال  (' + fmt(weight) + ' طن × ' + fmt(price) + ' ريال/طن)';
+      } else {
+        const costPerM3 = volume ? totalCost / volume : 0;
+        gCostResult.querySelector('.big').textContent = fmt(totalCost) + ' ريال';
+        gCostResult.querySelector('.small').textContent = fmt(weight) + ' طن × ' + fmt(price) + ' ريال/طن' + (volume ? '  •  ' + fmt(costPerM3) + ' ريال/م³' : '');
+      }
+    } else {
+      gCostResult.style.display = 'none';
+    }
+  }
+  [gInput, gThick, gDensityCustom, gPrice].forEach(el=>el.addEventListener('input', calcGeneral));
+</script>
+
+</body>
+</html>
