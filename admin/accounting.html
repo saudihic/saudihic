@@ -698,6 +698,7 @@ function projectRevenueCost(projectId2){
     if(d.type==='sale')revenue+=inc?amt:-amt;else cost+=inc?amt:-amt;
   });
   (S.vouchers||[]).forEach(v=>{
+    if(v.invoiceId)return;
     if(v.projectId!==projectId2&&!(v.contractId&&contractIds.has(v.contractId)))return;
     if(v.type==='receipt')revenue+=n(v.amount);else cost+=n(v.amount);
   });
