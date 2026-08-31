@@ -1,0 +1,16 @@
+{
+  "id": "/admin/item-pricing.html",
+  "name": "تسعير البنود والمواد HIC",
+  "short_name": "تسعير البنود",
+  "description": "أداة تحليل وتسعير بنود المشاريع - اتش آي سي",
+  "start_url": "./item-pricing.html",
+  "scope": "./item-pricing.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F0F0F0",
+  "theme_color": "#005340",
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
