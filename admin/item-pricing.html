@@ -379,8 +379,9 @@
             <input type="number" id="trTruckCap" placeholder="22–25" value="23" oninput="calcTransportHelper()" style="width:100%;padding:6px 8px;border:1px solid #ddd;border-radius:6px;font-size:12px;">
           </div>
           <div>
-            <label style="font-size:10px;color:#888;">كثافة المادة (طن/م³) — لو البند بالمتر المكعب</label>
-            <input type="number" step="0.01" id="trDensity" placeholder="مثال: 1.7" oninput="calcTransportHelper()" style="width:100%;padding:6px 8px;border:1px solid #ddd;border-radius:6px;font-size:12px;">
+            <label style="font-size:10px;color:#888;">كثافة المادة — لو البند بالمتر المكعب</label>
+            <select id="trDensitySelect" onchange="onTrDensityChange()" style="width:100%;padding:6px 8px;border:1px solid #ddd;border-radius:6px;font-size:12px;"></select>
+            <input type="number" step="0.01" id="trDensity" placeholder="كثافة مخصصة" oninput="calcTransportHelper()" style="display:none;width:100%;padding:6px 8px;border:1px solid #ddd;border-radius:6px;font-size:12px;margin-top:6px;">
           </div>
         </div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:10px;flex-wrap:wrap;">
@@ -746,10 +747,21 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
 });
 
 /* ---------------- Transport helper (trip-rate ÷ truck capacity) ---------------- */
+function onTrDensityChange(){
+  const key = document.getElementById('trDensitySelect').value;
+  document.getElementById('trDensity').style.display = key==='custom' ? 'block' : 'none';
+  calcTransportHelper();
+}
+function getTrDensity(){
+  const key = document.getElementById('trDensitySelect').value;
+  if(!key) return 0;
+  if(key==='custom') return Number(document.getElementById('trDensity').value)||0;
+  return DENSITY_PRESETS[key] ? DENSITY_PRESETS[key].density : 0;
+}
 function calcTransportHelper(){
   const trip = Number(document.getElementById('trTripPrice').value)||0;
   const cap = Number(document.getElementById('trTruckCap').value)||0;
-  const density = Number(document.getElementById('trDensity').value)||0;
+  const density = getTrDensity();
   const perTonEl = document.getElementById('trPerTon');
   const perUnitEl = document.getElementById('trPerUnit');
   if(!trip || !cap){ perTonEl.textContent='—'; perUnitEl.textContent='—'; return null; }
@@ -1331,6 +1343,7 @@ function calcQuick(){
 
 /* ---------------- Init ---------------- */
 document.getElementById('qcDensitySelect').innerHTML = densityPresetOptions('');
+document.getElementById('trDensitySelect').innerHTML = densityPresetOptions('');
 renderPricingTables();
 renderCatalog();
 renderSaved();
