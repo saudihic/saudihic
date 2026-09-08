@@ -318,7 +318,18 @@
         </div>
         <div>
           <label>وحدة القياس</label>
-          <input type="text" id="itemUnit" placeholder="م³ / م² / طن / م.ط" oninput="renderPricingTables()">
+          <select id="itemUnit" onchange="onItemUnitChange()">
+            <option value="">اختر الوحدة</option>
+            <option value="م³">م³ (متر مكعب)</option>
+            <option value="م²">م² (متر مربع)</option>
+            <option value="طن">طن</option>
+            <option value="م.ط">م.ط (متر طولي)</option>
+            <option value="عدد">عدد</option>
+            <option value="كجم">كجم</option>
+            <option value="لتر">لتر</option>
+            <option value="__custom__">أخرى...</option>
+          </select>
+          <input type="text" id="itemUnitOther" placeholder="اكتب الوحدة" style="display:none;margin-top:6px;" oninput="renderPricingTables(); renderSummary();">
         </div>
       </div>
     </div>
@@ -800,8 +811,29 @@ function materialOptions(selectedId){
   return opts;
 }
 
+function getItemUnit(){
+  const sel = document.getElementById('itemUnit').value;
+  if(sel === '__custom__') return (document.getElementById('itemUnitOther').value||'').trim();
+  return sel;
+}
+function setItemUnit(unit){
+  const sel = document.getElementById('itemUnit');
+  const other = document.getElementById('itemUnitOther');
+  const known = Array.from(sel.options).some(o=>o.value===unit);
+  if(known){
+    sel.value = unit; other.style.display='none'; other.value='';
+  } else {
+    sel.value = '__custom__'; other.style.display='block'; other.value = unit||'';
+  }
+}
+function onItemUnitChange(){
+  const other = document.getElementById('itemUnitOther');
+  other.style.display = document.getElementById('itemUnit').value==='__custom__' ? 'block' : 'none';
+  renderPricingTables();
+  renderSummary();
+}
 function itemUnitIsVolume(){
-  const u = (document.getElementById('itemUnit').value||'').trim().replace(/\s/g,'');
+  const u = getItemUnit().trim().replace(/\s/g,'');
   return u==='م³' || u==='م3' || u==='متر مكعب';
 }
 
@@ -1056,13 +1088,13 @@ function renderSummary(){
   document.getElementById('sumContingency').textContent = fmt(t.contingency);
   document.getElementById('sumProfit').textContent = fmt(t.profit);
   document.getElementById('finalUnitPrice').innerHTML = fmt(t.finalUnit) + ' <span style="font-size:14px;">ر.س</span>';
-  const unit = document.getElementById('itemUnit').value || '—';
+  const unit = getItemUnit() || '—';
   document.getElementById('qtyLabelUnit').textContent = unit;
   const qty = Number(document.getElementById('itemQty').value)||0;
   document.getElementById('lineTotal').textContent = fmt(t.finalUnit*qty) + ' ر.س';
 }
 
-['pctOverhead','pctProfit','pctContingency','itemUnit'].forEach(id=>{
+['pctOverhead','pctProfit','pctContingency'].forEach(id=>{
   document.getElementById(id).addEventListener('input', renderSummary);
 });
 
@@ -1071,7 +1103,7 @@ function resetItemForm(){
   currentItem = blankItem();
   document.getElementById('itemName').value='';
   document.getElementById('itemCode').value='';
-  document.getElementById('itemUnit').value='';
+  setItemUnit('');
   document.getElementById('itemQty').value=1;
   document.getElementById('pctOverhead').value=10;
   document.getElementById('pctProfit').value=15;
@@ -1088,7 +1120,7 @@ async function saveCurrentItem(){
     id: currentItem.id || uid(),
     code: document.getElementById('itemCode').value.trim(),
     name: name,
-    unit: document.getElementById('itemUnit').value.trim() || '—',
+    unit: getItemUnit() || '—',
     unitPrice: t.finalUnit,
     breakdown: {
       materials: currentItem.materials, labor: currentItem.labor, equipment: currentItem.equipment,
@@ -1182,7 +1214,7 @@ function loadSavedItem(id, asNew){
   };
   document.getElementById('itemName').value = asNew ? (p.name + ' (نسخة)') : p.name;
   document.getElementById('itemCode').value = asNew ? '' : p.code;
-  document.getElementById('itemUnit').value = p.unit;
+  setItemUnit(p.unit);
   document.getElementById('pctOverhead').value = p.breakdown.overheadPct;
   document.getElementById('pctProfit').value = p.breakdown.profitPct;
   document.getElementById('pctContingency').value = p.breakdown.contingencyPct;
