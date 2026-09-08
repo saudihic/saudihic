@@ -564,14 +564,20 @@ async function connectCloud(){
     }
   });
   // تصحيح لمرة واحدة: تكلفة الشراء والنقل أساسها الطن فعليًا — أي نسخة سبق تحولت للمتر المكعب بالكتالوج ترجع للطن
-  ['حجر فلتر','نقل حجر فلتر'].forEach(name=>{
+  ['حجر فلتر'].forEach(name=>{
     const m = materialsCatalog.find(x=>x.name===name);
     if(m && m.unit==='م³' && Number(m.price)===18.7){
       m.unit='طن'; m.price=11;
-      m.note = name==='نقل حجر فلتر' ? 'نقل من المقلع إلى الموقع' : 'سعر المادة عند المقلع — بدون نقل';
+      m.note = 'سعر المادة عند المقلع — بدون نقل';
       addedDefaults = true;
     }
   });
+  // النقل انتقل ليكون بند معدات/تكلفة منفصلة داخل كل بند بدل مادة ثابتة بالكتالوج
+  {
+    const before = materialsCatalog.length;
+    materialsCatalog = materialsCatalog.filter(m => m.name !== 'نقل حجر فلتر');
+    if(materialsCatalog.length !== before) addedDefaults = true;
+  }
   if(addedDefaults) await pushMaterialsToCloud();
 
   renderSaved();
@@ -628,8 +634,7 @@ let materialsCatalog = [
   {id:uid(), name:'إسمنت بورتلاندي', unit:'طن', price:280, note:''},
   {id:uid(), name:'حديد تسليح', unit:'طن', price:2850, note:''},
   {id:uid(), name:'رمل ردم', unit:'م³', price:35, note:''},
-  {id:uid(), name:'حجر فلتر', unit:'طن', price:11, note:'سعر المادة عند المقلع — بدون نقل'},
-  {id:uid(), name:'نقل حجر فلتر', unit:'طن', price:11, note:'نقل من المقلع إلى الموقع'}
+  {id:uid(), name:'حجر فلتر', unit:'طن', price:11, note:'سعر المادة عند المقلع — بدون نقل'}
 ];
 const DEFAULT_MATERIALS = materialsCatalog.map(m => ({...m}));
 
