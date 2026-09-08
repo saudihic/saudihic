@@ -366,6 +366,32 @@
         <div><h2>المعدات</h2><p class="sub">تكلفة المعدة = التكلفة اليومية ÷ الإنتاجية اليومية</p></div>
         <button class="btn btn-ghost btn-sm" onclick="addRow('equipment')">+ إضافة معدة</button>
       </div>
+
+      <div style="background:#F7F5F0;border:1px solid #E8E2D6;border-radius:10px;padding:12px 14px;margin:12px 0;">
+        <div style="font-size:12px;font-weight:700;color:var(--carbon);margin-bottom:8px;">🚚 حاسبة تكلفة النقل (حسب اتفاق الرحلة)</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;">
+          <div>
+            <label style="font-size:10px;color:#888;">قيمة الرحلة (ريال)</label>
+            <input type="number" id="trTripPrice" placeholder="مثال: 350" oninput="calcTransportHelper()" style="width:100%;padding:6px 8px;border:1px solid #ddd;border-radius:6px;font-size:12px;">
+          </div>
+          <div>
+            <label style="font-size:10px;color:#888;">حمولة السيارة (طن)</label>
+            <input type="number" id="trTruckCap" placeholder="22–25" value="23" oninput="calcTransportHelper()" style="width:100%;padding:6px 8px;border:1px solid #ddd;border-radius:6px;font-size:12px;">
+          </div>
+          <div>
+            <label style="font-size:10px;color:#888;">كثافة المادة (طن/م³) — لو البند بالمتر المكعب</label>
+            <input type="number" step="0.01" id="trDensity" placeholder="مثال: 1.7" oninput="calcTransportHelper()" style="width:100%;padding:6px 8px;border:1px solid #ddd;border-radius:6px;font-size:12px;">
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:10px;flex-wrap:wrap;">
+          <div style="font-size:12px;">
+            <span style="color:#888;">ريال/طن:</span> <b id="trPerTon">—</b>
+            <span style="color:#888;margin-right:10px;">ريال/وحدة البند:</span> <b id="trPerUnit">—</b>
+          </div>
+          <button class="btn btn-gold btn-sm" onclick="insertTransportRow()">+ إضافة كصف معدات</button>
+        </div>
+      </div>
+
       <div class="tbl-wrap">
         <table id="tbl-equipment">
           <thead><tr>
@@ -718,6 +744,28 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
     if(btn.dataset.tab==='saved') renderSaved();
   });
 });
+
+/* ---------------- Transport helper (trip-rate ÷ truck capacity) ---------------- */
+function calcTransportHelper(){
+  const trip = Number(document.getElementById('trTripPrice').value)||0;
+  const cap = Number(document.getElementById('trTruckCap').value)||0;
+  const density = Number(document.getElementById('trDensity').value)||0;
+  const perTonEl = document.getElementById('trPerTon');
+  const perUnitEl = document.getElementById('trPerUnit');
+  if(!trip || !cap){ perTonEl.textContent='—'; perUnitEl.textContent='—'; return null; }
+  const perTon = trip / cap;
+  const perUnit = density>0 ? perTon*density : perTon;
+  perTonEl.textContent = perTon.toFixed(2);
+  perUnitEl.textContent = perUnit.toFixed(2) + (density>0 ? ' (لكل م³)' : ' (لكل طن)');
+  return {perTon, perUnit};
+}
+function insertTransportRow(){
+  const r = calcTransportHelper();
+  if(!r){ toast('أدخل قيمة الرحلة وحمولة السيارة أولاً'); return; }
+  currentItem.equipment.push({id:uid(), name:'نقل', dailyCost: Number(r.perUnit.toFixed(2)), productivity:1});
+  renderPricingTables();
+  toast('تمت إضافة صف النقل بالمعدات');
+}
 
 /* ---------------- Row builders ---------------- */
 function addRow(type){
