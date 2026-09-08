@@ -555,6 +555,16 @@ async function connectCloud(){
     // أول مرة يُفعّل فيها هذا المفتاح بقاعدة البيانات — نرفع القيم الافتراضية كبداية
     await pushMaterialsToCloud();
   }
+  // دمج أي مادة افتراضية جديدة (بالاسم) لسه ما وصلت الكتالوج المشترك — بدون المساس بأسعار موجودة
+  let addedDefaults = false;
+  DEFAULT_MATERIALS.forEach(dm=>{
+    if(!materialsCatalog.some(m=>m.name===dm.name)){
+      materialsCatalog.push({...dm, id: uid()});
+      addedDefaults = true;
+    }
+  });
+  if(addedDefaults) await pushMaterialsToCloud();
+
   renderSaved();
   renderCatalog();
 }
@@ -608,8 +618,11 @@ let materialsCatalog = [
   {id:uid(), name:'ركام مكسر (بيس كورس)', unit:'م³', price:55, note:''},
   {id:uid(), name:'إسمنت بورتلاندي', unit:'طن', price:280, note:''},
   {id:uid(), name:'حديد تسليح', unit:'طن', price:2850, note:''},
-  {id:uid(), name:'رمل ردم', unit:'م³', price:35, note:''}
+  {id:uid(), name:'رمل ردم', unit:'م³', price:35, note:''},
+  {id:uid(), name:'حجر فلتر', unit:'طن', price:11, note:'سعر المادة عند المقلع — بدون نقل'},
+  {id:uid(), name:'نقل حجر فلتر', unit:'طن', price:11, note:'نقل من المقلع إلى الموقع'}
 ];
+const DEFAULT_MATERIALS = materialsCatalog.map(m => ({...m}));
 
 let pricedItems = [
   {
