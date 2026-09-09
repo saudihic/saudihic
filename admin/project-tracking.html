@@ -36,6 +36,23 @@
     background-image:repeating-linear-gradient(to left, var(--gold) 0 20px, transparent 20px 36px);opacity:.9;}
 
   main{max-width:720px;margin:0 auto 60px;padding:14px 14px 0;}
+  .topnav{display:flex;gap:4px;background:var(--white);padding:6px;max-width:720px;margin:-10px auto 0;
+    border-radius:var(--radius);box-shadow:var(--shadow);position:relative;z-index:2;}
+  .topnav-btn{flex:1;padding:9px 8px;border:none;background:transparent;border-radius:8px;
+    font-family:inherit;font-size:12.5px;font-weight:600;color:var(--carbon);cursor:pointer;}
+  .topnav-btn.active{background:var(--green);color:var(--white);}
+
+  .chart-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .chart-row .chart-label{width:120px;flex-shrink:0;font-size:11.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .chart-row .chart-track{flex:1;background:#f0eee9;border-radius:6px;height:16px;position:relative;overflow:hidden;}
+  .chart-row .chart-fill{height:100%;border-radius:6px;transition:width .3s;}
+  .chart-row .chart-fill.ok{background:var(--ok);}
+  .chart-row .chart-fill.warn{background:var(--warn);}
+  .chart-row .chart-fill.danger{background:var(--danger);}
+  .chart-row .chart-pct{width:52px;flex-shrink:0;text-align:left;font-size:11px;font-weight:700;font-family:'Raleway',sans-serif;}
+
+  .trend-wrap{overflow-x:auto;}
+  .trend-svg{display:block;}
   .screen{display:none;}
   .screen.active{display:block;animation:fade .18s ease;}
   @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
@@ -137,7 +154,14 @@
   .hic-login-box button:hover{background:#006b52}
   .hic-login-err{color:#ff6b6b;font-size:12px;margin-top:.75rem;display:none;font-family:Alexandria}
 
-  @media print{ .btn, header .road, .back-row{display:none !important;} body{background:#fff;} .card{box-shadow:none;border:1px solid #ddd;} }
+  .print-only{display:none;}
+  @media print{
+    .btn, header.top, .road, .back-row, .topnav{display:none !important;}
+    body{background:#fff;}
+    .card{box-shadow:none;border:1px solid #ddd;}
+    body.printing-report > *:not(.print-only){display:none !important;}
+    body.printing-report .print-only{display:block !important;}
+  }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="./supabase-config.js"></script>
@@ -188,10 +212,36 @@
 </header>
 <div class="road"></div>
 
+<div class="topnav">
+  <button class="topnav-btn active" id="navDash" onclick="showScreen('scr-dashboard')">📊 لوحة المتابعة</button>
+  <button class="topnav-btn" id="navProj" onclick="showScreen('scr-projects')">📁 كل المشاريع</button>
+</div>
+
 <main>
 
+  <!-- ===================== SCREEN 0: DASHBOARD ===================== -->
+  <section class="screen active" id="scr-dashboard">
+    <div class="summary-grid">
+      <div class="stat"><div class="stat-label">المشاريع</div><div class="stat-value num" id="dbProjects">0</div></div>
+      <div class="stat"><div class="stat-label">بنود المتابعة</div><div class="stat-value num" id="dbLines">0</div></div>
+      <div class="stat variance warn full"><div class="stat-label">بنود تحتاج انتباه</div><div class="stat-value num" id="dbFlagged">0</div></div>
+    </div>
+
+    <div class="card">
+      <h2>مقارنة الفروقات بين كل البنود</h2>
+      <p class="sub">نسبة الفرق (الفعلي مقابل النظري) لكل بند نشط، بترتيب الأخطر أولًا</p>
+      <div id="dbChart"></div>
+    </div>
+
+    <div class="card">
+      <h2>🔔 بنود تحتاج مراجعة</h2>
+      <p class="sub">فرق أكبر من ٥٪ بين الفعلي والنظري</p>
+      <div id="dbFlaggedList"></div>
+    </div>
+  </section>
+
   <!-- ===================== SCREEN 1: PROJECTS LIST ===================== -->
-  <section class="screen active" id="scr-projects">
+  <section class="screen" id="scr-projects">
     <div class="card">
       <h2>المشاريع</h2>
       <p class="sub">اختر مشروع للمتابعة، أو أنشئ مشروع جديد</p>
@@ -224,7 +274,10 @@
     <div class="card">
       <h2 id="pj-name">—</h2>
       <p class="sub" id="pj-meta">—</p>
-      <button class="btn btn-danger-ghost" onclick="deleteCurrentProject()">🗑 حذف المشروع</button>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-gold" onclick="printProjectReport()">🖨 طباعة تقرير المشروع</button>
+        <button class="btn btn-danger-ghost" onclick="deleteCurrentProject()">🗑 حذف المشروع</button>
+      </div>
     </div>
 
     <div class="card">
@@ -273,7 +326,7 @@
     </div>
 
     <div class="card">
-      <h2>إضافة يوم عمل</h2>
+      <h2 id="dayFormTitle">إضافة يوم عمل</h2>
       <label>التاريخ</label>
       <input type="date" id="dayDate">
       <label>المساحة المنجزة اليوم (م²)</label>
@@ -282,8 +335,15 @@
       <div id="ticketsWrap"></div>
       <button class="btn btn-ghost btn-sm" onclick="addTicketField()">＋ تذكرة</button>
       <div style="display:flex;gap:8px;margin-top:16px;">
-        <button class="btn btn-primary" onclick="saveDayLog()">💾 حفظ اليوم</button>
+        <button class="btn btn-primary" id="dayFormSaveBtn" onclick="saveDayLog()">💾 حفظ اليوم</button>
+        <button class="btn btn-ghost" id="dayFormCancelBtn" style="display:none;" onclick="cancelEditDayLog()">إلغاء التعديل</button>
       </div>
+    </div>
+
+    <div class="card">
+      <h2>اتجاه الفرق عبر الأيام</h2>
+      <p class="sub">نسبة الفرق التراكمي (الفعلي مقابل النظري) يوم بعد يوم</p>
+      <div class="trend-wrap" id="trendChartWrap"></div>
     </div>
 
     <div class="card">
@@ -394,15 +454,16 @@ let PROJECTS=[];
 
 async function connectCloud(){
   const sb=sbClient();
-  if(!sb){ toast('غير متصل بقاعدة البيانات — العمل محليًا فقط'); renderProjectsList(); return; }
+  if(!sb){ toast('غير متصل بقاعدة البيانات — العمل محليًا فقط'); renderProjectsList(); renderDashboard(); return; }
   const state=await fetchSharedState();
-  if(state===null){ toast('تعذر الاتصال — العمل محليًا فقط'); renderProjectsList(); return; }
+  if(state===null){ toast('تعذر الاتصال — العمل محليًا فقط'); renderProjectsList(); renderDashboard(); return; }
   usingSupabase=true;
   PROJECTS = Array.isArray(state.projects) ? state.projects : [];
   renderProjectsList();
+  renderDashboard();
 }
 async function persistProjects(){
-  if(!usingSupabase){ renderProjectsList(); return; }
+  if(!usingSupabase){ renderProjectsList(); renderDashboard(); return; }
   const state = await fetchSharedState();
   if(state===null){ toast('تعذر الحفظ — تأكد من الاتصال'); return; }
   state.projects = PROJECTS;
@@ -414,6 +475,9 @@ let CURRENT_PROJECT_ID=null, CURRENT_LINE_ID=null;
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  document.getElementById('navDash').classList.toggle('active', id==='scr-dashboard');
+  document.getElementById('navProj').classList.toggle('active', id!=='scr-dashboard');
+  if(id==='scr-dashboard') renderDashboard();
   window.scrollTo(0,0);
 }
 function getProject(id){ return PROJECTS.find(p=>p.id===id); }
@@ -455,6 +519,70 @@ function renderProjectsList(){
       <div class="li-arrow">‹</div>`;
     wrap.appendChild(el);
   });
+}
+
+/* ---- Screen 0: dashboard ---- */
+function allLinesFlat(){
+  const rows=[];
+  PROJECTS.forEach(p=>{
+    (p.lines||[]).forEach(l=>{
+      const area=cumArea(l), theo=cumTheoretical(l), act=cumActual(l);
+      const diff=act-theo;
+      const pct = theo>0 ? (diff/theo*100) : 0;
+      rows.push({ projectId:p.id, projectName:p.name, lineId:l.id, line:l, area, theo, act, diff, pct, cls:varianceClass(pct), hasData: l.logs && l.logs.length>0 });
+    });
+  });
+  return rows;
+}
+function renderDashboard(){
+  const rows = allLinesFlat();
+  const withData = rows.filter(r=>r.hasData);
+  document.getElementById('dbProjects').textContent = PROJECTS.length;
+  document.getElementById('dbLines').textContent = rows.length;
+  const flagged = withData.filter(r=>r.cls!=='ok').sort((a,b)=> Math.abs(b.pct)-Math.abs(a.pct));
+  document.getElementById('dbFlagged').textContent = flagged.length;
+
+  // Chart: all lines with data, worst first
+  const chartWrap=document.getElementById('dbChart');
+  const sorted = withData.slice().sort((a,b)=> Math.abs(b.pct)-Math.abs(a.pct));
+  if(!sorted.length){
+    chartWrap.innerHTML='<div class="empty">لا توجد بيانات كافية بعد — سجّل أيام عمل بأي بند</div>';
+  } else {
+    const maxPct = Math.max(10, ...sorted.map(r=>Math.abs(r.pct)));
+    chartWrap.innerHTML='';
+    sorted.forEach(r=>{
+      const w = Math.min(100, Math.abs(r.pct)/maxPct*100);
+      const row=document.createElement('div');
+      row.className='chart-row';
+      row.style.cursor='pointer';
+      row.onclick=()=>{ openLine(r.projectId, r.lineId); };
+      row.innerHTML=`
+        <div class="chart-label">${r.line.label}</div>
+        <div class="chart-track"><div class="chart-fill ${r.cls}" style="width:${w}%"></div></div>
+        <div class="chart-pct num">${r.pct>=0?'+':''}${r.pct.toFixed(1)}%</div>`;
+      chartWrap.appendChild(row);
+    });
+  }
+
+  // Flagged list
+  const listWrap=document.getElementById('dbFlaggedList');
+  if(!flagged.length){
+    listWrap.innerHTML='<div class="empty">لا توجد بنود تحتاج مراجعة 👍</div>';
+  } else {
+    listWrap.innerHTML='';
+    flagged.forEach(r=>{
+      const el=document.createElement('div');
+      el.className='list-item';
+      el.onclick=()=>openLine(r.projectId, r.lineId);
+      el.innerHTML=`
+        <div class="li-main">
+          <div class="li-title">${r.line.label}</div>
+          <div class="li-sub">${r.projectName} · فرق ${r.diff>=0?'+':''}${fmt(r.diff)} طن (${r.pct>=0?'+':''}${r.pct.toFixed(1)}٪)</div>
+        </div>
+        <div class="badge ${r.cls}">${r.cls==='danger'?'حرج':'راقبه'}</div>`;
+      listWrap.appendChild(el);
+    });
+  }
 }
 
 /* ---- Screen 2: project detail ---- */
@@ -539,6 +667,8 @@ function cumArea(line){ return (line.logs||[]).reduce((s,d)=>s+(Number(d.areaTod
 function cumTheoretical(line){ return cumArea(line) * (line.thicknessCm/100) * line.density; }
 function cumActual(line){ return (line.logs||[]).reduce((s,d)=> s + (d.tickets||[]).reduce((ss,t)=>ss+(Number(t.net)||0),0), 0); }
 
+let EDITING_LOG_ID = null;
+
 function openLine(pid, lid){
   CURRENT_PROJECT_ID=pid; CURRENT_LINE_ID=lid;
   const l=getLine(pid,lid);
@@ -546,11 +676,10 @@ function openLine(pid, lid){
   document.getElementById('ln-name').textContent=l.label;
   document.getElementById('ln-meta').textContent=`سماكة ${fmt(l.thicknessCm)} سم · كثافة ${fmt(l.density)} طن/م³ · مخطط ${fmt(l.plannedQty)} م²`;
   document.getElementById('ln-crumb').textContent=l.label;
-  document.getElementById('dayDate').value=todayStr();
-  document.getElementById('ticketsWrap').innerHTML='';
-  addTicketField();
+  cancelEditDayLog();
   renderLineSummary();
   renderLogsTable();
+  renderTrendChart();
   showScreen('scr-line');
 }
 function backToProject(){ openProject(CURRENT_PROJECT_ID); }
@@ -564,11 +693,11 @@ async function deleteCurrentLine(){
   openProject(CURRENT_PROJECT_ID);
 }
 
-function addTicketField(){
+function addTicketField(net){
   const wrap=document.getElementById('ticketsWrap');
   const row=document.createElement('div');
   row.className='ticket-row';
-  row.innerHTML=`<input type="number" step="0.01" placeholder="مثال: 23" class="ticket-net">
+  row.innerHTML=`<input type="number" step="0.01" placeholder="مثال: 23" class="ticket-net" value="${net!=null?net:''}">
                   <button class="btn btn-danger-ghost btn-sm" onclick="this.parentElement.remove()">حذف</button>`;
   wrap.appendChild(row);
 }
@@ -594,12 +723,15 @@ function renderLineSummary(){
   badge.className='badge '+cls;
   badge.textContent = cls==='ok' ? 'ضمن الهامش الطبيعي' : (cls==='warn' ? 'فرق ملحوظ — راقبه' : 'فرق كبير — يحتاج مراجعة');
 }
+function sortedLogs(l){
+  return l.logs.slice().sort((a,b)=> new Date(a.date)-new Date(b.date) || new Date(a.createdAt)-new Date(b.createdAt));
+}
 function renderLogsTable(){
   const l=getLine(CURRENT_PROJECT_ID, CURRENT_LINE_ID);
   const body=document.getElementById('logsBody');
   if(!l || !l.logs.length){ body.innerHTML='<tr><td colspan="8" class="empty">لا توجد أيام مسجلة بعد</td></tr>'; return; }
   body.innerHTML='';
-  const sorted=l.logs.slice().sort((a,b)=> new Date(a.date)-new Date(b.date) || new Date(a.createdAt)-new Date(b.createdAt));
+  const sorted=sortedLogs(l);
   let cArea=0, cAct=0;
   sorted.forEach(d=>{
     const dayNet = (d.tickets||[]).reduce((s,t)=>s+(Number(t.net)||0),0);
@@ -618,9 +750,48 @@ function renderLogsTable(){
       <td class="num">${fmt(cTheo)}</td>
       <td class="num">${fmt(cAct)}</td>
       <td class="num row-diff-${cls}">${(diff>=0?'+':'')+fmt(diff)}</td>
-      <td><button class="btn btn-danger-ghost btn-sm" onclick="deleteDayLog('${d.id}')">حذف</button></td>`;
+      <td style="white-space:nowrap;">
+        <button class="btn btn-ghost btn-sm" onclick="editDayLog('${d.id}')">تعديل</button>
+        <button class="btn btn-danger-ghost btn-sm" onclick="deleteDayLog('${d.id}')">حذف</button>
+      </td>`;
     body.appendChild(tr);
   });
+}
+function renderTrendChart(){
+  const l=getLine(CURRENT_PROJECT_ID, CURRENT_LINE_ID);
+  const wrap=document.getElementById('trendChartWrap');
+  if(!l || !l.logs.length){ wrap.innerHTML='<div class="empty">سجّل يومين أو أكثر لعرض الاتجاه</div>'; return; }
+  const sorted=sortedLogs(l);
+  let cArea=0, cAct=0;
+  const pts = sorted.map(d=>{
+    const dayNet=(d.tickets||[]).reduce((s,t)=>s+(Number(t.net)||0),0);
+    cArea+=(Number(d.areaToday)||0); cAct+=dayNet;
+    const cTheo=cArea*(l.thicknessCm/100)*l.density;
+    const pct = cTheo>0 ? ((cAct-cTheo)/cTheo*100) : 0;
+    return {date:d.date, pct};
+  });
+  if(pts.length<2){ wrap.innerHTML='<div class="empty">سجّل يومين أو أكثر لعرض الاتجاه</div>'; return; }
+
+  const W=Math.max(320, pts.length*70), H=140, padL=36, padR=14, padT=14, padB=24;
+  const maxAbs=Math.max(10, ...pts.map(p=>Math.abs(p.pct)));
+  const x = i => padL + (i/(pts.length-1))*(W-padL-padR);
+  const y = pct => padT + (H-padT-padB)/2 - (pct/maxAbs)*((H-padT-padB)/2);
+  const zeroY = y(0);
+  const line = pts.map((p,i)=> (i===0?'M':'L') + x(i).toFixed(1) + ',' + y(p.pct).toFixed(1)).join(' ');
+  const lastCls = varianceClass(pts[pts.length-1].pct);
+  const colorMap={ok:'#1f7a4d', warn:'#a9752e', danger:'#a13a2e'};
+  const strokeColor = colorMap[lastCls];
+
+  let svg = `<svg class="trend-svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+    <line x1="${padL}" y1="${zeroY}" x2="${W-padR}" y2="${zeroY}" stroke="#ddd" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="4" y="${zeroY+4}" font-size="9" fill="#999" font-family="Raleway">0%</text>
+    <path d="${line}" fill="none" stroke="${strokeColor}" stroke-width="2"/>`;
+  pts.forEach((p,i)=>{
+    const cls=varianceClass(p.pct);
+    svg += `<circle cx="${x(i).toFixed(1)}" cy="${y(p.pct).toFixed(1)}" r="3.5" fill="${colorMap[cls]}"/>`;
+  });
+  svg += `</svg>`;
+  wrap.innerHTML = svg;
 }
 async function deleteDayLog(logId){
   const l=getLine(CURRENT_PROJECT_ID, CURRENT_LINE_ID);
@@ -628,8 +799,33 @@ async function deleteDayLog(logId){
   if(!confirm('حذف هذا اليوم من السجل؟')) return;
   l.logs = l.logs.filter(d=>d.id!==logId);
   await persistProjects();
-  renderLineSummary(); renderLogsTable(); renderLinesList();
+  if(EDITING_LOG_ID===logId) cancelEditDayLog();
+  renderLineSummary(); renderLogsTable(); renderTrendChart(); renderLinesList();
   toast('تم حذف اليوم من السجل');
+}
+function editDayLog(logId){
+  const l=getLine(CURRENT_PROJECT_ID, CURRENT_LINE_ID);
+  const d = l && l.logs.find(x=>x.id===logId);
+  if(!d) return;
+  EDITING_LOG_ID = logId;
+  document.getElementById('dayFormTitle').textContent = 'تعديل يوم ' + d.date;
+  document.getElementById('dayDate').value = d.date;
+  document.getElementById('dayArea').value = d.areaToday;
+  document.getElementById('ticketsWrap').innerHTML='';
+  if(d.tickets && d.tickets.length){ d.tickets.forEach(t=>addTicketField(t.net)); } else { addTicketField(); }
+  document.getElementById('dayFormSaveBtn').textContent='💾 حفظ التعديل';
+  document.getElementById('dayFormCancelBtn').style.display='inline-flex';
+  document.querySelector('#scr-line .card:nth-of-type(2)').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function cancelEditDayLog(){
+  EDITING_LOG_ID = null;
+  document.getElementById('dayFormTitle').textContent='إضافة يوم عمل';
+  document.getElementById('dayDate').value=todayStr();
+  document.getElementById('dayArea').value='';
+  document.getElementById('ticketsWrap').innerHTML='';
+  addTicketField();
+  document.getElementById('dayFormSaveBtn').textContent='💾 حفظ اليوم';
+  document.getElementById('dayFormCancelBtn').style.display='none';
 }
 async function saveDayLog(){
   const l=getLine(CURRENT_PROJECT_ID, CURRENT_LINE_ID);
@@ -642,17 +838,62 @@ async function saveDayLog(){
     if(v>0) tickets.push({id:uid(), net:v});
   });
   if(!area && !tickets.length){ toast('أدخل المساحة أو تذكرة وزن على الأقل'); return; }
-  l.logs.push({ id:uid(), date, areaToday:area, tickets, createdAt:new Date().toISOString() });
-  await persistProjects();
-  toast('تم حفظ اليوم');
-  document.getElementById('dayArea').value='';
-  document.getElementById('ticketsWrap').innerHTML='';
-  addTicketField();
-  renderLineSummary(); renderLogsTable(); renderLinesList();
+
+  if(EDITING_LOG_ID){
+    const idx = l.logs.findIndex(x=>x.id===EDITING_LOG_ID);
+    if(idx>-1){
+      l.logs[idx] = { ...l.logs[idx], date, areaToday:area, tickets };
+    }
+    await persistProjects();
+    toast('تم تحديث اليوم');
+  } else {
+    l.logs.push({ id:uid(), date, areaToday:area, tickets, createdAt:new Date().toISOString() });
+    await persistProjects();
+    toast('تم حفظ اليوم');
+  }
+  cancelEditDayLog();
+  renderLineSummary(); renderLogsTable(); renderTrendChart(); renderLinesList();
+}
+
+/* ---- Print report ---- */
+function printProjectReport(){
+  const p=getProject(CURRENT_PROJECT_ID);
+  if(!p) return;
+  if(!p.lines.length){ toast('لا توجد بنود متابعة بهذا المشروع بعد'); return; }
+  let html = `<div style="font-family:Alexandria,sans-serif;direction:rtl;padding:10px;">
+    <div style="border-bottom:3px solid #005340;padding-bottom:10px;margin-bottom:16px;">
+      <div style="font-weight:800;font-size:18px;color:#005340;">${p.name}</div>
+      <div style="font-size:12px;color:#555;margin-top:4px;">${[p.client,p.location].filter(Boolean).join(' • ')||''}</div>
+      <div style="font-size:11px;color:#999;margin-top:2px;">تقرير بتاريخ ${todayStr()}</div>
+    </div>`;
+  p.lines.forEach(l=>{
+    const area=cumArea(l), theo=cumTheoretical(l), act=cumActual(l), diff=act-theo;
+    const pct = theo>0 ? (diff/theo*100) : 0;
+    html += `<div style="margin-bottom:22px;page-break-inside:avoid;">
+      <div style="font-weight:700;font-size:14px;color:#005340;border-bottom:1px solid #ddd;padding-bottom:4px;margin-bottom:8px;">${l.label}</div>
+      <div style="font-size:11px;color:#555;margin-bottom:8px;">سماكة ${fmt(l.thicknessCm)} سم · كثافة ${fmt(l.density)} طن/م³ · مخطط ${fmt(l.plannedQty)} م²</div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:8px;">
+        <tr style="background:#e8f0ee;"><td style="padding:5px;border:1px solid #ddd;">المساحة المنجزة</td><td style="padding:5px;border:1px solid #ddd;">النظري (طن)</td><td style="padding:5px;border:1px solid #ddd;">الفعلي (طن)</td><td style="padding:5px;border:1px solid #ddd;">الفرق</td></tr>
+        <tr><td style="padding:5px;border:1px solid #ddd;">${fmt(area)} م²</td><td style="padding:5px;border:1px solid #ddd;">${fmt(theo)}</td><td style="padding:5px;border:1px solid #ddd;">${fmt(act)}</td><td style="padding:5px;border:1px solid #ddd;">${(diff>=0?'+':'')+fmt(diff)} (${pct>=0?'+':''}${pct.toFixed(1)}٪)</td></tr>
+      </table>
+      <table style="width:100%;border-collapse:collapse;font-size:10px;">
+        <tr style="background:#f5f5f5;"><td style="padding:4px;border:1px solid #eee;">التاريخ</td><td style="padding:4px;border:1px solid #eee;">مساحة اليوم</td><td style="padding:4px;border:1px solid #eee;">وزن اليوم</td></tr>`;
+    sortedLogs(l).forEach(d=>{
+      const dayNet=(d.tickets||[]).reduce((s,t)=>s+(Number(t.net)||0),0);
+      html += `<tr><td style="padding:4px;border:1px solid #eee;">${d.date}</td><td style="padding:4px;border:1px solid #eee;">${fmt(d.areaToday)}</td><td style="padding:4px;border:1px solid #eee;">${fmt(dayNet)}</td></tr>`;
+    });
+    html += `</table></div>`;
+  });
+  html += `</div>`;
+  document.getElementById('printReport').innerHTML = html;
+  document.body.classList.add('printing-report');
+  window.print();
+  setTimeout(()=>document.body.classList.remove('printing-report'), 500);
 }
 
 /* ---------------- Init ---------------- */
 connectCloud();
 </script>
+<div id="printReport" class="print-only"></div>
 </body>
 </html>
