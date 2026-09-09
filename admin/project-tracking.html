@@ -212,6 +212,11 @@
 </header>
 <div class="road"></div>
 
+<div id="cloudBanner" style="display:none;background:#a13a2e;color:#fff;padding:10px 16px;font-size:12.5px;text-align:center;">
+  ⚠️ غير متصل بقاعدة البيانات المشتركة — أي عمل الآن يضيع لو حدّثت الصفحة أو أغلقتها
+  <button onclick="retryCloudConnect()" style="margin-right:8px;background:#fff;color:#a13a2e;border:none;border-radius:5px;padding:4px 10px;font-weight:700;font-size:11.5px;cursor:pointer;">إعادة المحاولة</button>
+</div>
+
 <div class="topnav">
   <button class="topnav-btn active" id="navDash" onclick="showScreen('scr-dashboard')">📊 لوحة المتابعة</button>
   <button class="topnav-btn" id="navProj" onclick="showScreen('scr-projects')">📁 كل المشاريع</button>
@@ -472,22 +477,55 @@ async function saveSharedState(state){
 let usingSupabase=false;
 let PROJECTS=[];
 
+function setCloudBanner(show){
+  document.getElementById('cloudBanner').style.display = show ? 'block' : 'none';
+}
+let hasUnsavedLocalWork = false;
+
 async function connectCloud(){
   const sb=sbClient();
-  if(!sb){ toast('غير متصل بقاعدة البيانات — العمل محليًا فقط'); renderProjectsList(); renderDashboard(); return; }
+  if(!sb){ setCloudBanner(true); renderProjectsList(); renderDashboard(); return; }
   const state=await fetchSharedState();
-  if(state===null){ toast('تعذر الاتصال — العمل محليًا فقط'); renderProjectsList(); renderDashboard(); return; }
+  if(state===null){ setCloudBanner(true); renderProjectsList(); renderDashboard(); return; }
   usingSupabase=true;
+  setCloudBanner(false);
   PROJECTS = Array.isArray(state.projects) ? state.projects : [];
   renderProjectsList();
   renderDashboard();
 }
+async function retryCloudConnect(){
+  toast('جاري إعادة الاتصال...');
+  const sb=sbClient();
+  if(!sb){ toast('لسه ما فيه اتصال'); return; }
+  const state=await fetchSharedState();
+  if(state===null){ toast('لسه ما فيه اتصال'); return; }
+
+  if(hasUnsavedLocalWork){
+    // عندنا تعديلات محلية ما تحفظت — نرفعها فوق بدل ما نسحب نسخة السحابة القديمة ونضيعها
+    state.projects = PROJECTS;
+    const ok = await saveSharedState(state);
+    if(ok){
+      usingSupabase=true; hasUnsavedLocalWork=false; setCloudBanner(false);
+      toast('تم الاتصال ورفع التعديلات المحلية بنجاح ✅');
+      renderProjectsList(); renderDashboard();
+    } else {
+      toast('اتصل لكن فشل رفع التعديلات — حاول مرة أخرى');
+    }
+  } else {
+    usingSupabase=true; setCloudBanner(false);
+    PROJECTS = Array.isArray(state.projects) ? state.projects : [];
+    toast('تم الاتصال بنجاح ✅');
+    renderProjectsList(); renderDashboard();
+  }
+}
 async function persistProjects(){
-  if(!usingSupabase){ renderProjectsList(); renderDashboard(); return; }
+  if(!usingSupabase){ hasUnsavedLocalWork=true; setCloudBanner(true); renderProjectsList(); renderDashboard(); return false; }
   const state = await fetchSharedState();
-  if(state===null){ toast('تعذر الحفظ — تأكد من الاتصال'); return; }
+  if(state===null){ hasUnsavedLocalWork=true; setCloudBanner(true); toast('⚠️ تعذر الحفظ — تأكد من الاتصال وحاول مرة أخرى'); return false; }
   state.projects = PROJECTS;
-  await saveSharedState(state);
+  const ok = await saveSharedState(state);
+  if(!ok){ hasUnsavedLocalWork=true; setCloudBanner(true); toast('⚠️ تعذر الحفظ بقاعدة البيانات — حاول مرة أخرى قبل ما تسكر الصفحة'); }
+  return ok;
 }
 
 /* ================= Screens ================= */
@@ -519,8 +557,8 @@ async function saveNewProject(){
   };
   PROJECTS.push(p);
   closeNewProjectForm();
-  await persistProjects();
-  toast('تم إنشاء المشروع');
+  const ok = await persistProjects();
+  if(ok) toast('تم إنشاء المشروع وحفظه بقاعدة البيانات ✅');
   openProject(p.id);
 }
 function renderProjectsList(){
@@ -622,8 +660,8 @@ async function deleteCurrentProject(){
   if(!p) return;
   if(!confirm('حذف المشروع "'+p.name+'" وكل بنوده وسجلاته نهائيًا؟')) return;
   PROJECTS = PROJECTS.filter(x=>x.id!==CURRENT_PROJECT_ID);
-  await persistProjects();
-  toast('تم حذف المشروع');
+  const ok = await persistProjects();
+  toast(ok ? 'تم حذف المشروع' : '⚠️ حُذف محليًا بس ما انحذف من القاعدة المشتركة — تحقق من الاتصال');
   showScreen('scr-projects');
 }
 
@@ -696,8 +734,8 @@ async function saveNewLine(){
   };
   p.lines.push(line);
   closeNewLineForm();
-  await persistProjects();
-  toast('تم إضافة بند المتابعة');
+  const ok = await persistProjects();
+  toast(ok ? 'تم إضافة بند المتابعة وحفظه ✅' : '⚠️ أُضيف محليًا بس ما انحفظ بقاعدة البيانات — تحقق من الاتصال');
   openLine(p.id, line.id);
 }
 function lineMultiplier(line){
@@ -769,8 +807,8 @@ async function deleteCurrentLine(){
   if(!p||!l) return;
   if(!confirm('حذف بند المتابعة "'+l.label+'" وكل سجلاته نهائيًا؟')) return;
   p.lines = p.lines.filter(x=>x.id!==CURRENT_LINE_ID);
-  await persistProjects();
-  toast('تم حذف البند');
+  const ok = await persistProjects();
+  toast(ok ? 'تم حذف البند' : '⚠️ حُذف محليًا بس ما انحذف من القاعدة المشتركة — تحقق من الاتصال');
   openProject(CURRENT_PROJECT_ID);
 }
 
@@ -880,10 +918,10 @@ async function deleteDayLog(logId){
   if(!l) return;
   if(!confirm('حذف هذا اليوم من السجل؟')) return;
   l.logs = l.logs.filter(d=>d.id!==logId);
-  await persistProjects();
+  const ok = await persistProjects();
   if(EDITING_LOG_ID===logId) cancelEditDayLog();
   renderLineSummary(); renderLogsTable(); renderTrendChart(); renderLinesList();
-  toast('تم حذف اليوم من السجل');
+  toast(ok ? 'تم حذف اليوم من السجل' : '⚠️ حُذف محليًا بس ما انحذف من القاعدة المشتركة — تحقق من الاتصال');
 }
 function editDayLog(logId){
   const l=getLine(CURRENT_PROJECT_ID, CURRENT_LINE_ID);
@@ -926,12 +964,12 @@ async function saveDayLog(){
     if(idx>-1){
       l.logs[idx] = { ...l.logs[idx], date, areaToday:area, tickets };
     }
-    await persistProjects();
-    toast('تم تحديث اليوم');
+    const ok = await persistProjects();
+    toast(ok ? 'تم تحديث اليوم وحفظه ✅' : '⚠️ عُدّل محليًا بس ما انحفظ — تحقق من الاتصال قبل ما تسكر الصفحة');
   } else {
     l.logs.push({ id:uid(), date, areaToday:area, tickets, createdAt:new Date().toISOString() });
-    await persistProjects();
-    toast('تم حفظ اليوم');
+    const ok = await persistProjects();
+    toast(ok ? 'تم حفظ اليوم ✅' : '⚠️ انحفظ محليًا بس ما انحفظ بقاعدة البيانات — تحقق من الاتصال قبل ما تسكر الصفحة');
   }
   cancelEditDayLog();
   renderLineSummary(); renderLogsTable(); renderTrendChart(); renderLinesList();
