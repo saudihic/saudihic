@@ -35,8 +35,8 @@
 <div id="toast" class="toast"></div>
 <script>
 const U=['طن','م³','م²','م ط','رد / تريب'];
-const C=['توريد','تنفيذ','توريد وتنفيذ'];
-const WORK_TYPES=['توريد مواد ترابية','توريد بحص ورمل وبيسكورس','ردم ودمك','تسوية وتجهيز مواقع','توريد وتنفيذ أسفلت','كشط وإزالة أسفلت','أعمال طرق','أرصفة وإنترلوك وبلدورات','تطوير مشهد حضري','حفر ونقل نواتج الحفر','قص أرصفة ونقل مخلفات','تشغيل معدات ونقليات','أعمال تصريف مياه الأمطار','أعمال خرسانية','أعمال لاندسكيب'];
+const C=['توريد','تنفيذ','توريد وتنفيذ','تأجير'];
+const WORK_TYPES=['توريد مواد ترابية','توريد بحص ورمل وبيسكورس','ردم ودمك','تسوية وتجهيز مواقع','توريد وتنفيذ أسفلت','كشط وإزالة أسفلت','أعمال طرق','أرصفة وإنترلوك وبلدورات','تطوير مشهد حضري','حفر ونقل نواتج الحفر','قص أرصفة ونقل مخلفات','تأجير معدات','تشغيل معدات ونقليات','أعمال تصريف مياه الأمطار','أعمال خرسانية','أعمال لاندسكيب'];
 const ST={pending:'بانتظار الاعتماد',approved:'معتمد وجاهز للمستخلص',billed:'ضمن مستخلص',sent:'مرسل للمحاسبة',invoiced:'تمت فوترته'};
 const V={dashboard:'لوحة التحكم',projects:'المشاريع',daily:'التنفيذ اليومي',supply:'التوريدات والردود',statements:'المستخلصات والفوترة',tools:'أدوات HIC',project:'المشروع'};
 let DATA={projects:[],items:[],logs:[],statements:[],purchases:[],expenses:[],receipts:[]},SHARED={},online=false,view='dashboard',pid='',editing=null;
@@ -52,7 +52,7 @@ function go(v,p){view=v;if(p)pid=p;$$('.nav button').forEach(b=>b.classList.togg
 function headerAction(){const b=$('#pageActionBtn'),actions={projects:['＋ مشروع جديد',()=>openForm('project')],daily:['＋ تسجيل تنفيذ',()=>chooseProject('log','تسجيل تنفيذ جديد','execution')],supply:['＋ تسجيل توريد / رد',()=>chooseProject('log','تسجيل توريد أو رد جديد','supply')],statements:['＋ مستخلص جديد',()=>chooseProject('statement','إنشاء مستخلص جديد')]},a=actions[view];if(!a){b.classList.add('hidden');b.onclick=null;return}b.textContent=a[0];b.onclick=a[1];b.classList.remove('hidden')}
 function chooseProject(nextType,title,nextMode=''){let rows=DATA.projects.filter(p=>nextType==='statement'?DATA.logs.some(l=>l.projectId===p.id&&l.status==='approved'):DATA.items.some(i=>i.projectId===p.id));if(!rows.length){toast(nextType==='statement'?'لا يوجد مشروع لديه كميات معتمدة':'أضف مشروعًا وبنوده أولًا');return}editing={type:'chooseProject',nextType};$('#formFields').innerHTML=select('اختر المشروع *','projectId',rows[0].id,rows.map(p=>[p.id,p.name+(p.client?' — '+p.client:'')]))+`<div class="full banner">سيتم فتح نموذج ${nextType==='statement'?'المستخلص':nextMode==='supply'?'التوريد أو الرد':'التنفيذ'} للمشروع المختار.</div>`;$('#modalTitle').textContent=title;$('#modalNote').textContent='اختر المشروع الذي ستسجل الحركة عليه.';$('#modal').showModal()}
 function project(){return DATA.projects.find(x=>x.id===pid)}function item(i){return DATA.items.find(x=>x.id===i)}function pName(i){return DATA.projects.find(x=>x.id===i)?.name||'—'}
-function simpleProjectType(v){v=String(v||'');if(C.includes(v))return v;if(/توريد/.test(v)&&/تنفيذ/.test(v))return'توريد وتنفيذ';if(/توريد/.test(v))return'توريد';return'تنفيذ'}
+function simpleProjectType(v){v=String(v||'');if(C.includes(v))return v;if(/تأجير|تاجير|إيجار|ايجار/.test(v))return'تأجير';if(/توريد/.test(v)&&/تنفيذ/.test(v))return'توريد وتنفيذ';if(/توريد/.test(v))return'توريد';return'تنفيذ'}
 function normalizeProjectTypes(){DATA.projects.forEach(p=>{if(!C.includes(p.category)){const old=String(p.category||'').trim();p.category=simpleProjectType(old);if(old&&!String(p.description||'').includes(old))p.description=old+(p.description?' — '+p.description:'')}})}
 function retentionProject(value){const p=typeof value==='object'&&value?value:project(),text=(typeof value==='object'&&value?`${value.category||''} ${value.description||''}`:`${value||''} ${p?.description||''}`);return /أرصف|انترلوك|إنترلوك|بلدور|مشهد حضري/.test(text)}
 function projectFinance(projectId){
