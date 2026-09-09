@@ -373,6 +373,15 @@ thead th.th-desc{text-align:right;padding-right:12px}
   if(sessionStorage.getItem('hic_admin_ok')==='1') unlock();
 })();
 </script>
+<div id="hicLanding" style="display:none;position:fixed;inset:0;z-index:9998;background:#1a1a1a;align-items:center;justify-content:center;">
+  <div style="background:#1e1c1c;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:2.5rem;width:360px;max-width:88vw;text-align:center;">
+    <div style="font:800 22px Alexandria;color:#005340;margin-bottom:.4rem;">HIC</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:2rem;font-family:Alexandria;">عرض سعر — وش تبي تسوي؟</div>
+    <button onclick="startNewQuote()" style="width:100%;background:#005340;color:#fff;border:none;border-radius:6px;padding:.9rem;font:700 14px Alexandria;cursor:pointer;margin-bottom:10px;">➕ عرض سعر جديد</button>
+    <a href="quote-archive.html" style="display:block;width:100%;box-sizing:border-box;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:.85rem;font:700 14px Alexandria;text-decoration:none;">📂 فتح / تعديل من الأرشيف</a>
+  </div>
+</div>
+<div id="mainApp" style="display:none;">
 <div class="bar">
   <div class="bar-brand">
     <div class="bar-logo">HIC</div>
@@ -555,6 +564,7 @@ thead th.th-desc{text-align:right;padding-right:12px}
 
 </div><!-- /page -->
 </div><!-- /page-wrap -->
+</div><!-- /mainApp -->
 <script>
 // ── DATA ──
 var D = {
@@ -634,11 +644,17 @@ async function cloudSet(key, obj){
 }
 
 var __cloudSaveTimer=null;
+function isQuoteEmpty(st){
+  var hasClient = (st.clientName||'').trim().length>0;
+  var totalNum = parseFloat(String(st.total||'0').replace(/,/g,''))||0;
+  return !hasClient && totalNum<=0;
+}
 function cloudSaveDebounced(st){
   clearTimeout(__cloudSaveTimer);
   __cloudSaveTimer=setTimeout(async function(){
     var qn=(st.qn||'').trim();
     if(!qn) return; // need a quote number to file it in the archive
+    if(isQuoteEmpty(st)) return; // ما نؤرشف عرض فارغ (بدون عميل وبدون مبلغ) لحد ما يصير فيه محتوى فعلي
     var key=cloudKey(qn);
     currentQuoteKey=key;
     await cloudSet(key, st);
@@ -1001,21 +1017,42 @@ function addCond(){
   li.appendChild(sp); li.appendChild(xb); ul.appendChild(li); sp.focus();
 }
 
-(async function initQuote(){
-  var loadedFromCloud = await loadFromUrlIfPresent();
-  var loadedFromSession = false;
-  if(!loadedFromCloud) loadedFromSession = loadState();
+function showMainApp(){
+  var landing=document.getElementById('hicLanding'); if(landing) landing.style.display='none';
+  var app=document.getElementById('mainApp'); if(app) app.style.display='block';
+}
+
+window.startNewQuote = async function(){
+  showMainApp();
   render();
   renderConds();
   applySavedHeader();
   recalc();
-  if(!loadedFromCloud && !loadedFromSession){
-    var qnEl=document.getElementById('qn');
-    if(qnEl){
-      qnEl.textContent = await generateNextQuoteNumber();
-      saveState();
-    }
+  var qnEl=document.getElementById('qn');
+  if(qnEl){
+    qnEl.textContent = await generateNextQuoteNumber();
+    saveState();
   }
+};
+
+(async function initQuote(){
+  var loadedFromCloud = await loadFromUrlIfPresent();
+  var loadedFromSession = false;
+  if(!loadedFromCloud) loadedFromSession = loadState();
+
+  if(loadedFromCloud || loadedFromSession){
+    // فتح عرض محفوظ، أو استكمال مسودة قيد التعديل بنفس التبويب — ندخل مباشرة بدون شاشة اختيار
+    showMainApp();
+    render();
+    renderConds();
+    applySavedHeader();
+    recalc();
+    return;
+  }
+
+  // فتح جديد تمامًا بدون رقم أو مسودة — نعرض شاشة الاختيار، وما نولّد رقم إلا بضغطة "عرض سعر جديد"
+  var landing=document.getElementById('hicLanding');
+  if(landing) landing.style.display='flex';
 })();
 
 // Global debounced autosave: catches header/condition/table edits as they happen
