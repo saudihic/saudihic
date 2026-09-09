@@ -290,12 +290,32 @@
       <h2>بند متابعة جديد</h2>
       <label>اسم البند / المادة *</label>
       <input type="text" id="nlLabel" placeholder="مثال: فرش حجر فلتر">
-      <label>سماكة الطبقة (سم)</label>
-      <input type="number" step="0.1" id="nlThick" placeholder="مثال: 20">
-      <label>الكثافة</label>
-      <select id="nlDensitySelect" onchange="onNlDensityChange()"></select>
-      <input type="number" step="0.01" id="nlDensityCustom" placeholder="كثافة مخصصة" style="display:none;margin-top:8px;">
-      <label>المساحة الإجمالية المخططة (م²)</label>
+
+      <label>طريقة الحساب *</label>
+      <select id="nlMethod" onchange="onNlMethodChange()">
+        <option value="layer">طبقة (تسوية / إسفلت / أرصفة) — مساحة × سماكة × كثافة</option>
+        <option value="volume">حجم — توريد/نقل بالمتر المكعب (م³ × كثافة)</option>
+        <option value="weight">وزن — توريد مباشر بالطن (بدون تحويل)</option>
+        <option value="trips">رحلات — توريد بالرد (عدد رحلات × حمولة الشاحنة)</option>
+      </select>
+
+      <div id="nlThickWrap">
+        <label>سماكة الطبقة (سم)</label>
+        <input type="number" step="0.1" id="nlThick" placeholder="مثال: 20">
+      </div>
+
+      <div id="nlDensityWrap">
+        <label id="nlDensityLabel">الكثافة</label>
+        <select id="nlDensitySelect" onchange="onNlDensityChange()"></select>
+        <input type="number" step="0.01" id="nlDensityCustom" placeholder="كثافة مخصصة" style="display:none;margin-top:8px;">
+      </div>
+
+      <div id="nlCapacityWrap" style="display:none;">
+        <label>حمولة الشاحنة (طن/رحلة)</label>
+        <input type="number" step="0.1" id="nlCapacity" placeholder="مثال: 23">
+      </div>
+
+      <label id="nlPlannedLabel">المساحة الإجمالية المخططة (م²)</label>
       <input type="number" step="1" id="nlPlanned" placeholder="مثال: 1000">
       <div style="display:flex;gap:8px;margin-top:14px;">
         <button class="btn btn-primary" onclick="saveNewLine()">💾 حفظ</button>
@@ -319,7 +339,7 @@
     </div>
 
     <div class="summary-grid">
-      <div class="stat"><div class="stat-label">المساحة المنجزة</div><div class="stat-value num" id="stArea">0</div></div>
+      <div class="stat"><div class="stat-label" id="stAreaLabel">الكمية المنجزة</div><div class="stat-value num" id="stArea">0</div></div>
       <div class="stat"><div class="stat-label">النظري التراكمي (طن)</div><div class="stat-value num" id="stTheo">0</div></div>
       <div class="stat"><div class="stat-label">الفعلي التراكمي (طن)</div><div class="stat-value num" id="stActual">0</div></div>
       <div class="stat variance" id="stVarianceBox"><div class="stat-label">الفرق</div><div class="stat-value num" id="stVariance">0</div><div class="badge" id="stBadge"></div></div>
@@ -329,7 +349,7 @@
       <h2 id="dayFormTitle">إضافة يوم عمل</h2>
       <label>التاريخ</label>
       <input type="date" id="dayDate">
-      <label>المساحة المنجزة اليوم (م²)</label>
+      <label id="dayAreaLabel">المساحة المنجزة اليوم (م²)</label>
       <input type="number" step="0.1" id="dayArea" placeholder="مثال: 200">
       <label style="margin-top:14px;">تذاكر الوزن اليوم (طن صافي)</label>
       <div id="ticketsWrap"></div>
@@ -351,8 +371,8 @@
       <div class="tbl-wrap">
         <table>
           <thead><tr>
-            <th>التاريخ</th><th>المساحة اليوم</th><th>وزن اليوم</th>
-            <th>م² تراكمي</th><th>نظري تراكمي</th><th>فعلي تراكمي</th><th>الفرق</th><th></th>
+            <th>التاريخ</th><th id="thDayQty">الكمية اليوم</th><th>وزن اليوم</th>
+            <th id="thCumQty">تراكمي</th><th>نظري تراكمي</th><th>فعلي تراكمي</th><th>الفرق</th><th></th>
           </tr></thead>
           <tbody id="logsBody"></tbody>
         </table>
@@ -607,13 +627,37 @@ async function deleteCurrentProject(){
   showScreen('scr-projects');
 }
 
+const METHOD_UNIT = { layer:'م²', volume:'م³', weight:'طن', trips:'رحلة' };
+const METHOD_PLANNED_LABEL = {
+  layer:'المساحة الإجمالية المخططة (م²)',
+  volume:'الحجم الإجمالي المخطط (م³)',
+  weight:'الكمية الإجمالية المخططة (طن)',
+  trips:'عدد الرحلات الإجمالي المخطط'
+};
+const METHOD_DAY_LABEL = {
+  layer:'المساحة المنجزة اليوم (م²)',
+  volume:'الحجم المنجز اليوم (م³)',
+  weight:'الكمية المطلوبة اليوم (طن)',
+  trips:'عدد الرحلات اليوم'
+};
+
+function onNlMethodChange(){
+  const m=document.getElementById('nlMethod').value;
+  document.getElementById('nlThickWrap').style.display = m==='layer' ? 'block' : 'none';
+  document.getElementById('nlDensityWrap').style.display = (m==='layer'||m==='volume') ? 'block' : 'none';
+  document.getElementById('nlCapacityWrap').style.display = m==='trips' ? 'block' : 'none';
+  document.getElementById('nlDensityLabel').textContent = 'الكثافة';
+  document.getElementById('nlPlannedLabel').textContent = METHOD_PLANNED_LABEL[m];
+}
 function openNewLineForm(){
   document.getElementById('nlDensitySelect').innerHTML = densityPresetOptions('');
+  document.getElementById('nlMethod').value='layer';
+  onNlMethodChange();
   document.getElementById('newLineForm').style.display='block';
 }
 function closeNewLineForm(){
   document.getElementById('newLineForm').style.display='none';
-  ['nlLabel','nlThick','nlDensityCustom','nlPlanned'].forEach(id=>document.getElementById(id).value='');
+  ['nlLabel','nlThick','nlDensityCustom','nlCapacity','nlPlanned'].forEach(id=>document.getElementById(id).value='');
 }
 function onNlDensityChange(){
   const key=document.getElementById('nlDensitySelect').value;
@@ -624,15 +668,29 @@ async function saveNewLine(){
   if(!p) return;
   const label=document.getElementById('nlLabel').value.trim();
   if(!label){ toast('أدخل اسم البند'); return; }
-  const key=document.getElementById('nlDensitySelect').value;
-  let density=0;
-  if(key==='custom') density=Number(document.getElementById('nlDensityCustom').value)||0;
-  else if(DENSITY_PRESETS[key]) density=DENSITY_PRESETS[key].density;
-  if(!density){ toast('اختر الكثافة'); return; }
+  const method=document.getElementById('nlMethod').value;
+
+  let thicknessCm=0, densityPreset='', density=1;
+  if(method==='layer' || method==='volume'){
+    const key=document.getElementById('nlDensitySelect').value;
+    if(key==='custom') density=Number(document.getElementById('nlDensityCustom').value)||0;
+    else if(DENSITY_PRESETS[key]) density=DENSITY_PRESETS[key].density;
+    if(!density){ toast('اختر الكثافة'); return; }
+    densityPreset=key;
+    if(method==='layer'){
+      thicknessCm=Number(document.getElementById('nlThick').value)||0;
+      if(!thicknessCm){ toast('أدخل سماكة الطبقة'); return; }
+    }
+  } else if(method==='trips'){
+    density=Number(document.getElementById('nlCapacity').value)||0;
+    if(!density){ toast('أدخل حمولة الشاحنة'); return; }
+  } else if(method==='weight'){
+    density=1;
+  }
+
   const line={
-    id:uid(), label,
-    thicknessCm:Number(document.getElementById('nlThick').value)||0,
-    densityPreset:key, density,
+    id:uid(), label, method,
+    thicknessCm, densityPreset, density,
     plannedQty:Number(document.getElementById('nlPlanned').value)||0,
     createdAt:new Date().toISOString(), logs:[]
   };
@@ -642,6 +700,22 @@ async function saveNewLine(){
   toast('تم إضافة بند المتابعة');
   openLine(p.id, line.id);
 }
+function lineMultiplier(line){
+  const m = line.method || 'layer'; // بنود قديمة قبل هذا التحديث تُعامل كـ"طبقة" افتراضيًا
+  if(m==='layer') return (line.thicknessCm/100) * line.density;
+  if(m==='volume') return line.density;
+  if(m==='weight') return 1;
+  if(m==='trips') return line.density; // هنا density = حمولة الشاحنة
+  return 1;
+}
+function lineMetaText(l){
+  const m=l.method||'layer';
+  const unit=METHOD_UNIT[m];
+  if(m==='layer') return `طبقة · سماكة ${fmt(l.thicknessCm)} سم · كثافة ${fmt(l.density)} طن/م³ · مخطط ${fmt(l.plannedQty)} ${unit}`;
+  if(m==='volume') return `حجم · كثافة ${fmt(l.density)} طن/م³ · مخطط ${fmt(l.plannedQty)} ${unit}`;
+  if(m==='weight') return `وزن مباشر · مخطط ${fmt(l.plannedQty)} ${unit}`;
+  if(m==='trips') return `رحلات · حمولة الشاحنة ${fmt(l.density)} طن/رحلة · مخطط ${fmt(l.plannedQty)} ${unit}`;
+}
 function renderLinesList(){
   const p=getProject(CURRENT_PROJECT_ID);
   const wrap=document.getElementById('linesList');
@@ -649,13 +723,14 @@ function renderLinesList(){
   wrap.innerHTML='';
   p.lines.forEach(l=>{
     const areaCum = cumArea(l);
+    const unit = METHOD_UNIT[l.method||'layer'];
     const el=document.createElement('div');
     el.className='list-item';
     el.onclick=()=>openLine(p.id, l.id);
     el.innerHTML=`
       <div class="li-main">
         <div class="li-title">${l.label}</div>
-        <div class="li-sub">سماكة ${fmt(l.thicknessCm)} سم · كثافة ${fmt(l.density)} · منجز ${fmt(areaCum)} من ${fmt(l.plannedQty)} م²</div>
+        <div class="li-sub">${lineMetaText(l)} · منجز ${fmt(areaCum)} ${unit}</div>
       </div>
       <div class="li-arrow">‹</div>`;
     wrap.appendChild(el);
@@ -664,7 +739,7 @@ function renderLinesList(){
 
 /* ---- Screen 3: line detail ---- */
 function cumArea(line){ return (line.logs||[]).reduce((s,d)=>s+(Number(d.areaToday)||0),0); }
-function cumTheoretical(line){ return cumArea(line) * (line.thicknessCm/100) * line.density; }
+function cumTheoretical(line){ return cumArea(line) * lineMultiplier(line); }
 function cumActual(line){ return (line.logs||[]).reduce((s,d)=> s + (d.tickets||[]).reduce((ss,t)=>ss+(Number(t.net)||0),0), 0); }
 
 let EDITING_LOG_ID = null;
@@ -673,9 +748,15 @@ function openLine(pid, lid){
   CURRENT_PROJECT_ID=pid; CURRENT_LINE_ID=lid;
   const l=getLine(pid,lid);
   if(!l) return;
+  const m=l.method||'layer';
+  const unit=METHOD_UNIT[m];
   document.getElementById('ln-name').textContent=l.label;
-  document.getElementById('ln-meta').textContent=`سماكة ${fmt(l.thicknessCm)} سم · كثافة ${fmt(l.density)} طن/م³ · مخطط ${fmt(l.plannedQty)} م²`;
+  document.getElementById('ln-meta').textContent=lineMetaText(l);
   document.getElementById('ln-crumb').textContent=l.label;
+  document.getElementById('stAreaLabel').textContent = m==='layer' ? 'المساحة المنجزة' : (m==='volume' ? 'الحجم المنجز' : (m==='weight' ? 'الكمية المنجزة' : 'عدد الرحلات المنجزة'));
+  document.getElementById('thDayQty').textContent = m==='layer' ? 'المساحة اليوم' : (m==='volume' ? 'الحجم اليوم' : (m==='weight' ? 'الكمية اليوم' : 'رحلات اليوم'));
+  document.getElementById('thCumQty').textContent = unit+' تراكمي';
+  document.getElementById('dayAreaLabel').textContent = METHOD_DAY_LABEL[m];
   cancelEditDayLog();
   renderLineSummary();
   renderLogsTable();
@@ -712,7 +793,8 @@ function renderLineSummary(){
   const area=cumArea(l), theo=cumTheoretical(l), act=cumActual(l);
   const diff=act-theo;
   const pct = theo>0 ? (diff/theo*100) : 0;
-  document.getElementById('stArea').textContent=fmt(area)+' م²';
+  const unit = METHOD_UNIT[l.method||'layer'];
+  document.getElementById('stArea').textContent=fmt(area)+' '+unit;
   document.getElementById('stTheo').textContent=fmt(theo);
   document.getElementById('stActual').textContent=fmt(act);
   document.getElementById('stVariance').textContent=(diff>=0?'+':'')+fmt(diff)+' طن';
@@ -737,7 +819,7 @@ function renderLogsTable(){
     const dayNet = (d.tickets||[]).reduce((s,t)=>s+(Number(t.net)||0),0);
     cArea += (Number(d.areaToday)||0);
     cAct += dayNet;
-    const cTheo = cArea * (l.thicknessCm/100) * l.density;
+    const cTheo = cArea * lineMultiplier(l);
     const diff = cAct - cTheo;
     const pct = cTheo>0 ? (diff/cTheo*100) : 0;
     const cls = varianceClass(pct);
@@ -766,7 +848,7 @@ function renderTrendChart(){
   const pts = sorted.map(d=>{
     const dayNet=(d.tickets||[]).reduce((s,t)=>s+(Number(t.net)||0),0);
     cArea+=(Number(d.areaToday)||0); cAct+=dayNet;
-    const cTheo=cArea*(l.thicknessCm/100)*l.density;
+    const cTheo=cArea*lineMultiplier(l);
     const pct = cTheo>0 ? ((cAct-cTheo)/cTheo*100) : 0;
     return {date:d.date, pct};
   });
@@ -869,15 +951,16 @@ function printProjectReport(){
   p.lines.forEach(l=>{
     const area=cumArea(l), theo=cumTheoretical(l), act=cumActual(l), diff=act-theo;
     const pct = theo>0 ? (diff/theo*100) : 0;
+    const unit = METHOD_UNIT[l.method||'layer'];
     html += `<div style="margin-bottom:22px;page-break-inside:avoid;">
       <div style="font-weight:700;font-size:14px;color:#005340;border-bottom:1px solid #ddd;padding-bottom:4px;margin-bottom:8px;">${l.label}</div>
-      <div style="font-size:11px;color:#555;margin-bottom:8px;">سماكة ${fmt(l.thicknessCm)} سم · كثافة ${fmt(l.density)} طن/م³ · مخطط ${fmt(l.plannedQty)} م²</div>
+      <div style="font-size:11px;color:#555;margin-bottom:8px;">${lineMetaText(l)}</div>
       <table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:8px;">
-        <tr style="background:#e8f0ee;"><td style="padding:5px;border:1px solid #ddd;">المساحة المنجزة</td><td style="padding:5px;border:1px solid #ddd;">النظري (طن)</td><td style="padding:5px;border:1px solid #ddd;">الفعلي (طن)</td><td style="padding:5px;border:1px solid #ddd;">الفرق</td></tr>
-        <tr><td style="padding:5px;border:1px solid #ddd;">${fmt(area)} م²</td><td style="padding:5px;border:1px solid #ddd;">${fmt(theo)}</td><td style="padding:5px;border:1px solid #ddd;">${fmt(act)}</td><td style="padding:5px;border:1px solid #ddd;">${(diff>=0?'+':'')+fmt(diff)} (${pct>=0?'+':''}${pct.toFixed(1)}٪)</td></tr>
+        <tr style="background:#e8f0ee;"><td style="padding:5px;border:1px solid #ddd;">الكمية المنجزة</td><td style="padding:5px;border:1px solid #ddd;">النظري (طن)</td><td style="padding:5px;border:1px solid #ddd;">الفعلي (طن)</td><td style="padding:5px;border:1px solid #ddd;">الفرق</td></tr>
+        <tr><td style="padding:5px;border:1px solid #ddd;">${fmt(area)} ${unit}</td><td style="padding:5px;border:1px solid #ddd;">${fmt(theo)}</td><td style="padding:5px;border:1px solid #ddd;">${fmt(act)}</td><td style="padding:5px;border:1px solid #ddd;">${(diff>=0?'+':'')+fmt(diff)} (${pct>=0?'+':''}${pct.toFixed(1)}٪)</td></tr>
       </table>
       <table style="width:100%;border-collapse:collapse;font-size:10px;">
-        <tr style="background:#f5f5f5;"><td style="padding:4px;border:1px solid #eee;">التاريخ</td><td style="padding:4px;border:1px solid #eee;">مساحة اليوم</td><td style="padding:4px;border:1px solid #eee;">وزن اليوم</td></tr>`;
+        <tr style="background:#f5f5f5;"><td style="padding:4px;border:1px solid #eee;">التاريخ</td><td style="padding:4px;border:1px solid #eee;">الكمية اليوم</td><td style="padding:4px;border:1px solid #eee;">وزن اليوم</td></tr>`;
     sortedLogs(l).forEach(d=>{
       const dayNet=(d.tickets||[]).reduce((s,t)=>s+(Number(t.net)||0),0);
       html += `<tr><td style="padding:4px;border:1px solid #eee;">${d.date}</td><td style="padding:4px;border:1px solid #eee;">${fmt(d.areaToday)}</td><td style="padding:4px;border:1px solid #eee;">${fmt(dayNet)}</td></tr>`;
