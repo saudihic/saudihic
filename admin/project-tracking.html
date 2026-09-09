@@ -220,6 +220,7 @@
 <div class="topnav">
   <button class="topnav-btn active" id="navDash" onclick="showScreen('scr-dashboard')">📊 لوحة المتابعة</button>
   <button class="topnav-btn" id="navProj" onclick="showScreen('scr-projects')">📁 كل المشاريع</button>
+  <button class="topnav-btn" onclick="exportProjectsBackup()">⬇ نسخة احتياطية</button>
 </div>
 
 <main>
@@ -254,15 +255,26 @@
     </div>
 
     <div id="newProjectForm" class="card" style="display:none;">
-      <h2>مشروع جديد</h2>
+      <h2 id="projectFormTitle">مشروع جديد</h2>
       <label>اسم المشروع *</label>
       <input type="text" id="npName" placeholder="مثال: طريق حي الروضة">
       <label>العميل</label>
       <input type="text" id="npClient" placeholder="اسم العميل (اختياري)">
       <label>الموقع</label>
       <input type="text" id="npLocation" placeholder="مثال: جدة — حي الروضة">
+      <label>حالة المشروع</label>
+      <select id="npStatus">
+        <option value="active">نشط</option>
+        <option value="paused">متوقف مؤقتًا</option>
+        <option value="completed">مكتمل</option>
+      </select>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:12px;cursor:pointer;">
+        <input type="checkbox" id="npOpenOrder" style="width:auto;"> طلبات التوريد مفتوحة والكميات حسب الطلب
+      </label>
+      <label>نسبة الاحتجاز الافتراضية (%)</label>
+      <input type="number" min="0" max="100" step="0.01" id="npRetention" placeholder="مثال: 10">
       <div style="display:flex;gap:8px;margin-top:14px;">
-        <button class="btn btn-primary" onclick="saveNewProject()">💾 حفظ</button>
+        <button class="btn btn-primary" id="projectFormSaveBtn" onclick="saveNewProject()">💾 حفظ</button>
         <button class="btn btn-ghost" onclick="closeNewProjectForm()">إلغاء</button>
       </div>
     </div>
@@ -281,8 +293,32 @@
       <p class="sub" id="pj-meta">—</p>
       <div style="display:flex;gap:8px;">
         <button class="btn btn-gold" onclick="printProjectReport()">🖨 طباعة تقرير المشروع</button>
+        <button class="btn btn-ghost" onclick="editCurrentProject()">✏ تعديل المشروع</button>
         <button class="btn btn-danger-ghost" onclick="deleteCurrentProject()">🗑 حذف المشروع</button>
       </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="stat"><div class="stat-label">قيمة الأعمال المنفذة</div><div class="stat-value num" id="pjExecutedValue">0</div></div>
+      <div class="stat"><div class="stat-label">إجمالي المستخلصات</div><div class="stat-value num" id="pjClaimsValue">0</div></div>
+      <div class="stat"><div class="stat-label">صافي بعد الاحتجاز</div><div class="stat-value num" id="pjNetClaimsValue">0</div></div>
+      <div class="stat"><div class="stat-label">منفذ غير مفوتر</div><div class="stat-value num" id="pjUnbilledValue">0</div></div>
+    </div>
+
+    <div class="card">
+      <h2>المستخلصات الدورية</h2>
+      <p class="sub">متابعة تشغيلية فقط؛ إصدار الفاتورة الرسمية يبقى من النظام المحاسبي.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;align-items:end;">
+        <div><label>التاريخ</label><input type="date" id="clDate"></div>
+        <div><label>رقم/وصف المستخلص</label><input type="text" id="clRef" placeholder="مستخلص 1"></div>
+        <div><label>الإجمالي (ر.س)</label><input type="number" min="0" step="0.01" id="clGross"></div>
+        <div><label>الاحتجاز (%)</label><input type="number" min="0" max="100" step="0.01" id="clRetention"></div>
+        <button class="btn btn-primary" onclick="saveClaim()">＋ إضافة المستخلص</button>
+      </div>
+      <div class="tbl-wrap" style="margin-top:14px;"><table>
+        <thead><tr><th>التاريخ</th><th>المستخلص</th><th>الإجمالي</th><th>الاحتجاز</th><th>الصافي</th><th></th></tr></thead>
+        <tbody id="claimsBody"></tbody>
+      </table></div>
     </div>
 
     <div class="card">
@@ -322,6 +358,8 @@
 
       <label id="nlPlannedLabel">المساحة الإجمالية المخططة (م²)</label>
       <input type="number" step="1" id="nlPlanned" placeholder="مثال: 1000">
+      <label>سعر الوحدة (ر.س)</label>
+      <input type="number" min="0" step="0.01" id="nlUnitPrice" placeholder="سعر هذا البند في المشروع">
       <div style="display:flex;gap:8px;margin-top:14px;">
         <button class="btn btn-primary" onclick="saveNewLine()">💾 حفظ</button>
         <button class="btn btn-ghost" onclick="closeNewLineForm()">إلغاء</button>
@@ -450,6 +488,21 @@ function toast(msg){
   clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'), 2200);
 }
 function todayStr(){ return new Date().toISOString().slice(0,10); }
+function money(n){ return fmt(n)+' ر.س'; }
+function statusLabel(s){ return ({active:'نشط',paused:'متوقف مؤقتًا',completed:'مكتمل'})[s]||'نشط'; }
+function safeSnapshot(reason){
+  try{
+    const snapshot={version:1,createdAt:new Date().toISOString(),reason,projects:PROJECTS};
+    localStorage.setItem('hic_projects_last_backup',JSON.stringify(snapshot));
+  }catch(e){}
+}
+function exportProjectsBackup(){
+  const snapshot={version:1,createdAt:new Date().toISOString(),projects:PROJECTS};
+  const blob=new Blob([JSON.stringify(snapshot,null,2)],{type:'application/json;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='HIC-projects-backup-'+todayStr()+'.json'; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000); toast('تم تجهيز النسخة الاحتياطية');
+}
 
 /* ================= Supabase shared state (projects key) ================= */
 function sbClient(){
@@ -519,6 +572,7 @@ async function retryCloudConnect(){
   }
 }
 async function persistProjects(){
+  safeSnapshot('before-save');
   if(!usingSupabase){ hasUnsavedLocalWork=true; setCloudBanner(true); renderProjectsList(); renderDashboard(); return false; }
   const state = await fetchSharedState();
   if(state===null){ hasUnsavedLocalWork=true; setCloudBanner(true); toast('⚠️ تعذر الحفظ — تأكد من الاتصال وحاول مرة أخرى'); return false; }
@@ -529,7 +583,7 @@ async function persistProjects(){
 }
 
 /* ================= Screens ================= */
-let CURRENT_PROJECT_ID=null, CURRENT_LINE_ID=null;
+let CURRENT_PROJECT_ID=null, CURRENT_LINE_ID=null, EDITING_PROJECT_ID=null;
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -542,18 +596,42 @@ function getProject(id){ return PROJECTS.find(p=>p.id===id); }
 function getLine(pid, lid){ const p=getProject(pid); return p ? p.lines.find(l=>l.id===lid) : null; }
 
 /* ---- Screen 1: projects list ---- */
-function openNewProjectForm(){ document.getElementById('newProjectForm').style.display='block'; }
+function openNewProjectForm(){
+  EDITING_PROJECT_ID=null;
+  document.getElementById('projectFormTitle').textContent='مشروع جديد';
+  document.getElementById('projectFormSaveBtn').textContent='💾 حفظ';
+  document.getElementById('npStatus').value='active';
+  document.getElementById('npOpenOrder').checked=false;
+  document.getElementById('npRetention').value='';
+  document.getElementById('newProjectForm').style.display='block';
+}
 function closeNewProjectForm(){
   document.getElementById('newProjectForm').style.display='none';
   document.getElementById('npName').value=''; document.getElementById('npClient').value=''; document.getElementById('npLocation').value='';
+  document.getElementById('npStatus').value='active'; document.getElementById('npOpenOrder').checked=false; document.getElementById('npRetention').value='';
+  EDITING_PROJECT_ID=null;
 }
 async function saveNewProject(){
   const name=document.getElementById('npName').value.trim();
   if(!name){ toast('أدخل اسم المشروع'); return; }
+  if(EDITING_PROJECT_ID){
+    const p=getProject(EDITING_PROJECT_ID); if(!p) return;
+    p.name=name; p.client=document.getElementById('npClient').value.trim();
+    p.location=document.getElementById('npLocation').value.trim();
+    p.status=document.getElementById('npStatus').value;
+    p.openOrder=document.getElementById('npOpenOrder').checked;
+    p.retentionPct=Math.max(0,Math.min(100,Number(document.getElementById('npRetention').value)||0));
+    p.updatedAt=new Date().toISOString();
+    const id=p.id; closeNewProjectForm();
+    const ok=await persistProjects(); toast(ok?'تم تحديث المشروع ✅':'⚠️ تم التعديل محليًا فقط — تحقق من الاتصال');
+    openProject(id); return;
+  }
   const p={
     id:uid(), name, client:document.getElementById('npClient').value.trim(),
-    location:document.getElementById('npLocation').value.trim(), notes:'',
-    createdAt:new Date().toISOString(), lines:[]
+    location:document.getElementById('npLocation').value.trim(), notes:'', status:document.getElementById('npStatus').value,
+    openOrder:document.getElementById('npOpenOrder').checked,
+    retentionPct:Math.max(0,Math.min(100,Number(document.getElementById('npRetention').value)||0)),
+    createdAt:new Date().toISOString(), lines:[], claims:[]
   };
   PROJECTS.push(p);
   closeNewProjectForm();
@@ -572,7 +650,7 @@ function renderProjectsList(){
     el.innerHTML=`
       <div class="li-main">
         <div class="li-title">${p.name}</div>
-        <div class="li-sub">${[p.client, p.location].filter(Boolean).join(' • ') || '—'} · ${p.lines.length} بند متابعة</div>
+        <div class="li-sub">${[p.client, p.location].filter(Boolean).join(' • ') || '—'} · ${p.lines.length} بند · ${statusLabel(p.status)}${p.openOrder?' · طلب مفتوح':''}</div>
       </div>
       <div class="li-arrow">‹</div>`;
     wrap.appendChild(el);
@@ -649,11 +727,53 @@ function openProject(id){
   const p=getProject(id);
   if(!p) return;
   document.getElementById('pj-name').textContent=p.name;
-  document.getElementById('pj-meta').textContent=[p.client, p.location].filter(Boolean).join(' • ') || 'بدون تفاصيل إضافية';
+  document.getElementById('pj-meta').textContent=([p.client,p.location,statusLabel(p.status),p.openOrder?'طلبات مفتوحة':'كميات محددة'].filter(Boolean).join(' • '));
   document.getElementById('pj-crumb').textContent=p.name;
   closeNewLineForm();
   renderLinesList();
+  renderProjectFinancials();
   showScreen('scr-project');
+}
+function editCurrentProject(){
+  const p=getProject(CURRENT_PROJECT_ID); if(!p) return;
+  EDITING_PROJECT_ID=p.id;
+  document.getElementById('projectFormTitle').textContent='تعديل المشروع';
+  document.getElementById('projectFormSaveBtn').textContent='💾 حفظ التعديل';
+  document.getElementById('npName').value=p.name||''; document.getElementById('npClient').value=p.client||'';
+  document.getElementById('npLocation').value=p.location||''; document.getElementById('npStatus').value=p.status||'active';
+  document.getElementById('npOpenOrder').checked=!!p.openOrder; document.getElementById('npRetention').value=Number(p.retentionPct)||0;
+  document.getElementById('newProjectForm').style.display='block';
+  showScreen('scr-projects'); document.getElementById('newProjectForm').scrollIntoView({behavior:'smooth'});
+}
+function executedProjectValue(p){ return (p.lines||[]).reduce((s,l)=>s+cumArea(l)*(Number(l.unitPrice)||0),0); }
+function renderProjectFinancials(){
+  const p=getProject(CURRENT_PROJECT_ID); if(!p) return;
+  p.claims=Array.isArray(p.claims)?p.claims:[];
+  const executed=executedProjectValue(p), gross=p.claims.reduce((s,c)=>s+(Number(c.gross)||0),0);
+  const net=p.claims.reduce((s,c)=>s+(Number(c.gross)||0)*(1-(Number(c.retentionPct)||0)/100),0);
+  document.getElementById('pjExecutedValue').textContent=money(executed);
+  document.getElementById('pjClaimsValue').textContent=money(gross);
+  document.getElementById('pjNetClaimsValue').textContent=money(net);
+  document.getElementById('pjUnbilledValue').textContent=money(Math.max(0,executed-gross));
+  document.getElementById('clDate').value=todayStr(); document.getElementById('clRetention').value=Number(p.retentionPct)||0;
+  const body=document.getElementById('claimsBody');
+  if(!p.claims.length){ body.innerHTML='<tr><td colspan="6" class="empty">لا توجد مستخلصات مسجلة</td></tr>'; return; }
+  body.innerHTML=p.claims.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).map(c=>{
+    const r=Number(c.retentionPct)||0,g=Number(c.gross)||0,held=g*r/100;
+    return `<tr><td>${c.date||'—'}</td><td>${c.ref||'—'}</td><td class="num">${money(g)}</td><td class="num">${money(held)} (${fmt(r)}%)</td><td class="num">${money(g-held)}</td><td><button class="btn btn-danger-ghost btn-sm" onclick="deleteClaim('${c.id}')">حذف</button></td></tr>`;
+  }).join('');
+}
+async function saveClaim(){
+  const p=getProject(CURRENT_PROJECT_ID); if(!p) return;
+  const gross=Number(document.getElementById('clGross').value)||0; if(gross<=0){toast('أدخل قيمة المستخلص');return;}
+  p.claims=Array.isArray(p.claims)?p.claims:[];
+  p.claims.push({id:uid(),date:document.getElementById('clDate').value||todayStr(),ref:document.getElementById('clRef').value.trim()||('مستخلص '+(p.claims.length+1)),gross,retentionPct:Math.max(0,Math.min(100,Number(document.getElementById('clRetention').value)||0)),createdAt:new Date().toISOString()});
+  const ok=await persistProjects(); document.getElementById('clGross').value=''; document.getElementById('clRef').value=''; renderProjectFinancials();
+  toast(ok?'تم حفظ المستخلص ✅':'⚠️ أضيف محليًا فقط — تحقق من الاتصال');
+}
+async function deleteClaim(id){
+  const p=getProject(CURRENT_PROJECT_ID); if(!p||!confirm('حذف هذا المستخلص من المتابعة؟'))return;
+  p.claims=(p.claims||[]).filter(c=>c.id!==id); const ok=await persistProjects(); renderProjectFinancials(); toast(ok?'تم حذف المستخلص':'⚠️ تعذر الحفظ السحابي');
 }
 async function deleteCurrentProject(){
   const p=getProject(CURRENT_PROJECT_ID);
@@ -695,7 +815,7 @@ function openNewLineForm(){
 }
 function closeNewLineForm(){
   document.getElementById('newLineForm').style.display='none';
-  ['nlLabel','nlThick','nlDensityCustom','nlCapacity','nlPlanned'].forEach(id=>document.getElementById(id).value='');
+  ['nlLabel','nlThick','nlDensityCustom','nlCapacity','nlPlanned','nlUnitPrice'].forEach(id=>document.getElementById(id).value='');
 }
 function onNlDensityChange(){
   const key=document.getElementById('nlDensitySelect').value;
@@ -730,6 +850,7 @@ async function saveNewLine(){
     id:uid(), label, method,
     thicknessCm, densityPreset, density,
     plannedQty:Number(document.getElementById('nlPlanned').value)||0,
+    unitPrice:Number(document.getElementById('nlUnitPrice').value)||0,
     createdAt:new Date().toISOString(), logs:[]
   };
   p.lines.push(line);
@@ -768,7 +889,7 @@ function renderLinesList(){
     el.innerHTML=`
       <div class="li-main">
         <div class="li-title">${l.label}</div>
-        <div class="li-sub">${lineMetaText(l)} · منجز ${fmt(areaCum)} ${unit}</div>
+        <div class="li-sub">${lineMetaText(l)} · منجز ${fmt(areaCum)} ${unit}${Number(l.unitPrice)?' · '+money(l.unitPrice)+'/'+unit+' · قيمة '+money(areaCum*Number(l.unitPrice)):''}</div>
       </div>
       <div class="li-arrow">‹</div>`;
     wrap.appendChild(el);
