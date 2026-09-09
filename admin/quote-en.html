@@ -632,6 +632,15 @@ async function cloudGet(key){
     return JSON.parse(data.value);
   }catch(e){ return null; }
 }
+async function cloudGetStatus(key){
+  try{
+    var res = await fetch('/api/store/'+encodeURIComponent(key), { headers:{'x-admin-password':HIC_ADMIN_PW} });
+    if(res.status===404) return {ok:true, notFound:true, value:null};
+    if(!res.ok) return {ok:false, notFound:false, value:null};
+    var data = await res.json();
+    return {ok:true, notFound:false, value:JSON.parse(data.value)};
+  }catch(e){ return {ok:false, notFound:false, value:null}; }
+}
 async function cloudSet(key, obj){
   try{
     var res = await fetch('/api/store/'+encodeURIComponent(key), {
@@ -684,21 +693,21 @@ function loadState(){
 
 async function generateNextQuoteNumber(){
   var year=new Date().getFullYear();
-  try{
-    var idx=await cloudGet('quote-index');
-    if(!Array.isArray(idx) || idx.length===0) return 'HIC-'+year+'-001';
-    var maxNum=0;
-    idx.forEach(function(qn){
-      var m=/^HIC-(\d{4})-(\d+)$/.exec(qn);
-      if(m && parseInt(m[1],10)===year){
-        var n=parseInt(m[2],10);
-        if(n>maxNum) maxNum=n;
-      }
-    });
-    return 'HIC-'+year+'-'+String(maxNum+1).padStart(3,'0');
-  }catch(e){
-    return 'HIC-'+year+'-001';
+  var r = await cloudGetStatus('quote-index');
+  if(!r.ok){
+    throw new Error('Could not reach the archive to determine the last number. Check your connection and try again.');
   }
+  var idx = r.notFound ? [] : r.value;
+  if(!Array.isArray(idx) || idx.length===0) return 'HIC-'+year+'-001';
+  var maxNum=0;
+  idx.forEach(function(qn){
+    var m=/^HIC-(\d{4})-(\d+)$/.exec(qn);
+    if(m && parseInt(m[1],10)===year){
+      var n=parseInt(m[2],10);
+      if(n>maxNum) maxNum=n;
+    }
+  });
+  return 'HIC-'+year+'-'+String(maxNum+1).padStart(3,'0');
 }
 
 function applyLoadedState(st){
@@ -714,11 +723,16 @@ async function loadFromUrlIfPresent(){
   var params=new URLSearchParams(window.location.search);
   var id=params.get('id');
   if(!id) return false;
-  var st=await cloudGet(cloudKey(id));
-  if(st){
+  var r = await cloudGetStatus(cloudKey(id));
+  if(r.ok && !r.notFound && r.value){
     currentQuoteKey=cloudKey(id);
-    applyLoadedState(st);
+    applyLoadedState(r.value);
     return true;
+  }
+  if(r.notFound){
+    alert('Quote "'+id+'" was not found in the archive. Check the number or go back to the archive page.');
+  } else {
+    alert('Could not reach the archive to load quote "'+id+'". Check your connection and try again (do not click "New Quotation" to avoid creating a duplicate).');
   }
   return false;
 }
@@ -1027,8 +1041,12 @@ window.startNewQuote = async function(){
   recalc();
   var qnEl=document.getElementById('qn');
   if(qnEl){
-    qnEl.textContent = await generateNextQuoteNumber();
-    saveState();
+    try{
+      qnEl.textContent = await generateNextQuoteNumber();
+      saveState();
+    }catch(e){
+      alert(e.message || 'Could not generate a new quote number. Please try again.');
+    }
   }
 };
 
